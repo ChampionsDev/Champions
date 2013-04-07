@@ -1,0 +1,8 @@
+name: Dawnfirerealms
+version: 0.1
+main: net.dawnfirerealms.bukkit.DFPlugin
+authors: [Ranzdo]
+depend: [mmSupernaturals]
+commands:
+    race:
+    df:
