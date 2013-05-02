@@ -1,5 +1,5 @@
 name: Dawnfirerealms
-version: 0.1
+version: $VERSION
 main: net.dawnfirerealms.bukkit.DFPlugin
 authors: [Ranzdo]
 depend: [mmSupernaturals]

@@ -27,12 +27,12 @@
 			<version>1.5.1-R0.1</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.mmiillkkaa</groupId>
-			<artifactId>supernaturals</artifactId>
-			<version>1.4.13</version>
-			<scope>provided</scope>
-		</dependency>
+        <dependency>
+            <groupId>com.mmiillkkaa</groupId>
+            <artifactId>supernaturals</artifactId>
+            <version>1.4.13</version>
+            <scope>provided</scope>
+        </dependency>
 		<dependency>
 			<groupId>se.ranzdo.bukkit</groupId>
 			<artifactId>methodcommand</artifactId>
@@ -42,19 +42,43 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.0</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>maven-replacer-plugin</artifactId>
+                <configuration>
+                    <file>target/classes/plugin.yml</file>
+                    <replacements>
+                        <replacement>
+                            <token>\$VERSION</token>
+                            <value>${version}</value>
+                        </replacement>
+                    </replacements>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
 		</plugins>
 	</build>
 </project>

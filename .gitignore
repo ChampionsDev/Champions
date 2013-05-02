@@ -1,5 +1,10 @@
+#################
+## Script Generated Files
+#################
 target/
 dependency-reduced-pom.xml
+version.txt
+
 #################
 ## Eclipse
 #################
