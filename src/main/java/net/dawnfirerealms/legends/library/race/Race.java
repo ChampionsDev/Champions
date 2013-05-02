@@ -18,10 +18,14 @@ This file is part of Legends
 package net.dawnfirerealms.legends.library.race;
 
 
-public abstract class Race {
+public interface Race {
 	
-	protected abstract void init();
+	public void init();
 	
-	protected abstract void uninit();
+	public void uninit();
+	
+	public String getName();
+	
+	public String[] getDescription();
 
 }
