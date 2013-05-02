@@ -1,24 +1,24 @@
 /*
-This file is part of DawnFire-Realms.
+This file is part of Legends
 
-    DawnFire-Realms is free software: you can redistribute it and/or modify
+    Legends is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    DawnFire-Realms is distributed in the hope that it will be useful,
+    Legends is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with DawnFire-Realms.  If not, see <http://www.gnu.org/licenses/>.
+    along with Legends  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package net.dawnfirerealms.bukkit.races;
+package net.dawnfirerealms.legends.library.race;
 
-import net.dawnfirerealms.bukkit.utils.CField;
-import net.dawnfirerealms.bukkit.utils.ConfigHandler;
+import net.dawnfirerealms.legends.core.utils.CField;
+import net.dawnfirerealms.legends.core.utils.ConfigHandler;
 
 import org.bukkit.entity.Player;
 
@@ -26,7 +26,8 @@ import com.mmiillkkaa.supernaturals.SuperNPlayer;
 
 public abstract class Race {
 	Player player;
-	@CField RaceType type;
+	@CField
+    RaceType type;
 	RaceHandler handler;
 	ConfigHandler configHandler;
 	SuperNPlayer superNplayer;

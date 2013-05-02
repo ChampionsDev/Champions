@@ -1,21 +1,21 @@
 /*
-This file is part of DawnFire-Realms.
+This file is part of Legends.
 
-    DawnFire-Realms is free software: you can redistribute it and/or modify
+    Legends is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    DawnFire-Realms is distributed in the hope that it will be useful,
+    Legends is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with DawnFire-Realms.  If not, see <http://www.gnu.org/licenses/>.
+    along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package net.dawnfirerealms.bukkit.races;
+package net.dawnfirerealms.legends.library.race;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,9 +25,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import net.dawnfirerealms.bukkit.DFPlugin;
-import net.dawnfirerealms.bukkit.utils.ConfigHandler;
-import net.dawnfirerealms.bukkit.utils.EventMethod;
+import net.dawnfirerealms.legends.core.DFPlugin;
+import net.dawnfirerealms.legends.core.utils.ConfigHandler;
+import net.dawnfirerealms.legends.core.utils.EventMethod;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -49,7 +49,7 @@ import se.ranzdo.bukkit.methodcommand.Command;
 import se.ranzdo.bukkit.methodcommand.CommandHandler;
 import se.ranzdo.bukkit.methodcommand.FlagArg;
 import se.ranzdo.bukkit.methodcommand.Flags;
-
+// TODO Loading of user defined races should be moved to the core plugin
 public class RaceHandler {
 	public static final String INSTANCE_PATH = "race/players/";
 	public static final String CONFIG_PATH = "race/";

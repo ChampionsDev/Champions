@@ -1,6 +1,6 @@
 name: Dawnfirerealms
 version: $VERSION
-main: net.dawnfirerealms.bukkit.DFPlugin
+main: net.dawnfirerealms.legends.core.DFPlugin
 authors: [Ranzdo]
 depend: [mmSupernaturals]
 commands:
