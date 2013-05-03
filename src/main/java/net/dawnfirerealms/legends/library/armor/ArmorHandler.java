@@ -14,36 +14,22 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
+package net.dawnfirerealms.legends.library.armor;
 
-package net.dawnfirerealms.legends.library.weapon;
-
-import net.dawnfirerealms.legends.library.restriction.Restrictable;
+import java.util.HashMap;
 
 /**
  * @author B2OJustin
  */
-public class Weapon implements Restrictable {
-    private String name;
-    private String[] description;
+public class ArmorHandler {
+    // TODO These handler classes should probably be abstracted in one way or another
+    public static HashMap<String, Armor> armorMap = new HashMap<>();
 
-    public Weapon() {
+    public static void registerArmor(String name, Armor armor) {
+        armorMap.put(name, armor);
     }
 
-    public Weapon setName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public Weapon setDescription(String[] description) {
-        this.description = description;
-        return this;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String[] getDescription() {
-        return description;
+    public static Armor getArmor(String name) {
+        return armorMap.get(name);
     }
 }

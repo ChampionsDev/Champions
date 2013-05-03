@@ -22,16 +22,27 @@ import net.dawnfirerealms.legends.library.restriction.Restrictable;
  * @author B2OJustin
  */
 public class Armor implements Restrictable {
-    public enum ArmorType {
-        LEATHER, CHAIN, IRON, DIAMOND, GOLD
+    public String name;
+    public String[] description;
+
+    public Armor() {
     }
 
-    private ArmorType type;
-    public Armor(ArmorType type) {
-        this.type = type;
+    public Armor setName(String name) {
+        this.name = name;
+        return this;
     }
 
-    public ArmorType getType() {
-        return type;
+    public Armor setDescription(String[] description) {
+        this.description = description;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String[] getDescription() {
+        return description;
     }
 }
