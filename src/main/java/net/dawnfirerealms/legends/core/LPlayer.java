@@ -31,11 +31,11 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class LegendsPlayer implements SkillUser, WeaponUser, ArmorUser {
+public class LPlayer implements SkillUser, WeaponUser, ArmorUser {
     private Race race;
     private Player player;
 
-    public LegendsPlayer(Player player) {
+    public LPlayer(Player player) {
         this.player = player;
     }
 
