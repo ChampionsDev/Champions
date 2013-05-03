@@ -15,7 +15,7 @@ This file is part of Legends.
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package net.dawnfirerealms.legends.library.race;
+package net.dawnfirerealms.legends.core.race;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +29,7 @@ import net.dawnfirerealms.legends.core.LegendsPlugin;
 import net.dawnfirerealms.legends.core.utils.ConfigHandler;
 import net.dawnfirerealms.legends.core.utils.EventMethod;
 
+import net.dawnfirerealms.legends.library.race.Race;
 import se.ranzdo.bukkit.methodcommand.Arg;
 import se.ranzdo.bukkit.methodcommand.Command;
 import se.ranzdo.bukkit.methodcommand.CommandHandler;

@@ -19,7 +19,7 @@ package net.dawnfirerealms.legends.core;
 
 import net.dawnfirerealms.legends.core.dependencies.DependencyHandler;
 import net.dawnfirerealms.legends.core.utils.ConfigHandler;
-import net.dawnfirerealms.legends.library.race.RaceHandler;
+import net.dawnfirerealms.legends.core.race.RaceHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 import se.ranzdo.bukkit.methodcommand.CommandHandler;
 
