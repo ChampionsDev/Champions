@@ -16,23 +16,28 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.core;
 
+import net.dawnfirerealms.legends.library.armor.Armor;
+import net.dawnfirerealms.legends.library.armor.ArmorUser;
 import net.dawnfirerealms.legends.library.race.Race;
 import net.dawnfirerealms.legends.library.restriction.Restrictions;
 import net.dawnfirerealms.legends.library.skill.Skill;
 import net.dawnfirerealms.legends.library.skill.SkillUser;
 import net.dawnfirerealms.legends.library.weapon.Weapon;
 import net.dawnfirerealms.legends.library.weapon.WeaponUser;
-import net.minecraft.server.v1_5_R2.EntityPlayer;
-import org.bukkit.craftbukkit.v1_5_R2.CraftServer;
-import org.bukkit.craftbukkit.v1_5_R2.entity.CraftPlayer;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
-public class LegendsPlayer extends CraftPlayer implements SkillUser, WeaponUser {
+public class LegendsPlayer implements SkillUser, WeaponUser, ArmorUser {
     private Race race;
+    private Player player;
 
-    public LegendsPlayer(CraftServer server, EntityPlayer player) {
-        super(server, player);
+    public LegendsPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     public Race getRace() {
@@ -65,6 +70,11 @@ public class LegendsPlayer extends CraftPlayer implements SkillUser, WeaponUser 
 
     @Override
     public Restrictions<Weapon> getWeaponRestrictions() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Restrictions<Armor> getArmorRestrictions() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }
