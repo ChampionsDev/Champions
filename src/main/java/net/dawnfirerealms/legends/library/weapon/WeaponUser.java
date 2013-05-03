@@ -21,5 +21,4 @@ import net.dawnfirerealms.legends.library.restriction.Restrictions;
 
 public interface WeaponUser {
     public Restrictions<Weapon> getWeaponRestrictions();
-    public Weapon getCurrentWeapon();
 }

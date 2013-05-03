@@ -59,9 +59,4 @@ public class Race implements WeaponUser, SkillUser {
     public Restrictions<Weapon> getWeaponRestrictions() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
-
-    @Override
-    public Weapon getCurrentWeapon() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
 }

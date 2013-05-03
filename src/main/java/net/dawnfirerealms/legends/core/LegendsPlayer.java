@@ -39,6 +39,10 @@ public class LegendsPlayer extends CraftPlayer implements SkillUser, WeaponUser 
         return race;
     }
 
+    public Weapon getCurrentWeapon() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
     @Override
     public ArrayList<Skill> getSkills() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
@@ -61,11 +65,6 @@ public class LegendsPlayer extends CraftPlayer implements SkillUser, WeaponUser 
 
     @Override
     public Restrictions<Weapon> getWeaponRestrictions() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public Weapon getCurrentWeapon() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }
