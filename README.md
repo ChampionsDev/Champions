@@ -16,7 +16,7 @@ Our current policy on pull requests is as follows:
 
 ##Documentation
 See the javadocs at [Legends JavaDocs](http://jd.yoshigenius.com/apidocs/legends/)
-and the usage docs at the wiki: [Legends Wiki](http://legends.yoshigenius.com/wiki/)
+and the usage docs at the wiki: [Legends Wiki](http://dawnfirerealms.net/wiki/)
 
 Note: The links above may change at any time, but forwards will hopefully be set up.
 
