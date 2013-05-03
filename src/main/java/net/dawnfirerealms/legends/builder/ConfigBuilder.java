@@ -16,32 +16,28 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.builder;
 
-import net.dawnfirerealms.legends.library.armor.Armor;
 import net.dawnfirerealms.legends.library.race.Race;
-import net.dawnfirerealms.legends.library.skill.Skill;
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.util.HashMap;
 
 /**
  * @author B2OJustin
  */
 public class ConfigBuilder {
+    static {
+        // Default builders
+        registerBuilder(Race.class, new RaceBuilder());
+    }
+
+    private static HashMap<Class, BasicBuilder> builderMap = new HashMap<>();
+
+    public static void registerBuilder(Class clazz, BasicBuilder builder) {
+        builderMap.put(clazz, builder);
+    }
+
     public static <T> T load(YamlConfiguration config, Class<T> clazz) {
-        // Race
-        if(Race.class.equals(clazz)) {
-            RaceBuilder raceBuilder = new RaceBuilder();
-            return (T) raceBuilder.load(config);
-        }
-
-        // Armor
-        else if(Armor.class.equals(clazz)) {
-            return null;
-        }
-
-        // Skill
-        else if(Skill.class.equals(clazz)) {
-            return null;
-        }
-
-        return null;
+        BasicBuilder builder = builderMap.get(clazz);
+        return (T) builder.load(config);
     }
 }
