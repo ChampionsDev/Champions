@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * @author B2OJustin
  */
-public class RaceBuilder implements BasicBuilder<Race> {
+class RaceBuilder implements BasicBuilder<Race> {
     @Override
     public Race load(YamlConfiguration config) {
         List<String> description = config.getStringList("description");
