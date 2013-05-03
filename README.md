@@ -27,3 +27,4 @@ Or
 
 You can donate to the developers using their separate links:
 [YoshiGenius](http://www.paypal.com/cgi-bin/webscr?CMD=_s-xclick&hosted_button_id=UKZNMWFMEU7RU)
+[B2OJustin] (https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MVNXP74AYPCYJ)
