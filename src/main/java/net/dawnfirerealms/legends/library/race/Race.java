@@ -32,12 +32,25 @@ import java.util.ArrayList;
  * @author B2OJustin
  */
 public class Race implements WeaponUser, SkillUser, ArmorUser {
-	public String getName() {
-        return null;
+	private String name;
+    private String[] description;
+
+    public Race setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Race setDescription(String[] description) {
+        this.description = description;
+        return this;
+    }
+
+    public String getName() {
+        return name;
     }
 
 	public String[] getDescription() {
-        return null;
+        return description;
     }
 
     @Override
