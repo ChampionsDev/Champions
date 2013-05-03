@@ -19,12 +19,20 @@ package net.dawnfirerealms.legends.library.skill;
 
 import net.dawnfirerealms.legends.library.restriction.Restrictable;
 
-public interface Skill extends Restrictable {
-    public int getManaCost();
+public class Skill implements Restrictable {
+    public int getManaCost() {
+        return 0;
+    }
 
-    public int getLevel();
+    public int getLevel() {
+        return 0;
+    }
 
-    public String getName();
+    public String getName() {
+        return null;
+    }
 
-    public String getDescription();
+    public String getDescription() {
+        return null;
+    }
 }
