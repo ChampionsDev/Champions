@@ -14,7 +14,7 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package net.dawnfirerealms.legends.core.race;
+package net.dawnfirerealms.legends.builder;
 
 import net.dawnfirerealms.legends.library.race.Race;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -24,8 +24,9 @@ import java.util.List;
 /**
  * @author B2OJustin
  */
-public class RaceBuilder {
-    public static Race load(YamlConfiguration config) {
+public class RaceBuilder implements BasicBuilder<Race> {
+    @Override
+    public Race load(YamlConfiguration config) {
         List<String> description = config.getStringList("description");
         Race race = new Race().
             setName(config.getString("name")).
