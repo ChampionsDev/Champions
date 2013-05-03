@@ -2,7 +2,7 @@ Legends Core
 ====
 
 ##About
-Due to the absense of Heroes from Bukkit, a group of developers directed by taiwe2 got together to create the new Heroes, Legends.
+Due to the absense of Heroes from Bukkit, a group of developers assembled by taiwe2 got together to create the new Heroes, Legends.
 
 They are: YoshiGenius, B2OJustin, and Ranzdo.
 
