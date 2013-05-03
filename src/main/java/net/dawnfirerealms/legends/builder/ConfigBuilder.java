@@ -36,6 +36,7 @@ public class ConfigBuilder {
         builderMap.put(clazz, builder);
     }
 
+    @SuppressWarnings("unchecked")
     public static <T> T load(YamlConfiguration config, Class<T> clazz) {
         BasicBuilder<T> builder = builderMap.get(clazz);
         return builder.load(config);
