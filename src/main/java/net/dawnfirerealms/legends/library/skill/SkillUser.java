@@ -20,6 +20,9 @@ import net.dawnfirerealms.legends.library.restriction.Restrictions;
 
 import java.util.ArrayList;
 
+/**
+ * @author B2OJustin
+ */
 public interface SkillUser {
     public ArrayList<Skill> getSkills();
     public void addSkill(Skill skill);

@@ -18,6 +18,9 @@ package net.dawnfirerealms.legends.library.armor;
 
 import net.dawnfirerealms.legends.library.restriction.Restrictions;
 
+/**
+ * @author B2OJustin
+ */
 public interface ArmorUser {
     public Restrictions<Armor> getArmorRestrictions();
 }

@@ -17,6 +17,9 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.library.restriction;
 
+/**
+ * @author B2OJustin
+ */
 public class Restrictions<T extends Restrictable> {
 
     public Restrictions() {

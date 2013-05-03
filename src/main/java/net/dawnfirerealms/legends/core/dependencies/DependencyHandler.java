@@ -26,7 +26,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- *
  * @author YoshiGenius
  */
 public class DependencyHandler {

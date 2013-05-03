@@ -18,5 +18,8 @@ package net.dawnfirerealms.legends.library.armor;
 
 import net.dawnfirerealms.legends.library.restriction.Restrictable;
 
+/**
+ * @author B2OJustin
+ */
 public class Armor implements Restrictable {
 }

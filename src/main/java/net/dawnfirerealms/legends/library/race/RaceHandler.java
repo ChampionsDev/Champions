@@ -34,8 +34,12 @@ import se.ranzdo.bukkit.methodcommand.Command;
 import se.ranzdo.bukkit.methodcommand.CommandHandler;
 import se.ranzdo.bukkit.methodcommand.FlagArg;
 import se.ranzdo.bukkit.methodcommand.Flags;
-// TODO Loading of user defined races should be moved to the core plugin
+
+/**
+ * @author Ranzdo
+ */
 public class RaceHandler {
+    // TODO Loading of user defined races should be moved to the core plugin
 	public static final String INSTANCE_PATH = "race/players/";
 	public static final String CONFIG_PATH = "race/";
 	

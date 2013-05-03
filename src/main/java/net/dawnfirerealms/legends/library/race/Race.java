@@ -28,6 +28,9 @@ import net.dawnfirerealms.legends.library.weapon.WeaponUser;
 
 import java.util.ArrayList;
 
+/**
+ * @author B2OJustin
+ */
 public class Race implements WeaponUser, SkillUser, ArmorUser {
 	public String getName() {
         return null;

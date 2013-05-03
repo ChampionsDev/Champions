@@ -28,6 +28,9 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
+/**
+ * @author B2OJustin
+ */
 public class LegendsPlayer implements SkillUser, WeaponUser, ArmorUser {
     private Race race;
     private Player player;

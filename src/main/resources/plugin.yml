@@ -1,8 +1,5 @@
-name: Dawnfirerealms
+name: Legends
 version: $VERSION
 main: net.dawnfirerealms.legends.core.LegendsPlugin
-authors: [Ranzdo]
-depend: [mmSupernaturals]
-commands:
-    race:
-    df:
+authors: [Ranzdo, B2OJustin, YoshiGenius]
+soft-depend: [mmSupernaturals]

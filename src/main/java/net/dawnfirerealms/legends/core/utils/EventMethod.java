@@ -22,6 +22,9 @@ import java.lang.reflect.Method;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
 
+/**
+ * @author Ranzdo
+ */
 public class EventMethod {
 	private Class<? extends Event> eventClass;
 	private EventPriority priority;

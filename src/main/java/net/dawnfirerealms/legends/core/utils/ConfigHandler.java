@@ -29,6 +29,9 @@ import java.util.Map.Entry;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
+/**
+ * @author Ranzdo
+ */
 public class ConfigHandler {
 
 	private Map<Class<?>, List<Field>> registeredClasses = new LinkedHashMap<Class<?>, List<Field>>();

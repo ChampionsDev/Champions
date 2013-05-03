@@ -19,6 +19,9 @@ package net.dawnfirerealms.legends.library.weapon;
 
 import net.dawnfirerealms.legends.library.restriction.Restrictable;
 
+/**
+ * @author B2OJustin
+ */
 public class Weapon implements Restrictable {
     public String getName() {
         return null;

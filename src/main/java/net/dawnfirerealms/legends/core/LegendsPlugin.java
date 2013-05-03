@@ -23,6 +23,9 @@ import net.dawnfirerealms.legends.library.race.RaceHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 import se.ranzdo.bukkit.methodcommand.CommandHandler;
 
+/**
+ * @author B2OJustin
+ */
 public class LegendsPlugin extends JavaPlugin {
 	public static LegendsPlugin instance;
 	

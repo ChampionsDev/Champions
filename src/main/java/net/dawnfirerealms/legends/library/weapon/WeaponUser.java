@@ -19,6 +19,9 @@ package net.dawnfirerealms.legends.library.weapon;
 
 import net.dawnfirerealms.legends.library.restriction.Restrictions;
 
+/**
+ * @author B2OJustin
+ */
 public interface WeaponUser {
     public Restrictions<Weapon> getWeaponRestrictions();
 }

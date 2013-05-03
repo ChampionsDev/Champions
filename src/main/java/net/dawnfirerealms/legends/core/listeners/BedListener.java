@@ -29,6 +29,9 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.HashMap;
 
+/**
+ * @author teunie-nl
+ */
 public class BedListener implements Listener{
     // TODO add config checks
     Plugin plugin;

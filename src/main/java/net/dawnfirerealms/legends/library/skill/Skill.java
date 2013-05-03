@@ -19,6 +19,9 @@ package net.dawnfirerealms.legends.library.skill;
 
 import net.dawnfirerealms.legends.library.restriction.Restrictable;
 
+/**
+ * @author B2OJustin
+ */
 public class Skill implements Restrictable {
     public int getManaCost() {
         return 0;
