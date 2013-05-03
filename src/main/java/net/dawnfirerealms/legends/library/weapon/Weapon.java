@@ -1,5 +1,5 @@
 /*
-This file is part of Legends
+This file is part of Legends.
 
     Legends is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -12,18 +12,19 @@ This file is part of Legends
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Legends  If not, see <http://www.gnu.org/licenses/>.
+    along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package net.dawnfirerealms.legends.library.race;
+package net.dawnfirerealms.legends.library.weapon;
 
+import net.dawnfirerealms.legends.library.restriction.Restrictable;
 
-public class Race {
-	public String getName() {
+public class Weapon implements Restrictable {
+    public String getName() {
         return null;
     }
 
-	public String[] getDescription() {
+    public String getDescription() {
         return null;
     }
 }

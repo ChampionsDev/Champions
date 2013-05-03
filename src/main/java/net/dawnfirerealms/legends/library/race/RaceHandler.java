@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import net.dawnfirerealms.legends.core.DFPlugin;
+import net.dawnfirerealms.legends.core.LegendsPlugin;
 import net.dawnfirerealms.legends.core.utils.ConfigHandler;
 import net.dawnfirerealms.legends.core.utils.EventMethod;
 
@@ -61,19 +61,19 @@ public class RaceHandler {
 	private RaceEventExecutor executor = new RaceEventExecutor();
 	private Map<RaceType, Set<Race>> classes = new HashMap<RaceType, Set<Race>>();
 	private Map<Player, Race> players = new HashMap<Player, Race>();
-	private ConfigHandler configHandler = DFPlugin.instance.getConfigHandler();
+	private ConfigHandler configHandler = LegendsPlugin.instance.getConfigHandler();
 	
 	public RaceHandler() {
-		Bukkit.getPluginManager().registerEvents(listener, DFPlugin.instance);
+		Bukkit.getPluginManager().registerEvents(listener, LegendsPlugin.instance);
 		for(Class<? extends Event> event : register) {
 			for(EventPriority prio : EventPriority.values()) {
-				Bukkit.getPluginManager().registerEvent(event, new RaceEventExecutorListener(prio), prio, executor, DFPlugin.instance);
+				Bukkit.getPluginManager().registerEvent(event, new RaceEventExecutorListener(prio), prio, executor, LegendsPlugin.instance);
 			}
 		}
-		CommandHandler chandler = DFPlugin.instance.getCommandHandler();
+		CommandHandler chandler = LegendsPlugin.instance.getCommandHandler();
 		chandler.registerArgumentHandler(RaceType.class, new RaceTypeArgumentHandler(this));
 		chandler.registerCommands(new Commands());
-		ConfigHandler configh = DFPlugin.instance.getConfigHandler();
+		ConfigHandler configh = LegendsPlugin.instance.getConfigHandler();
 		for(RaceType type : RaceType.values()) {
 			configh.loadConfiguration(CONFIG_PATH + type.getRaceClass().getSimpleName(), type.getRaceClass());
 		}

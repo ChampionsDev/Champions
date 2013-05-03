@@ -24,8 +24,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import se.ranzdo.bukkit.methodcommand.CommandHandler;
 
-public class DFPlugin extends JavaPlugin {
-	public static DFPlugin instance;
+public class LegendsPlugin extends JavaPlugin {
+	public static LegendsPlugin instance;
 	
 	private CommandHandler commandHandler;
 	private ConfigHandler configHandler;

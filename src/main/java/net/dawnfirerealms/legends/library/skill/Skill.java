@@ -17,5 +17,22 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.library.skill;
 
-public class Skill {
+import net.dawnfirerealms.legends.library.restriction.Restrictable;
+
+public class Skill implements Restrictable {
+    public int getManaCost() {
+        return 0;
+    }
+
+    public int getLevel() {
+        return 0;
+    }
+
+    public String getName() {
+        return null;
+    }
+
+    public String getDescription() {
+        return null;
+    }
 }
