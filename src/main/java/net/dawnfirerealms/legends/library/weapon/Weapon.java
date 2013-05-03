@@ -23,11 +23,13 @@ import net.dawnfirerealms.legends.library.restriction.Restrictable;
  * @author B2OJustin
  */
 public class Weapon implements Restrictable {
-    public String getName() {
-        return null;
+    public int id;
+
+    public Weapon(int id) {
+        this.id = id;
     }
 
-    public String getDescription() {
-        return null;
+    public int getId() {
+        return id;
     }
 }
