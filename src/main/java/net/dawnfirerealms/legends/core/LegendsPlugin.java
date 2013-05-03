@@ -17,11 +17,10 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.core;
 
-import net.dawnfirerealms.legends.library.race.RaceHandler;
+import net.dawnfirerealms.legends.core.dependencies.DependencyHandler;
 import net.dawnfirerealms.legends.core.utils.ConfigHandler;
-
+import net.dawnfirerealms.legends.library.race.RaceHandler;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import se.ranzdo.bukkit.methodcommand.CommandHandler;
 
 public class LegendsPlugin extends JavaPlugin {
@@ -36,6 +35,7 @@ public class LegendsPlugin extends JavaPlugin {
 		commandHandler = new CommandHandler(this);
 		configHandler = new ConfigHandler(getDataFolder());
 		raceHandler = new RaceHandler();
+                DependencyHandler.resolve();
 	}
 	
 	@Override
