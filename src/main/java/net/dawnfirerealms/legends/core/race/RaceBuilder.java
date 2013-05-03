@@ -16,11 +16,7 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.core.race;
 
-import com.mysql.jdbc.ResultSetRow;
-import net.dawnfirerealms.legends.core.utils.BasicBuilder;
 import net.dawnfirerealms.legends.library.race.Race;
-import org.apache.commons.lang.ArrayUtils;
-import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.util.List;
