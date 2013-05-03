@@ -1,4 +1,4 @@
-package ;
+package net.dawnfirerealms.legends.core.listeners;
 
 import java.util.ArrayList;
 import java.util.HashMap;
