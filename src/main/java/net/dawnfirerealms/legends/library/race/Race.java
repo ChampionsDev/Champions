@@ -18,12 +18,50 @@ This file is part of Legends
 package net.dawnfirerealms.legends.library.race;
 
 
-public class Race {
+import net.dawnfirerealms.legends.library.restriction.Restrictions;
+import net.dawnfirerealms.legends.library.skill.Skill;
+import net.dawnfirerealms.legends.library.skill.SkillUser;
+import net.dawnfirerealms.legends.library.weapon.Weapon;
+import net.dawnfirerealms.legends.library.weapon.WeaponUser;
+
+import java.util.ArrayList;
+
+public class Race implements WeaponUser, SkillUser {
 	public String getName() {
         return null;
     }
 
 	public String[] getDescription() {
         return null;
+    }
+
+    @Override
+    public ArrayList<Skill> getSkills() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void addSkill(Skill skill) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void removeSkill(Skill skill) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Restrictions<Skill> getSkillRestrictions() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Restrictions<Weapon> getWeaponRestrictions() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Weapon getCurrentWeapon() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }
