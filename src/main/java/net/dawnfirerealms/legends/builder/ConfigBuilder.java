@@ -32,12 +32,12 @@ public class ConfigBuilder {
 
     private static HashMap<Class, BasicBuilder> builderMap = new HashMap<>();
 
-    public static void registerBuilder(Class clazz, BasicBuilder builder) {
+    public static <T> void registerBuilder(Class<T> clazz, BasicBuilder<T> builder) {
         builderMap.put(clazz, builder);
     }
 
     public static <T> T load(YamlConfiguration config, Class<T> clazz) {
-        BasicBuilder builder = builderMap.get(clazz);
-        return (T) builder.load(config);
+        BasicBuilder<T> builder = builderMap.get(clazz);
+        return builder.load(config);
     }
 }
