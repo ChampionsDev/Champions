@@ -18,7 +18,6 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.core.race;
 
 import net.dawnfirerealms.legends.builder.ConfigBuilder;
-import net.dawnfirerealms.legends.builder.RaceBuilder;
 import net.dawnfirerealms.legends.core.LegendsPlugin;
 import net.dawnfirerealms.legends.core.utils.ConfigHandler;
 import net.dawnfirerealms.legends.library.race.Race;
