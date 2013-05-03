@@ -25,11 +25,11 @@ import org.bukkit.configuration.file.YamlConfiguration;
  * @author B2OJustin
  */
 public class ConfigBuilder {
-    public static Object load(YamlConfiguration config, Class clazz) {
+    public static <T> T load(YamlConfiguration config, Class<T> clazz) {
         // Race
         if(Race.class.equals(clazz)) {
             RaceBuilder raceBuilder = new RaceBuilder();
-            return raceBuilder.load(config);
+            return (T) raceBuilder.load(config);
         }
 
         // Armor

@@ -45,7 +45,7 @@ public class RaceHandler {
         File folder = new File(CONFIG_PATH);
         for(File file : folder.listFiles()) {
             YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-            Race race = (Race) ConfigBuilder.load(config, Race.class);
+            Race race = ConfigBuilder.load(config, Race.class);
             addRace(race);
         }
     }
