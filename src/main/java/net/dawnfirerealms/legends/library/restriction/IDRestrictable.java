@@ -14,24 +14,11 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 package net.dawnfirerealms.legends.library.restriction;
 
 /**
  * @author B2OJustin
  */
-public class Restrictions<T extends Restrictable> {
-
-    public Restrictions() {
-    }
-
-    public void allow(T restrictable) {
-    }
-
-    public void deny(T restrictable) {
-    }
-
-    public boolean isAllowed(T restrictable) {
-        return true;
-    }
+public interface IDRestrictable {
+    public String getId();
 }

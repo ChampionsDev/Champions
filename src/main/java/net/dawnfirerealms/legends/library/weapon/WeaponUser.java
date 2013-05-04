@@ -18,11 +18,10 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.library.weapon;
 
 import net.dawnfirerealms.legends.library.BaseUser;
-import net.dawnfirerealms.legends.library.restriction.Restrictions;
 
 /**
  * @author B2OJustin
  */
 public interface WeaponUser extends BaseUser {
-    public Restrictions<Weapon> getWeaponRestrictions();
+    public WeaponRestrictions getWeaponRestrictions();
 }

@@ -16,17 +16,14 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.armor;
 
-import net.dawnfirerealms.legends.library.restriction.Restrictable;
+import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
 
 /**
  * @author B2OJustin
  */
-public class Armor implements Restrictable {
+public class Armor implements IDRestrictable {
     public String name;
     public String[] description;
-
-    public Armor() {
-    }
 
     public Armor setName(String name) {
         this.name = name;
@@ -44,5 +41,10 @@ public class Armor implements Restrictable {
 
     public String[] getDescription() {
         return description;
+    }
+
+    @Override
+    public String getId() {
+        return name;
     }
 }

@@ -16,14 +16,16 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.builder;
 
-import java.util.List;
 import net.dawnfirerealms.legends.library.armor.Armor;
 import net.dawnfirerealms.legends.library.armor.ArmorHandler;
+import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.race.Race;
-import net.dawnfirerealms.legends.library.restriction.Restrictions;
 import net.dawnfirerealms.legends.library.weapon.Weapon;
 import net.dawnfirerealms.legends.library.weapon.WeaponHandler;
+import net.dawnfirerealms.legends.library.weapon.WeaponRestrictions;
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.util.List;
 
 /**
  * @author B2OJustin
@@ -37,22 +39,17 @@ class RaceBuilder implements BasicBuilder<Race> {
             setDescription(description.toArray(new String[description.size()]));
 
         // Allowed weapons
-        Restrictions<Weapon> weaponRestrictions = race.getWeaponRestrictions();
+        WeaponRestrictions weaponRestrictions = race.getWeaponRestrictions();
         for(String name : config.getStringList("permitted-weapon")) {
-            // TODO This builder should be rewritten for a sub module that allows for custom weapon classes
-            Weapon weapon = new Weapon()
-                    .setName(name);
-            WeaponHandler.getInstance().registerObject(name, weapon);
-            weaponRestrictions.allow(weapon);
+            Weapon weapon = WeaponHandler.getInstance().getObject(name);
+            weaponRestrictions.setAllowed(weapon, true);
         }
 
         // Allowed armor
-        Restrictions<Armor> armorRestrictions = race.getArmorRestrictions();
+        ArmorRestrictions armorRestrictions = race.getArmorRestrictions();
         for(String name : config.getStringList("permitted-armor")) {
-            Armor armor = new Armor()
-                    .setName(name);
-            ArmorHandler.getInstance().registerObject(name, armor);
-            armorRestrictions.allow(armor);
+            Armor armor = ArmorHandler.getInstance().getObject(name);
+            armorRestrictions.setAllowed(armor, true);
         }
 
         return race;

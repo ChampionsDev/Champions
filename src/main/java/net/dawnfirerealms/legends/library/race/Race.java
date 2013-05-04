@@ -18,12 +18,12 @@ This file is part of Legends
 package net.dawnfirerealms.legends.library.race;
 
 
-import net.dawnfirerealms.legends.library.armor.Armor;
+import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.armor.ArmorUser;
-import net.dawnfirerealms.legends.library.restriction.Restrictions;
 import net.dawnfirerealms.legends.library.skill.Skill;
+import net.dawnfirerealms.legends.library.skill.SkillRestrictions;
 import net.dawnfirerealms.legends.library.skill.SkillUser;
-import net.dawnfirerealms.legends.library.weapon.Weapon;
+import net.dawnfirerealms.legends.library.weapon.WeaponRestrictions;
 import net.dawnfirerealms.legends.library.weapon.WeaponUser;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class Race implements WeaponUser, SkillUser, ArmorUser {
+public class Race implements WeaponUser, ArmorUser, SkillUser {
 	private String name;
     private String[] description;
 
@@ -69,17 +69,17 @@ public class Race implements WeaponUser, SkillUser, ArmorUser {
     }
 
     @Override
-    public Restrictions<Skill> getSkillRestrictions() {
+    public SkillRestrictions getSkillRestrictions() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public Restrictions<Weapon> getWeaponRestrictions() {
+    public ArmorRestrictions getArmorRestrictions() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public Restrictions<Armor> getArmorRestrictions() {
+    public WeaponRestrictions getWeaponRestrictions() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

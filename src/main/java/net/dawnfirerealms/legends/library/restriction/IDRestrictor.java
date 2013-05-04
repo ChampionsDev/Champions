@@ -14,41 +14,15 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
+package net.dawnfirerealms.legends.library.restriction;
 
-package net.dawnfirerealms.legends.library.weapon;
-
-import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
+import java.util.HashMap;
 
 /**
  * @author B2OJustin
  */
-public class Weapon implements IDRestrictable {
-    private String name;
-    private String[] description;
-
-    public Weapon() {
-    }
-
-    public Weapon setName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public Weapon setDescription(String[] description) {
-        this.description = description;
-        return this;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String[] getDescription() {
-        return description;
-    }
-
-    @Override
-    public String getId() {
-        return name;
-    }
+public interface IDRestrictor {
+    public void setAllowed(IDRestrictable restrictable, boolean allowed);
+    public void setDefault(boolean defaultAllow);
+    public boolean isAllowed(IDRestrictable restrictable);
 }

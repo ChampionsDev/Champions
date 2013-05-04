@@ -17,12 +17,18 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.library.skill;
 
-import net.dawnfirerealms.legends.library.restriction.Restrictable;
+import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
 
 /**
  * @author B2OJustin
  */
-public class Skill implements Restrictable {
+public class Skill implements IDRestrictable {
+    public String name;
+
+    public Skill() {
+
+    }
+
     public int getManaCost() {
         return 0;
     }
@@ -32,10 +38,15 @@ public class Skill implements Restrictable {
     }
 
     public String getName() {
-        return null;
+        return name;
     }
 
     public String getDescription() {
         return null;
+    }
+
+    @Override
+    public String getId() {
+        return name;
     }
 }
