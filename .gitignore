@@ -6,6 +6,11 @@ dependency-reduced-pom.xml
 version.txt
 
 #################
+## Netbeans
+#################
+nb-configuration.xml
+
+#################
 ## Eclipse
 #################
 
