@@ -24,8 +24,8 @@ import net.dawnfirerealms.legends.library.Registrable;
  * @author B2OJustin
  */
 public class WeaponHandler extends BasicHandler {
-    public static HashMap<String, Weapon> weaponMap = new HashMap<>();
-    public static WeaponHandler instance = new WeaponHandler();
+    private static HashMap<String, Weapon> weaponMap = new HashMap<>();
+    private static WeaponHandler instance = new WeaponHandler();
     
     public static WeaponHandler getInstance() {
         return instance;

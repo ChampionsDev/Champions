@@ -25,8 +25,8 @@ import net.dawnfirerealms.legends.library.Registrable;
  */
 public class ArmorHandler extends BasicHandler {
     // TODO These handler classes should probably be abstracted in one way or another
-    public static HashMap<String, Armor> armorMap = new HashMap<>();
-    public static ArmorHandler instance = new ArmorHandler();
+    private static HashMap<String, Armor> armorMap = new HashMap<>();
+    private static ArmorHandler instance = new ArmorHandler();
     
     public static ArmorHandler getInstance() {
         return instance;
