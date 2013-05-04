@@ -16,31 +16,16 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.armor;
 
-import java.util.HashMap;
 import net.dawnfirerealms.legends.library.BasicHandler;
-import net.dawnfirerealms.legends.library.Registrable;
 
 /**
  * @author B2OJustin
  */
-public class ArmorHandler extends BasicHandler {
+public class ArmorHandler extends BasicHandler<Armor> {
     // TODO These handler classes should probably be abstracted in one way or another
-    private static HashMap<String, Armor> armorMap = new HashMap<>();
     private static ArmorHandler instance = new ArmorHandler();
     
     public static ArmorHandler getInstance() {
         return instance;
-    }
-
-    @Override
-    public void registerOption(String option, Registrable registerable) {
-        if (registerable instanceof Armor) {
-            armorMap.put(option, (Armor) registerable);
-        }
-    }
-
-    @Override
-    public Armor getOption(String option) {
-        return armorMap.get(option);
     }
 }

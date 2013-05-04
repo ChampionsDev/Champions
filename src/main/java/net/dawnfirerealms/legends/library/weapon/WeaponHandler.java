@@ -16,30 +16,15 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.weapon;
 
-import java.util.HashMap;
 import net.dawnfirerealms.legends.library.BasicHandler;
-import net.dawnfirerealms.legends.library.Registrable;
 
 /**
  * @author B2OJustin
  */
-public class WeaponHandler extends BasicHandler {
-    private static HashMap<String, Weapon> weaponMap = new HashMap<>();
+public class WeaponHandler extends BasicHandler<Weapon> {
     private static WeaponHandler instance = new WeaponHandler();
     
     public static WeaponHandler getInstance() {
         return instance;
-    }
-    
-    @Override
-    public void registerOption(String option, Registrable registerable) {
-        if (registerable instanceof Weapon) {
-            weaponMap.put(option, (Weapon) registerable);
-        }
-    }
-
-    @Override
-    public Weapon getOption(String option) {
-        return weaponMap.get(option);
     }
 }

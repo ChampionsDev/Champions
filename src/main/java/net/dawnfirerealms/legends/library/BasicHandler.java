@@ -1,12 +1,19 @@
 package net.dawnfirerealms.legends.library;
 
+import java.util.HashMap;
+
 /**
  * @author YoshiGenius
  */
-public abstract class BasicHandler {
+public class BasicHandler<T> {
+    private HashMap<String, T> objectMap = new HashMap<>();
+
+    public void registerObject(String id, T object) {
+        objectMap.put(id, object);
+    }
     
-    public abstract void registerOption(String option, Registrable registrable);
-    
-    public abstract Registrable getOption(String option);
+    public T getObject(String id) {
+        return objectMap.get(id);
+    }
 
 }
