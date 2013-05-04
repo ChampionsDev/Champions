@@ -16,14 +16,14 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.skill;
 
-import net.dawnfirerealms.legends.library.restriction.Restrictions;
-
 import java.util.ArrayList;
+import net.dawnfirerealms.legends.library.BaseUser;
+import net.dawnfirerealms.legends.library.restriction.Restrictions;
 
 /**
  * @author B2OJustin
  */
-public interface SkillUser {
+public interface SkillUser extends BaseUser {
     public ArrayList<Skill> getSkills();
     public void addSkill(Skill skill);
     public void removeSkill(Skill skill);
