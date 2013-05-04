@@ -17,12 +17,13 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.library.weapon;
 
+import net.dawnfirerealms.legends.library.Registrable;
 import net.dawnfirerealms.legends.library.restriction.Restrictable;
 
 /**
  * @author B2OJustin
  */
-public class Weapon implements Restrictable {
+public class Weapon implements Restrictable, Registrable {
     private String name;
     private String[] description;
 

@@ -17,18 +17,29 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.library.weapon;
 
 import java.util.HashMap;
+import net.dawnfirerealms.legends.library.BasicHandler;
+import net.dawnfirerealms.legends.library.Registrable;
 
 /**
  * @author B2OJustin
  */
-public class WeaponHandler {
+public class WeaponHandler extends BasicHandler {
     public static HashMap<String, Weapon> weaponMap = new HashMap<>();
-
-    public static void registerWeapon(String name, Weapon weapon) {
-        weaponMap.put(name, weapon);
+    public static WeaponHandler instance = new WeaponHandler();
+    
+    public static WeaponHandler getInstance() {
+        return instance;
+    }
+    
+    @Override
+    public void registerOption(String option, Registrable registerable) {
+        if (registerable instanceof Weapon) {
+            weaponMap.put(option, (Weapon) registerable);
+        }
     }
 
-    public static Weapon getWeapon(String name) {
-        return weaponMap.get(name);
+    @Override
+    public Weapon getOption(String option) {
+        return weaponMap.get(option);
     }
 }

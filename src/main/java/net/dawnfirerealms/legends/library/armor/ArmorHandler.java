@@ -17,19 +17,30 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.library.armor;
 
 import java.util.HashMap;
+import net.dawnfirerealms.legends.library.BasicHandler;
+import net.dawnfirerealms.legends.library.Registrable;
 
 /**
  * @author B2OJustin
  */
-public class ArmorHandler {
+public class ArmorHandler extends BasicHandler {
     // TODO These handler classes should probably be abstracted in one way or another
     public static HashMap<String, Armor> armorMap = new HashMap<>();
-
-    public static void registerArmor(String name, Armor armor) {
-        armorMap.put(name, armor);
+    public static ArmorHandler instance = new ArmorHandler();
+    
+    public static ArmorHandler getInstance() {
+        return instance;
     }
 
-    public static Armor getArmor(String name) {
-        return armorMap.get(name);
+    @Override
+    public void registerOption(String option, Registrable registerable) {
+        if (registerable instanceof Armor) {
+            armorMap.put(option, (Armor) registerable);
+        }
+    }
+
+    @Override
+    public Armor getOption(String option) {
+        return armorMap.get(option);
     }
 }
