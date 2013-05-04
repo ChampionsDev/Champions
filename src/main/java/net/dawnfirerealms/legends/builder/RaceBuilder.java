@@ -16,16 +16,14 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.builder;
 
+import java.util.List;
 import net.dawnfirerealms.legends.library.armor.Armor;
 import net.dawnfirerealms.legends.library.armor.ArmorHandler;
 import net.dawnfirerealms.legends.library.race.Race;
 import net.dawnfirerealms.legends.library.restriction.Restrictions;
 import net.dawnfirerealms.legends.library.weapon.Weapon;
 import net.dawnfirerealms.legends.library.weapon.WeaponHandler;
-import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
-
-import java.util.List;
 
 /**
  * @author B2OJustin
@@ -44,7 +42,7 @@ class RaceBuilder implements BasicBuilder<Race> {
             // TODO This builder should be rewritten for a sub module that allows for custom weapon classes
             Weapon weapon = new Weapon()
                     .setName(name);
-            WeaponHandler.registerWeapon(name, weapon);
+            WeaponHandler.getInstance().registerObject(name, weapon);
             weaponRestrictions.allow(weapon);
         }
 
@@ -53,7 +51,7 @@ class RaceBuilder implements BasicBuilder<Race> {
         for(String name : config.getStringList("permitted-armor")) {
             Armor armor = new Armor()
                     .setName(name);
-            ArmorHandler.registerArmor(name, armor);
+            ArmorHandler.getInstance().registerObject(name, armor);
             armorRestrictions.allow(armor);
         }
 
