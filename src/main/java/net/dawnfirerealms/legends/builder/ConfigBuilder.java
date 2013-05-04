@@ -16,10 +16,9 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.builder;
 
+import java.util.HashMap;
 import net.dawnfirerealms.legends.library.race.Race;
 import org.bukkit.configuration.file.YamlConfiguration;
-
-import java.util.HashMap;
 
 /**
  * @author B2OJustin
@@ -32,6 +31,12 @@ public class ConfigBuilder {
 
     private static HashMap<Class, BasicBuilder> builderMap = new HashMap<>();
 
+    /**
+     * Registers a builder for the class.
+     * @param <T> 
+     * @param clazz The class to be built.
+     * @param builder The builder for the class.
+     */
     public static <T> void registerBuilder(Class<T> clazz, BasicBuilder<T> builder) {
         builderMap.put(clazz, builder);
     }

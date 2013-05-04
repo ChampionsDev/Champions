@@ -26,7 +26,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import org.bukkit.configuration.file.YamlConfiguration;
 
 /**
@@ -34,7 +33,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
  */
 public class ConfigHandler {
 
-	private Map<Class<?>, List<Field>> registeredClasses = new LinkedHashMap<Class<?>, List<Field>>();
+	private Map<Class<?>, List<Field>> registeredClasses = new LinkedHashMap<>();
 	private File configFolder;
 
 	public ConfigHandler(File configFolder) {
@@ -42,53 +41,50 @@ public class ConfigHandler {
 	}
 	
 	public void loadConfiguration(Class<?> clazz) {
-		String path;
-		Config configAnno = clazz.getAnnotation(Config.class);
-		if (configAnno != null)
-			path = configAnno.path();
-		else
-			path = clazz.getSimpleName();
-		loadConfiguration(path, clazz);
+            String path;
+            Config configAnno = clazz.getAnnotation(Config.class);
+            if (configAnno != null) {
+                path = configAnno.path();
+            } else {
+                path = clazz.getSimpleName();
+            }
+            loadConfiguration(path, clazz);
 	}
 
 	public void loadConfiguration(String path, Class<?> clazz) {
-		File file = new File(configFolder, path + ".yml");
-
-		if (!file.exists()) {
-			try {
-				file.createNewFile();
-			} catch (IOException e) {
-				throw (RuntimeException) new RuntimeException().initCause(e);
-			}
+            File file = new File(configFolder, path + ".yml");
+            if (!file.exists()) {
+		try {
+			file.createNewFile();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
-
-		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-		config.options().pathSeparator('_');
-		List<Field> fields = new ArrayList<Field>();
-		for (Field field : clazz.getDeclaredFields()) {
-			int mod = field.getModifiers();
-			if (!Modifier.isStatic(mod)
-					|| field.getAnnotation(CField.class) == null)
-				continue;
-
-			field.setAccessible(true);
-
-			String lpath = field.getName();
-			try {
-				if (!config.contains(lpath))
-					config.set(lpath, field.get(null));
-				else
-					field.set(null, config.get(lpath));
-
-				fields.add(field);
-			} catch (ReflectiveOperationException e) {
-				throw (RuntimeException) new RuntimeException().initCause(e);
-			}
+            }
+            YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+            config.options().pathSeparator('_');
+            List<Field> fields = new ArrayList<>();
+            for (Field field : clazz.getDeclaredFields()) {
+		int mod = field.getModifiers();
+		if (!Modifier.isStatic(mod) || field.getAnnotation(CField.class) == null) {
+                    continue;
+                }
+		field.setAccessible(true);
+		String lpath = field.getName();
+		try {
+                    if (!config.contains(lpath)) {
+                        config.set(lpath, field.get(null));
+                    } else {
+                        field.set(null, config.get(lpath));
+                    }
+                    fields.add(field);
+		} catch (ReflectiveOperationException e) {
+			throw new RuntimeException(e);
 		}
+            }
 		try {
 			config.save(file);
 		} catch (IOException e) {
-			throw (RuntimeException) new RuntimeException().initCause(e);
+			throw new RuntimeException(e);
 		}
 		registeredClasses.put(clazz, fields);
 	}
@@ -99,7 +95,7 @@ public class ConfigHandler {
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
-				throw (RuntimeException) new RuntimeException().initCause(e);
+				throw new RuntimeException(e);
 			}
 		}
 
@@ -117,67 +113,60 @@ public class ConfigHandler {
 				try {
 					config.set(p, field.get(null));
 				} catch (ReflectiveOperationException e) {
-					throw (RuntimeException) new RuntimeException().initCause(e);
+					throw new RuntimeException(e);
 				}
 			}
 		}
 		try {
 			config.save(file);
 		} catch (IOException e) {
-			throw (RuntimeException) new RuntimeException().initCause(e);
+			throw new RuntimeException(e);
 		}
 	}
 
 	public Object loadInstance(String path) {
-		File file = new File(configFolder, path + ".yml");
+            File file = new File(configFolder, path + ".yml");
 
-		if (!file.exists())
-			return null;
-
-		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-		config.options().pathSeparator('_');
-		Class<?> clazz;
-		Object instance;
-		try {
-			clazz = Class.forName(config.getString("type"));
-			instance = clazz.newInstance();
-		} catch (ReflectiveOperationException e) {
-			throw (RuntimeException) new RuntimeException().initCause(e);
-		}
-
-		for (Class<?> nclazz = clazz; nclazz != null; nclazz = nclazz.getSuperclass()) {
-			for (Field field : nclazz.getDeclaredFields()) {
-				field.setAccessible(true);
-				try {
-					field.set(instance,config.get(nclazz.getSimpleName() + "_" + field.getName()));
-				} catch (ReflectiveOperationException e) {
-					throw (RuntimeException) new RuntimeException().initCause(e);
-				}
-			}
-		}
-
-		return instance;
+            if (!file.exists()) {
+                return null;
+            }
+            YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+            config.options().pathSeparator('_');
+            Class<?> clazz;
+            Object instance;
+            try {
+                clazz = Class.forName(config.getString("type"));
+        	instance = clazz.newInstance();
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+		throw new RuntimeException(e);
+            }
+            for (Class<?> nclazz = clazz; nclazz != null; nclazz = nclazz.getSuperclass()) {
+                for (Field field : nclazz.getDeclaredFields()) {
+                    field.setAccessible(true);
+                    try {
+                        field.set(instance,config.get(nclazz.getSimpleName() + "_" + field.getName()));
+                    } catch (ReflectiveOperationException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+            return instance;
 	}
 
 	public void cleanup() {
-		for (Entry<Class<?>, List<Field>> entry : registeredClasses.entrySet()) {
-			for (Field field : entry.getValue()) {
-				Class<?> c = field.getType();
-				if (c == boolean.class || c == int.class || c == short.class
-						|| c == byte.class || c == long.class
-						|| c == float.class || c == double.class
-						|| c == char.class)
-					continue;
-
-				try {
-					field.set(null, null);
-				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+            for (Entry<Class<?>, List<Field>> entry : registeredClasses.entrySet()) {
+		for (Field field : entry.getValue()) {
+                    Class<?> c = field.getType();
+                    if (c == boolean.class || c == int.class || c == short.class || c == byte.class || c == long.class || c == float.class || c == double.class || c == char.class) {
+                        continue;
+                    }
+                    try {
+			field.set(null, null);
+                    } catch (ReflectiveOperationException e) {
+			e.printStackTrace();
+                    }
+                }
+            }
 	}
 
 }
