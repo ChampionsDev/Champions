@@ -18,11 +18,12 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.library.skill;
 
 import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
+import net.dawnfirerealms.legends.library.restriction.LevelRestrictable;
 
 /**
  * @author B2OJustin
  */
-public class Skill implements IDRestrictable {
+public class Skill implements IDRestrictable, LevelRestrictable {
     public String name;
 
     public Skill() {
@@ -33,6 +34,7 @@ public class Skill implements IDRestrictable {
         return 0;
     }
 
+    @Override
     public int getLevel() {
         return 0;
     }

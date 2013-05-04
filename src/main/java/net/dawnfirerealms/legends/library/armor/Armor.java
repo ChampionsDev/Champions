@@ -17,11 +17,14 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.library.armor;
 
 import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
+import net.dawnfirerealms.legends.library.restriction.LevelRestrictable;
+import net.dawnfirerealms.legends.library.restriction.LevelRestrictions;
+import net.dawnfirerealms.legends.library.restriction.LevelRestrictor;
 
 /**
  * @author B2OJustin
  */
-public class Armor implements IDRestrictable {
+public class Armor implements IDRestrictable, LevelRestrictor {
     public String name;
     public String[] description;
 
@@ -46,5 +49,10 @@ public class Armor implements IDRestrictable {
     @Override
     public String getId() {
         return name;
+    }
+
+    @Override
+    public LevelRestrictions getLevelRestrictions() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

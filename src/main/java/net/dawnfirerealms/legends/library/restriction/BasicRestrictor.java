@@ -19,6 +19,8 @@ package net.dawnfirerealms.legends.library.restriction;
 /**
  * @author B2OJustin
  */
-public interface IDRestrictable extends Restrictable {
-    public String getId();
+interface BasicRestrictor<T extends Restrictable> {
+    public void setAllowed(T restrictable, boolean allowed);
+    public void setDefault(boolean defaultAllow);
+    public boolean isAllowed(T restrictable);
 }

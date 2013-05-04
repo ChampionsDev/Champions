@@ -16,9 +16,34 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.restriction;
 
+import net.dawnfirerealms.legends.library.restriction.LevelRestrictor;
+
 /**
  * @author B2OJustin
  */
-public interface IDRestrictable extends Restrictable {
-    public String getId();
+public class LevelRestrictions {
+    private int minLevel;
+    private int maxLevel;
+
+    public LevelRestrictions() {
+        this(0, 0);
+    }
+
+    public LevelRestrictions(int minLevel, int maxLevel) {
+        this.maxLevel = maxLevel;
+        this.minLevel = minLevel;
+    }
+
+    public int getMinLevel() {
+        return minLevel;
+    }
+
+    public int getMaxLevel() {
+        return maxLevel;
+    }
+
+    public boolean isAllowed(int level) {
+        if(minLevel == 0 && maxLevel == 0) return true;
+        else return(level <= maxLevel && level >= minLevel);
+    }
 }

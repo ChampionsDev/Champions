@@ -1,11 +1,12 @@
-package net.dawnfirerealms.legends.library.exp;
+package net.dawnfirerealms.legends.library.level;
 
+import net.dawnfirerealms.legends.library.restriction.LevelRestrictable;
 import net.dawnfirerealms.legends.library.restriction.Restrictable;
 
 /**
  * @author YoshiGenius
  */
-public class Level extends Number implements Restrictable {
+public class Level extends Number implements LevelRestrictable {
     
     private int level;
 
@@ -15,22 +16,26 @@ public class Level extends Number implements Restrictable {
     
     @Override
     public int intValue() {
-        return this.level;
+        return level;
     }
 
     @Override
     public long longValue() {
-        return this.level;
+        return level;
     }
 
     @Override
     public float floatValue() {
-        return this.level;
+        return level;
     }
 
     @Override
     public double doubleValue() {
-        return this.level;
+        return level;
     }
 
+    @Override
+    public int getLevel() {
+        return level;
+    }
 }
