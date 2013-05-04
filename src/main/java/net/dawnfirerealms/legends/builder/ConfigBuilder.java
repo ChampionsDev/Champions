@@ -16,9 +16,10 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.builder;
 
-import java.util.HashMap;
 import net.dawnfirerealms.legends.library.race.Race;
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.util.HashMap;
 
 /**
  * @author B2OJustin

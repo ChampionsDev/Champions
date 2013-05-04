@@ -16,8 +16,6 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.restriction;
 
-import java.util.HashMap;
-
 /**
  * @author B2OJustin
  */
