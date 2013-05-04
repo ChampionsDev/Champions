@@ -16,8 +16,13 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.core;
 
+import java.util.ArrayList;
 import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.armor.ArmorUser;
+import net.dawnfirerealms.legends.library.exp.Exp;
+import net.dawnfirerealms.legends.library.exp.ExpUser;
+import net.dawnfirerealms.legends.library.exp.Level;
+import net.dawnfirerealms.legends.library.lclass.LClass;
 import net.dawnfirerealms.legends.library.race.Race;
 import net.dawnfirerealms.legends.library.skill.Skill;
 import net.dawnfirerealms.legends.library.skill.SkillRestrictions;
@@ -27,58 +32,71 @@ import net.dawnfirerealms.legends.library.weapon.WeaponRestrictions;
 import net.dawnfirerealms.legends.library.weapon.WeaponUser;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-
 /**
  * @author B2OJustin
  */
-public class LPlayer implements WeaponUser, ArmorUser, SkillUser {
-    private Race race;
-    private Player player;
+public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser {
+    private final Race race;
+    private final Player player;
+    private final LClass lclass;
 
-    public LPlayer(Player player) {
+    public LPlayer(Player player, Race race, LClass lclass) {
         this.player = player;
+        this.race = race;
+        this.lclass = lclass;
     }
 
     public Player getPlayer() {
-        return player;
+        return this.player;
     }
 
     public Race getRace() {
-        return race;
+        return this.race;
+    }
+    
+    public LClass getLClass() {
+        return this.lclass;
     }
 
     public Weapon getCurrentWeapon() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 
     @Override
     public ArrayList<Skill> getSkills() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 
     @Override
     public void addSkill(Skill skill) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void removeSkill(Skill skill) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public SkillRestrictions getSkillRestrictions() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 
     @Override
     public ArmorRestrictions getArmorRestrictions() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 
     @Override
     public WeaponRestrictions getWeaponRestrictions() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
+    }
+
+    @Override
+    public Exp getMaxExpPerLevel() {
+        return null;
+    }
+
+    @Override
+    public Level getMaxLevels() {
+        return null;
     }
 }

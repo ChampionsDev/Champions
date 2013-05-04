@@ -26,8 +26,8 @@ import se.ranzdo.bukkit.methodcommand.CommandHandler;
 /**
  * @author B2OJustin
  */
-public class LegendsPlugin extends JavaPlugin {
-	public static LegendsPlugin instance;
+public class LegendsCore extends JavaPlugin {
+	public static final LegendsCore instance = new LegendsCore();
 	
 	private CommandHandler commandHandler;
 	private ConfigHandler configHandler;
@@ -43,7 +43,6 @@ public class LegendsPlugin extends JavaPlugin {
 	
 	@Override
 	public void onDisable() {
-		instance = null;
 		configHandler.cleanup();
 	}
 

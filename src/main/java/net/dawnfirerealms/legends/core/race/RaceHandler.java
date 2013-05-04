@@ -18,7 +18,7 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.core.race;
 
 import net.dawnfirerealms.legends.builder.ConfigBuilder;
-import net.dawnfirerealms.legends.core.LegendsPlugin;
+import net.dawnfirerealms.legends.core.LegendsCore;
 import net.dawnfirerealms.legends.core.utils.ConfigHandler;
 import net.dawnfirerealms.legends.library.race.Race;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -38,7 +38,7 @@ public class RaceHandler {
     }
 
     public void reload() {
-        ConfigHandler configHandler = LegendsPlugin.instance.getConfigHandler();
+        ConfigHandler configHandler = LegendsCore.instance.getConfigHandler();
         raceMap = new HashMap<>();
 
         File folder = new File(CONFIG_PATH);

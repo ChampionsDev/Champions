@@ -17,7 +17,7 @@ This file is part of Legends
 
 package net.dawnfirerealms.legends.library.race;
 
-
+import java.util.ArrayList;
 import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.armor.ArmorUser;
 import net.dawnfirerealms.legends.library.skill.Skill;
@@ -26,13 +26,11 @@ import net.dawnfirerealms.legends.library.skill.SkillUser;
 import net.dawnfirerealms.legends.library.weapon.WeaponRestrictions;
 import net.dawnfirerealms.legends.library.weapon.WeaponUser;
 
-import java.util.ArrayList;
-
 /**
  * @author B2OJustin
  */
 public class Race implements WeaponUser, ArmorUser, SkillUser {
-	private String name;
+    private String name;
     private String[] description;
 
     public Race setName(String name) {
