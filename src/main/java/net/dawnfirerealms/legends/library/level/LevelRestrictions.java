@@ -34,22 +34,26 @@ public class LevelRestrictions implements LevelRestrictor {
         this.minLevel = minLevel;
     }
 
+    @Override
     public int getMinLevel() {
         return minLevel;
     }
 
+    @Override
     public int getMaxLevel() {
         return maxLevel;
     }
 
     @Override
-    public void setMinLevel(int minLevel) {
+    public LevelRestrictions setMinLevel(int minLevel) {
         this.minLevel = minLevel;
+        return this;
     }
 
     @Override
-    public void setMaxLevel(int maxLevel) {
+    public LevelRestrictions setMaxLevel(int maxLevel) {
         this.maxLevel = maxLevel;
+        return this;
     }
 
     public boolean isAllowed(int level) {

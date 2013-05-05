@@ -23,8 +23,10 @@ import net.dawnfirerealms.legends.library.lclass.LClass;
 import net.dawnfirerealms.legends.library.level.Exp;
 import net.dawnfirerealms.legends.library.level.ExpUser;
 import net.dawnfirerealms.legends.library.level.Level;
+import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 import net.dawnfirerealms.legends.library.race.Race;
 import net.dawnfirerealms.legends.library.restriction.LevelRestrictable;
+import net.dawnfirerealms.legends.library.restriction.LevelRestricted;
 import net.dawnfirerealms.legends.library.skill.Skill;
 import net.dawnfirerealms.legends.library.skill.SkillRestrictions;
 import net.dawnfirerealms.legends.library.skill.SkillUser;
@@ -36,7 +38,7 @@ import org.bukkit.entity.Player;
 /**
  * @author B2OJustin
  */
-public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, LevelRestrictable {
+public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, LevelRestrictable, LevelRestricted {
     private final Race race;
     private final Player player;
     private final LClass lclass;
@@ -104,5 +106,10 @@ public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, Level
     @Override
     public Level getLevel() {
         return null;
+    }
+
+    @Override
+    public LevelRestrictions getLevelRestrictions() {
+        return new LevelRestrictions().setMinLevel(0).setMaxLevel(getMaxLevels().intValue());
     }
 }

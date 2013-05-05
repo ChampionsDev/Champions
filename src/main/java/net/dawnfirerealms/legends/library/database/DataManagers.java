@@ -1,5 +1,5 @@
 /*
-This file is part of Legends.
+    This file is part of Legends
 
     Legends is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -12,19 +12,24 @@ This file is part of Legends.
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Legends.  If not, see <http://www.gnu.org/licenses/>.
+    along with Legends  If not, see <http://www.gnu.org/licenses/>.
 */
-package net.dawnfirerealms.legends.library.restriction;
 
-import net.dawnfirerealms.legends.library.level.LevelRestrictions;
+package net.dawnfirerealms.legends.library.database;
+
+import java.util.HashMap;
 
 /**
- * @author B2OJustin
+ * @author YoshiGenius
  */
-public interface LevelRestrictor {
-    public int getMinLevel();
-    public int getMaxLevel();
-    public LevelRestrictions setMinLevel(int minLevel);
-    public LevelRestrictions setMaxLevel(int maxLevel);
-    public boolean isAllowed(int level);
+public class DataManagers {
+    
+    private static HashMap<DataManager.DataType, DataManager> managers = new HashMap<>();
+    
+    public static HashMap<DataManager.DataType, DataManager> getManagers() {
+        return DataManagers.managers;
+    }
+    
+    
+
 }
