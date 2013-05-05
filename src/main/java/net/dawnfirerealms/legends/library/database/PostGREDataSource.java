@@ -25,7 +25,7 @@ import net.dawnfirerealms.legends.library.race.Race;
  */
 public class PostGREDataSource implements DataSource {
     @Override
-    public String getDataSourceName() {
+    public String getName() {
         return "PostGRE";
     }
 

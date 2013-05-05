@@ -24,7 +24,7 @@ import net.dawnfirerealms.legends.library.race.Race;
  * @author B2OJustin
  */
 public interface DataSource {
-    public String getDataSourceName();
+    public String getName();
     public LPlayer loadLPlayer(String name);
     public Race loadRace(String name);
     public LClass loadLClass(String name);

@@ -25,7 +25,7 @@ import net.dawnfirerealms.legends.library.race.Race;
  */
 public class YAMLDataSource implements DataSource {
     @Override
-    public String getDataSourceName() {
+    public String getName() {
         return "YAML";
     }
 

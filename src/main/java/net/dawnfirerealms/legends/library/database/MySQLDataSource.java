@@ -25,7 +25,7 @@ import net.dawnfirerealms.legends.library.race.Race;
  */
 public class MySQLDataSource implements DataSource {
     @Override
-    public String getDataSourceName() {
+    public String getName() {
         return "MySQL";
     }
 
