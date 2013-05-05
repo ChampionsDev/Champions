@@ -27,9 +27,27 @@ public class DataManagers {
     private static HashMap<DataManager.DataType, DataManager> managers = new HashMap<>();
     
     public static HashMap<DataManager.DataType, DataManager> getManagers() {
+        if (managers.isEmpty()) {
+            addDefaultManagers();
+        }
         return DataManagers.managers;
     }
+
+    public static DataManager getCurrent() {
+        if (managers.isEmpty()) {
+            addDefaultManagers();
+        }
+        return managers.get(DataManager.getType());
+    }
     
-    
+    private static void addDefaultManagers() {
+        managers.put(DataManager.DataType.DAT, new DATDataManager());
+        managers.put(DataManager.DataType.H2, new H2DataManager());
+        managers.put(DataManager.DataType.MYSQL, new MySQLDataManager());
+        managers.put(DataManager.DataType.ORACLE, new OracleDataManager());
+        managers.put(DataManager.DataType.POSTGRE, new PostGREDataManager());
+        managers.put(DataManager.DataType.SQLITE, new SQLiteDataManager());
+        managers.put(DataManager.DataType.YAML, new YAMLDataManager());
+    }
 
 }
