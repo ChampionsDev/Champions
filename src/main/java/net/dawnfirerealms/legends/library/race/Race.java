@@ -20,6 +20,7 @@ package net.dawnfirerealms.legends.library.race;
 
 import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.armor.ArmorUser;
+import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
 import net.dawnfirerealms.legends.library.skill.Skill;
 import net.dawnfirerealms.legends.library.skill.SkillRestrictions;
 import net.dawnfirerealms.legends.library.skill.SkillUser;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class Race implements WeaponUser, ArmorUser, SkillUser {
+public class Race implements WeaponUser, ArmorUser, SkillUser, IDRestrictable {
 	private String name;
     private String[] description;
 
@@ -81,5 +82,10 @@ public class Race implements WeaponUser, ArmorUser, SkillUser {
     @Override
     public WeaponRestrictions getWeaponRestrictions() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public String getId() {
+        return name;
     }
 }
