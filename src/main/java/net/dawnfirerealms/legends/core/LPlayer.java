@@ -111,6 +111,6 @@ public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, Level
 
     @Override
     public LevelRestrictions getLevelRestrictions() {
-        return new LevelRestrictions().setMinLevel(0).setMaxLevel(getMaxLevels().intValue());
+        return new LevelRestrictions().setMinLevel(new Level(0)).setMaxLevel(new Level(getMaxLevels().intValue()));
     }
 }
