@@ -35,6 +35,9 @@ public class DataManager {
         return instance;
     }
 
+    private DataManager() {
+    }
+
     public static DataSource getDataSource() {
         return dataSource;
     }
