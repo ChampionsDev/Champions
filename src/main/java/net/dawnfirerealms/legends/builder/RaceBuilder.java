@@ -43,9 +43,6 @@ class RaceBuilder implements BasicBuilder<Race> {
         for(String name : config.getStringList("permitted-weapon")) {
             Weapon weapon = WeaponHandler.getInstance().getObject(name);
             weaponRestrictions.setAllowed(weapon, true);
-
-            // API example
-            weaponRestrictions.
         }
 
         // Allowed armor

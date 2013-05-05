@@ -21,7 +21,7 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public class BasicRestrictions implements BasicRestrictor<IDRestrictable>, LevelRestrictor {
+public class BasicRestrictions implements BasicRestrictor<IDRestrictable> {
     protected HashMap<String, Boolean> rMap;
     protected boolean defaultAllow;
     protected LevelRestrictions levelRestrictions;
@@ -52,10 +52,5 @@ public class BasicRestrictions implements BasicRestrictor<IDRestrictable>, Level
 
     public void setDefault(boolean defaultAllow) {
         this.defaultAllow = defaultAllow;
-    }
-
-    @Override
-    public LevelRestrictions getLevelRestrictions() {
-        return levelRestrictions;
     }
 }

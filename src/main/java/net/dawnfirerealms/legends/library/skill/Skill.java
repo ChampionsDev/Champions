@@ -19,15 +19,18 @@ package net.dawnfirerealms.legends.library.skill;
 
 import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
 import net.dawnfirerealms.legends.library.restriction.LevelRestrictable;
+import net.dawnfirerealms.legends.library.restriction.LevelRestricted;
+import net.dawnfirerealms.legends.library.restriction.LevelRestrictions;
 
 /**
  * @author B2OJustin
  */
-public class Skill implements IDRestrictable, LevelRestrictable {
+public class Skill implements IDRestrictable, LevelRestrictable, LevelRestricted {
     public String name;
+    private LevelRestrictions levelRestrictions;
 
     public Skill() {
-
+        levelRestrictions = new LevelRestrictions();
     }
 
     public int getManaCost() {
@@ -50,5 +53,10 @@ public class Skill implements IDRestrictable, LevelRestrictable {
     @Override
     public String getId() {
         return name;
+    }
+
+    @Override
+    public LevelRestrictions getLevelRestrictions() {
+        return levelRestrictions;
     }
 }

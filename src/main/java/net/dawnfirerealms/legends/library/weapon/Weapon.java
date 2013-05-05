@@ -18,15 +18,19 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.library.weapon;
 
 import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
+import net.dawnfirerealms.legends.library.restriction.LevelRestricted;
+import net.dawnfirerealms.legends.library.restriction.LevelRestrictions;
 
 /**
  * @author B2OJustin
  */
-public class Weapon implements IDRestrictable {
+public class Weapon implements IDRestrictable, LevelRestricted {
     private String name;
     private String[] description;
+    private LevelRestrictions levelRestrictions;
 
     public Weapon() {
+        levelRestrictions = new LevelRestrictions();
     }
 
     public Weapon setName(String name) {
@@ -50,5 +54,10 @@ public class Weapon implements IDRestrictable {
     @Override
     public String getId() {
         return name;
+    }
+
+    @Override
+    public LevelRestrictions getLevelRestrictions() {
+        return levelRestrictions;
     }
 }

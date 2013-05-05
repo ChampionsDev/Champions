@@ -19,10 +19,6 @@ package net.dawnfirerealms.legends.library.restriction;
 /**
  * @author B2OJustin
  */
-public interface LevelRestrictor {
-    public int getMinLevel();
-    public int getMaxLevel();
-    public void setMinLevel(int minLevel);
-    public void setMaxLevel(int maxLevel);
-    public boolean isAllowed(int level);
+public interface LevelRestricted {
+    public LevelRestrictions getLevelRestrictions();
 }
