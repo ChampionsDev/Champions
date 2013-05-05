@@ -18,6 +18,11 @@
 			<id>ranzdo-ci-repo</id>
 			<url>http://ci.ranzdo.se/plugin/repository/everything/</url>
 		</repository>
+        <repository>
+            <id>Sonatype-public</id>
+            <name>SnakeYAML repository</name>
+            <url>http://oss.sonatype.org/content/groups/public/</url>
+        </repository>
 	</repositories>
 
 	<dependencies>
@@ -32,6 +37,11 @@
 			<artifactId>methodcommand</artifactId>
 			<version>0.1</version>
 		</dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.13-SNAPSHOT</version>
+        </dependency>
 	</dependencies>
 
 	<build>
