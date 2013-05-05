@@ -19,6 +19,5 @@ package net.dawnfirerealms.legends.library.restriction;
 /**
  * @author B2OJustin
  */
-public interface IDRestrictable extends Restrictable {
-    public String getId();
+interface Restrictable {
 }

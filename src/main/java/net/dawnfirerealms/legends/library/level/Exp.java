@@ -1,4 +1,4 @@
-package net.dawnfirerealms.legends.library.exp;
+package net.dawnfirerealms.legends.library.level;
 
 import net.dawnfirerealms.legends.library.restriction.Restrictable;
 

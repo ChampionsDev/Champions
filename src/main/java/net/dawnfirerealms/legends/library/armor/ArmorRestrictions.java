@@ -22,5 +22,4 @@ import net.dawnfirerealms.legends.library.restriction.BasicRestrictions;
  * @author B2OJustin
  */
 public class ArmorRestrictions extends BasicRestrictions {
-
 }

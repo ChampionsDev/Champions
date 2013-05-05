@@ -17,20 +17,23 @@ This file is part of Legends
 
 package net.dawnfirerealms.legends.library.race;
 
-import java.util.ArrayList;
+
 import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.armor.ArmorUser;
+import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
 import net.dawnfirerealms.legends.library.skill.Skill;
 import net.dawnfirerealms.legends.library.skill.SkillRestrictions;
 import net.dawnfirerealms.legends.library.skill.SkillUser;
 import net.dawnfirerealms.legends.library.weapon.WeaponRestrictions;
 import net.dawnfirerealms.legends.library.weapon.WeaponUser;
 
+import java.util.ArrayList;
+
 /**
  * @author B2OJustin
  */
-public class Race implements WeaponUser, ArmorUser, SkillUser {
-    private String name;
+public class Race implements WeaponUser, ArmorUser, SkillUser, IDRestrictable {
+	private String name;
     private String[] description;
 
     public Race setName(String name) {
@@ -79,5 +82,10 @@ public class Race implements WeaponUser, ArmorUser, SkillUser {
     @Override
     public WeaponRestrictions getWeaponRestrictions() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public String getId() {
+        return name;
     }
 }

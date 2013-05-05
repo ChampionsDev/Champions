@@ -16,18 +16,22 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.restriction;
 
+import net.dawnfirerealms.legends.library.level.LevelRestrictions;
+
 import java.util.HashMap;
 
 /**
  * @author B2OJustin
  */
-public class BasicRestrictions implements IDRestrictor {
+public class BasicRestrictions implements BasicRestrictor<IDRestrictable> {
     protected HashMap<String, Boolean> rMap;
     protected boolean defaultAllow;
+    protected LevelRestrictions levelRestrictions;
 
     public BasicRestrictions() {
         rMap = new HashMap<>();
         defaultAllow = false;
+        levelRestrictions = new LevelRestrictions(0, 0);
     }
 
     public void setAllowed(IDRestrictable restrictable, boolean allowed) {
