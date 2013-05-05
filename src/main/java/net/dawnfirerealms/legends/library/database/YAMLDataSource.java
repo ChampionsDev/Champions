@@ -19,14 +19,35 @@ package net.dawnfirerealms.legends.library.database;
 import net.dawnfirerealms.legends.core.LPlayer;
 import net.dawnfirerealms.legends.library.lclass.LClass;
 import net.dawnfirerealms.legends.library.race.Race;
+import org.yaml.snakeyaml.Yaml;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.logging.Logger;
 
 /**
  * @author B2OJustin
  */
 public class YAMLDataSource implements DataSource {
+    public static final Logger logger = Logger.getLogger(YAMLDataSource.class.getName());
+    public static final String CONFIG_PATH = "/";
+    public static final String RACE_PATH = "races";
+    public static final String SKILL_PATH = "skills";
+    public static final String PLAYER_PATH = "players";
+    public static final String CLASS_PATH = "classes";
+
+    private Yaml yaml = new Yaml();
+
     @Override
     public String getName() {
         return "YAML";
+    }
+
+    @Override
+    public Logger getLogger() {
+        return YAMLDataSource.logger;
     }
 
     @Override
@@ -36,7 +57,35 @@ public class YAMLDataSource implements DataSource {
 
     @Override
     public Race loadRace(String name) {
-        return null; //TODO loadRace method stub
+        Race race = new Race();
+        try {
+            InputStream fileStream = new FileInputStream(new File(CONFIG_PATH + RACE_PATH + name + ".yml"));
+            race = (Race) yaml.load(fileStream);
+        } catch (FileNotFoundException e) {
+            logger.warning("Could not find file for race '" + name + "'");
+        }
+
+
+        /*List<String> description = config.getStringList("description");
+        Race race = new Race().
+                setName(config.getString("name")).
+                setDescription(description.toArray(new String[description.size()]));
+
+        // Allowed weapons
+        WeaponRestrictions weaponRestrictions = race.getWeaponRestrictions();
+        for(String name : config.getStringList("permitted-weapon")) {
+            Weapon weapon = WeaponHandler.getInstance().get(name);
+            weaponRestrictions.setAllowed(weapon, true);
+        }
+
+        // Allowed armor
+        ArmorRestrictions armorRestrictions = race.getArmorRestrictions();
+        for(String name : config.getStringList("permitted-armor")) {
+            Armor armor = ArmorHandler.getInstance().get(name);
+            armorRestrictions.setAllowed(armor, true);
+        }
+        */
+        return race;
     }
 
     @Override

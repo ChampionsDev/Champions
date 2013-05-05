@@ -20,11 +20,15 @@ import net.dawnfirerealms.legends.core.LPlayer;
 import net.dawnfirerealms.legends.library.lclass.LClass;
 import net.dawnfirerealms.legends.library.race.Race;
 
+import java.util.logging.Logger;
+
 /**
  * @author B2OJustin
  */
 public interface DataSource {
     public String getName();
+    public Logger getLogger();
+
     public LPlayer loadLPlayer(String name);
     public Race loadRace(String name);
     public LClass loadLClass(String name);
