@@ -16,6 +16,7 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.armor;
 
+import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 import net.dawnfirerealms.legends.library.restriction.*;
 
 /**
