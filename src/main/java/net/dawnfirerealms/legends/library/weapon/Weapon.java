@@ -17,9 +17,9 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.library.weapon;
 
+import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
 import net.dawnfirerealms.legends.library.restriction.LevelRestricted;
-import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 
 /**
  * @author B2OJustin

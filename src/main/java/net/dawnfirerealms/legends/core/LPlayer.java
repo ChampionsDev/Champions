@@ -16,7 +16,6 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.core;
 
-import java.util.ArrayList;
 import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.armor.ArmorUser;
 import net.dawnfirerealms.legends.library.lclass.LClass;
@@ -34,6 +33,8 @@ import net.dawnfirerealms.legends.library.weapon.Weapon;
 import net.dawnfirerealms.legends.library.weapon.WeaponRestrictions;
 import net.dawnfirerealms.legends.library.weapon.WeaponUser;
 import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
 
 /**
  * @author B2OJustin

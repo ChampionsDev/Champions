@@ -17,7 +17,10 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.core.dependencies;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
