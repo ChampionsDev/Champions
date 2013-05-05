@@ -58,6 +58,6 @@ public class LevelRestrictions implements LevelRestrictor {
     }
 
     public boolean isAllowed(Level level) {
-        return level.intValue() >= minLevel.intValue() && level.intValue() <= maxLevel.intValue();
+        return true; // TODO method stub
     }
 }

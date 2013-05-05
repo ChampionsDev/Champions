@@ -95,11 +95,6 @@ public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, Level
     }
 
     @Override
-    public Exp getExpPerLevel() {
-        return null;
-    }
-
-    @Override
     public Level getMaxLevels() {
         return null;
     }

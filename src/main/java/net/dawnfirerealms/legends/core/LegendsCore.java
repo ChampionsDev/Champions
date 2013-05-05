@@ -27,18 +27,22 @@ import se.ranzdo.bukkit.methodcommand.CommandHandler;
  * @author B2OJustin
  */
 public class LegendsCore extends JavaPlugin {
-	public static final LegendsCore instance = new LegendsCore();
+	private static LegendsCore instance;
 	
 	private CommandHandler commandHandler;
 	private ConfigHandler configHandler;
-	private RaceHandler raceHandler;
+
+    public static LegendsCore getInstance() {
+        return instance;
+    }
 	
 	@Override
 	public void onEnable() {
+        LegendsCore.instance = this;
 		commandHandler = new CommandHandler(this);
 		configHandler = new ConfigHandler(getDataFolder());
-		raceHandler = new RaceHandler();
-                DependencyHandler.resolve();
+        DependencyHandler.resolve();
+
 	}
 	
 	@Override
@@ -52,9 +56,5 @@ public class LegendsCore extends JavaPlugin {
 
 	public ConfigHandler getConfigHandler() {
 		return configHandler;
-	}
-	
-	public RaceHandler getRaceHandler() {
-		return raceHandler;
 	}
 }

@@ -41,14 +41,14 @@ class RaceBuilder implements BasicBuilder<Race> {
         // Allowed weapons
         WeaponRestrictions weaponRestrictions = race.getWeaponRestrictions();
         for(String name : config.getStringList("permitted-weapon")) {
-            Weapon weapon = WeaponHandler.getInstance().getObject(name);
+            Weapon weapon = WeaponHandler.getInstance().get(name);
             weaponRestrictions.setAllowed(weapon, true);
         }
 
         // Allowed armor
         ArmorRestrictions armorRestrictions = race.getArmorRestrictions();
         for(String name : config.getStringList("permitted-armor")) {
-            Armor armor = ArmorHandler.getInstance().getObject(name);
+            Armor armor = ArmorHandler.getInstance().get(name);
             armorRestrictions.setAllowed(armor, true);
         }
 
