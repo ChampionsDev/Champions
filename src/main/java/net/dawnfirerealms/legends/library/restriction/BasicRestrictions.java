@@ -19,6 +19,7 @@ package net.dawnfirerealms.legends.library.restriction;
 import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 
 import java.util.HashMap;
+import net.dawnfirerealms.legends.library.level.Level;
 
 /**
  * @author B2OJustin
@@ -31,7 +32,7 @@ public class BasicRestrictions implements BasicRestrictor<IDRestrictable> {
     public BasicRestrictions() {
         rMap = new HashMap<>();
         defaultAllow = false;
-        levelRestrictions = new LevelRestrictions(0, 0);
+        levelRestrictions = new LevelRestrictions(new Level(0), new Level(0));
     }
 
     public void setAllowed(IDRestrictable restrictable, boolean allowed) {
