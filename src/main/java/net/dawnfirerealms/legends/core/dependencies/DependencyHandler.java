@@ -30,7 +30,7 @@ public class DependencyHandler {
         
     }
     
-    public static boolean downloadFile(URL from, File to, boolean overwrite) throws FileNotFoundException, MalformedURLException, IOException {
+    public static boolean downloadFile(URL from, File to, boolean overwrite) {
         if (to.exists() && !overwrite) {
             return false;
         }
@@ -40,7 +40,11 @@ public class DependencyHandler {
         BufferedInputStream in = null;
     	FileOutputStream fout = null;
         if (!to.exists()) {
-            to.createNewFile();
+            try {
+                to.createNewFile();
+            } catch (IOException e) {
+                return false;
+            }
         }
     	try {
     		in = new BufferedInputStream(from.openStream());
@@ -51,12 +55,24 @@ public class DependencyHandler {
     		while ((count = in.read(data, 0, 1024)) != -1) {
     			fout.write(data, 0, count);
     		}
-    	} finally {
+    	} catch (MalformedURLException e) {
+            return false;
+        } catch (IOException e) {
+            return false;
+        } finally {
     		if (in != null) {
-                    in.close();
+                    try {
+                        in.close();
+                    } catch (IOException e) {
+                        return false;
+                    }
                 }
     		if (fout != null) {
-                    fout.close();
+                    try {
+                        fout.close();
+                    } catch (IOException e) {
+                        return false;
+                    }
                 }
     	}
         return true;

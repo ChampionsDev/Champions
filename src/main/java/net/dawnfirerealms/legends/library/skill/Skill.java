@@ -17,10 +17,11 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.library.skill;
 
+import net.dawnfirerealms.legends.library.level.Level;
+import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
 import net.dawnfirerealms.legends.library.restriction.LevelRestrictable;
 import net.dawnfirerealms.legends.library.restriction.LevelRestricted;
-import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 
 /**
  * @author B2OJustin
@@ -34,11 +35,6 @@ public class Skill implements IDRestrictable, LevelRestrictable, LevelRestricted
     }
 
     public int getManaCost() {
-        return 0;
-    }
-
-    @Override
-    public int getLevel() {
         return 0;
     }
 
@@ -58,5 +54,10 @@ public class Skill implements IDRestrictable, LevelRestrictable, LevelRestricted
     @Override
     public LevelRestrictions getLevelRestrictions() {
         return levelRestrictions;
+    }
+
+    @Override
+    public Level getLevel() {
+        return new Level(0);
     }
 }
