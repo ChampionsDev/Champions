@@ -16,9 +16,11 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.restriction;
 
+import net.dawnfirerealms.legends.library.level.Level;
+
 /**
  * @author B2OJustin
  */
 public interface LevelRestrictable extends Restrictable {
-    public int getLevel();
+    public Level getLevel();
 }

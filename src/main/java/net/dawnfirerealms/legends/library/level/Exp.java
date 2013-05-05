@@ -2,6 +2,7 @@ package net.dawnfirerealms.legends.library.level;
 
 import net.dawnfirerealms.legends.library.restriction.Restrictable;
 
+
 /**
  * @author YoshiGenius
  */

@@ -19,5 +19,5 @@ package net.dawnfirerealms.legends.library.restriction;
 /**
  * @author B2OJustin
  */
-interface Restrictable {
+public interface Restrictable {
 }

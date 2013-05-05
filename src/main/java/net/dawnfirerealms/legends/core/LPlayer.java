@@ -19,11 +19,12 @@ package net.dawnfirerealms.legends.core;
 import java.util.ArrayList;
 import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.armor.ArmorUser;
-import net.dawnfirerealms.legends.library.exp.Exp;
-import net.dawnfirerealms.legends.library.exp.ExpUser;
-import net.dawnfirerealms.legends.library.exp.Level;
 import net.dawnfirerealms.legends.library.lclass.LClass;
+import net.dawnfirerealms.legends.library.level.Exp;
+import net.dawnfirerealms.legends.library.level.ExpUser;
+import net.dawnfirerealms.legends.library.level.Level;
 import net.dawnfirerealms.legends.library.race.Race;
+import net.dawnfirerealms.legends.library.restriction.LevelRestrictable;
 import net.dawnfirerealms.legends.library.skill.Skill;
 import net.dawnfirerealms.legends.library.skill.SkillRestrictions;
 import net.dawnfirerealms.legends.library.skill.SkillUser;
@@ -35,7 +36,7 @@ import org.bukkit.entity.Player;
 /**
  * @author B2OJustin
  */
-public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser {
+public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, LevelRestrictable {
     private final Race race;
     private final Player player;
     private final LClass lclass;
@@ -91,12 +92,17 @@ public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser {
     }
 
     @Override
-    public Exp getMaxExpPerLevel() {
+    public Exp getExpPerLevel() {
         return null;
     }
 
     @Override
     public Level getMaxLevels() {
+        return null;
+    }
+
+    @Override
+    public Level getLevel() {
         return null;
     }
 }
