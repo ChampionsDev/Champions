@@ -20,6 +20,7 @@ package net.dawnfirerealms.legends.core.race;
 import net.dawnfirerealms.legends.builder.ConfigBuilder;
 import net.dawnfirerealms.legends.core.LegendsCore;
 import net.dawnfirerealms.legends.core.utils.ConfigHandler;
+import net.dawnfirerealms.legends.library.BasicHandler;
 import net.dawnfirerealms.legends.library.race.Race;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -29,35 +30,29 @@ import java.util.HashMap;
 /**
  * @author Ranzdo
  */
-public class RaceHandler {
+public class RaceHandler extends BasicHandler<Race> {
     public static final String CONFIG_PATH = "race/";
-    public HashMap<String, Race> raceMap;
+    private static RaceHandler instance;
 
-    public RaceHandler() {
+    public static RaceHandler getInstance() {
+        if(instance == null) {
+            instance = new RaceHandler();
+        }
+        return instance;
+    }
+
+    private RaceHandler() {
         reload();
     }
 
     public void reload() {
         ConfigHandler configHandler = LegendsCore.instance.getConfigHandler();
-        raceMap = new HashMap<>();
 
         File folder = new File(CONFIG_PATH);
         for(File file : folder.listFiles()) {
             YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
             Race race = ConfigBuilder.load(config, Race.class);
-            addRace(race);
+            register(race.getId(), race);
         }
-    }
-
-    public Race getRace(String name) {
-        return raceMap.get(name);
-    }
-
-    public void addRace(Race race) {
-        raceMap.put(race.getName(), race);
-    }
-
-    public void removeRace(String name) {
-        raceMap.remove(name);
     }
 }
