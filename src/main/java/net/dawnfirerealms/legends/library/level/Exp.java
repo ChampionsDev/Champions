@@ -17,13 +17,11 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.library.level;
 
-import net.dawnfirerealms.legends.library.restriction.Restrictable;
-
 
 /**
  * @author YoshiGenius
  */
-class Exp {
+class Exp implements Comparable<Exp> {
     private double exp;
     
     public Exp(double exp) {
@@ -51,6 +49,10 @@ class Exp {
 
     public double getExp() {
         return exp;
+    }
+
+    @Override
+    public int compareTo(Exp exp) {
     }
 
 }

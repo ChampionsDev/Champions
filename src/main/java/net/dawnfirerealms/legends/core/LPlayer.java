@@ -16,10 +16,8 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.core;
 
-import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.armor.ArmorUser;
 import net.dawnfirerealms.legends.library.lclass.LClass;
-import net.dawnfirerealms.legends.library.level.Exp;
 import net.dawnfirerealms.legends.library.level.ExpUser;
 import net.dawnfirerealms.legends.library.level.Level;
 import net.dawnfirerealms.legends.library.level.LevelRestrictions;
@@ -35,6 +33,7 @@ import net.dawnfirerealms.legends.library.weapon.WeaponUser;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 
 /**
  * @author B2OJustin
@@ -95,11 +94,6 @@ public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, Level
     }
 
     @Override
-    public Exp getExpPerLevel() {
-        return null;
-    }
-
-    @Override
     public Level getMaxLevels() {
         return null;
     }
@@ -111,6 +105,6 @@ public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, Level
 
     @Override
     public LevelRestrictions getLevelRestrictions() {
-        return new LevelRestrictions().setMinLevel(new Level(0)).setMaxLevel(new Level(getMaxLevels().intValue()));
+        return new LevelRestrictions().setMinLevel(new Level(0)).setMaxLevel(getMaxLevels());
     }
 }

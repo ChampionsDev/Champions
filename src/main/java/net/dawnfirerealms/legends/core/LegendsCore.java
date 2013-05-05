@@ -37,7 +37,7 @@ public class LegendsCore extends JavaPlugin {
 	public void onEnable() {
 		commandHandler = new CommandHandler(this);
 		configHandler = new ConfigHandler(getDataFolder());
-		raceHandler = new RaceHandler();
+		raceHandler = RaceHandler.getInstance();
                 DependencyHandler.resolve();
 	}
 	
