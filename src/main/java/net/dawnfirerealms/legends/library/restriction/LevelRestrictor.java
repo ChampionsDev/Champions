@@ -16,15 +16,16 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.restriction;
 
+import net.dawnfirerealms.legends.library.level.Level;
 import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 
 /**
  * @author B2OJustin
  */
 public interface LevelRestrictor {
-    public int getMinLevel();
-    public int getMaxLevel();
-    public LevelRestrictions setMinLevel(int minLevel);
-    public LevelRestrictions setMaxLevel(int maxLevel);
-    public boolean isAllowed(int level);
+    public Level getMinLevel();
+    public Level getMaxLevel();
+    public LevelRestrictions setMinLevel(Level minLevel);
+    public LevelRestrictions setMaxLevel(Level maxLevel);
+    public boolean isAllowed(Level level);
 }

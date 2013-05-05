@@ -14,6 +14,20 @@ public class Exp extends Number implements Restrictable {
         this.exp = exp;
     }
 
+    public Exp() {
+        this.exp = 0;
+    }
+
+    public Exp set(double exp) {
+        this.exp = exp;
+        return this;
+    }
+
+    public Exp add(double exp) {
+        this.exp += exp;
+        return this;
+    }
+
     @Override
     public int intValue() {
         return Math.round(Math.round(exp));

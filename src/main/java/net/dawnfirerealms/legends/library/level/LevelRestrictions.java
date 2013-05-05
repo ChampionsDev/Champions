@@ -22,42 +22,41 @@ import net.dawnfirerealms.legends.library.restriction.LevelRestrictor;
  * @author B2OJustin
  */
 public class LevelRestrictions implements LevelRestrictor {
-    private int minLevel;
-    private int maxLevel;
+    private Level minLevel;
+    private Level maxLevel;
 
     public LevelRestrictions() {
-        this(0, 0);
+        this(new Level(0), new Level(0));
     }
 
-    public LevelRestrictions(int minLevel, int maxLevel) {
+    public LevelRestrictions(Level minLevel, Level maxLevel) {
         this.maxLevel = maxLevel;
         this.minLevel = minLevel;
     }
 
     @Override
-    public int getMinLevel() {
+    public Level getMinLevel() {
         return minLevel;
     }
 
     @Override
-    public int getMaxLevel() {
+    public Level getMaxLevel() {
         return maxLevel;
     }
 
     @Override
-    public LevelRestrictions setMinLevel(int minLevel) {
+    public LevelRestrictions setMinLevel(Level minLevel) {
         this.minLevel = minLevel;
         return this;
     }
 
     @Override
-    public LevelRestrictions setMaxLevel(int maxLevel) {
+    public LevelRestrictions setMaxLevel(Level maxLevel) {
         this.maxLevel = maxLevel;
         return this;
     }
 
-    public boolean isAllowed(int level) {
-        if(minLevel == 0 && maxLevel == 0) return true;
-        else return(level <= maxLevel && level >= minLevel);
+    public boolean isAllowed(Level level) {
+        return level.intValue() >= minLevel.intValue() && level.intValue() <= maxLevel.intValue();
     }
 }
