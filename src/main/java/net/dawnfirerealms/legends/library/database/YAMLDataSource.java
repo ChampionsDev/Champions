@@ -16,18 +16,16 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.database;
 
-import net.dawnfirerealms.legends.core.LPlayer;
-import net.dawnfirerealms.legends.library.lclass.LClass;
-import net.dawnfirerealms.legends.library.race.Race;
-import org.yaml.snakeyaml.Yaml;
-
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.logging.Logger;
+import net.dawnfirerealms.legends.core.LPlayer;
+import net.dawnfirerealms.legends.library.lclass.LClass;
+import net.dawnfirerealms.legends.library.race.Race;
+import org.yaml.snakeyaml.Yaml;
 
 /**
  * @author B2OJustin
@@ -63,6 +61,7 @@ public class YAMLDataSource implements DataSource {
     }
 
     @Override
+    @SuppressWarnings("LoggerStringConcat")
     public Race loadRace(String name) {
         Race race = new Race();
         String filePath = configPath + RACE_PATH + name + ".yml";
@@ -71,7 +70,6 @@ public class YAMLDataSource implements DataSource {
             LinkedHashMap raceMap = (LinkedHashMap) yaml.load(fileStream);
             race.setName((String)raceMap.get("name"));
             race.setDescription((ArrayList<String>)raceMap.get("description"));
-
             System.out.println("Race dump: " + raceMap.toString());
         } catch (FileNotFoundException e) {
             logger.warning("Could not find file for race '" + name + "' at " + filePath);

@@ -27,30 +27,45 @@ import net.dawnfirerealms.legends.library.restriction.LevelRestricted;
 public class Skill implements IDRestrictable, LevelRestricted {
     public String name;
     private LevelRestrictions levelRestrictions;
+    private int mana;
+    private String description;
 
-    public Skill() {
+    public Skill(String name, String description, int mana) {
+        this.name = name;
+        this.mana = mana;
+        this.description = description;
         levelRestrictions = new LevelRestrictions();
     }
 
     public int getManaCost() {
-        return 0;
+        return this.mana;
+    }
+    
+    public Skill setManaCost(int mana) {
+        this.mana = mana;
+        return this;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getDescription() {
-        return null;
+        return this.description;
+    }
+
+    public Skill getDescription(String description) {
+        this.description = description;
+        return this;
     }
 
     @Override
     public String getId() {
-        return name;
+        return this.name;
     }
 
     @Override
     public LevelRestrictions getLevelRestrictions() {
-        return levelRestrictions;
+        return this.levelRestrictions;
     }
 }
