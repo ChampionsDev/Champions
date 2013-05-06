@@ -71,9 +71,9 @@ public class YAMLDataSource implements DataSource {
         return null; //TODO loadLPlayer method stub
     }
 
-    @SuppressWarnings("unchecked")
+
     @Override
-    @SuppressWarnings("LoggerStringConcat")
+    @SuppressWarnings({"LoggerStringConcat", "unchecked"})
     public Race loadRace(String name) {
         name = name.replace(" ", "_"); // Replace spaces for filenames
         Yaml yaml = new Yaml();
