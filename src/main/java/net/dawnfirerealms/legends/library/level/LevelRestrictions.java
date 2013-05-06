@@ -57,7 +57,8 @@ public class LevelRestrictions implements LevelRestrictor {
         return this;
     }
 
+    @Override
     public boolean isAllowed(Level level) {
-        return level >= minLevel && level <= maxLevel.intValue();
+        return (level.getLevel() >= getMinLevel().getLevel() && level.getLevel() <= getMaxLevel().getLevel());
     }
 }

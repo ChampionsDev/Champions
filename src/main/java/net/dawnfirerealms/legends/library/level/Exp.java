@@ -21,7 +21,7 @@ package net.dawnfirerealms.legends.library.level;
 /**
  * @author YoshiGenius
  */
-class Exp implements Comparable<Exp> {
+class Exp {
     private double exp;
     
     public Exp(double exp) {
@@ -51,8 +51,16 @@ class Exp implements Comparable<Exp> {
         return exp;
     }
 
-    @Override
-    public int compareTo(Exp exp) {
+    public static Exp max(Exp exp1, Exp exp2) {
+        return new Exp(Math.max(exp1.exp, exp2.exp));
+    }
+    
+    public static Exp min(Exp exp1, Exp exp2) {
+        return new Exp(Math.min(exp1.exp, exp2.exp));
+    }
+    
+    public static boolean isEqual(Exp exp1, Exp exp2) {
+        return (exp1.exp == exp2.exp);
     }
 
 }
