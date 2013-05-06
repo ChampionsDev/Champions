@@ -17,8 +17,6 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.core.utils;
 
-import org.bukkit.configuration.file.YamlConfiguration;
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -28,6 +26,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 /**
  * @author Ranzdo
@@ -105,8 +104,9 @@ public class ConfigHandler {
 		config.set("type", instance.getClass().getName());
 		for (Class<?> clazz = instance.getClass(); clazz != null; clazz = clazz.getSuperclass()) {
 			for (Field field : clazz.getDeclaredFields()) {
-				if (field.getAnnotation(CField.class) == null)
-					continue;
+				if (field.getAnnotation(CField.class) == null) {
+                                continue;
+                            }
 
 				field.setAccessible(true);
 
@@ -154,6 +154,7 @@ public class ConfigHandler {
             return instance;
 	}
 
+    @SuppressWarnings("CallToThreadDumpStack")
 	public void cleanup() {
             for (Entry<Class<?>, List<Field>> entry : registeredClasses.entrySet()) {
 		for (Field field : entry.getValue()) {

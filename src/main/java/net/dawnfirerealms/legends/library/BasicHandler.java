@@ -8,11 +8,11 @@ import java.util.HashMap;
 public class BasicHandler<T> {
     private HashMap<String, T> objectMap = new HashMap<>();
 
-    public void registerObject(String id, T object) {
+    public void register(String id, T object) {
         objectMap.put(id, object);
     }
     
-    public T getObject(String id) {
+    public T get(String id) {
         return objectMap.get(id);
     }
 

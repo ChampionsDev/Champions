@@ -35,19 +35,22 @@ public class DataManager {
         return instance;
     }
 
+    private DataManager() {
+    }
+
     public static DataSource getDataSource() {
         return dataSource;
     }
     
     public static void setDataSource(DataSource dataSource) {
-        if(!dataSources.containsKey(dataSource.getDataSourceName())) {
-            dataSources.put(dataSource.getDataSourceName(), dataSource);
+        if(!dataSources.containsKey(dataSource.getName())) {
+            dataSources.put(dataSource.getName(), dataSource);
         }
         DataManager.dataSource = dataSource;
     }
 
-    public static void registerDataSource(String name, DataSource dataSource) {
-        dataSources.put(name, dataSource);
+    public static void registerDataSource(DataSource dataSource) {
+        dataSources.put(dataSource.getName(), dataSource);
     }
     
 

@@ -23,8 +23,7 @@ import net.dawnfirerealms.legends.library.restriction.Restrictable;
 /**
  * @author YoshiGenius
  */
-public class Exp extends Number implements Restrictable {
-    
+class Exp {
     private double exp;
     
     public Exp(double exp) {
@@ -35,33 +34,22 @@ public class Exp extends Number implements Restrictable {
         this.exp = 0;
     }
 
-    public Exp set(double exp) {
+    public Exp setExp(double exp) {
         this.exp = exp;
         return this;
     }
 
-    public Exp add(double exp) {
+    public Exp addExp(double exp) {
         this.exp += exp;
         return this;
     }
 
-    @Override
-    public int intValue() {
-        return Math.round(Math.round(exp));
+    public Exp removeExp(double exp) {
+        this.exp -= exp;
+        return this;
     }
 
-    @Override
-    public long longValue() {
-        return Math.round(exp);
-    }
-
-    @Override
-    public float floatValue() {
-        return Math.round(exp);
-    }
-
-    @Override
-    public double doubleValue() {
+    public double getExp() {
         return exp;
     }
 
