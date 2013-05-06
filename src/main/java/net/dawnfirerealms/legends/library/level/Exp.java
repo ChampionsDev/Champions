@@ -59,7 +59,7 @@ class Exp {
         return new Exp(Math.min(exp1.exp, exp2.exp));
     }
     
-    public static boolean isEqual(Exp exp1, Exp exp2) {
+    public static boolean areEqual(Exp exp1, Exp exp2) {
         return (exp1.exp == exp2.exp);
     }
 
