@@ -26,7 +26,6 @@ public class Level extends Exp {
     public Level(int level) {
         this.level = level;
     }
-<<<<<<< HEAD
 
     @Override
     public double getExp() {
@@ -48,7 +47,4 @@ public class Level extends Exp {
     public static boolean areEqual(Level lvl1, Level lvl2) {
         return (lvl1.level == lvl2.level);
     }
-    
-=======
->>>>>>> master
 }
