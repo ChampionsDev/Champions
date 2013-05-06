@@ -34,14 +34,14 @@ import java.util.ArrayList;
  */
 public class Race implements WeaponUser, ArmorUser, SkillUser, IDRestrictable {
 	private String name;
-    private String[] description;
+    private ArrayList<String> description;
 
     public Race setName(String name) {
         this.name = name;
         return this;
     }
 
-    public Race setDescription(String[] description) {
+    public Race setDescription(ArrayList<String> description) {
         this.description = description;
         return this;
     }
@@ -50,7 +50,7 @@ public class Race implements WeaponUser, ArmorUser, SkillUser, IDRestrictable {
         return name;
     }
 
-	public String[] getDescription() {
+	public ArrayList<String> getDescription() {
         return description;
     }
 
