@@ -35,6 +35,10 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Logger;
+import net.dawnfirerealms.legends.core.LPlayer;
+import net.dawnfirerealms.legends.library.lclass.LClass;
+import net.dawnfirerealms.legends.library.race.Race;
+import org.yaml.snakeyaml.Yaml;
 
 /**
  * @author B2OJustin
@@ -69,6 +73,7 @@ public class YAMLDataSource implements DataSource {
 
     @SuppressWarnings("unchecked")
     @Override
+    @SuppressWarnings("LoggerStringConcat")
     public Race loadRace(String name) {
         name = name.replace(" ", "_"); // Replace spaces for filenames
         Yaml yaml = new Yaml();
