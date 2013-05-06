@@ -36,6 +36,7 @@ import net.dawnfirerealms.legends.library.weapon.WeaponUser;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author B2OJustin
