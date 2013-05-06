@@ -25,6 +25,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.logging.Logger;
 
 /**
@@ -49,6 +51,7 @@ public class YAMLDataSource implements DataSource {
         configPath = filePath;
         return this;
     }
+
     @Override
     public Logger getLogger() {
         return YAMLDataSource.logger;
@@ -62,11 +65,18 @@ public class YAMLDataSource implements DataSource {
     @Override
     public Race loadRace(String name) {
         Race race = new Race();
+        String filePath = configPath + RACE_PATH + name + ".yml";
         try {
-            InputStream fileStream = new FileInputStream(new File(CONFIG_PATH + RACE_PATH + name + ".yml"));
-            race = (Race) yaml.load(fileStream);
+            InputStream fileStream = new FileInputStream(filePath);
+            LinkedHashMap raceMap = (LinkedHashMap) yaml.load(fileStream);
+            race.setName((String)raceMap.get("name"));
+            race.setDescription((ArrayList<String>)raceMap.get("description"));
+
+            System.out.println("Race dump: " + raceMap.toString());
         } catch (FileNotFoundException e) {
-            logger.warning("Could not find file for race '" + name + "'");
+            logger.warning("Could not find file for race '" + name + "' at " + filePath);
+        } catch (ClassCastException e) {
+            logger.warning("You seem to have an error in your yaml. Could not load race '" + name + "'");
         }
 
 
