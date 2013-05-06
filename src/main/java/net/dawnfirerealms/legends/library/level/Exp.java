@@ -17,8 +17,6 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.library.level;
 
-import net.dawnfirerealms.legends.library.restriction.Restrictable;
-
 
 /**
  * @author YoshiGenius
@@ -47,10 +45,23 @@ class Exp {
     public Exp removeExp(double exp) {
         this.exp -= exp;
         return this;
+<<<<<<< HEAD
     }
 
     public double getExp() {
         return exp;
+    }
+
+    public static Exp max(Exp exp1, Exp exp2) {
+        return new Exp(Math.max(exp1.exp, exp2.exp));
+    }
+    
+    public static Exp min(Exp exp1, Exp exp2) {
+        return new Exp(Math.min(exp1.exp, exp2.exp));
+    }
+    
+    public static boolean areEqual(Exp exp1, Exp exp2) {
+        return (exp1.exp == exp2.exp);
     }
 
 }

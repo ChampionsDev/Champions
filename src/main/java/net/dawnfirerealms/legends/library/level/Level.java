@@ -26,4 +26,25 @@ public class Level extends Exp {
     public Level(int level) {
         this.level = level;
     }
+
+    @Override
+    public double getExp() {
+        return super.getExp();
+    }
+    
+    public int getLevel() {
+        return this.level;
+    }
+    
+    public static Level max(Level lvl1, Level lvl2) {
+        return new Level(Math.max(lvl1.level, lvl2.level));
+    }
+    
+    public static Level min(Level lvl1, Level lvl2) {
+        return new Level(Math.min(lvl1.level, lvl2.level));
+    }
+    
+    public static boolean areEqual(Level lvl1, Level lvl2) {
+        return (lvl1.level == lvl2.level);
+    }
 }
