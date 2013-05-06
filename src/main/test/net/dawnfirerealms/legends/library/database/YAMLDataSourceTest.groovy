@@ -25,8 +25,7 @@ class YAMLDataSourceTest extends GroovyTestCase {
     YAMLDataSource yamlDataSource;
 
     void setUp() {
-        yamlDataSource = new YAMLDataSource();
-        yamlDataSource.setPath("src/main/resources/");
+        yamlDataSource = new YAMLDataSource("src/main/resources/");
     }
 
     void testLoadLPlayer() {
