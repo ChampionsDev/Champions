@@ -32,11 +32,11 @@ import java.util.logging.Logger;
  */
 public class YAMLDataSource implements DataSource {
     public static final Logger logger = Logger.getLogger(YAMLDataSource.class.getName());
-    public static final String CONFIG_PATH = "/";
-    public static final String RACE_PATH = "races";
-    public static final String SKILL_PATH = "skills";
-    public static final String PLAYER_PATH = "players";
-    public static final String CLASS_PATH = "classes";
+    private String configPath = "";
+    private final String RACE_PATH = "races/";
+    private final String SKILL_PATH = "skills/";
+    private final String PLAYER_PATH = "players/";
+    private final String CLASS_PATH = "classes/";
 
     private Yaml yaml = new Yaml();
 
@@ -45,6 +45,10 @@ public class YAMLDataSource implements DataSource {
         return "YAML";
     }
 
+    public YAMLDataSource setPath(String filePath) {
+        configPath = filePath;
+        return this;
+    }
     @Override
     public Logger getLogger() {
         return YAMLDataSource.logger;
