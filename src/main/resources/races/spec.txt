@@ -1,0 +1,77 @@
+# The name of the race, this should usually match the filename. Underscore should be used if spaces are in the race name
+# This file should be named Example_Race.yml
+# All configuration values are optional, though that wouldn't make for a very interesting race.
+name: Example Race
+
+# A description of the race, can be multiple lines, must be an array.
+description: [Example Description]
+description:
+  - This is an example of a description
+  - spanning multiple lines.
+  - Use as many as you'd like.
+
+
+Levels:
+  # The maximum level for this race.
+  maximum: 50
+  # The amount of experience required to reach the next level, where L is the level.
+  # In this case, they would need a total of 200 experience to reach level 5 and 300 exp to reach level 6
+  # This curve looks like this: 2:20, 3:40, 4:60, 5:80, 6:100
+  exp-curve: 'L * 20'
+
+# The weapon information for this race
+Weapons:
+  default: allow # Whether to allow or deny use of weapons by default.
+  
+  # The weapons permitted for this race. Can be overidden by restricted-weapon here, or in a class.
+  # These should be a list of material names unless a custom weapon class system is enabled.
+  permitted-weapon:
+    # Various options may be used for modification.
+    - DIAMOND_SWORD:
+        bonus-damage: 5
+        attack-speed: 10
+        required-level: 20
+    # This is unnecessary, since we have set 'default: allow'
+    - WOOD_AXE
+    - DIAMOND_AXE
+  
+  # The weapons restricted for this race. Can be overidden by permitted-weapon in a class.
+  restricted-weapon:
+    # This overrides the setting to allow DIAMOND_SWORD
+    - DIAMOND_SWORD
+    # Use asterisks to deny all weapons of a certain type.
+    # This would deny all iron weapons and all swords
+    # If you use asterisks, be sure to use quotes around the entry.
+    - 'IRON_*'
+    - '*_SWORD'
+
+# The armor permitted for this race. Can be overidden by restricted-armor
+# This should be a list of material names unless a weapons class system is enabled.
+
+Armor:
+  default: deny # Whether to allow or deny use of armor by default.
+  
+  # The armor permitted for this race. Can be overidden by restricted-armor here, or in a class.
+  permitted-armor:
+    # This race would be able to use all leather armor after level 5
+    - 'LEATHER_*':
+        required-level: 5  
+    # After level 20 they can use gold armor, with 5 bonus defense for each piece.
+    - 'GOLD_*':
+        required-level: 20
+        bonus-defense: 5
+    # Like a bawss.
+    - DIAMOND_HELMET:
+        required-level: 50
+        bonus-defense: 100
+
+Skills:
+  # Whether to allow or deny all skills by default.
+  # Note that this doesn't automatically give the race the skills, it only makes them available.
+  default: allow
+  
+  # The skills permitted for this race. Can be overidden by restricted-skills here, or in a class.
+  permitted-skills:
+    - Bash:
+        stamina-cost: 5
+        mana-cost: 1
