@@ -20,7 +20,10 @@ import org.yaml.snakeyaml.Yaml;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.logging.Logger;
 
@@ -45,33 +48,54 @@ public class YAMLHelper {
         this.dataMap = dataMap;
     }
 
-    public YAMLHelper loadFile(String filePath) throws FileNotFoundException {
-        InputStream fileStream = null;
-        fileStream = new FileInputStream(filePath);
+    public YAMLHelper loadFile(String filePath) throws FileNotFoundException, ClassCastException {
+        InputStream fileStream = new FileInputStream(filePath);
         dataMap = ((LinkedHashMap<String, Object>)yaml.load(fileStream));
+        try {
+            fileStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return this;
     }
 
-    public Object getDefault(String path) {
-        LinkedHashMap<String, Object> currentMap;
+    public Object getObject(String path) throws ClassCastException {
+        LinkedHashMap<String, Object> currentMap = dataMap;
         String[] pathArray = path.split("\\.");
-        currentMap = dataMap;
         for (int i = 0; i < pathArray.length; i++) {
             if(i == pathArray.length - 1) {
                 return currentMap.get(pathArray[i]);
             }
             else currentMap = (LinkedHashMap) currentMap.get(pathArray[i]);
         }
-        return currentMap;
+        return null;
     }
 
-    public String getString(String path) {
-        String string = (String) getDefault(path);
+    public ArrayList<String> getKeys(String path) throws ClassCastException {
+        ArrayList<String> keys = new ArrayList<>();
+        LinkedHashMap<String, Object> currentMap = dataMap;
+        String[] pathArray = path.split("\\.");
+        for (int i = 0; i < pathArray.length; i++) {
+            if(i == pathArray.length - 1) {
+                Collections.addAll(keys, (String[]) currentMap.keySet().toArray());
+            }
+            else currentMap = (LinkedHashMap) currentMap.get(pathArray[i]);
+        }
+        return keys;
+    }
+
+    public String getString(String path) throws ClassCastException {
+        String string = (String) getObject(path);
         return string != null ? string : "";
     }
 
-    public Object get(String path) {
-        return getDefault(path);
+    public ArrayList<String> getStringList(String path) throws ClassCastException {
+        ArrayList<String> stringList = (ArrayList<String>) getObject(path);
+        return stringList != null ? stringList : new ArrayList<String>();
+    }
+
+    public int getInt(String path) {
+        return (int) getObject(path);
     }
 }
 
