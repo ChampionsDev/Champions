@@ -18,23 +18,31 @@ This file is part of Legends
 package net.dawnfirerealms.legends.library.race;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.armor.ArmorUser;
 import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
 import net.dawnfirerealms.legends.library.skill.Skill;
+import net.dawnfirerealms.legends.library.skill.SkillInfo;
+import net.dawnfirerealms.legends.library.skill.SkillManager;
 import net.dawnfirerealms.legends.library.skill.SkillRestrictions;
 import net.dawnfirerealms.legends.library.skill.SkillUser;
 import net.dawnfirerealms.legends.library.weapon.WeaponRestrictions;
 import net.dawnfirerealms.legends.library.weapon.WeaponUser;
 
-import java.util.ArrayList;
-
 /**
  * @author B2OJustin
  */
 public class Race implements WeaponUser, ArmorUser, SkillUser, IDRestrictable {
-	private String name;
+    private String name;
     private ArrayList<String> description;
+    private HashMap<Skill, SkillInfo> skillInfo;
+    
+    public Race() {
+        this.description = new ArrayList<>();
+        this.skillInfo = new HashMap<>();
+    }
 
     public Race setName(String name) {
         this.name = name;
@@ -87,5 +95,30 @@ public class Race implements WeaponUser, ArmorUser, SkillUser, IDRestrictable {
     @Override
     public String getId() {
         return name;
+    }
+
+    @Override
+    public HashMap<Skill, SkillInfo> getSkillInfoMap() {
+        return this.skillInfo;
+    }
+
+    @Override
+    public SkillInfo getSkillInfo(String name) {
+        return getSkillInfoMap().get(SkillManager.getSkill(name));
+    }
+
+    @Override
+    public SkillInfo getSkillInfo(Skill skill) {
+        return getSkillInfoMap().get(skill);
+    }
+
+    @Override
+    public SkillInfo setSkillInfo(Skill skill, SkillInfo info) {
+        return getSkillInfoMap().put(skill, info);
+    }
+
+    @Override
+    public SkillInfo setSkillInfo(String name, SkillInfo info) {
+        return getSkillInfoMap().put(SkillManager.getSkill(name), info);
     }
 }

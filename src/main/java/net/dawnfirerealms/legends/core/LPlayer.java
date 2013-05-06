@@ -17,6 +17,7 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.core;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.armor.ArmorUser;
 import net.dawnfirerealms.legends.library.lclass.LClass;
@@ -26,6 +27,8 @@ import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 import net.dawnfirerealms.legends.library.race.Race;
 import net.dawnfirerealms.legends.library.restriction.LevelRestricted;
 import net.dawnfirerealms.legends.library.skill.Skill;
+import net.dawnfirerealms.legends.library.skill.SkillInfo;
+import net.dawnfirerealms.legends.library.skill.SkillManager;
 import net.dawnfirerealms.legends.library.skill.SkillRestrictions;
 import net.dawnfirerealms.legends.library.skill.SkillUser;
 import net.dawnfirerealms.legends.library.weapon.Weapon;
@@ -41,12 +44,14 @@ public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, Level
     private final Player player;
     private final LClass lclass;
     private LevelRestrictions levelRestrictions;
+    private HashMap<Skill, SkillInfo> skillInfo;
 
     public LPlayer(Player player, Race race, LClass lclass) {
         this.player = player;
         this.race = race;
         this.lclass = lclass;
         levelRestrictions = new LevelRestrictions();
+        skillInfo = new HashMap<>();
     }
 
     public Player getPlayer() {
@@ -101,5 +106,33 @@ public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, Level
     @Override
     public LevelRestrictions getLevelRestrictions() {
         return levelRestrictions;
+    }
+
+    @Override
+    public HashMap<Skill, SkillInfo> getSkillInfoMap() {
+        return this.skillInfo;
+    }
+
+    @Override
+    public SkillInfo getSkillInfo(String name) {
+        return getSkillInfo(SkillManager.getSkill(name));
+    }
+
+    @Override
+    public SkillInfo getSkillInfo(Skill skill) {
+        if (!getSkillInfoMap().containsKey(skill)) {
+           getSkillInfoMap().put(skill, new SkillInfo());
+        }
+        return getSkillInfoMap().get(skill);
+    }
+
+    @Override
+    public SkillInfo setSkillInfo(Skill skill, SkillInfo info) {
+        return getSkillInfoMap().put(skill, info);
+    }
+
+    @Override
+    public SkillInfo setSkillInfo(String name, SkillInfo info) {
+        return setSkillInfo(SkillManager.getSkill(name), info);
     }
 }
