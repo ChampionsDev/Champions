@@ -19,14 +19,21 @@ package net.dawnfirerealms.legends.library.database;
 import net.dawnfirerealms.legends.core.LPlayer;
 import net.dawnfirerealms.legends.library.lclass.LClass;
 import net.dawnfirerealms.legends.library.race.Race;
+import net.dawnfirerealms.legends.library.skill.Skill;
+import org.apache.commons.lang.ArrayUtils;
 import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.AbstractConstruct;
+import org.yaml.snakeyaml.constructor.Constructor;
+import org.yaml.snakeyaml.nodes.Node;
+import org.yaml.snakeyaml.nodes.NodeId;
 
-import java.io.File;
+import javax.persistence.MapKey;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -39,8 +46,6 @@ public class YAMLDataSource implements DataSource {
     private final String SKILL_PATH = "skills/";
     private final String PLAYER_PATH = "players/";
     private final String CLASS_PATH = "classes/";
-
-    private Yaml yaml = new Yaml();
 
     @Override
     public String getName() {
@@ -62,17 +67,24 @@ public class YAMLDataSource implements DataSource {
         return null; //TODO loadLPlayer method stub
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Race loadRace(String name) {
+        name = name.replace(" ", "_"); // Replace spaces for filenames
+        Yaml yaml = new Yaml();
         Race race = new Race();
         String filePath = configPath + RACE_PATH + name + ".yml";
         try {
             InputStream fileStream = new FileInputStream(filePath);
-            LinkedHashMap raceMap = (LinkedHashMap) yaml.load(fileStream);
-            race.setName((String)raceMap.get("name"));
-            race.setDescription((ArrayList<String>)raceMap.get("description"));
+            LinkedHashMap<String, Object>  raceMap = (LinkedHashMap) yaml.load(fileStream);
+            race.setName( (String) raceMap.get("name"));
+            race.setDescription( (ArrayList<String>) raceMap.get("description"));
 
-            System.out.println("Race dump: " + raceMap.toString());
+            for(String skillName : ((LinkedHashMap<String, Object>) raceMap.get("permitted-skills")).keySet()) {
+                System.out.println("Permitted skill -" + skillName);
+
+
+            }
         } catch (FileNotFoundException e) {
             logger.warning("Could not find file for race '" + name + "' at " + filePath);
         } catch (ClassCastException e) {
