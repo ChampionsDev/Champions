@@ -26,6 +26,7 @@ public class Level extends Exp {
     public Level(int level) {
         this.level = level;
     }
+<<<<<<< HEAD
 
     @Override
     public double getExp() {
@@ -48,4 +49,6 @@ public class Level extends Exp {
         return (lvl1.level == lvl2.level);
     }
     
+=======
+>>>>>>> master
 }

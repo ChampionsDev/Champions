@@ -22,7 +22,6 @@ import net.dawnfirerealms.legends.library.level.ExpUser;
 import net.dawnfirerealms.legends.library.level.Level;
 import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 import net.dawnfirerealms.legends.library.race.Race;
-import net.dawnfirerealms.legends.library.restriction.LevelRestrictable;
 import net.dawnfirerealms.legends.library.restriction.LevelRestricted;
 import net.dawnfirerealms.legends.library.skill.Skill;
 import net.dawnfirerealms.legends.library.skill.SkillRestrictions;
@@ -38,15 +37,17 @@ import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 /**
  * @author B2OJustin
  */
-public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, LevelRestrictable, LevelRestricted {
+public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, LevelRestricted {
     private final Race race;
     private final Player player;
     private final LClass lclass;
+    private LevelRestrictions levelRestrictions;
 
     public LPlayer(Player player, Race race, LClass lclass) {
         this.player = player;
         this.race = race;
         this.lclass = lclass;
+        levelRestrictions = new LevelRestrictions();
     }
 
     public Player getPlayer() {
@@ -99,12 +100,7 @@ public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, Level
     }
 
     @Override
-    public Level getLevel() {
-        return null;
-    }
-
-    @Override
     public LevelRestrictions getLevelRestrictions() {
-        return new LevelRestrictions().setMinLevel(new Level(0)).setMaxLevel(getMaxLevels());
+        return levelRestrictions;
     }
 }

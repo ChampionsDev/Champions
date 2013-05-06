@@ -19,14 +19,42 @@ package net.dawnfirerealms.legends.library.database;
 import net.dawnfirerealms.legends.core.LPlayer;
 import net.dawnfirerealms.legends.library.lclass.LClass;
 import net.dawnfirerealms.legends.library.race.Race;
+import org.yaml.snakeyaml.Yaml;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.logging.Logger;
 
 /**
  * @author B2OJustin
  */
 public class YAMLDataSource implements DataSource {
+    public static final Logger logger = Logger.getLogger(YAMLDataSource.class.getName());
+    private String configPath = "";
+    private final String RACE_PATH = "races/";
+    private final String SKILL_PATH = "skills/";
+    private final String PLAYER_PATH = "players/";
+    private final String CLASS_PATH = "classes/";
+
+    private Yaml yaml = new Yaml();
+
     @Override
-    public String getDataSourceName() {
+    public String getName() {
         return "YAML";
+    }
+
+    public YAMLDataSource setPath(String filePath) {
+        configPath = filePath;
+        return this;
+    }
+
+    @Override
+    public Logger getLogger() {
+        return YAMLDataSource.logger;
     }
 
     @Override
@@ -36,7 +64,42 @@ public class YAMLDataSource implements DataSource {
 
     @Override
     public Race loadRace(String name) {
-        return null; //TODO loadRace method stub
+        Race race = new Race();
+        String filePath = configPath + RACE_PATH + name + ".yml";
+        try {
+            InputStream fileStream = new FileInputStream(filePath);
+            LinkedHashMap raceMap = (LinkedHashMap) yaml.load(fileStream);
+            race.setName((String)raceMap.get("name"));
+            race.setDescription((ArrayList<String>)raceMap.get("description"));
+
+            System.out.println("Race dump: " + raceMap.toString());
+        } catch (FileNotFoundException e) {
+            logger.warning("Could not find file for race '" + name + "' at " + filePath);
+        } catch (ClassCastException e) {
+            logger.warning("You seem to have an error in your yaml. Could not load race '" + name + "'");
+        }
+
+
+        /*List<String> description = config.getStringList("description");
+        Race race = new Race().
+                setName(config.getString("name")).
+                setDescription(description.toArray(new String[description.size()]));
+
+        // Allowed weapons
+        WeaponRestrictions weaponRestrictions = race.getWeaponRestrictions();
+        for(String name : config.getStringList("permitted-weapon")) {
+            Weapon weapon = WeaponHandler.getInstance().get(name);
+            weaponRestrictions.setAllowed(weapon, true);
+        }
+
+        // Allowed armor
+        ArmorRestrictions armorRestrictions = race.getArmorRestrictions();
+        for(String name : config.getStringList("permitted-armor")) {
+            Armor armor = ArmorHandler.getInstance().get(name);
+            armorRestrictions.setAllowed(armor, true);
+        }
+        */
+        return race;
     }
 
     @Override

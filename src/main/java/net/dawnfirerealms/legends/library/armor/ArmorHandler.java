@@ -22,7 +22,6 @@ import net.dawnfirerealms.legends.library.BasicHandler;
  * @author B2OJustin
  */
 public class ArmorHandler extends BasicHandler<Armor> {
-    // TODO These handler classes should probably be abstracted in one way or another
     private static ArmorHandler instance = new ArmorHandler();
     
     public static ArmorHandler getInstance() {

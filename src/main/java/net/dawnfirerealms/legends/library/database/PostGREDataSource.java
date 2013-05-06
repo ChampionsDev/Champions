@@ -20,13 +20,20 @@ import net.dawnfirerealms.legends.core.LPlayer;
 import net.dawnfirerealms.legends.library.lclass.LClass;
 import net.dawnfirerealms.legends.library.race.Race;
 
+import java.util.logging.Logger;
+
 /**
  * @author B2OJustin
  */
 public class PostGREDataSource implements DataSource {
     @Override
-    public String getDataSourceName() {
+    public String getName() {
         return "PostGRE";
+    }
+
+    @Override
+    public Logger getLogger() {
+        return null; //TODO getLogger method stub
     }
 
     @Override

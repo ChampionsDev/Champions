@@ -15,7 +15,7 @@ This file is part of Legends.
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package net.dawnfirerealms.legends.core.dependencies;
+package net.dawnfirerealms.legends.core.utils;
 
 import java.io.BufferedInputStream;
 import java.io.File;

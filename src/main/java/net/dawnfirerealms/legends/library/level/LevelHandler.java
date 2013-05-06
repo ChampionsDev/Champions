@@ -50,8 +50,7 @@ public class LevelHandler {
     }
 
     public static Level getLevel(double totalExp) {
-        // TODO
-        return new Level(0);
+        return new Level(0); // TODO method stub
     }
 
     private static double getExp(int level) {
@@ -74,10 +73,6 @@ public class LevelHandler {
             e.printStackTrace();
         }
         return expReq;
-    }
-
-    private static void populateForExp(double exp) {
-
     }
 
 

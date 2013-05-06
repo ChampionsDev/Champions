@@ -45,6 +45,7 @@ class Exp {
     public Exp removeExp(double exp) {
         this.exp -= exp;
         return this;
+<<<<<<< HEAD
     }
 
     public double getExp() {

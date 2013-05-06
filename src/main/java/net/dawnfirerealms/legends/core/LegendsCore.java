@@ -17,8 +17,7 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.core;
 
-import net.dawnfirerealms.legends.core.dependencies.DependencyHandler;
-import net.dawnfirerealms.legends.core.race.RaceHandler;
+import net.dawnfirerealms.legends.core.utils.DependencyHandler;
 import net.dawnfirerealms.legends.core.utils.ConfigHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 import se.ranzdo.bukkit.methodcommand.CommandHandler;
@@ -27,18 +26,22 @@ import se.ranzdo.bukkit.methodcommand.CommandHandler;
  * @author B2OJustin
  */
 public class LegendsCore extends JavaPlugin {
-	public static final LegendsCore instance = new LegendsCore();
+	private static LegendsCore instance;
 	
 	private CommandHandler commandHandler;
 	private ConfigHandler configHandler;
-	private RaceHandler raceHandler;
+
+    public static LegendsCore getInstance() {
+        return instance;
+    }
 	
 	@Override
 	public void onEnable() {
+        LegendsCore.instance = this;
 		commandHandler = new CommandHandler(this);
 		configHandler = new ConfigHandler(getDataFolder());
-		raceHandler = RaceHandler.getInstance();
-                DependencyHandler.resolve();
+        DependencyHandler.resolve();
+
 	}
 	
 	@Override
@@ -52,9 +55,5 @@ public class LegendsCore extends JavaPlugin {
 
 	public ConfigHandler getConfigHandler() {
 		return configHandler;
-	}
-	
-	public RaceHandler getRaceHandler() {
-		return raceHandler;
 	}
 }
