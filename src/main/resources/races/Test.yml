@@ -15,17 +15,17 @@ item-damage-level:
 projectile-damage:
 projectile-damage-level:
 permitted-skills:
-    Dwarf Skill 1:
-        level: 1
-        mana: 5
-        reagent: BED
-        reagent-cost: 1
-    Dwarf Skill 2:
-        level: 1
-        mana: 40
-        cooldown: 60000
-        health-cost: 10
-        delay: 5000
+  Dwarf Skill 1:
+    level: 1
+    mana: 5
+    reagent: BED
+    reagent-cost: 1
+  Dwarf Skill 2:
+    level: 1
+    mana: 40
+    cooldown: 60000
+    health-cost: 10
+    delay: 5000
 experience-sources:
 - KILLING
 - PVP
