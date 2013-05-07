@@ -17,12 +17,10 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.library.level;
 
-import net.dawnfirerealms.legends.library.restriction.LevelRestrictor;
-
 /**
  * @author B2OJustin
  */
-public class LevelRestrictions implements LevelRestrictor {
+public class LevelRestrictions {
     private Level minLevel;
     private Level maxLevel;
 
@@ -35,29 +33,24 @@ public class LevelRestrictions implements LevelRestrictor {
         this.minLevel = minLevel;
     }
 
-    @Override
     public Level getMinLevel() {
         return minLevel;
     }
 
-    @Override
     public Level getMaxLevel() {
         return maxLevel;
     }
 
-    @Override
     public LevelRestrictions setMinLevel(Level minLevel) {
         this.minLevel = minLevel;
         return this;
     }
 
-    @Override
     public LevelRestrictions setMaxLevel(Level maxLevel) {
         this.maxLevel = maxLevel;
         return this;
     }
 
-    @Override
     public boolean isAllowed(Level level) {
         return (level.getLevel() >= getMinLevel().getLevel() && level.getLevel() <= getMaxLevel().getLevel());
     }
