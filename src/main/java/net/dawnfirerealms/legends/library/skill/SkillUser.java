@@ -16,9 +16,10 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.skill;
 
+import net.dawnfirerealms.legends.library.BaseUser;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import net.dawnfirerealms.legends.library.BaseUser;
 
 /**
  * @author B2OJustin

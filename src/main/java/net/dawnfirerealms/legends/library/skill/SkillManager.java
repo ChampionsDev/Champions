@@ -18,6 +18,7 @@
 package net.dawnfirerealms.legends.library.skill;
 
 import com.google.common.collect.Lists;
+
 import java.util.List;
 
 /**

@@ -17,8 +17,8 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.core;
 
-import net.dawnfirerealms.legends.core.utils.DependencyHandler;
 import net.dawnfirerealms.legends.core.utils.ConfigHandler;
+import net.dawnfirerealms.legends.core.utils.DependencyHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 import se.ranzdo.bukkit.methodcommand.CommandHandler;
 

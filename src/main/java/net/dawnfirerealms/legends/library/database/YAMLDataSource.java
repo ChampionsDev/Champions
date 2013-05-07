@@ -20,7 +20,6 @@ import net.dawnfirerealms.legends.core.LPlayer;
 import net.dawnfirerealms.legends.library.database.helper.YAMLHelper;
 import net.dawnfirerealms.legends.library.lclass.LClass;
 import net.dawnfirerealms.legends.library.race.Race;
-import net.dawnfirerealms.legends.library.skill.SkillManager;
 
 import java.io.FileNotFoundException;
 import java.util.logging.Logger;

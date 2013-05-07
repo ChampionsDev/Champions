@@ -17,7 +17,6 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.library.restriction;
 
 import net.dawnfirerealms.legends.library.level.Level;
-import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 
 /**
  * @author B2OJustin

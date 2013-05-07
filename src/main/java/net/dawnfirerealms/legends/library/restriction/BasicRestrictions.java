@@ -16,10 +16,10 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.restriction;
 
+import net.dawnfirerealms.legends.library.level.Level;
 import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 
 import java.util.HashMap;
-import net.dawnfirerealms.legends.library.level.Level;
 
 /**
  * @author B2OJustin

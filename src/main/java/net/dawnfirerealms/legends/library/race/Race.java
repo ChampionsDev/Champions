@@ -18,18 +18,18 @@ This file is part of Legends
 package net.dawnfirerealms.legends.library.race;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.armor.ArmorUser;
 import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
 import net.dawnfirerealms.legends.library.skill.Skill;
 import net.dawnfirerealms.legends.library.skill.SkillInfo;
-import net.dawnfirerealms.legends.library.skill.SkillManager;
 import net.dawnfirerealms.legends.library.skill.SkillRestrictions;
 import net.dawnfirerealms.legends.library.skill.SkillUser;
 import net.dawnfirerealms.legends.library.weapon.WeaponRestrictions;
 import net.dawnfirerealms.legends.library.weapon.WeaponUser;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author B2OJustin
