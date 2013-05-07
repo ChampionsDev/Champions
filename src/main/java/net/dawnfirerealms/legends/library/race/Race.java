@@ -57,8 +57,8 @@ public class Race implements WeaponUser, ArmorUser, SkillUser, IDRestrictable {
     public String getName() {
         return name;
     }
-
-	public ArrayList<String> getDescription() {
+    
+    public ArrayList<String> getDescription() {
         return description;
     }
 
