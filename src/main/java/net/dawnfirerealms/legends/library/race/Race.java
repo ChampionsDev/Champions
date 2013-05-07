@@ -32,7 +32,7 @@ import java.util.HashMap;
 public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, SkillRestricted, WeaponRestricted, ArmorRestricted, IDRestrictable {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
-    private HashMap<String, SkillInfo> skillInfo = new HashMap<>();
+    private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
     private WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
 
     public Race() {
@@ -82,13 +82,13 @@ public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
     }
 
     @Override
-    public HashMap<String, SkillInfo> getSkillInfoMap() {
-        return skillInfo;
+    public HashMap<Skill, SkillInfo> getSkillInfoMap() {
+        return skillInfoMap;
     }
 
     @Override
     public SkillInfo getSkillInfo(Skill skill) {
-        return skillInfo.get(skill);
+        return skillInfoMap.get(skill);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
     }
 
     @Override
-    public HashMap<String, ArmorInfo> getArmorInfoMap() {
+    public HashMap<Armor, ArmorInfo> getArmorInfoMap() {
         return null; //TODO getArmorInfoMap method stub
     }
 
@@ -112,7 +112,7 @@ public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
     }
 
     @Override
-    public HashMap<String, WeaponInfo> getWeaponInfoMap() {
+    public HashMap<Weapon, WeaponInfo> getWeaponInfoMap() {
         return null; //TODO getWeaponInfoMap method stub
     }
 

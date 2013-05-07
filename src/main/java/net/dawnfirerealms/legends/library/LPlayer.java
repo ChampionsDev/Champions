@@ -29,7 +29,6 @@ import net.dawnfirerealms.legends.library.level.LevelUser;
 import net.dawnfirerealms.legends.library.race.Race;
 import net.dawnfirerealms.legends.library.race.RaceRestricted;
 import net.dawnfirerealms.legends.library.race.RaceUser;
-import net.dawnfirerealms.legends.library.restriction.BasicRestrictions;
 import net.dawnfirerealms.legends.library.skill.*;
 import net.dawnfirerealms.legends.library.weapon.*;
 import org.bukkit.entity.Player;
@@ -47,14 +46,14 @@ public class LPlayer implements
     private final Player player;
     private final LClass lclass;
     private LevelRestrictions levelRestrictions;
-    private HashMap<String, SkillInfo> skillInfo;
+    private HashMap<Skill, SkillInfo> skillInfoMap;
 
     public LPlayer(Player player, Race race, LClass lclass) {
         this.player = player;
         this.race = race;
         this.lclass = lclass;
         levelRestrictions = new LevelRestrictions();
-        skillInfo = new HashMap<>();
+        skillInfoMap = new HashMap<>();
     }
 
     public Player getPlayer() {
@@ -90,8 +89,21 @@ public class LPlayer implements
     }
 
     @Override
-    public HashMap<String, SkillInfo> getSkillInfoMap() {
+    public HashMap<Skill, SkillInfo> getSkillInfoMap() {
         return null; //TODO getSkillInfoMap method stub
+    }
+
+    @Override
+    public LPlayer setSkillInfo(Skill skill, SkillInfo info) {
+        return this;
+    }
+
+    @Override
+    public SkillInfo getSkillInfo(Skill skill) {
+        if (!skillInfoMap.containsKey(skill)) {
+            skillInfoMap.put(skill, new SkillInfo());
+        }
+        return skillInfoMap.get(skill);
     }
 
     @Override
@@ -112,19 +124,6 @@ public class LPlayer implements
     @Override
     public LevelRestrictions getLevelRestrictions() {
         return levelRestrictions;
-    }
-
-    @Override
-    public SkillInfo getSkillInfo(Skill skill) {
-        if (!skillInfo.containsKey(skill.getName())) {
-           skillInfo.put(skill.getName(), new SkillInfo());
-        }
-        return skillInfo.get(skill.getName());
-    }
-
-    @Override
-    public LPlayer setSkillInfo(Skill skill, SkillInfo info) {
-        return this;
     }
 
     @Override
@@ -153,7 +152,7 @@ public class LPlayer implements
     }
 
     @Override
-    public HashMap<String, ArmorInfo> getArmorInfoMap() {
+    public HashMap<Armor, ArmorInfo> getArmorInfoMap() {
         return null; //TODO getArmorInfoMap method stub
     }
 
