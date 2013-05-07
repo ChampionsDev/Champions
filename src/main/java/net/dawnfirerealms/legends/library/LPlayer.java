@@ -64,7 +64,8 @@ public class LPlayer implements
     public Race getRace() {
         return this.race;
     }
-    
+
+    @Override
     public LClass getLClass() {
         return this.lclass;
     }
