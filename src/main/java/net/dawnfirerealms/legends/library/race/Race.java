@@ -18,14 +18,10 @@ This file is part of Legends
 package net.dawnfirerealms.legends.library.race;
 
 
-import net.dawnfirerealms.legends.library.armor.ArmorRestricted;
-import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
-import net.dawnfirerealms.legends.library.armor.ArmorUser;
+import net.dawnfirerealms.legends.library.armor.*;
 import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
 import net.dawnfirerealms.legends.library.skill.*;
-import net.dawnfirerealms.legends.library.weapon.WeaponRestricted;
-import net.dawnfirerealms.legends.library.weapon.WeaponRestrictions;
-import net.dawnfirerealms.legends.library.weapon.WeaponUser;
+import net.dawnfirerealms.legends.library.weapon.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +29,7 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public class Race implements ArmorUser, SkillUser, WeaponUser, SkillRestricted, WeaponRestricted, ArmorRestricted, IDRestrictable {
+public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, SkillRestricted, WeaponRestricted, ArmorRestricted, IDRestrictable {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
     private HashMap<String, SkillInfo> skillInfo = new HashMap<>();
@@ -62,27 +58,17 @@ public class Race implements ArmorUser, SkillUser, WeaponUser, SkillRestricted, 
 
     @Override
     public ArrayList<Skill> getSkills() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null; //TODO getSkills method stub
     }
 
     @Override
-    public void addSkill(Skill skill) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public Race addSkill(Skill skill) {
+        return this; //TODO addSkill method stub
     }
 
     @Override
-    public void removeSkill(Skill skill) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public SkillRestrictions getSkillRestrictions() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public ArmorRestrictions getArmorRestrictions() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public Race removeSkill(Skill skill) {
+        return this; //TODO removeSkill method stub
     }
 
     @Override
@@ -96,8 +82,8 @@ public class Race implements ArmorUser, SkillUser, WeaponUser, SkillRestricted, 
     }
 
     @Override
-    public HashMap<String, SkillInfo> getSkillInfo() {
-        return this.skillInfo;
+    public HashMap<String, SkillInfo> getSkillInfoMap() {
+        return skillInfo;
     }
 
     @Override
@@ -106,7 +92,47 @@ public class Race implements ArmorUser, SkillUser, WeaponUser, SkillRestricted, 
     }
 
     @Override
-    public SkillInfo setSkillInfo(Skill skill, SkillInfo info) {
-        return skillInfo.put(skill.getName(), info);
+    public Race setSkillInfo(Skill skill, SkillInfo info) {
+        return this; //TODO getSkillInfo method stub
+    }
+
+    @Override
+    public HashMap<String, ArmorInfo> getArmorInfoMap() {
+        return null; //TODO getArmorInfoMap method stub
+    }
+
+    @Override
+    public ArmorInfo getArmorInfo(Armor armor) {
+        return null; //TODO getArmorInfo method stub
+    }
+
+    @Override
+    public Race setArmorInfo(Armor armor, ArmorInfo info) {
+        return this; //TODO setArmorInfo method stub
+    }
+
+    @Override
+    public HashMap<String, WeaponInfo> getWeaponInfoMap() {
+        return null; //TODO getWeaponInfoMap method stub
+    }
+
+    @Override
+    public WeaponInfo getWeaponInfo(Weapon weapon) {
+        return null; //TODO getWeaponInfo method stub
+    }
+
+    @Override
+    public Race setWeaponInfo(Weapon weapon, WeaponInfo info) {
+        return this; //TODO setWeaponInfo method stub
+    }
+
+    @Override
+    public ArmorRestrictions getArmorRestrictions() {
+        return null; //TODO getArmorRestrictions method stub
+    }
+
+    @Override
+    public SkillRestrictions getSkillRestrictions() {
+        return null; //TODO getSkillRestrictions method stub
     }
 }

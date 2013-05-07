@@ -29,7 +29,7 @@ import java.util.ArrayList;
  */
 public class Weapon implements IDRestrictable, LevelRestricted, Describable<Weapon> {
     private String name = "";
-    private ArrayList<String> description = new ArrayList();
+    private ArrayList<String> description = new ArrayList<>();
     private LevelRestrictions levelRestrictions = new LevelRestrictions();
 
     public Weapon() {

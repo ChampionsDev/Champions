@@ -29,6 +29,7 @@ import net.dawnfirerealms.legends.library.level.LevelUser;
 import net.dawnfirerealms.legends.library.race.Race;
 import net.dawnfirerealms.legends.library.race.RaceRestricted;
 import net.dawnfirerealms.legends.library.race.RaceUser;
+import net.dawnfirerealms.legends.library.restriction.BasicRestrictions;
 import net.dawnfirerealms.legends.library.skill.*;
 import net.dawnfirerealms.legends.library.weapon.*;
 import org.bukkit.entity.Player;
@@ -40,7 +41,7 @@ import java.util.HashMap;
  * @author B2OJustin
  */
 public class LPlayer implements
-        WeaponUser, ArmorUser, SkillUser, LevelUser, LClassUser, RaceUser,
+        WeaponUser, ArmorUser<LPlayer>, SkillUser<LPlayer>, LevelUser, LClassUser, RaceUser,
         WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, LClassRestricted, RaceRestricted {
     private final Race race;
     private final Player player;
@@ -78,11 +79,18 @@ public class LPlayer implements
     }
 
     @Override
-    public void addSkill(Skill skill) {
+    public LPlayer addSkill(Skill skill) {
+        return this; //TODO addSkill method stub
     }
 
     @Override
-    public void removeSkill(Skill skill) {
+    public LPlayer removeSkill(Skill skill) {
+        return this; //TODO removeSkill method stub
+    }
+
+    @Override
+    public HashMap<String, SkillInfo> getSkillInfoMap() {
+        return null; //TODO getSkillInfoMap method stub
     }
 
     @Override
@@ -106,11 +114,6 @@ public class LPlayer implements
     }
 
     @Override
-    public HashMap<String, SkillInfo> getSkillInfo() {
-        return this.skillInfo;
-    }
-
-    @Override
     public SkillInfo getSkillInfo(Skill skill) {
         if (!skillInfo.containsKey(skill.getName())) {
            skillInfo.put(skill.getName(), new SkillInfo());
@@ -119,8 +122,8 @@ public class LPlayer implements
     }
 
     @Override
-    public SkillInfo setSkillInfo(Skill skill, SkillInfo info) {
-        return skillInfo.put(skill.getName(), info);
+    public LPlayer setSkillInfo(Skill skill, SkillInfo info) {
+        return this;
     }
 
     @Override
@@ -134,23 +137,23 @@ public class LPlayer implements
     }
 
     @Override
-    public HashMap<String, WeaponInfo> getWeaponInfo() {
+    public HashMap<String, WeaponInfo> getWeaponInfoMap() {
+        return null; //TODO getWeaponInfoMap method stub
+    }
+
+    @Override
+    public WeaponInfo getWeaponInfo(Weapon weapon) {
         return null; //TODO getWeaponInfo method stub
     }
 
     @Override
-    public WeaponInfo getWeaponInfo(Skill skill) {
-        return null; //TODO getWeaponInfo method stub
-    }
-
-    @Override
-    public SkillInfo setWeaponInfo(Weapon weapon, WeaponInfo info) {
+    public WeaponUser setWeaponInfo(Weapon weapon, WeaponInfo info) {
         return null; //TODO setWeaponInfo method stub
     }
 
     @Override
-    public HashMap<String, SkillInfo> getArmorInfo() {
-        return null; //TODO getArmorInfo method stub
+    public HashMap<String, ArmorInfo> getArmorInfoMap() {
+        return null; //TODO getArmorInfoMap method stub
     }
 
     @Override
@@ -159,7 +162,7 @@ public class LPlayer implements
     }
 
     @Override
-    public ArmorInfo setArmorInfo(Armor armor, ArmorInfo info) {
-        return null; //TODO setArmorInfo method stub
+    public LPlayer setArmorInfo(Armor armor, ArmorInfo info) {
+        return this; //TODO setArmorInfo method stub
     }
 }

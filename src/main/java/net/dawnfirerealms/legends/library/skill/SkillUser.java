@@ -24,11 +24,11 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public interface SkillUser extends BasicUser {
+public interface SkillUser<T extends SkillUser> extends BasicUser {
     public ArrayList<Skill> getSkills();
-    public void addSkill(Skill skill);
-    public void removeSkill(Skill skill);
-    public HashMap<String, SkillInfo> getSkillInfo();
+    public T addSkill(Skill skill);
+    public T removeSkill(Skill skill);
+    public HashMap<String, SkillInfo> getSkillInfoMap();
     public SkillInfo getSkillInfo(Skill skill);
-    public SkillInfo setSkillInfo(Skill skill, SkillInfo info);
+    public T setSkillInfo(Skill skill, SkillInfo info);
 }

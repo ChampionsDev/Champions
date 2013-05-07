@@ -24,8 +24,8 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public interface ArmorUser extends BasicUser {
-    public HashMap<String, SkillInfo> getArmorInfo();
+public interface ArmorUser<T extends ArmorUser> extends BasicUser {
+    public HashMap<String, ArmorInfo> getArmorInfoMap();
     public ArmorInfo getArmorInfo(Armor armor);
-    public ArmorInfo setArmorInfo(Armor armor, ArmorInfo info);
+    public T setArmorInfo(Armor armor, ArmorInfo info);
 }
