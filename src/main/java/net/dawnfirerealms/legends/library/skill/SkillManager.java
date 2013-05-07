@@ -27,7 +27,8 @@ import java.util.List;
 public class SkillManager {
     private static List<Skill> skills = Lists.newArrayList();
     
-    private SkillManager(){};
+    private SkillManager(){
+    }
     
     public static List<Skill> getSkills() {
         return SkillManager.skills;
