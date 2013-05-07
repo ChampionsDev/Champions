@@ -17,24 +17,29 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.library.armor;
 
 import net.dawnfirerealms.legends.library.level.LevelRestrictions;
+import net.dawnfirerealms.legends.library.misc.Describable;
 import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
-import net.dawnfirerealms.legends.library.restriction.LevelRestricted;
+import net.dawnfirerealms.legends.library.level.LevelUser;
+
+import java.util.ArrayList;
 
 /**
  * @author B2OJustin
  */
-public class Armor implements IDRestrictable, LevelRestricted {
-    public String name;
-    public String[] description;
-    private LevelRestrictions levelRestrictions;
+public class Armor implements IDRestrictable, LevelUser, Describable<Armor> {
+    private String name = "";
+    private ArrayList<String> description = new ArrayList<>();
+    private LevelRestrictions levelRestrictions = new LevelRestrictions();
+
+    public Armor() {
+    }
 
     public Armor setName(String name) {
         this.name = name;
-        levelRestrictions = new LevelRestrictions();
         return this;
     }
 
-    public Armor setDescription(String[] description) {
+    public Armor setDescription(ArrayList<String> description) {
         this.description = description;
         return this;
     }
@@ -43,7 +48,7 @@ public class Armor implements IDRestrictable, LevelRestricted {
         return name;
     }
 
-    public String[] getDescription() {
+    public ArrayList<String> getDescription() {
         return description;
     }
 

@@ -14,13 +14,11 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package net.dawnfirerealms.legends.library.restriction;
-
-import net.dawnfirerealms.legends.library.level.LevelRestrictions;
+package net.dawnfirerealms.legends.library.weapon;
 
 /**
  * @author B2OJustin
  */
-public interface LevelRestricted {
-    public LevelRestrictions getLevelRestrictions();
+public class WeaponInfo {
+    private int damage = 0;
 }

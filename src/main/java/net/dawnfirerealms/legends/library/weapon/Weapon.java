@@ -18,27 +18,29 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.library.weapon;
 
 import net.dawnfirerealms.legends.library.level.LevelRestrictions;
+import net.dawnfirerealms.legends.library.misc.Describable;
 import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
-import net.dawnfirerealms.legends.library.restriction.LevelRestricted;
+import net.dawnfirerealms.legends.library.level.LevelUser;
+
+import java.util.ArrayList;
 
 /**
  * @author B2OJustin
  */
-public class Weapon implements IDRestrictable, LevelRestricted {
-    private String name;
-    private String[] description;
-    private LevelRestrictions levelRestrictions;
+public class Weapon implements IDRestrictable, LevelUser, Describable<Weapon> {
+    private String name = "";
+    private ArrayList<String> description = new ArrayList();
+    private LevelRestrictions levelRestrictions = new LevelRestrictions();
 
     public Weapon() {
-        levelRestrictions = new LevelRestrictions();
     }
 
-    public Weapon setName(String name) {
+    public Weapon(String name, ArrayList<String> description) {
         this.name = name;
-        return this;
+        this.description = description;
     }
 
-    public Weapon setDescription(String[] description) {
+    public Weapon setDescription(ArrayList<String> description) {
         this.description = description;
         return this;
     }
@@ -47,7 +49,7 @@ public class Weapon implements IDRestrictable, LevelRestricted {
         return name;
     }
 
-    public String[] getDescription() {
+    public ArrayList<String> getDescription() {
         return description;
     }
 

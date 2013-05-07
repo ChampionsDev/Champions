@@ -21,19 +21,13 @@ package net.dawnfirerealms.legends.library.skill;
  * @author YoshiGenius
  */
 public class SkillInfo {
-    
-    private int level;
-    private int manaCost;
-    private int cooldownSeconds;
-    private double healthCost;
-    private double hungerCost;
+    private int level = 0;
+    private int manaCost = 0;
+    private int cooldownSeconds = 0;
+    private double healthCost = 0;
+    private double hungerCost = 0;
     
     public SkillInfo() {
-        this.level = 1;
-        this.manaCost = 5;
-        this.cooldownSeconds = 10;
-        this.healthCost = 0.0;
-        this.hungerCost = 0.0;
     }
     
     public int getLevel() {

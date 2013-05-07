@@ -20,14 +20,11 @@ package net.dawnfirerealms.legends.core;
 import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.armor.ArmorUser;
 import net.dawnfirerealms.legends.library.lclass.LClass;
-import net.dawnfirerealms.legends.library.level.ExpUser;
-import net.dawnfirerealms.legends.library.level.Level;
 import net.dawnfirerealms.legends.library.level.LevelRestrictions;
+import net.dawnfirerealms.legends.library.level.LevelUser;
 import net.dawnfirerealms.legends.library.race.Race;
-import net.dawnfirerealms.legends.library.restriction.LevelRestricted;
 import net.dawnfirerealms.legends.library.skill.Skill;
 import net.dawnfirerealms.legends.library.skill.SkillInfo;
-import net.dawnfirerealms.legends.library.skill.SkillManager;
 import net.dawnfirerealms.legends.library.skill.SkillRestrictions;
 import net.dawnfirerealms.legends.library.skill.SkillUser;
 import net.dawnfirerealms.legends.library.weapon.Weapon;
@@ -41,7 +38,7 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, LevelRestricted {
+public class LPlayer implements WeaponUser, ArmorUser, SkillUser, LevelUser {
     private final Race race;
     private final Player player;
     private final LClass lclass;
@@ -97,11 +94,6 @@ public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, Level
 
     @Override
     public WeaponRestrictions getWeaponRestrictions() {
-        return null;
-    }
-
-    @Override
-    public Level getMaxLevels() {
         return null;
     }
 

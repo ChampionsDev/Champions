@@ -14,32 +14,15 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
+package net.dawnfirerealms.legends.library.misc;
 
-package net.dawnfirerealms.legends.library.level;
+import java.util.ArrayList;
 
 /**
- * @author YoshiGenius
+ * @author B2OJustin
  */
-public class Level extends Exp {
-    private int level;
-
-    public Level(int level) {
-        this.level = level;
-    }
-    
-    public int getLevel() {
-        return this.level;
-    }
-    
-    public static Level max(Level lvl1, Level lvl2) {
-        return new Level(Math.max(lvl1.level, lvl2.level));
-    }
-    
-    public static Level min(Level lvl1, Level lvl2) {
-        return new Level(Math.min(lvl1.level, lvl2.level));
-    }
-    
-    public static boolean areEqual(Level lvl1, Level lvl2) {
-        return (lvl1.level == lvl2.level);
-    }
+public interface Describable<T> {
+    public ArrayList<String> getDescription();
+    public String getName();
+    public T setDescription(ArrayList<String> description);
 }
