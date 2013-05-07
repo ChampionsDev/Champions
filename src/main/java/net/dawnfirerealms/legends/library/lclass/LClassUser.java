@@ -14,13 +14,13 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package net.dawnfirerealms.legends.library.restriction;
+package net.dawnfirerealms.legends.library.lclass;
 
-import net.dawnfirerealms.legends.library.level.Level;
+import net.dawnfirerealms.legends.library.BasicUser;
 
 /**
  * @author B2OJustin
  */
-public interface LevelRestrictable {
-    public Level getLevel();
+public interface LClassUser extends BasicUser {
+    public LClass getLClass();
 }

@@ -28,7 +28,6 @@ public interface SkillUser extends BasicUser {
     public ArrayList<Skill> getSkills();
     public void addSkill(Skill skill);
     public void removeSkill(Skill skill);
-    public SkillRestrictions getSkillRestrictions();
     public HashMap<String, SkillInfo> getSkillInfo();
     public SkillInfo getSkillInfo(Skill skill);
     public SkillInfo setSkillInfo(Skill skill, SkillInfo info);

@@ -14,14 +14,11 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-package net.dawnfirerealms.legends.library.weapon;
-
-import net.dawnfirerealms.legends.library.BasicUser;
+package net.dawnfirerealms.legends.library.skill;
 
 /**
  * @author B2OJustin
  */
-public interface WeaponUser extends BasicUser {
-    public Weapon getWeapon();
+public interface SkillRestricted {
+    public SkillRestrictions getSkillRestrictions();
 }

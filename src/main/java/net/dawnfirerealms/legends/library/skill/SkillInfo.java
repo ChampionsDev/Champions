@@ -17,11 +17,16 @@
 
 package net.dawnfirerealms.legends.library.skill;
 
+import net.dawnfirerealms.legends.library.level.Level;
+import net.dawnfirerealms.legends.library.level.LevelRestricted;
+import net.dawnfirerealms.legends.library.level.LevelRestrictions;
+import net.dawnfirerealms.legends.library.level.LevelUser;
+
 /**
  * @author YoshiGenius
  */
-public class SkillInfo {
-    private int level = 0;
+public class SkillInfo implements LevelUser, LevelRestricted {
+    private Level level = new Level(1);
     private int manaCost = 0;
     private int cooldownSeconds = 0;
     private double healthCost = 0;
@@ -29,8 +34,9 @@ public class SkillInfo {
     
     public SkillInfo() {
     }
-    
-    public int getLevel() {
+
+    @Override
+    public Level getLevel() {
         return this.level;
     }
     
@@ -50,7 +56,7 @@ public class SkillInfo {
         return this.hungerCost;
     }
     
-    public SkillInfo setLevel(int level) {
+    public SkillInfo setLevel(Level level) {
         this.level = level;
         return this;
     }
@@ -75,4 +81,8 @@ public class SkillInfo {
         return this;
     }
 
+    @Override
+    public LevelRestrictions getLevelRestrictions() {
+        return null; //TODO getLevelRestrictions method stub
+    }
 }

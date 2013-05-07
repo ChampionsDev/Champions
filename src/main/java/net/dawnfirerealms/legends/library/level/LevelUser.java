@@ -20,5 +20,5 @@ package net.dawnfirerealms.legends.library.level;
  * @author B2OJustin
  */
 public interface LevelUser {
-    public LevelRestrictions getLevelRestrictions();
+    public Level getLevel();
 }
