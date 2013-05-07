@@ -22,9 +22,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashMap;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
@@ -77,7 +75,7 @@ public class YAMLHelper {
         String[] pathArray = path.split("\\.");
         for (int i = 0; i < pathArray.length; i++) {
             if(i == pathArray.length - 1) {
-                Collections.addAll(keys, (String[]) currentMap.keySet().toArray());
+                keys.addAll(currentMap.keySet());
             }
             else currentMap = (LinkedHashMap) currentMap.get(pathArray[i]);
         }

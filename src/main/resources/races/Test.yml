@@ -1,36 +1,59 @@
 name: Test
 description: [Test Race]
-permitted-armor:
-- IRON
-permitted-weapon:
-- WOOD_AXE
-- IRON_AXE
-- DIAMOND_AXE
-bonus-damage:
-  STONE_AXE: 5
-  IRON_AXE: 7
-  GOLD_AXE: 9
-  DIAMOND_AXE: 10
-item-damage-level:
-projectile-damage:
-projectile-damage-level:
-permitted-skills:
-  Dwarf Skill 1:
-    level: 1
-    mana: 5
-    reagent: BED
-    reagent-cost: 1
-  Dwarf Skill 2:
-    level: 1
-    mana: 40
-    cooldown: 60000
-    health-cost: 10
-    delay: 5000
-experience-sources:
-- KILLING
-- PVP
-- QUESTING
-traits allowed: Vamp, Were, Ghoul
-bonus health: 12.0
-bonus mana: 23
-mana-regen boost: 1
+
+Stats:
+  health-per-level: 5
+  mana-per-level: 2
+  bonus-health: 12
+  bonus-mana: 23
+  bonus-mana-regen: 1
+
+Levels:
+  maximum-level: 50
+  experience-curve: 'L * 20'
+  experience-sources:
+    - MOB_KILL:
+        exp-gain: 5
+    - PLAYER_KILL:
+        exp-gain: 50
+    - QUESTING:
+    
+Weapons:
+  default: deny
+  permitted-weapon:
+    - WOOD_AXE:
+    - IRON_AXE:
+        bonus-damage: 10
+    - DIAMOND_AXE:
+        bonus-damage: 10
+
+
+Armor:
+  default: deny
+  permitted-armor:
+    - 'LEATHER_*':
+
+Skills:
+  default: deny
+  permitted-skills:
+    - Dwarf Skill 1:
+        level: 1
+        mana: 5
+        reagent: BED
+        reagent-cost: 1
+    - Dwarf Skill 2:
+        level: 1
+        mana: 40
+        cooldown: 60000
+        health-cost: 10
+        delay: 5000
+        
+Traits:
+  default: deny
+  permitted-traits:
+    - Werewolf:
+        bonus-stamina: 20
+    - Vampire:
+        bonus-health: 20
+    - Mage:
+        bonus-mana: 20 

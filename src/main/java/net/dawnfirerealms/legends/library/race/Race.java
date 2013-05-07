@@ -35,13 +35,12 @@ import net.dawnfirerealms.legends.library.weapon.WeaponUser;
  * @author B2OJustin
  */
 public class Race implements WeaponUser, ArmorUser, SkillUser, IDRestrictable {
-    private String name;
-    private ArrayList<String> description;
-    private HashMap<Skill, SkillInfo> skillInfo;
-    
+    private String name = "";
+    private ArrayList<String> description = new ArrayList<>();
+    private HashMap<Skill, SkillInfo> skillInfo = new HashMap<>();
+    private WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
+
     public Race() {
-        this.description = new ArrayList<>();
-        this.skillInfo = new HashMap<>();
     }
 
     public Race setName(String name) {
@@ -89,7 +88,7 @@ public class Race implements WeaponUser, ArmorUser, SkillUser, IDRestrictable {
 
     @Override
     public WeaponRestrictions getWeaponRestrictions() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return weaponRestrictions;
     }
 
     @Override

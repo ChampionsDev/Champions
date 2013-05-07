@@ -65,21 +65,50 @@ public class YAMLDataSource implements DataSource {
         try {
             YAMLHelper yml = new YAMLHelper(filePath);
 
-            for(String key : yml.getKeys("")) {
-                switch(key) {
+            for(String mainKey : yml.getKeys("")) {
+                switch(mainKey) {
                     case "name":
                         race.setName(yml.getString("name"));
                         break;
                     case "description":
                         race.setDescription(yml.getStringList("description"));
                         break;
+
+                    // Weapons
+                    case "Weapons":
+                        for(String wepKey : yml.getKeys("Weapons")) {
+                            switch(wepKey) {
+                                case "default":
+                                    if(yml.getString("Weapons.default").equals("allow")) {
+                                        race.getWeaponRestrictions().setDefault(true);
+                                    }
+                                    else race.getWeaponRestrictions().setDefault(false);
+                                    break;
+                                case "permitted-weapon":
+                                    for(String wepPermKey : yml.getKeys("Weapons.permitted-weapon")) {
+                                        race.getWeaponRestrictions().setAllowed(wepPermKey, true);
+                                        for(String wepInfo : yml.getKeys(String.format("Weapons.permitted-weapon.%s", wepPermKey))) {
+                                            switch(wepInfo) {
+                                                case "bonus-damage":
+                                                    int bonusDamage = yml.getInt(String.format("Weapons.permitted-weapon.%s.bonus-damage", wepPermKey));
+                                                    //race.getWeaponInfo(wepPermKey).addDamage(bonusDamage);
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                    break;
+                            }
+                        }
+                        break;
                 }
             }
 
         } catch (FileNotFoundException e) {
             logger.warning("Could not find file for race '" + name + "' at " + filePath);
+            e.printStackTrace();
         } catch (ClassCastException e) {
             logger.warning("You seem to have an error in your yaml. Could not load race '" + name + "'");
+            e.printStackTrace();
         }
 
         return race;

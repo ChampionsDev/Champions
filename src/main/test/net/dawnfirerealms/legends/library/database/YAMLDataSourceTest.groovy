@@ -37,10 +37,18 @@ class YAMLDataSourceTest extends GroovyTestCase {
         testRaceDescription.add("Test Race");
         testRace.setName("Test");
         testRace.setDescription(testRaceDescription);
+        testRace.getWeaponRestrictions().setDefault(false);
+        testRace.getWeaponRestrictions().setAllowed("WOOD_AXE", true);
+        testRace.getWeaponRestrictions().setAllowed("IRON_AXE", true);
+        testRace.getWeaponRestrictions().setAllowed("DIAMOND_AXE", true);
+        //testRace.getWeaponInfo("IRON_AXE").addDamage(10);
 
         Race race = yamlDataSource.loadRace("Test");
         assertEquals(testRace.getName(), race.getName());
         assertEquals(testRace.getDescription(), race.getDescription());
+        assertEquals(testRace.getWeaponRestrictions().isAllowed("WOOD_AXE"), true);
+        assertEquals(testRace.getWeaponRestrictions().isAllowed("IRON_AXE"), true);
+        assertEquals(testRace.getWeaponRestrictions().isAllowed("DIAMOND_AXE"), true);
     }
 
     void testLoadLClass() {

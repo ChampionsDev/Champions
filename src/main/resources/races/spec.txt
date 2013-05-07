@@ -27,13 +27,13 @@ Weapons:
   # These should be a list of material names unless a custom weapon class system is enabled.
   permitted-weapon:
     # Various options may be used for modification.
-    - DIAMOND_SWORD:
+    - 'DIAMOND_SWORD':
         bonus-damage: 5
         attack-speed: 10
         required-level: 20
     # This is unnecessary, since we have set 'default: allow'
-    - WOOD_AXE
-    - DIAMOND_AXE
+    - 'WOOD_AXE':
+    - 'DIAMOND_AXE':
   
   # The weapons restricted for this race. Can be overidden by permitted-weapon in a class.
   restricted-weapon:
@@ -61,7 +61,7 @@ Armor:
         required-level: 20
         bonus-defense: 5
     # Like a bawss.
-    - DIAMOND_HELMET:
+    - 'DIAMOND_HELMET':
         required-level: 50
         bonus-defense: 100
 
