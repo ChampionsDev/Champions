@@ -16,7 +16,7 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.skill;
 
-import net.dawnfirerealms.legends.library.BaseUser;
+import net.dawnfirerealms.legends.library.BasicUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +24,7 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public interface SkillUser extends BaseUser {
+public interface SkillUser extends BasicUser {
     public ArrayList<Skill> getSkills();
     public void addSkill(Skill skill);
     public void removeSkill(Skill skill);
