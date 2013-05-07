@@ -26,7 +26,12 @@ import java.util.List;
  */
 public class SkillHandler {
     private static List<Skill> skills = Lists.newArrayList();
-    
+    private static SkillHandler instance = new SkillHandler();
+
+    public static SkillHandler getInstance() {
+        return instance;
+    }
+
     private SkillHandler(){
     }
     
