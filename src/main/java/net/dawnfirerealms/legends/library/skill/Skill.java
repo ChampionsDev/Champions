@@ -17,6 +17,8 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.library.skill;
 
+import net.dawnfirerealms.legends.library.level.Level;
+import net.dawnfirerealms.legends.library.level.LevelRestricted;
 import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 import net.dawnfirerealms.legends.library.level.LevelUser;
 import net.dawnfirerealms.legends.library.misc.Describable;
@@ -27,11 +29,10 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class Skill implements IDRestrictable, LevelUser, Describable<Skill> {
+public class Skill implements IDRestrictable, LevelRestricted, Describable<Skill> {
     private String name = "";
-    private LevelRestrictions levelRestrictions = new LevelRestrictions();
     private int mana = 0;
-    private ArrayList<String> description = new ArrayList();
+    private ArrayList<String> description = new ArrayList<>();
 
     public Skill() {
     }
@@ -70,6 +71,6 @@ public class Skill implements IDRestrictable, LevelUser, Describable<Skill> {
 
     @Override
     public LevelRestrictions getLevelRestrictions() {
-        return this.levelRestrictions;
+        return null; //TODO getLevelRestrictions method stub
     }
 }

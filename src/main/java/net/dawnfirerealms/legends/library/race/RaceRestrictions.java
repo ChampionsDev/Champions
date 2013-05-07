@@ -14,12 +14,12 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package net.dawnfirerealms.legends.library.armor;
+package net.dawnfirerealms.legends.library.race;
 
-import net.dawnfirerealms.legends.library.BasicUser;
+import net.dawnfirerealms.legends.library.restriction.BasicRestrictions;
 
 /**
  * @author B2OJustin
  */
-public interface ArmorUser extends BasicUser {
+public class RaceRestrictions extends BasicRestrictions {
 }

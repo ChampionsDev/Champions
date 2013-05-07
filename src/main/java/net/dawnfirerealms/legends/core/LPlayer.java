@@ -17,17 +17,23 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.core;
 
 
+import net.dawnfirerealms.legends.library.armor.ArmorRestricted;
 import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.armor.ArmorUser;
 import net.dawnfirerealms.legends.library.lclass.LClass;
+import net.dawnfirerealms.legends.library.lclass.LClassRestricted;
+import net.dawnfirerealms.legends.library.lclass.LClassRestrictions;
+import net.dawnfirerealms.legends.library.lclass.LClassUser;
+import net.dawnfirerealms.legends.library.level.Level;
+import net.dawnfirerealms.legends.library.level.LevelRestricted;
 import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 import net.dawnfirerealms.legends.library.level.LevelUser;
 import net.dawnfirerealms.legends.library.race.Race;
-import net.dawnfirerealms.legends.library.skill.Skill;
-import net.dawnfirerealms.legends.library.skill.SkillInfo;
-import net.dawnfirerealms.legends.library.skill.SkillRestrictions;
-import net.dawnfirerealms.legends.library.skill.SkillUser;
+import net.dawnfirerealms.legends.library.race.RaceRestricted;
+import net.dawnfirerealms.legends.library.race.RaceUser;
+import net.dawnfirerealms.legends.library.skill.*;
 import net.dawnfirerealms.legends.library.weapon.Weapon;
+import net.dawnfirerealms.legends.library.weapon.WeaponRestricted;
 import net.dawnfirerealms.legends.library.weapon.WeaponRestrictions;
 import net.dawnfirerealms.legends.library.weapon.WeaponUser;
 import org.bukkit.entity.Player;
@@ -38,7 +44,9 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public class LPlayer implements WeaponUser, ArmorUser, SkillUser, LevelUser {
+public class LPlayer implements
+        WeaponUser, ArmorUser, SkillUser, LevelUser, LClassUser, RaceUser,
+        WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, LClassRestricted, RaceRestricted {
     private final Race race;
     private final Player player;
     private final LClass lclass;
@@ -118,5 +126,15 @@ public class LPlayer implements WeaponUser, ArmorUser, SkillUser, LevelUser {
     @Override
     public SkillInfo setSkillInfo(Skill skill, SkillInfo info) {
         return skillInfo.put(skill.getName(), info);
+    }
+
+    @Override
+    public Level getLevel() {
+        return null; //TODO getLevel method stub
+    }
+
+    @Override
+    public LClassRestrictions getLClassRestrictions() {
+        return null; //TODO getLClassRestrictions method stub
     }
 }

@@ -14,12 +14,10 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package net.dawnfirerealms.legends.library.armor;
-
-import net.dawnfirerealms.legends.library.BasicUser;
+package net.dawnfirerealms.legends.library.lclass;
 
 /**
  * @author B2OJustin
  */
-public interface ArmorUser extends BasicUser {
+public class LClassInfo {
 }

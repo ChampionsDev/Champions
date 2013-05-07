@@ -23,5 +23,4 @@ import net.dawnfirerealms.legends.library.BasicUser;
  * @author B2OJustin
  */
 public interface WeaponUser extends BasicUser {
-    public Weapon getWeapon();
 }

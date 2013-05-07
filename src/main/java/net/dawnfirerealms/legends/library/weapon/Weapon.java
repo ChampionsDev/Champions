@@ -17,6 +17,7 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.library.weapon;
 
+import net.dawnfirerealms.legends.library.level.LevelRestricted;
 import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 import net.dawnfirerealms.legends.library.level.LevelUser;
 import net.dawnfirerealms.legends.library.misc.Describable;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class Weapon implements IDRestrictable, LevelUser, Describable<Weapon> {
+public class Weapon implements IDRestrictable, LevelRestricted, Describable<Weapon> {
     private String name = "";
     private ArrayList<String> description = new ArrayList();
     private LevelRestrictions levelRestrictions = new LevelRestrictions();

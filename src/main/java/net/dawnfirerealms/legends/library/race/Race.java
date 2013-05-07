@@ -18,13 +18,13 @@ This file is part of Legends
 package net.dawnfirerealms.legends.library.race;
 
 
+import net.dawnfirerealms.legends.library.armor.ArmorRestricted;
 import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.armor.ArmorUser;
 import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
-import net.dawnfirerealms.legends.library.skill.Skill;
-import net.dawnfirerealms.legends.library.skill.SkillInfo;
-import net.dawnfirerealms.legends.library.skill.SkillRestrictions;
-import net.dawnfirerealms.legends.library.skill.SkillUser;
+import net.dawnfirerealms.legends.library.skill.*;
+import net.dawnfirerealms.legends.library.weapon.Weapon;
+import net.dawnfirerealms.legends.library.weapon.WeaponRestricted;
 import net.dawnfirerealms.legends.library.weapon.WeaponRestrictions;
 import net.dawnfirerealms.legends.library.weapon.WeaponUser;
 
@@ -34,7 +34,7 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public class Race implements WeaponUser, ArmorUser, SkillUser, IDRestrictable {
+public class Race implements ArmorUser, SkillUser, WeaponUser, SkillRestricted, WeaponRestricted, ArmorRestricted, IDRestrictable {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
     private HashMap<String, SkillInfo> skillInfo = new HashMap<>();

@@ -16,10 +16,9 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.armor;
 
-import net.dawnfirerealms.legends.library.BasicUser;
-
 /**
  * @author B2OJustin
  */
-public interface ArmorUser extends BasicUser {
+public interface ArmorRestricted {
+    public ArmorRestrictions getArmorRestrictions();
 }
