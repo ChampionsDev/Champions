@@ -40,8 +40,6 @@ public class DependencyHandler {
         if (to.exists() && overwrite) {
             to.delete();
         }
-        BufferedInputStream in = null;
-    	FileOutputStream fout = null;
         if (!to.exists()) {
             try {
                 to.createNewFile();
@@ -49,9 +47,8 @@ public class DependencyHandler {
                 return false;
             }
         }
-    	try {
-    		in = new BufferedInputStream(from.openStream());
-    		fout = new FileOutputStream(to);
+    	try(BufferedInputStream in = new BufferedInputStream(from.openStream());
+            FileOutputStream fout = new FileOutputStream(to)) {
 
     		byte data[] = new byte[1024];
     		int count;
@@ -62,22 +59,7 @@ public class DependencyHandler {
             return false;
         } catch (IOException e) {
             return false;
-        } finally {
-    		if (in != null) {
-                    try {
-                        in.close();
-                    } catch (IOException e) {
-                        return false;
-                    }
-                }
-    		if (fout != null) {
-                    try {
-                        fout.close();
-                    } catch (IOException e) {
-                        return false;
-                    }
-                }
-    	}
+        }
         return true;
     }
 
