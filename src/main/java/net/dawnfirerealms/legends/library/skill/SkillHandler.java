@@ -24,14 +24,14 @@ import java.util.List;
 /**
  * @author YoshiGenius
  */
-public class SkillManager {
+public class SkillHandler {
     private static List<Skill> skills = Lists.newArrayList();
     
-    private SkillManager(){
+    private SkillHandler(){
     }
     
     public static List<Skill> getSkills() {
-        return SkillManager.skills;
+        return SkillHandler.skills;
     }
     
     public static Skill getSkill(String name) {
@@ -66,7 +66,7 @@ public class SkillManager {
         if (skill == null || skillExists(skill)) {
             return false;
         } else {
-            return SkillManager.skills.add(skill);
+            return SkillHandler.skills.add(skill);
         }
     }
     
@@ -74,7 +74,7 @@ public class SkillManager {
         if (skill == null || !skillExists(skill)) {
             return false;
         } else {
-            return SkillManager.skills.remove(skill);
+            return SkillHandler.skills.remove(skill);
         }
     }
     
