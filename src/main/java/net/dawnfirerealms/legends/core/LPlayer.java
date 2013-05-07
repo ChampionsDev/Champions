@@ -46,7 +46,7 @@ public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, Level
     private final Player player;
     private final LClass lclass;
     private LevelRestrictions levelRestrictions;
-    private HashMap<Skill, SkillInfo> skillInfo;
+    private HashMap<String, SkillInfo> skillInfo;
 
     public LPlayer(Player player, Race race, LClass lclass) {
         this.player = player;
@@ -111,30 +111,20 @@ public class LPlayer implements WeaponUser, ArmorUser, SkillUser, ExpUser, Level
     }
 
     @Override
-    public HashMap<Skill, SkillInfo> getSkillInfoMap() {
+    public HashMap<String, SkillInfo> getSkillInfo() {
         return this.skillInfo;
     }
 
     @Override
-    public SkillInfo getSkillInfo(String name) {
-        return getSkillInfo(SkillManager.getSkill(name));
-    }
-
-    @Override
     public SkillInfo getSkillInfo(Skill skill) {
-        if (!getSkillInfoMap().containsKey(skill)) {
-           getSkillInfoMap().put(skill, new SkillInfo());
+        if (!skillInfo.containsKey(skill.getName())) {
+           skillInfo.put(skill.getName(), new SkillInfo());
         }
-        return getSkillInfoMap().get(skill);
+        return skillInfo.get(skill.getName());
     }
 
     @Override
     public SkillInfo setSkillInfo(Skill skill, SkillInfo info) {
-        return getSkillInfoMap().put(skill, info);
-    }
-
-    @Override
-    public SkillInfo setSkillInfo(String name, SkillInfo info) {
-        return setSkillInfo(SkillManager.getSkill(name), info);
+        return skillInfo.put(skill.getName(), info);
     }
 }

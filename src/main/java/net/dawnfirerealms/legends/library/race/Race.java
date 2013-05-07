@@ -37,7 +37,7 @@ import net.dawnfirerealms.legends.library.weapon.WeaponUser;
 public class Race implements WeaponUser, ArmorUser, SkillUser, IDRestrictable {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
-    private HashMap<Skill, SkillInfo> skillInfo = new HashMap<>();
+    private HashMap<String, SkillInfo> skillInfo = new HashMap<>();
     private WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
 
     public Race() {
@@ -97,27 +97,17 @@ public class Race implements WeaponUser, ArmorUser, SkillUser, IDRestrictable {
     }
 
     @Override
-    public HashMap<Skill, SkillInfo> getSkillInfoMap() {
+    public HashMap<String, SkillInfo> getSkillInfo() {
         return this.skillInfo;
     }
 
     @Override
-    public SkillInfo getSkillInfo(String name) {
-        return getSkillInfoMap().get(SkillManager.getSkill(name));
-    }
-
-    @Override
     public SkillInfo getSkillInfo(Skill skill) {
-        return getSkillInfoMap().get(skill);
+        return skillInfo.get(skill);
     }
 
     @Override
     public SkillInfo setSkillInfo(Skill skill, SkillInfo info) {
-        return getSkillInfoMap().put(skill, info);
-    }
-
-    @Override
-    public SkillInfo setSkillInfo(String name, SkillInfo info) {
-        return getSkillInfoMap().put(SkillManager.getSkill(name), info);
+        return skillInfo.put(skill.getName(), info);
     }
 }
