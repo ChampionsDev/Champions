@@ -14,12 +14,10 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package net.dawnfirerealms.legends.core;
+package net.dawnfirerealms.legends.library;
 
 
-import net.dawnfirerealms.legends.library.armor.ArmorRestricted;
-import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
-import net.dawnfirerealms.legends.library.armor.ArmorUser;
+import net.dawnfirerealms.legends.library.armor.*;
 import net.dawnfirerealms.legends.library.lclass.LClass;
 import net.dawnfirerealms.legends.library.lclass.LClassRestricted;
 import net.dawnfirerealms.legends.library.lclass.LClassRestrictions;
@@ -32,10 +30,7 @@ import net.dawnfirerealms.legends.library.race.Race;
 import net.dawnfirerealms.legends.library.race.RaceRestricted;
 import net.dawnfirerealms.legends.library.race.RaceUser;
 import net.dawnfirerealms.legends.library.skill.*;
-import net.dawnfirerealms.legends.library.weapon.Weapon;
-import net.dawnfirerealms.legends.library.weapon.WeaponRestricted;
-import net.dawnfirerealms.legends.library.weapon.WeaponRestrictions;
-import net.dawnfirerealms.legends.library.weapon.WeaponUser;
+import net.dawnfirerealms.legends.library.weapon.*;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -136,5 +131,35 @@ public class LPlayer implements
     @Override
     public LClassRestrictions getLClassRestrictions() {
         return null; //TODO getLClassRestrictions method stub
+    }
+
+    @Override
+    public HashMap<String, WeaponInfo> getWeaponInfo() {
+        return null; //TODO getWeaponInfo method stub
+    }
+
+    @Override
+    public WeaponInfo getWeaponInfo(Skill skill) {
+        return null; //TODO getWeaponInfo method stub
+    }
+
+    @Override
+    public SkillInfo setWeaponInfo(Weapon weapon, WeaponInfo info) {
+        return null; //TODO setWeaponInfo method stub
+    }
+
+    @Override
+    public HashMap<String, SkillInfo> getArmorInfo() {
+        return null; //TODO getArmorInfo method stub
+    }
+
+    @Override
+    public ArmorInfo getArmorInfo(Armor armor) {
+        return null; //TODO getArmorInfo method stub
+    }
+
+    @Override
+    public ArmorInfo setArmorInfo(Armor armor, ArmorInfo info) {
+        return null; //TODO setArmorInfo method stub
     }
 }

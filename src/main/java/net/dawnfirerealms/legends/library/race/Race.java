@@ -23,7 +23,6 @@ import net.dawnfirerealms.legends.library.armor.ArmorRestrictions;
 import net.dawnfirerealms.legends.library.armor.ArmorUser;
 import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
 import net.dawnfirerealms.legends.library.skill.*;
-import net.dawnfirerealms.legends.library.weapon.Weapon;
 import net.dawnfirerealms.legends.library.weapon.WeaponRestricted;
 import net.dawnfirerealms.legends.library.weapon.WeaponRestrictions;
 import net.dawnfirerealms.legends.library.weapon.WeaponUser;

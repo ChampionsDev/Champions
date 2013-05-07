@@ -17,10 +17,8 @@ This file is part of Legends.
 
 package net.dawnfirerealms.legends.library.skill;
 
-import net.dawnfirerealms.legends.library.level.Level;
 import net.dawnfirerealms.legends.library.level.LevelRestricted;
 import net.dawnfirerealms.legends.library.level.LevelRestrictions;
-import net.dawnfirerealms.legends.library.level.LevelUser;
 import net.dawnfirerealms.legends.library.misc.Describable;
 import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
 

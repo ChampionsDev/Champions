@@ -18,9 +18,16 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.library.weapon;
 
 import net.dawnfirerealms.legends.library.BasicUser;
+import net.dawnfirerealms.legends.library.skill.Skill;
+import net.dawnfirerealms.legends.library.skill.SkillInfo;
+
+import java.util.HashMap;
 
 /**
  * @author B2OJustin
  */
 public interface WeaponUser extends BasicUser {
+    public HashMap<String, WeaponInfo> getWeaponInfo();
+    public WeaponInfo getWeaponInfo(Skill skill);
+    public SkillInfo setWeaponInfo(Weapon weapon, WeaponInfo info);
 }

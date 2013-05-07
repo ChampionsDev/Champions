@@ -17,9 +17,15 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.library.armor;
 
 import net.dawnfirerealms.legends.library.BasicUser;
+import net.dawnfirerealms.legends.library.skill.SkillInfo;
+
+import java.util.HashMap;
 
 /**
  * @author B2OJustin
  */
 public interface ArmorUser extends BasicUser {
+    public HashMap<String, SkillInfo> getArmorInfo();
+    public ArmorInfo getArmorInfo(Armor armor);
+    public ArmorInfo setArmorInfo(Armor armor, ArmorInfo info);
 }

@@ -16,7 +16,7 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.database;
 
-import net.dawnfirerealms.legends.core.LPlayer;
+import net.dawnfirerealms.legends.library.LPlayer;
 import net.dawnfirerealms.legends.library.lclass.LClass;
 import net.dawnfirerealms.legends.library.race.Race;
 
