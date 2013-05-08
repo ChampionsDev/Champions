@@ -27,7 +27,6 @@ import java.util.ArrayList;
 public class Armor implements Describable<Armor> {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
-    private LevelRestrictions levelRestrictions = new LevelRestrictions();
 
     public Armor() {
     }
