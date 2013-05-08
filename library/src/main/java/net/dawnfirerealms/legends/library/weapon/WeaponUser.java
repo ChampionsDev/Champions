@@ -18,8 +18,6 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.library.weapon;
 
 import net.dawnfirerealms.legends.library.BasicUser;
-import net.dawnfirerealms.legends.library.skill.Skill;
-import net.dawnfirerealms.legends.library.skill.SkillInfo;
 
 import java.util.HashMap;
 

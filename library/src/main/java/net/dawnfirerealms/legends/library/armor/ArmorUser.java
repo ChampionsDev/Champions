@@ -17,7 +17,6 @@ This file is part of Legends.
 package net.dawnfirerealms.legends.library.armor;
 
 import net.dawnfirerealms.legends.library.BasicUser;
-import net.dawnfirerealms.legends.library.skill.SkillInfo;
 
 import java.util.HashMap;
 
