@@ -16,10 +16,12 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.lclass;
 
+import net.dawnfirerealms.legends.library.BasicHandler;
+
 /**
  * @author B2OJustin
  */
-public class LClassHandler {
+public class LClassHandler extends BasicHandler<LClass> {
     private static LClassHandler instance = new LClassHandler();
 
     public static LClassHandler getInstance() {
