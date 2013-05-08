@@ -15,9 +15,9 @@ This file is part of Legends.
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package net.dawnfirerealms.legends.library.level;
+package com.github.legendsdev.legends.library.level;
 
-import net.dawnfirerealms.legends.library.restriction.LevelRestrictor;
+import com.github.legendsdev.legends.library.restriction.LevelRestrictor;
 
 /**
  * @author B2OJustin

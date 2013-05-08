@@ -15,7 +15,7 @@ This file is part of Legends.
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package net.dawnfirerealms.legends.library.database;
+package com.github.legendsdev.legends.library.database;
 
 import java.util.HashMap;
 

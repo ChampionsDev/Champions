@@ -15,7 +15,7 @@
     along with Legends  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package net.dawnfirerealms.legends.library.skill;
+package com.github.legendsdev.legends.library.skill;
 
 import java.util.ArrayList;
 import java.util.List;

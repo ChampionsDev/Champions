@@ -14,14 +14,14 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package net.dawnfirerealms.legends.library.database;
+package com.github.legendsdev.legends.library.database;
 
-import net.dawnfirerealms.legends.library.LPlayer;
-import net.dawnfirerealms.legends.library.database.helper.YAMLHelper;
-import net.dawnfirerealms.legends.library.lclass.LClass;
-import net.dawnfirerealms.legends.library.race.Race;
-import net.dawnfirerealms.legends.library.weapon.Weapon;
-import net.dawnfirerealms.legends.library.weapon.WeaponHandler;
+import com.github.legendsdev.legends.library.LPlayer;
+import com.github.legendsdev.legends.library.database.helper.YAMLHelper;
+import com.github.legendsdev.legends.library.lclass.LClass;
+import com.github.legendsdev.legends.library.race.Race;
+import com.github.legendsdev.legends.library.weapon.Weapon;
+import com.github.legendsdev.legends.library.weapon.WeaponHandler;
 
 import java.io.FileNotFoundException;
 import java.util.logging.Logger;

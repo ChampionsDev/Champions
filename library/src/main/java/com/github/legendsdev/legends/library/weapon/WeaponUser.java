@@ -15,9 +15,9 @@ This file is part of Legends.
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package net.dawnfirerealms.legends.library.weapon;
+package com.github.legendsdev.legends.library.weapon;
 
-import net.dawnfirerealms.legends.library.BasicUser;
+import com.github.legendsdev.legends.library.BasicUser;
 
 import java.util.HashMap;
 

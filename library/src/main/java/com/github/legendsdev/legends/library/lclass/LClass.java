@@ -1,6 +1,6 @@
-package net.dawnfirerealms.legends.library.lclass;
+package com.github.legendsdev.legends.library.lclass;
 
-import net.dawnfirerealms.legends.library.misc.Describable;
+import com.github.legendsdev.legends.library.misc.Describable;
 
 import java.util.ArrayList;
 

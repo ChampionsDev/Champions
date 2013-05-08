@@ -14,9 +14,9 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package net.dawnfirerealms.legends.library.skill;
+package com.github.legendsdev.legends.library.skill;
 
-import net.dawnfirerealms.legends.library.BasicUser;
+import com.github.legendsdev.legends.library.BasicUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;

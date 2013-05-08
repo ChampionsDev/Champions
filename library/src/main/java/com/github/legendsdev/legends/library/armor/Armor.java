@@ -14,10 +14,10 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package net.dawnfirerealms.legends.library.armor;
+package com.github.legendsdev.legends.library.armor;
 
-import net.dawnfirerealms.legends.library.level.LevelRestrictions;
-import net.dawnfirerealms.legends.library.misc.Describable;
+
+import com.github.legendsdev.legends.library.misc.Describable;
 
 import java.util.ArrayList;
 

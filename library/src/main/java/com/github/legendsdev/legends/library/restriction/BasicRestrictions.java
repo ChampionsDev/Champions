@@ -14,7 +14,7 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package net.dawnfirerealms.legends.library.restriction;
+package com.github.legendsdev.legends.library.restriction;
 
 import java.util.HashMap;
 

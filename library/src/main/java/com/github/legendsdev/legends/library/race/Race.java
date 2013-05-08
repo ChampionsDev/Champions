@@ -15,12 +15,12 @@ This file is part of Legends
     along with Legends  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package net.dawnfirerealms.legends.library.race;
+package com.github.legendsdev.legends.library.race;
 
 
-import net.dawnfirerealms.legends.library.armor.*;
-import net.dawnfirerealms.legends.library.skill.*;
-import net.dawnfirerealms.legends.library.weapon.*;
+import com.github.legendsdev.legends.library.armor.*;
+import com.github.legendsdev.legends.library.skill.*;
+import com.github.legendsdev.legends.library.weapon.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

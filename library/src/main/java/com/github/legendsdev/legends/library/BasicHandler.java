@@ -1,4 +1,4 @@
-package net.dawnfirerealms.legends.library;
+package com.github.legendsdev.legends.library;
 
 import java.util.HashMap;
 

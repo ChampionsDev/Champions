@@ -14,23 +14,23 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package net.dawnfirerealms.legends.library;
+package com.github.legendsdev.legends.library;
 
 
-import net.dawnfirerealms.legends.library.armor.*;
-import net.dawnfirerealms.legends.library.lclass.LClass;
-import net.dawnfirerealms.legends.library.lclass.LClassRestricted;
-import net.dawnfirerealms.legends.library.lclass.LClassRestrictions;
-import net.dawnfirerealms.legends.library.lclass.LClassUser;
-import net.dawnfirerealms.legends.library.level.Level;
-import net.dawnfirerealms.legends.library.level.LevelRestricted;
-import net.dawnfirerealms.legends.library.level.LevelRestrictions;
-import net.dawnfirerealms.legends.library.level.LevelUser;
-import net.dawnfirerealms.legends.library.race.Race;
-import net.dawnfirerealms.legends.library.race.RaceRestricted;
-import net.dawnfirerealms.legends.library.race.RaceUser;
-import net.dawnfirerealms.legends.library.skill.*;
-import net.dawnfirerealms.legends.library.weapon.*;
+import com.github.legendsdev.legends.library.armor.*;
+import com.github.legendsdev.legends.library.lclass.LClass;
+import com.github.legendsdev.legends.library.lclass.LClassRestricted;
+import com.github.legendsdev.legends.library.lclass.LClassRestrictions;
+import com.github.legendsdev.legends.library.lclass.LClassUser;
+import com.github.legendsdev.legends.library.level.Level;
+import com.github.legendsdev.legends.library.level.LevelRestricted;
+import com.github.legendsdev.legends.library.level.LevelRestrictions;
+import com.github.legendsdev.legends.library.level.LevelUser;
+import com.github.legendsdev.legends.library.race.Race;
+import com.github.legendsdev.legends.library.race.RaceRestricted;
+import com.github.legendsdev.legends.library.race.RaceUser;
+import com.github.legendsdev.legends.library.skill.*;
+import com.github.legendsdev.legends.library.weapon.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -15,12 +15,12 @@
     along with Legends  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package net.dawnfirerealms.legends.library.skill;
+package com.github.legendsdev.legends.library.skill;
 
-import net.dawnfirerealms.legends.library.level.Level;
-import net.dawnfirerealms.legends.library.level.LevelRestricted;
-import net.dawnfirerealms.legends.library.level.LevelRestrictions;
-import net.dawnfirerealms.legends.library.level.LevelUser;
+import com.github.legendsdev.legends.library.level.Level;
+import com.github.legendsdev.legends.library.level.LevelRestricted;
+import com.github.legendsdev.legends.library.level.LevelRestrictions;
+import com.github.legendsdev.legends.library.level.LevelUser;
 
 /**
  * @author YoshiGenius
