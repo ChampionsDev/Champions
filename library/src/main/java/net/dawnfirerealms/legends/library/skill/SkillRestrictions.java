@@ -21,5 +21,5 @@ import net.dawnfirerealms.legends.library.restriction.BasicRestrictions;
 /**
  * @author B2OJustin
  */
-public class SkillRestrictions extends BasicRestrictions {
+public class SkillRestrictions extends BasicRestrictions<Skill> {
 }

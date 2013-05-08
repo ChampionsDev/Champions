@@ -24,31 +24,21 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public class BasicRestrictions implements BasicRestrictor<IDRestrictable> {
-    protected HashMap<String, Boolean> rMap;
+public class BasicRestrictions<T extends IDRestrictable> implements BasicRestrictor<T> {
+    protected HashMap<T, Boolean> rMap;
     protected boolean defaultAllow;
-    protected LevelRestrictions levelRestrictions;
 
     public BasicRestrictions() {
         rMap = new HashMap<>();
         defaultAllow = false;
-        levelRestrictions = new LevelRestrictions(new Level(0), new Level(0));
     }
 
-    public void setAllowed(IDRestrictable restrictable, boolean allowed) {
-        setAllowed(restrictable.getId(), allowed);
+    public void setAllowed(T restrictable, boolean allowed) {
+        rMap.put(restrictable, allowed);
     }
 
-    public boolean isAllowed(IDRestrictable restrictable) {
-        return isAllowed(restrictable.getId());
-    }
-
-    public void setAllowed(String id, boolean allowed) {
-        rMap.put(id, allowed);
-    }
-
-    public boolean isAllowed(String id) {
-        Boolean allowed = rMap.get(id);
+    public boolean isAllowed(T restrictable) {
+        Boolean allowed = rMap.get(restrictable);
         if(allowed == null) return defaultAllow;
         else return allowed;
     }
