@@ -48,8 +48,18 @@ public class LevelRestrictions implements LevelRestrictor {
         return this;
     }
 
+    public LevelRestrictions setMinLevel(int minLevel) {
+        this.minLevel = new Level(minLevel);
+        return this;
+    }
+
     public LevelRestrictions setMaxLevel(Level maxLevel) {
         this.maxLevel = maxLevel;
+        return this;
+    }
+
+    public LevelRestrictions setMaxLevel(int maxLevel) {
+        this.maxLevel = new Level(maxLevel);
         return this;
     }
 
