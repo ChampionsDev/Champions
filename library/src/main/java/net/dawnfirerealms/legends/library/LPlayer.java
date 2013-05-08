@@ -31,7 +31,6 @@ import net.dawnfirerealms.legends.library.race.RaceRestricted;
 import net.dawnfirerealms.legends.library.race.RaceUser;
 import net.dawnfirerealms.legends.library.skill.*;
 import net.dawnfirerealms.legends.library.weapon.*;
-import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,21 +42,15 @@ public class LPlayer implements
         WeaponUser, ArmorUser<LPlayer>, SkillUser<LPlayer>, LevelUser, LClassUser, RaceUser,
         WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, LClassRestricted, RaceRestricted {
     private final Race race;
-    private final Player player;
     private final LClass lclass;
     private LevelRestrictions levelRestrictions;
     private HashMap<Skill, SkillInfo> skillInfoMap;
 
-    public LPlayer(Player player, Race race, LClass lclass) {
-        this.player = player;
+    public LPlayer(Race race, LClass lclass) {
         this.race = race;
         this.lclass = lclass;
         levelRestrictions = new LevelRestrictions();
         skillInfoMap = new HashMap<>();
-    }
-
-    public Player getPlayer() {
-        return this.player;
     }
 
     public Race getRace() {

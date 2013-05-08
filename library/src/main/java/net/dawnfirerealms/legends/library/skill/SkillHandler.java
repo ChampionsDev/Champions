@@ -17,15 +17,14 @@
 
 package net.dawnfirerealms.legends.library.skill;
 
-import com.google.common.collect.Lists;
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author YoshiGenius
  */
 public class SkillHandler {
-    private static List<Skill> skills = Lists.newArrayList();
+    private static ArrayList<Skill> skills = new ArrayList<>();
     private static SkillHandler instance = new SkillHandler();
 
     public static SkillHandler getInstance() {
@@ -64,7 +63,7 @@ public class SkillHandler {
     }
 
     public static boolean skillExists(Skill skill) {
-        return skillExists(skill.getName());
+        return skills.contains(skill);
     }
     
     public static boolean addSkill(Skill skill) {

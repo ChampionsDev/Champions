@@ -4,6 +4,12 @@
 	<groupId>net.dawnfirerealms</groupId>
 	<artifactId>legends</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>library</module>
+        <module>core</module>
+    </modules>
 
 	<repositories>
 		<repository>
@@ -26,23 +32,6 @@
 	</repositories>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>craftbukkit</artifactId>
-			<version>1.5.1-R0.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>se.ranzdo.bukkit</groupId>
-			<artifactId>methodcommand</artifactId>
-			<version>0.1</version>
-		</dependency>
-        <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>1.13-SNAPSHOT</version>
-        </dependency>
-
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
