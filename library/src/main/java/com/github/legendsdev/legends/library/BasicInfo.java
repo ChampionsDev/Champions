@@ -52,7 +52,7 @@ public class BasicInfo<SelfType extends BasicInfo> implements LevelRestricted {
 
     public SelfType addBonusDamage(int bonusDamage) {
         this.bonusDamage += bonusDamage;
-        return (SelfType)this;
+        return (SelfType) this;
     }
 
     @Override

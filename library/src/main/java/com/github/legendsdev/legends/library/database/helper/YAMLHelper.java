@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -70,6 +71,10 @@ public class YAMLHelper {
         return null;
     }
 
+    public <T> T getObject(Class<T> clazz, String path) throws ClassCastException {
+        return (T) getObject(path);
+    }
+
     public ArrayList<String> getKeys(String path) throws ClassCastException {
         ArrayList<String> keys = new ArrayList<>();
         LinkedHashMap<String, Object> currentMap = dataMap;
@@ -91,6 +96,10 @@ public class YAMLHelper {
     public ArrayList<String> getStringList(String path) throws ClassCastException {
         ArrayList<String> stringList = (ArrayList<String>) getObject(path);
         return stringList != null ? stringList : new ArrayList<String>();
+    }
+
+    public ArrayList<LinkedHashMap<String, Object>> getMapList(String path) throws ClassCastException {
+        return (ArrayList<LinkedHashMap<String, Object>>)getObject(path);
     }
 
     public int getInt(String path) {
