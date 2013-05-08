@@ -16,15 +16,10 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.armor;
 
-import com.github.legendsdev.legends.library.level.LevelRestricted;
-import com.github.legendsdev.legends.library.level.LevelRestrictions;
+import com.github.legendsdev.legends.library.BasicInfo;
 
 /**
  * @author B2OJustin
  */
-public class ArmorInfo implements LevelRestricted {
-    @Override
-    public LevelRestrictions getLevelRestrictions() {
-        return null; //TODO getLevelRestrictions method stub
-    }
+public class ArmorInfo extends BasicInfo<ArmorInfo> {
 }
