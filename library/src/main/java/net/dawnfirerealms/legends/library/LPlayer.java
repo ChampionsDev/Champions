@@ -41,14 +41,15 @@ import java.util.HashMap;
 public class LPlayer implements
         WeaponUser, ArmorUser<LPlayer>, SkillUser<LPlayer>, LevelUser, LClassUser, RaceUser,
         WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, LClassRestricted, RaceRestricted {
-    private final Race race;
-    private final LClass lclass;
+    private Race race;
+    private LClass primaryClass;
+    private LClass secondaryClass;
     private LevelRestrictions levelRestrictions;
     private HashMap<Skill, SkillInfo> skillInfoMap;
 
-    public LPlayer(Race race, LClass lclass) {
+    public LPlayer(Race race, LClass primaryClass) {
         this.race = race;
-        this.lclass = lclass;
+        this.primaryClass = primaryClass;
         levelRestrictions = new LevelRestrictions();
         skillInfoMap = new HashMap<>();
     }
@@ -58,8 +59,13 @@ public class LPlayer implements
     }
 
     @Override
-    public LClass getLClass() {
-        return this.lclass;
+    public LClass getPrimaryClass() {
+        return this.primaryClass;
+    }
+
+    @Override
+    public LClass getSecondaryClass() {
+        return secondaryClass;
     }
 
     public Weapon getCurrentWeapon() {

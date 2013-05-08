@@ -22,5 +22,6 @@ import net.dawnfirerealms.legends.library.BasicUser;
  * @author B2OJustin
  */
 public interface LClassUser extends BasicUser {
-    public LClass getLClass();
+    public LClass getPrimaryClass();
+    public LClass getSecondaryClass();
 }
