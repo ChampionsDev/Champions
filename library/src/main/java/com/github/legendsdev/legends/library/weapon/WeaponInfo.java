@@ -16,9 +16,27 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.weapon;
 
+import com.github.legendsdev.legends.library.level.LevelRestricted;
+import com.github.legendsdev.legends.library.level.LevelRestrictions;
+
 /**
  * @author B2OJustin
  */
-public class WeaponInfo {
-    private int damage = 0;
+public class WeaponInfo implements LevelRestricted {
+    private int bonusDamage = 0;
+    private LevelRestrictions levelRestrictions = new LevelRestrictions();
+
+    public int getBonusDamage() {
+        return bonusDamage;
+    }
+
+    public WeaponInfo addBonusDamage(int bonusDamage) {
+        this.bonusDamage += bonusDamage;
+        return this;
+    }
+
+    @Override
+    public LevelRestrictions getLevelRestrictions() {
+        return levelRestrictions;
+    }
 }
