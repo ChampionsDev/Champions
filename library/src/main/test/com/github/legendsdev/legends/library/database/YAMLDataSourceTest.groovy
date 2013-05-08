@@ -14,9 +14,10 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package net.dawnfirerealms.legends.library.database
+package com.github.legendsdev.legends.library.database
 
-import net.dawnfirerealms.legends.library.race.Race
+import com.github.legendsdev.legends.library.race.Race
+
 
 /**
  * @author B2OJustin
