@@ -31,8 +31,15 @@ import java.util.HashMap;
 public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, SkillRestricted, WeaponRestricted, ArmorRestricted {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
+    private ArrayList<Skill> currentSkills = new ArrayList<>();
+
     private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
+    private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
+    private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
+
     private WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
+    private ArmorRestrictions armorRestrictions = new ArmorRestrictions();
+    private SkillRestrictions skillRestrictions = new SkillRestrictions();
 
     public Race() {
     }
@@ -57,17 +64,19 @@ public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
 
     @Override
     public ArrayList<Skill> getSkills() {
-        return null; //TODO getSkills method stub
+        return currentSkills;
     }
 
     @Override
     public Race addSkill(Skill skill) {
-        return this; //TODO addSkill method stub
+        currentSkills.add(skill);
+        return this;
     }
 
     @Override
     public Race removeSkill(Skill skill) {
-        return this; //TODO removeSkill method stub
+        currentSkills.remove(skill);
+        return this;
     }
 
     @Override
@@ -87,46 +96,59 @@ public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
 
     @Override
     public Race setSkillInfo(Skill skill, SkillInfo info) {
-        return this; //TODO getSkillInfo method stub
+        skillInfoMap.put(skill, info);
+        return this;
     }
 
     @Override
     public HashMap<Armor, ArmorInfo> getArmorInfoMap() {
-        return null; //TODO getArmorInfoMap method stub
+        return armorInfoMap;
     }
 
     @Override
     public ArmorInfo getArmorInfo(Armor armor) {
-        return null; //TODO getArmorInfo method stub
+        ArmorInfo armorInfo = armorInfoMap.get(armor);
+        if(armorInfo == null) {
+            armorInfo = new ArmorInfo();
+            armorInfoMap.put(armor, armorInfo);
+        }
+        return armorInfo;
     }
 
     @Override
     public Race setArmorInfo(Armor armor, ArmorInfo info) {
-        return this; //TODO setArmorInfo method stub
+        armorInfoMap.put(armor, info);
+        return this;
     }
 
     @Override
     public HashMap<Weapon, WeaponInfo> getWeaponInfoMap() {
-        return null; //TODO getWeaponInfoMap method stub
+        return weaponInfoMap;
     }
 
     @Override
     public WeaponInfo getWeaponInfo(Weapon weapon) {
-        return null; //TODO getWeaponInfo method stub
+        WeaponInfo weaponInfo = weaponInfoMap.get(weapon);
+        if(weaponInfo == null) {
+            weaponInfo = new WeaponInfo();
+            weaponInfoMap.put(weapon, weaponInfo);
+        }
+        return weaponInfo;
     }
 
     @Override
     public Race setWeaponInfo(Weapon weapon, WeaponInfo info) {
-        return this; //TODO setWeaponInfo method stub
+        weaponInfoMap.put(weapon, info);
+        return this;
     }
 
     @Override
     public ArmorRestrictions getArmorRestrictions() {
-        return null; //TODO getArmorRestrictions method stub
+        return armorRestrictions;
     }
 
     @Override
     public SkillRestrictions getSkillRestrictions() {
-        return null; //TODO getSkillRestrictions method stub
+        return skillRestrictions;
     }
 }
