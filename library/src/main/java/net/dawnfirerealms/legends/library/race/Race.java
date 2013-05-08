@@ -19,7 +19,6 @@ package net.dawnfirerealms.legends.library.race;
 
 
 import net.dawnfirerealms.legends.library.armor.*;
-import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
 import net.dawnfirerealms.legends.library.skill.*;
 import net.dawnfirerealms.legends.library.weapon.*;
 
@@ -29,7 +28,7 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, SkillRestricted, WeaponRestricted, ArmorRestricted, IDRestrictable {
+public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, SkillRestricted, WeaponRestricted, ArmorRestricted {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
     private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
@@ -74,11 +73,6 @@ public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
     @Override
     public WeaponRestrictions getWeaponRestrictions() {
         return weaponRestrictions;
-    }
-
-    @Override
-    public String getId() {
-        return name;
     }
 
     @Override

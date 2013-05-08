@@ -20,6 +20,8 @@ import net.dawnfirerealms.legends.library.LPlayer;
 import net.dawnfirerealms.legends.library.database.helper.YAMLHelper;
 import net.dawnfirerealms.legends.library.lclass.LClass;
 import net.dawnfirerealms.legends.library.race.Race;
+import net.dawnfirerealms.legends.library.weapon.Weapon;
+import net.dawnfirerealms.legends.library.weapon.WeaponHandler;
 
 import java.io.FileNotFoundException;
 import java.util.logging.Logger;
@@ -85,7 +87,8 @@ public class YAMLDataSource implements DataSource {
                                     break;
                                 case "permitted-weapon":
                                     for(String wepPermKey : yml.getKeys("Weapons.permitted-weapon")) {
-                                        race.getWeaponRestrictions().setAllowed(wepPermKey, true);
+                                        Weapon weapon = WeaponHandler.getInstance().get(wepPermKey);
+                                        race.getWeaponRestrictions().setAllowed(weapon, true);
                                         for(String wepInfo : yml.getKeys(String.format("Weapons.permitted-weapon.%s", wepPermKey))) {
                                             switch(wepInfo) {
                                                 case "bonus-damage":

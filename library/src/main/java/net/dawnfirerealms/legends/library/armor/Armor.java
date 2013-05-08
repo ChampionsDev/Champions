@@ -18,14 +18,13 @@ package net.dawnfirerealms.legends.library.armor;
 
 import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 import net.dawnfirerealms.legends.library.misc.Describable;
-import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
 
 import java.util.ArrayList;
 
 /**
  * @author B2OJustin
  */
-public class Armor implements IDRestrictable, Describable<Armor> {
+public class Armor implements Describable<Armor> {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
     private LevelRestrictions levelRestrictions = new LevelRestrictions();
@@ -49,10 +48,5 @@ public class Armor implements IDRestrictable, Describable<Armor> {
 
     public ArrayList<String> getDescription() {
         return description;
-    }
-
-    @Override
-    public String getId() {
-        return name;
     }
 }

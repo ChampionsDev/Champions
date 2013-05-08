@@ -19,7 +19,7 @@ package net.dawnfirerealms.legends.library.restriction;
 /**
  * @author B2OJustin
  */
-interface BasicRestrictor<T extends Restrictable> {
+interface BasicRestrictor<T> {
     public void setAllowed(T restrictable, boolean allowed);
     public void setDefault(boolean defaultAllow);
     public boolean isAllowed(T restrictable);

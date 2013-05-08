@@ -16,15 +16,12 @@ This file is part of Legends.
 */
 package net.dawnfirerealms.legends.library.restriction;
 
-import net.dawnfirerealms.legends.library.level.Level;
-import net.dawnfirerealms.legends.library.level.LevelRestrictions;
-
 import java.util.HashMap;
 
 /**
  * @author B2OJustin
  */
-public class BasicRestrictions<T extends IDRestrictable> implements BasicRestrictor<T> {
+public class BasicRestrictions<T> implements BasicRestrictor<T> {
     protected HashMap<T, Boolean> rMap;
     protected boolean defaultAllow;
 

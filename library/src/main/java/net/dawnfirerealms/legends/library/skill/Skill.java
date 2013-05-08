@@ -20,14 +20,13 @@ package net.dawnfirerealms.legends.library.skill;
 import net.dawnfirerealms.legends.library.level.LevelRestricted;
 import net.dawnfirerealms.legends.library.level.LevelRestrictions;
 import net.dawnfirerealms.legends.library.misc.Describable;
-import net.dawnfirerealms.legends.library.restriction.IDRestrictable;
 
 import java.util.ArrayList;
 
 /**
  * @author B2OJustin
  */
-public class Skill implements IDRestrictable, LevelRestricted, Describable<Skill> {
+public class Skill implements LevelRestricted, Describable<Skill> {
     private String name = "";
     private int mana = 0;
     private ArrayList<String> description = new ArrayList<>();
@@ -60,11 +59,6 @@ public class Skill implements IDRestrictable, LevelRestricted, Describable<Skill
     public Skill setDescription(ArrayList<String> description) {
         this.description = description;
         return this;
-    }
-
-    @Override
-    public String getId() {
-        return this.name;
     }
 
     @Override
