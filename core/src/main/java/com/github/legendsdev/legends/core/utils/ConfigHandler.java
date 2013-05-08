@@ -15,7 +15,7 @@ This file is part of Legends.
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package net.dawnfirerealms.legends.core.utils;
+package com.github.legendsdev.legends.core.utils;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 

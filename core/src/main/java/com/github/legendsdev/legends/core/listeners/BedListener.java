@@ -15,7 +15,7 @@ This file is part of Legends.
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package net.dawnfirerealms.legends.core.listeners;
+package com.github.legendsdev.legends.core.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
