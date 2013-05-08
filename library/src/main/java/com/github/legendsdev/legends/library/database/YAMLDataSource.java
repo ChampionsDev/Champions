@@ -84,7 +84,6 @@ public class YAMLDataSource implements DataSource {
                     // Weapons
                     case "Weapons":
                         for(String wepKey : yml.getKeys("Weapons")) {
-                            System.out.println(wepKey);
                             switch(wepKey) {
                                 case "default":
                                     if(yml.getString("Weapons.default").equals("allow")) {

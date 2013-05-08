@@ -17,6 +17,7 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.database
 
 import com.github.legendsdev.legends.library.race.Race
+import com.github.legendsdev.legends.library.weapon.WeaponHandler
 
 
 /**
@@ -24,9 +25,11 @@ import com.github.legendsdev.legends.library.race.Race
  */
 class YAMLDataSourceTest extends GroovyTestCase {
     YAMLDataSource yamlDataSource;
+    WeaponHandler weaponHandler;
 
     void setUp() {
-        yamlDataSource = new YAMLDataSource("src/main/resources/");
+        yamlDataSource = new YAMLDataSource("core/src/main/resources/");
+        weaponHandler = WeaponHandler.getInstance();
     }
 
     void testLoadLPlayer() {
@@ -39,17 +42,17 @@ class YAMLDataSourceTest extends GroovyTestCase {
         testRace.setName("Test");
         testRace.setDescription(testRaceDescription);
         testRace.getWeaponRestrictions().setDefault(false);
-        testRace.getWeaponRestrictions().setAllowed("WOOD_AXE", true);
-        testRace.getWeaponRestrictions().setAllowed("IRON_AXE", true);
-        testRace.getWeaponRestrictions().setAllowed("DIAMOND_AXE", true);
-        testRace.getWeaponInfo("IRON_AXE").addDamage(10);
+        testRace.getWeaponRestrictions().setAllowed(weaponHandler.get("WOOD_AXE"), true);
+        testRace.getWeaponRestrictions().setAllowed(weaponHandler.get("IRON_AXE"), true);
+        testRace.getWeaponRestrictions().setAllowed(weaponHandler.get("DIAMOND_AXE"), true);
+        testRace.getWeaponInfo(weaponHandler.get("IRON_AXE")).addBonusDamage(10);
 
         Race race = yamlDataSource.loadRace("Test");
         assertEquals(testRace.getName(), race.getName());
         assertEquals(testRace.getDescription(), race.getDescription());
-        assertEquals(testRace.getWeaponRestrictions().isAllowed("WOOD_AXE"), true);
-        assertEquals(testRace.getWeaponRestrictions().isAllowed("IRON_AXE"), true);
-        assertEquals(testRace.getWeaponRestrictions().isAllowed("DIAMOND_AXE"), true);
+        assertEquals(testRace.getWeaponRestrictions().isAllowed(weaponHandler.get("WOOD_AXE")), true);
+        assertEquals(testRace.getWeaponRestrictions().isAllowed(weaponHandler.get("IRON_AXE")), true);
+        assertEquals(testRace.getWeaponRestrictions().isAllowed(weaponHandler.get("DIAMOND_AXE")), true);
     }
 
     void testLoadLClass() {
