@@ -38,7 +38,7 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public class LPlayer implements
+public class LPlayer implements LEntity,
         WeaponUser, ArmorUser<LPlayer>, SkillUser<LPlayer>, LevelUser, LClassUser, RaceUser,
         WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, LClassRestricted, RaceRestricted {
     private Race race;

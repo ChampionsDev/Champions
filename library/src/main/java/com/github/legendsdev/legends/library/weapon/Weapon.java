@@ -72,17 +72,10 @@ public class Weapon implements LevelRestricted, Describable<Weapon>, WeaponBehav
 
     // Callback methods
     @Override
-    public void onLeftClick() {
-        EventManager.callEvent(new WeaponClickEvent(this, ClickType.LEFT_CLICK));
+    public void onClick(WeaponClickEvent event) {
     }
 
     @Override
-    public void onRightClick() {
-        EventManager.callEvent(new WeaponClickEvent(this, ClickType.RIGHT_CLICK));
-    }
-
-    @Override
-    public void onHit() {
-        EventManager.callEvent(new WeaponHitEvent(this));
+    public void onHit(WeaponHitEvent event) {
     }
 }
