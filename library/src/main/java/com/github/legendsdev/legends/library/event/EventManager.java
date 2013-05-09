@@ -11,7 +11,7 @@ import java.util.HashMap;
 //TODO Finish making this thread safe
 public class EventManager {
     private static HashMap<Method, EventHandler> handlers = new HashMap<>();
-    private static HashMap<LegendsEvent, ArrayList<Method>> methods = new HashMap<>();
+    private static HashMap<Class<? extends LegendsEvent>, ArrayList<Method>> methods = new HashMap<>();
     private static HashMap<LegendsEvent, ArrayList<EventListener>> listeners = new HashMap<>();
 
     private static EventManager instance = new EventManager();
@@ -31,6 +31,10 @@ public class EventManager {
                         LegendsEvent.class.isAssignableFrom(paramType[0]) &&
                         method.isAccessible()) {
                     handlers.put(method, method.getAnnotation(EventHandler.class));
+                    ArrayList<Method> methodList = methods.get(paramType[0]);
+                    if(methodList == null) methodList = new ArrayList<>();
+                    methodList.add(method);
+                    methods.put(paramType[0], methodList);
                 }
             }
         }
@@ -39,14 +43,14 @@ public class EventManager {
     // TODO this can be optimized by mapping the priorities before the event needs to be called.
     public static synchronized void callEvent(LegendsEvent event) {
         try {
-            if(methods.containsKey(event)) {
+            if(methods.containsKey(event.getClass())) {
                 ArrayList<Method> lowestPriority = new ArrayList<>();
                 ArrayList<Method> lowPriority = new ArrayList<>();
                 ArrayList<Method> normalPriority = new ArrayList<>();
                 ArrayList<Method> highPriority = new ArrayList<>();
                 ArrayList<Method> highestPriority = new ArrayList<>();
 
-                for(Method method : methods.get(event)) {
+                for(Method method : methods.get(event.getClass())) {
                     EventHandler handler = handlers.get(method);
                     switch(handler.priority()) {
                         case LOWEST:
