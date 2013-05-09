@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -78,13 +79,10 @@ public class YAMLHelper {
     public ArrayList<String> getKeys(String path) throws ClassCastException {
         ArrayList<String> keys = new ArrayList<>();
         LinkedHashMap<String, Object> currentMap = dataMap;
-        String[] pathArray = path.split("\\.");
-        for (int i = 0; i < pathArray.length; i++) {
-            if(i == pathArray.length - 1) {
-                keys.addAll(currentMap.keySet());
-            }
-            else currentMap = (LinkedHashMap) currentMap.get(pathArray[i]);
+        for (String pathKey : path.split("\\.")) {
+            currentMap = (LinkedHashMap) currentMap.get(pathKey);
         }
+        keys.addAll(currentMap.keySet());
         return keys;
     }
 
