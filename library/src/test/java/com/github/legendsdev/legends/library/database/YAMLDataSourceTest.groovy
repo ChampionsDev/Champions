@@ -36,32 +36,15 @@ class YAMLDataSourceTest extends GroovyTestCase {
     }
 
     void testLoadRace() {
-        Race testRace = new Race();
-        ArrayList<String> testRaceDescription = new ArrayList<>();
-        testRaceDescription.add("Test Race");
-        testRace.setName("Test");
-        testRace.setDescription(testRaceDescription);
-        testRace.getWeaponRestrictions().setDefault(false);
-        testRace.getWeaponRestrictions().setAllowed(weaponHandler.get("WOOD_AXE"), true);
-        testRace.getWeaponRestrictions().setAllowed(weaponHandler.get("IRON_AXE"), true);
-        testRace.getWeaponRestrictions().setAllowed(weaponHandler.get("DIAMOND_AXE"), true);
-        testRace.getWeaponInfo(weaponHandler.get("IRON_AXE")).addBonusDamage(10);
-
         Race race = yamlDataSource.loadRace("Test");
-        assertEquals(testRace.getName(), race.getName());
-        assertEquals(testRace.getDescription(), race.getDescription());
+        assertEquals("Test", race.getName());
 
-        assertEquals(testRace.getWeaponRestrictions().isAllowed(weaponHandler.get("WOOD_AXE")),
-                     race.getWeaponRestrictions().isAllowed(weaponHandler.get("WOOD_AXE")));
+        assertTrue(race.getDescription().contains("Test Race"));
+        assertTrue(race.getWeaponRestrictions().isAllowed(weaponHandler.get("WOOD_AXE")));
+        assertTrue(race.getWeaponRestrictions().isAllowed(weaponHandler.get("IRON_AXE")));
+        assertTrue(race.getWeaponRestrictions().isAllowed(weaponHandler.get("DIAMOND_AXE")));
 
-        assertEquals(testRace.getWeaponRestrictions().isAllowed(weaponHandler.get("IRON_AXE")),
-                     race.getWeaponRestrictions().isAllowed(weaponHandler.get("IRON_AXE")));
-
-        assertEquals(testRace.getWeaponRestrictions().isAllowed(weaponHandler.get("DIAMOND_AXE")),
-                     race.getWeaponRestrictions().isAllowed(weaponHandler.get("DIAMOND_AXE")));
-
-        assertEquals(testRace.getWeaponInfo(weaponHandler.get("IRON_AXE")).getBonusDamage(),
-                     race.getWeaponInfo(weaponHandler.get("IRON_AXE")).getBonusDamage())
+        assertEquals(race.getWeaponInfo(weaponHandler.get("IRON_AXE")).getBonusDamage(), 10)
     }
 
     void testLoadLClass() {
