@@ -31,7 +31,7 @@ import static com.github.legendsdev.legends.library.event.weapon.WeaponClickEven
 /**
  * @author B2OJustin
  */
-public class Weapon implements LevelRestricted, Describable<Weapon>, WeaponBehaviour {
+public class Weapon implements LevelRestricted, Describable<Weapon>, WeaponBehavior {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
     private LevelRestrictions levelRestrictions = new LevelRestrictions();
@@ -44,7 +44,7 @@ public class Weapon implements LevelRestricted, Describable<Weapon>, WeaponBehav
         this.description = description;
     }
     
-    public Weapon(String name, ArrayList<String> description, WeaponBehaviour behaviour) {
+    public Weapon(String name, ArrayList<String> description, WeaponBehavior behaviour) {
         
     }
 
