@@ -12,11 +12,11 @@ Levels:
   maximum-level: 50
   experience-curve: 'L * 20'
   experience-sources:
-    - MOB_KILL:
-        exp-gain: 5
-    - PLAYER_KILL:
-        exp-gain: 50
-    - QUESTING:
+    MOB_KILL:
+      exp-gain: 5
+    PLAYER_KILL:
+      exp-gain: 50
+    QUESTING:
     
 Weapons:
   default: deny
