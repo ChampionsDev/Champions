@@ -5,10 +5,10 @@ import com.github.legendsdev.legends.library.LPlayer;
 /**
  * @author YoshiGenius
  */
-public class LPlayerEvent extends LegendsEvent {
+public class PlayerEvent extends LegendsEvent {
     private final LPlayer player;
     
-    public LPlayerEvent(LPlayer player) {
+    public PlayerEvent(LPlayer player) {
         this.player = player;
     }
     
