@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class EventManager {
     private static HashMap<Method, EventHandler> handlers = new HashMap<>();
     private static HashMap<Class<? extends LegendsEvent>, ArrayList<Method>> methods = new HashMap<>();
-    private static HashMap<LegendsEvent, ArrayList<EventListener>> listeners = new HashMap<>();
+    private static HashMap<Method, EventListener> listeners = new HashMap<>();
 
     private static EventManager instance = new EventManager();
 
@@ -28,13 +28,15 @@ public class EventManager {
             if(method.isAnnotationPresent(EventHandler.class)) {
                 Class[] paramType = method.getParameterTypes();
                 if(paramType.length == 1 &&
-                        LegendsEvent.class.isAssignableFrom(paramType[0]) &&
-                        method.isAccessible()) {
+                        LegendsEvent.class.isAssignableFrom(paramType[0])) {
                     handlers.put(method, method.getAnnotation(EventHandler.class));
+
                     ArrayList<Method> methodList = methods.get(paramType[0]);
                     if(methodList == null) methodList = new ArrayList<>();
                     methodList.add(method);
                     methods.put(paramType[0], methodList);
+
+                    listeners.put(method, listener);
                 }
             }
         }
@@ -71,11 +73,11 @@ public class EventManager {
                     }
                 }
 
-                for(Method method : lowestPriority) method.invoke(event);
-                for(Method method : lowPriority) method.invoke(event);
-                for(Method method : normalPriority) method.invoke(event);
-                for(Method method : highPriority) method.invoke(event);
-                for(Method method : highestPriority) method.invoke(event);
+                for(Method method : lowestPriority) method.invoke(listeners.get(method), event);
+                for(Method method : lowPriority) method.invoke(listeners.get(method), event);
+                for(Method method : normalPriority) method.invoke(listeners.get(method), event);
+                for(Method method : highPriority) method.invoke(listeners.get(method), event);
+                for(Method method : highestPriority) method.invoke(listeners.get(method), event);
             }
         } catch (IllegalAccessException | InvocationTargetException ignored){
         }
