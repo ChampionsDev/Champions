@@ -1,4 +1,4 @@
-package com.github.legendsdev.legends.library.weapon.behaviour;
+package com.github.legendsdev.legends.library.event.weapon;
 
 import com.github.legendsdev.legends.library.event.LegendsEvent;
 import com.github.legendsdev.legends.library.weapon.Weapon;
@@ -8,7 +8,7 @@ import com.github.legendsdev.legends.library.weapon.Weapon;
  */
 public class WeaponEvent extends LegendsEvent {
     private final Weapon weapon;
-    
+
     public WeaponEvent(Weapon weapon) {
         this.weapon = weapon;
     }

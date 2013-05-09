@@ -17,16 +17,22 @@ This file is part of Legends.
 
 package com.github.legendsdev.legends.library.weapon;
 
-import com.github.legendsdev.legends.library.weapon.behaviour.WeaponClickBehaviour;
+import com.github.legendsdev.legends.library.event.EventManager;
+import com.github.legendsdev.legends.library.event.weapon.WeaponClickEvent;
+import com.github.legendsdev.legends.library.event.weapon.WeaponHitEvent;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.level.LevelRestrictions;
 import com.github.legendsdev.legends.library.misc.Describable;
+import com.github.legendsdev.legends.library.weapon.behaviour.WeaponBehaviour;
+
 import java.util.ArrayList;
+
+import static com.github.legendsdev.legends.library.event.weapon.WeaponClickEvent.ClickType;
 
 /**
  * @author B2OJustin
  */
-public class Weapon implements LevelRestricted, Describable<Weapon> {
+public class Weapon implements LevelRestricted, Describable<Weapon>, WeaponBehaviour {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
     private LevelRestrictions levelRestrictions = new LevelRestrictions();
@@ -39,7 +45,7 @@ public class Weapon implements LevelRestricted, Describable<Weapon> {
         this.description = description;
     }
     
-    public Weapon(String name, ArrayList<String> description, WeaponClickBehaviour behaviour) {
+    public Weapon(String name, ArrayList<String> description, WeaponBehaviour behaviour) {
         
     }
 
@@ -63,5 +69,21 @@ public class Weapon implements LevelRestricted, Describable<Weapon> {
     public LevelRestrictions getLevelRestrictions() {
         return levelRestrictions;
     }
-    
+
+
+    // Callback methods
+    @Override
+    public void onLeftClick() {
+        EventManager.callEvent(new WeaponClickEvent(this, ClickType.LEFT_CLICK));
+    }
+
+    @Override
+    public void onRightClick() {
+        EventManager.callEvent(new WeaponClickEvent(this, ClickType.RIGHT_CLICK));
+    }
+
+    @Override
+    public void onHit() {
+        EventManager.callEvent(new WeaponHitEvent(this));
+    }
 }

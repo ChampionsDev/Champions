@@ -23,7 +23,7 @@ class YAMLHelperTest extends GroovyTestCase {
     YAMLHelper yamlHelper;
 
     void setUp() {
-        yamlHelper = new YAMLHelper("../core/src/main/resources/races/Test.yml");
+        yamlHelper = new YAMLHelper("core/src/main/resources/races/Test.yml");
     }
 
     void testGetObject() {
@@ -33,8 +33,14 @@ class YAMLHelperTest extends GroovyTestCase {
 
     void testGetKeys() {
         ArrayList<String> keyList = yamlHelper.getKeys("Weapons");
+        System.out.println(keyList);
         assertTrue(keyList.contains("default"));
         assertTrue(keyList.contains("permitted-weapon"));
+
+        keyList = yamlHelper.getKeys("");
+        System.out.println(keyList);
+        assertTrue(keyList.contains("name"));
+        assertTrue(keyList.contains("description"));
     }
 
     void testGetString() {
