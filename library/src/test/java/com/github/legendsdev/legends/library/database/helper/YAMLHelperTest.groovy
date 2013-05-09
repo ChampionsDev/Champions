@@ -33,14 +33,24 @@ class YAMLHelperTest extends GroovyTestCase {
 
     void testGetKeys() {
         ArrayList<String> keyList = yamlHelper.getKeys("Weapons");
-        System.out.println(keyList);
         assertTrue(keyList.contains("default"));
         assertTrue(keyList.contains("permitted-weapon"));
 
         keyList = yamlHelper.getKeys("");
-        System.out.println(keyList);
         assertTrue(keyList.contains("name"));
         assertTrue(keyList.contains("description"));
+        assertTrue(keyList.contains("Weapons"));
+
+        keyList = yamlHelper.getKeys("Weapons.permitted-weapon");
+        assertTrue(keyList.contains("WOOD_AXE"));
+        assertTrue(keyList.contains("IRON_AXE"));
+        assertTrue(keyList.contains("DIAMOND_AXE"));
+
+        keyList = yamlHelper.getKeys("Weapons.permitted-weapon.WOOD_AXE");
+        assertTrue(keyList.isEmpty());
+
+        keyList = yamlHelper.getKeys("Weapons.permitted-weapon.IRON_AXE");
+        assertTrue(keyList.contains("bonus-damage"));
     }
 
     void testGetString() {

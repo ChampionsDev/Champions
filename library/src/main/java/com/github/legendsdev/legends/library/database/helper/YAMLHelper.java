@@ -78,11 +78,22 @@ public class YAMLHelper {
 
     public ArrayList<String> getKeys(String path) throws ClassCastException {
         ArrayList<String> keys = new ArrayList<>();
-        LinkedHashMap<String, Object> currentMap = dataMap;
-        for (String pathKey : path.split("\\.")) {
-            currentMap = (LinkedHashMap) currentMap.get(pathKey);
+
+        ArrayList<String> pathList = new ArrayList<>();
+        Collections.addAll(pathList, path.split("\\."));
+
+        if(pathList.contains("")) {
+            keys.addAll(dataMap.keySet());
         }
-        keys.addAll(currentMap.keySet());
+        else {
+            LinkedHashMap<String, Object> currentMap = dataMap;
+            for (String pathKey : path.split("\\.")) {
+                currentMap = (LinkedHashMap) currentMap.get(pathKey);
+            }
+            if(currentMap != null) {
+                keys.addAll(currentMap.keySet());
+            }
+        }
         return keys;
     }
 

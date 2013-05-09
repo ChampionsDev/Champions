@@ -149,11 +149,16 @@ public class YAMLDataSource implements DataSource {
     }
 
     private <T extends BasicInfo> T loadInfo(T basicInfo, LinkedHashMap<String, Object> infoMap) throws ClassCastException {
+        if(infoMap == null) return null;
         for(Map.Entry<String, Object> entry : infoMap.entrySet()) {
             switch(entry.getKey()) {
                 case "bonus-defense":
                     int bonusDefense = (int) entry.getValue();
                     basicInfo.addBonusDefense(bonusDefense);
+                break;
+                case "bonus-damage":
+                    int bonusDamage = (int) entry.getValue();
+                    basicInfo.addBonusDamage(bonusDamage);
                 break;
                 case "required-level":
                     int requiredLevel = (int) entry.getValue();
