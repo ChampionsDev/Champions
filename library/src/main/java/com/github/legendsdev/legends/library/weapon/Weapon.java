@@ -17,10 +17,10 @@ This file is part of Legends.
 
 package com.github.legendsdev.legends.library.weapon;
 
+import com.github.legendsdev.legends.library.weapon.behaviour.WeaponClickBehaviour;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.level.LevelRestrictions;
 import com.github.legendsdev.legends.library.misc.Describable;
-
 import java.util.ArrayList;
 
 /**
@@ -38,16 +38,23 @@ public class Weapon implements LevelRestricted, Describable<Weapon> {
         this.name = name;
         this.description = description;
     }
+    
+    public Weapon(String name, ArrayList<String> description, WeaponClickBehaviour behaviour) {
+        
+    }
 
+    @Override
     public Weapon setDescription(ArrayList<String> description) {
         this.description = description;
         return this;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public ArrayList<String> getDescription() {
         return description;
     }
@@ -56,4 +63,5 @@ public class Weapon implements LevelRestricted, Describable<Weapon> {
     public LevelRestrictions getLevelRestrictions() {
         return levelRestrictions;
     }
+    
 }

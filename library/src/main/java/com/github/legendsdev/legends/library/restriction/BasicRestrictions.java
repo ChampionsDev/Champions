@@ -30,16 +30,19 @@ public class BasicRestrictions<T> implements BasicRestrictor<T> {
         defaultAllow = false;
     }
 
+    @Override
     public void setAllowed(T restrictable, boolean allowed) {
         rMap.put(restrictable, allowed);
     }
 
+    @Override
     public boolean isAllowed(T restrictable) {
         Boolean allowed = rMap.get(restrictable);
         if(allowed == null) return defaultAllow;
         else return allowed;
     }
 
+    @Override
     public void setDefault(boolean defaultAllow) {
         this.defaultAllow = defaultAllow;
     }
