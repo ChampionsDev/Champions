@@ -96,7 +96,9 @@ public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
 
     @Override
     public Race setSkillInfo(Skill skill, SkillInfo info) {
-        skillInfoMap.put(skill, info);
+        if(skill != null) {
+            skillInfoMap.put(skill, info);
+        }
         return this;
     }
 
@@ -107,17 +109,22 @@ public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
 
     @Override
     public ArmorInfo getArmorInfo(Armor armor) {
-        ArmorInfo armorInfo = armorInfoMap.get(armor);
-        if(armorInfo == null) {
-            armorInfo = new ArmorInfo();
-            armorInfoMap.put(armor, armorInfo);
+        if(armor != null) {
+            ArmorInfo armorInfo = armorInfoMap.get(armor);
+            if(armorInfo == null) {
+                armorInfo = new ArmorInfo();
+                armorInfoMap.put(armor, armorInfo);
+            }
+            return armorInfo;
         }
-        return armorInfo;
+        return null;
     }
 
     @Override
     public Race setArmorInfo(Armor armor, ArmorInfo info) {
-        armorInfoMap.put(armor, info);
+        if(armor != null) {
+            armorInfoMap.put(armor, info);
+        }
         return this;
     }
 
@@ -128,17 +135,22 @@ public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
 
     @Override
     public WeaponInfo getWeaponInfo(Weapon weapon) {
-        WeaponInfo weaponInfo = weaponInfoMap.get(weapon);
-        if(weaponInfo == null) {
-            weaponInfo = new WeaponInfo();
-            weaponInfoMap.put(weapon, weaponInfo);
+        if(weapon != null) {
+            WeaponInfo weaponInfo = weaponInfoMap.get(weapon);
+            if(weaponInfo == null) {
+                weaponInfo = new WeaponInfo();
+                weaponInfoMap.put(weapon, weaponInfo);
+            }
+            return weaponInfo;
         }
-        return weaponInfo;
+        return null;
     }
 
     @Override
     public Race setWeaponInfo(Weapon weapon, WeaponInfo info) {
-        weaponInfoMap.put(weapon, info);
+        if(weapon != null) {
+            weaponInfoMap.put(weapon, info);
+        }
         return this;
     }
 

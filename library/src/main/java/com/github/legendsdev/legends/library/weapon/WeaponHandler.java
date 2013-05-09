@@ -27,15 +27,4 @@ public class WeaponHandler extends BasicHandler<Weapon> {
     public static WeaponHandler getInstance() {
         return instance;
     }
-
-    // Allow new weapons to be registered automatically
-    @Override
-    public Weapon get(String id) {
-        Weapon weapon = super.get(id);
-        if(weapon == null) {
-            weapon = new Weapon();
-            register(id, weapon);
-        }
-        return weapon;
-    }
 }

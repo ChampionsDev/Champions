@@ -32,7 +32,9 @@ public class BasicRestrictions<T> implements BasicRestrictor<T> {
 
     @Override
     public void setAllowed(T restrictable, boolean allowed) {
-        rMap.put(restrictable, allowed);
+        if(restrictable != null) {
+            rMap.put(restrictable, allowed);
+        }
     }
 
     @Override

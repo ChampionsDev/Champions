@@ -17,6 +17,7 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.database
 
 import com.github.legendsdev.legends.library.race.Race
+import com.github.legendsdev.legends.library.weapon.Weapon
 import com.github.legendsdev.legends.library.weapon.WeaponHandler
 
 
@@ -38,6 +39,11 @@ class YAMLDataSourceTest extends GroovyTestCase {
     void testLoadRace() {
         Race race = yamlDataSource.loadRace("Test");
         assertEquals("Test", race.getName());
+
+        // Register weapons
+        weaponHandler.register("WOOD_AXE", new Weapon());
+        weaponHandler.register("IRON_AXE", new Weapon());
+        weaponHandler.register("DIAMOND_AXE", new Weapon());
 
         assertTrue(race.getDescription().contains("Test Race"));
         assertTrue(race.getWeaponRestrictions().isAllowed(weaponHandler.get("WOOD_AXE")));

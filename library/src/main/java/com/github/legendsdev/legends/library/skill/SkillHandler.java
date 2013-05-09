@@ -23,6 +23,8 @@ import java.util.List;
 /**
  * @author YoshiGenius
  */
+
+// TODO make this consistent with the other handler APIs
 public class SkillHandler {
     private static ArrayList<Skill> skills = new ArrayList<>();
     private static SkillHandler instance = new SkillHandler();
