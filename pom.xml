@@ -8,7 +8,7 @@
 
     <modules>
         <module>library</module>
-        <module>core</module>
+        <module>core-bukkit</module>
     </modules>
 
 	<repositories>
