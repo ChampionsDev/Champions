@@ -94,9 +94,11 @@ public class YAMLDataSource implements DataSource {
                                 case "permitted-weapon":
                                     for(String wepID : yml.getKeys("Weapons.permitted-weapon")) {
                                         Weapon weapon = WeaponHandler.getInstance().get(wepID);
-                                        race.getWeaponRestrictions().setAllowed(weapon, true);
-                                        LinkedHashMap<String, Object> infoMap = yml.getObject(LinkedHashMap.class, String.format("Weapons.permitted-weapon.%s", wepID));
-                                        loadInfo(race.getWeaponInfo(weapon), infoMap);
+                                        if(weapon != null) {
+                                            race.getWeaponRestrictions().setAllowed(weapon, true);
+                                            LinkedHashMap<String, Object> infoMap = yml.getObject(LinkedHashMap.class, String.format("Weapons.permitted-weapon.%s", wepID));
+                                            loadInfo(race.getWeaponInfo(weapon), infoMap);
+                                        }
                                     }
                                 break;
                                 case "restricted-weapon":
@@ -121,9 +123,11 @@ public class YAMLDataSource implements DataSource {
                                 case "permitted-armor":
                                     for(String armorID : yml.getKeys("Armor.permitted-armor")) {
                                         Armor armor = ArmorHandler.getInstance().get(armorID);
-                                        race.getArmorRestrictions().setAllowed(armor, true);
-                                        LinkedHashMap<String, Object> infoMap = yml.getObject(LinkedHashMap.class, String.format("Armor.permitted-armor.%s", armorID));
-                                        loadInfo(race.getArmorInfo(armor), infoMap);
+                                        if(armor != null) {
+                                            race.getArmorRestrictions().setAllowed(armor, true);
+                                            LinkedHashMap<String, Object> infoMap = yml.getObject(LinkedHashMap.class, String.format("Armor.permitted-armor.%s", armorID));
+                                            loadInfo(race.getArmorInfo(armor), infoMap);
+                                        }
                                     }
                                 break;
                                 case "restricted-armor":
