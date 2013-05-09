@@ -1,4 +1,4 @@
-package com.github.legendsdev.legends.library.weapon.behaviour;
+package com.github.legendsdev.legends.library.weapon;
 
 /**
  * @author YoshiGenius

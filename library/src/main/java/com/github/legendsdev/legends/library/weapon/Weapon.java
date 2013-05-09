@@ -23,7 +23,6 @@ import com.github.legendsdev.legends.library.event.weapon.WeaponHitEvent;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.level.LevelRestrictions;
 import com.github.legendsdev.legends.library.misc.Describable;
-import com.github.legendsdev.legends.library.weapon.behaviour.WeaponBehaviour;
 
 import java.util.ArrayList;
 
