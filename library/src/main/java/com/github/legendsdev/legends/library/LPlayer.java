@@ -18,10 +18,7 @@ package com.github.legendsdev.legends.library;
 
 
 import com.github.legendsdev.legends.library.armor.*;
-import com.github.legendsdev.legends.library.lclass.LClass;
-import com.github.legendsdev.legends.library.lclass.LClassRestricted;
-import com.github.legendsdev.legends.library.lclass.LClassRestrictions;
-import com.github.legendsdev.legends.library.lclass.LClassUser;
+import com.github.legendsdev.legends.library.lclass.*;
 import com.github.legendsdev.legends.library.level.Level;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.level.LevelRestrictions;
@@ -39,19 +36,17 @@ import java.util.HashMap;
  * @author B2OJustin
  */
 public class LPlayer implements LEntity,
-        WeaponUser, ArmorUser<LPlayer>, SkillUser<LPlayer>, LevelUser, LClassUser, RaceUser,
+        WeaponUser, ArmorUser<LPlayer>, SkillUser<LPlayer>, LClassUser, RaceUser,
         WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, LClassRestricted, RaceRestricted {
-    private Race race;
-    private LClass primaryClass;
-    private LClass secondaryClass;
-    private LevelRestrictions levelRestrictions;
-    private HashMap<Skill, SkillInfo> skillInfoMap;
+    private Race race = new Race();
+    private LClass primaryClass = new LClass();
+    private LClass secondaryClass = new LClass();
+    private LevelRestrictions levelRestrictions = new LevelRestrictions();
+    private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
+    private LClassInfo primaryClassInfo = new LClassInfo();
+    private LClassInfo secondaryClassInfo = new LClassInfo();
 
-    public LPlayer(Race race, LClass primaryClass) {
-        this.race = race;
-        this.primaryClass = primaryClass;
-        levelRestrictions = new LevelRestrictions();
-        skillInfoMap = new HashMap<>();
+    public LPlayer() {
     }
 
     public Race getRace() {
@@ -61,6 +56,16 @@ public class LPlayer implements LEntity,
     @Override
     public LClass getPrimaryClass() {
         return this.primaryClass;
+    }
+
+    @Override
+    public LClassInfo getPrimaryClassInfo() {
+        return primaryClassInfo;
+    }
+
+    @Override
+    public LClassInfo getSecondaryClassInfo() {
+        return secondaryClassInfo;
     }
 
     @Override
@@ -123,11 +128,6 @@ public class LPlayer implements LEntity,
     @Override
     public LevelRestrictions getLevelRestrictions() {
         return levelRestrictions;
-    }
-
-    @Override
-    public Level getLevel() {
-        return null; //TODO getLevel method stub
     }
 
     @Override

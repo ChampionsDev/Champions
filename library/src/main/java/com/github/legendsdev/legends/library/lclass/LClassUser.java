@@ -23,5 +23,7 @@ import com.github.legendsdev.legends.library.BasicUser;
  */
 public interface LClassUser extends BasicUser {
     public LClass getPrimaryClass();
+    public LClassInfo getPrimaryClassInfo();
+    public LClassInfo getSecondaryClassInfo();
     public LClass getSecondaryClass();
 }

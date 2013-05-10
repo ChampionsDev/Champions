@@ -16,8 +16,17 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.lclass;
 
+import com.github.legendsdev.legends.library.level.Level;
+import com.github.legendsdev.legends.library.level.LevelUser;
+
 /**
  * @author B2OJustin
  */
-public class LClassInfo {
+public class LClassInfo implements LevelUser {
+    private Level level = new Level(0);
+
+    @Override
+    public Level getLevel() {
+        return level;
+    }
 }
