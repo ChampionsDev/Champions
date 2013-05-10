@@ -21,7 +21,8 @@ import com.github.legendsdev.legends.library.BasicUser;
 /**
  * @author B2OJustin
  */
-public interface LClassUser extends BasicUser {
+//TODO implement setters for LClassUser
+public interface LClassUser<SelfType extends LClassUser> extends BasicUser {
     public LClass getPrimaryClass();
     public LClassInfo getPrimaryClassInfo();
     public LClassInfo getSecondaryClassInfo();

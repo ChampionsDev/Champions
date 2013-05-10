@@ -16,8 +16,10 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.race;
 
+import com.github.legendsdev.legends.library.BasicUser;
+
 /**
  * @author B2OJustin
  */
-public interface RaceUser {
+public interface RaceUser<SelfType extends RaceUser> extends BasicUser {
 }

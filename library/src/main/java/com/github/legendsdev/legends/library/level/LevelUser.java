@@ -16,9 +16,11 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.level;
 
+import com.github.legendsdev.legends.library.BasicUser;
+
 /**
  * @author B2OJustin
  */
-public interface LevelUser {
+public interface LevelUser<SelfType extends LevelUser> extends BasicUser {
     public Level getLevel();
 }

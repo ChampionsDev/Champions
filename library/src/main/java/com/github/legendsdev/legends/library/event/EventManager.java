@@ -9,6 +9,7 @@ import java.util.HashMap;
  * @author YoshiGenius
  */
 //TODO Finish making this thread safe
+@SuppressWarnings("unchecked")
 public class EventManager {
     private static HashMap<Method, LEventHandler> handlers = new HashMap<>();
     private static HashMap<Class<? extends LegendsEvent>, ArrayList<Method>> methods = new HashMap<>();
