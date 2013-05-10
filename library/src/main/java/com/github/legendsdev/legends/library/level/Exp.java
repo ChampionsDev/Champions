@@ -17,12 +17,11 @@ This file is part of Legends.
 
 package com.github.legendsdev.legends.library.level;
 
-
 /**
  * @author YoshiGenius
  */
-class Exp {
-    private double exp;
+public class Exp {
+    protected double exp;
     
     public Exp(double exp) {
         this.exp = exp;
@@ -37,13 +36,28 @@ class Exp {
         return this;
     }
 
+    public Exp setExp(Exp exp) {
+        this.exp = exp.exp;
+        return this;
+    }
+
     public Exp addExp(double exp) {
         this.exp += exp;
         return this;
     }
 
+    public Exp addExp(Exp exp) {
+        this.exp += exp.exp;
+        return this;
+    }
+
     public Exp removeExp(double exp) {
         this.exp -= exp;
+        return this;
+    }
+
+    public Exp removeExp(Exp exp) {
+        this.exp -= exp.exp;
         return this;
     }
 
@@ -61,6 +75,31 @@ class Exp {
     
     public static boolean areEqual(Exp exp1, Exp exp2) {
         return (exp1.exp == exp2.exp);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Exp exp1 = (Exp) o;
+
+        return Double.compare(exp1.exp, exp) == 0;
+
+    }
+
+    @Override
+    public int hashCode() {
+        long temp = Double.doubleToLongBits(exp);
+        return (int) (temp ^ (temp >>> 32));
+    }
+
+    public boolean isGreaterThan(Exp exp) {
+        return this.exp > exp.exp;
+    }
+
+    public boolean isLessThan(Exp exp) {
+        return this.exp < exp.exp;
     }
 
 }
