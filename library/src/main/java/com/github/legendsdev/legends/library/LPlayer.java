@@ -23,10 +23,7 @@ import com.github.legendsdev.legends.library.level.Level;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.level.LevelRestrictions;
 import com.github.legendsdev.legends.library.level.LevelUser;
-import com.github.legendsdev.legends.library.race.Race;
-import com.github.legendsdev.legends.library.race.RaceRestricted;
-import com.github.legendsdev.legends.library.race.RaceRestrictions;
-import com.github.legendsdev.legends.library.race.RaceUser;
+import com.github.legendsdev.legends.library.race.*;
 import com.github.legendsdev.legends.library.skill.*;
 import com.github.legendsdev.legends.library.weapon.*;
 
@@ -57,6 +54,7 @@ public class LPlayer implements LEntity,
     private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
     private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
+    private HashMap<Race, RaceInfo> raceInfoMap = new HashMap<>();
 
     private ArrayList<Skill> currentSkills = new ArrayList<>();
 
@@ -197,5 +195,23 @@ public class LPlayer implements LEntity,
     @Override
     public RaceRestrictions getRaceRestrictions() {
         return raceRestrictions;
+    }
+
+    @Override
+    public HashMap<Race, RaceInfo> getRaceInfoMap() {
+        return raceInfoMap;
+    }
+
+    @Override
+    public RaceInfo getRaceInfo(Race race) {
+        return raceInfoMap.get(race);
+    }
+
+    @Override
+    public LPlayer setRaceInfo(Race race, RaceInfo info) {
+        if(race != null) {
+            raceInfoMap.put(race, info);
+        }
+        return this;
     }
 }

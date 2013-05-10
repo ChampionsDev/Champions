@@ -16,8 +16,11 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.race;
 
+import com.github.legendsdev.legends.library.BasicInfo;
+
 /**
  * @author B2OJustin
  */
-public class RaceInfo {
+public class RaceInfo extends BasicInfo<RaceInfo> {
+
 }

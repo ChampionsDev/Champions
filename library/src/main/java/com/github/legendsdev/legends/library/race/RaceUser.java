@@ -17,9 +17,16 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.race;
 
 import com.github.legendsdev.legends.library.BasicUser;
+import com.github.legendsdev.legends.library.weapon.Weapon;
+import com.github.legendsdev.legends.library.weapon.WeaponInfo;
+
+import java.util.HashMap;
 
 /**
  * @author B2OJustin
  */
 public interface RaceUser<SelfType extends RaceUser> extends BasicUser {
+    public HashMap<Race, RaceInfo> getRaceInfoMap();
+    public RaceInfo getRaceInfo(Race race);
+    public SelfType setRaceInfo(Race race, RaceInfo info);
 }
