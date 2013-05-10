@@ -25,6 +25,7 @@ import com.github.legendsdev.legends.library.level.LevelRestrictions;
 import com.github.legendsdev.legends.library.level.LevelUser;
 import com.github.legendsdev.legends.library.race.Race;
 import com.github.legendsdev.legends.library.race.RaceRestricted;
+import com.github.legendsdev.legends.library.race.RaceRestrictions;
 import com.github.legendsdev.legends.library.race.RaceUser;
 import com.github.legendsdev.legends.library.skill.*;
 import com.github.legendsdev.legends.library.weapon.*;
@@ -36,15 +37,30 @@ import java.util.HashMap;
  * @author B2OJustin
  */
 public class LPlayer implements LEntity,
-        WeaponUser, ArmorUser<LPlayer>, SkillUser<LPlayer>, LClassUser, RaceUser,
+        WeaponUser<LPlayer>, ArmorUser<LPlayer>, SkillUser<LPlayer>, LClassUser<LPlayer>, RaceUser<LPlayer>,
         WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, LClassRestricted, RaceRestricted {
+
     private Race race = new Race();
+
     private LClass primaryClass = new LClass();
     private LClass secondaryClass = new LClass();
-    private LevelRestrictions levelRestrictions = new LevelRestrictions();
-    private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
     private LClassInfo primaryClassInfo = new LClassInfo();
     private LClassInfo secondaryClassInfo = new LClassInfo();
+
+    private LevelRestrictions levelRestrictions = new LevelRestrictions();
+    private WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
+    private ArmorRestrictions armorRestrictions = new ArmorRestrictions();
+    private LClassRestrictions lClassRestrictions = new LClassRestrictions();
+    private RaceRestrictions raceRestrictions = new RaceRestrictions();
+    private SkillRestrictions skillRestrictions = new SkillRestrictions();
+
+    private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
+    private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
+    private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
+
+    private ArrayList<Skill> currentSkills = new ArrayList<>();
+
+    private Weapon currentWeapon = new Weapon();
 
     public LPlayer() {
     }
@@ -74,31 +90,38 @@ public class LPlayer implements LEntity,
     }
 
     public Weapon getCurrentWeapon() {
-        return null;
+        return currentWeapon;
     }
 
     @Override
     public ArrayList<Skill> getSkills() {
-        return null;
+        return currentSkills;
     }
 
     @Override
     public LPlayer addSkill(Skill skill) {
-        return this; //TODO addSkill method stub
+        if(skill != null) {
+            currentSkills.add(skill);
+        }
+        return this;
     }
 
     @Override
     public LPlayer removeSkill(Skill skill) {
-        return this; //TODO removeSkill method stub
+        currentSkills.remove(skill);
+        return this;
     }
 
     @Override
     public HashMap<Skill, SkillInfo> getSkillInfoMap() {
-        return null; //TODO getSkillInfoMap method stub
+        return skillInfoMap;
     }
 
     @Override
     public LPlayer setSkillInfo(Skill skill, SkillInfo info) {
+        if(skill != null) {
+            skillInfoMap.put(skill, info);
+        }
         return this;
     }
 
@@ -112,17 +135,17 @@ public class LPlayer implements LEntity,
 
     @Override
     public SkillRestrictions getSkillRestrictions() {
-        return null;
+        return skillRestrictions;
     }
 
     @Override
     public ArmorRestrictions getArmorRestrictions() {
-        return null;
+        return armorRestrictions;
     }
 
     @Override
     public WeaponRestrictions getWeaponRestrictions() {
-        return null;
+        return weaponRestrictions;
     }
 
     @Override
@@ -132,36 +155,47 @@ public class LPlayer implements LEntity,
 
     @Override
     public LClassRestrictions getLClassRestrictions() {
-        return null; //TODO getLClassRestrictions method stub
+        return lClassRestrictions;
     }
 
     @Override
-    public HashMap<String, WeaponInfo> getWeaponInfoMap() {
-        return null; //TODO getWeaponInfoMap method stub
+    public HashMap<Weapon, WeaponInfo> getWeaponInfoMap() {
+        return weaponInfoMap;
     }
 
     @Override
     public WeaponInfo getWeaponInfo(Weapon weapon) {
-        return null; //TODO getWeaponInfo method stub
+        return weaponInfoMap.get(weapon);
     }
 
     @Override
-    public WeaponUser setWeaponInfo(Weapon weapon, WeaponInfo info) {
-        return null; //TODO setWeaponInfo method stub
+    public LPlayer setWeaponInfo(Weapon weapon, WeaponInfo info) {
+        if(weapon != null) {
+            weaponInfoMap.put(weapon, info);
+        }
+        return this;
     }
 
     @Override
     public HashMap<Armor, ArmorInfo> getArmorInfoMap() {
-        return null; //TODO getArmorInfoMap method stub
+        return armorInfoMap;
     }
 
     @Override
     public ArmorInfo getArmorInfo(Armor armor) {
-        return null; //TODO getArmorInfo method stub
+        return armorInfoMap.get(armor);
     }
 
     @Override
     public LPlayer setArmorInfo(Armor armor, ArmorInfo info) {
-        return this; //TODO setArmorInfo method stub
+        if(armor != null) {
+            armorInfoMap.put(armor, info);
+        }
+        return this;
+    }
+
+    @Override
+    public RaceRestrictions getRaceRestrictions() {
+        return raceRestrictions;
     }
 }
