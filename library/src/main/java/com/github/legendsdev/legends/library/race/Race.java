@@ -19,6 +19,8 @@ package com.github.legendsdev.legends.library.race;
 
 
 import com.github.legendsdev.legends.library.armor.*;
+import com.github.legendsdev.legends.library.lclass.LClassRestricted;
+import com.github.legendsdev.legends.library.lclass.LClassRestrictions;
 import com.github.legendsdev.legends.library.skill.*;
 import com.github.legendsdev.legends.library.weapon.*;
 
@@ -28,7 +30,8 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, SkillRestricted, WeaponRestricted, ArmorRestricted {
+public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
+        SkillRestricted, WeaponRestricted, ArmorRestricted, LClassRestricted {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
     private ArrayList<Skill> currentSkills = new ArrayList<>();
@@ -40,6 +43,7 @@ public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
     private WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
     private ArmorRestrictions armorRestrictions = new ArmorRestrictions();
     private SkillRestrictions skillRestrictions = new SkillRestrictions();
+    private LClassRestrictions lClassRestrictions = new LClassRestrictions();
 
     public Race() {
     }
@@ -162,5 +166,10 @@ public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
     @Override
     public SkillRestrictions getSkillRestrictions() {
         return skillRestrictions;
+    }
+
+    @Override
+    public LClassRestrictions getLClassRestrictions() {
+        return lClassRestrictions;
     }
 }
