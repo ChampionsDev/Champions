@@ -34,7 +34,7 @@ class EventManagerTest extends GroovyTestCase implements EventListener {
         assertTrue(eventFired);
     }
 
-    @EventHandler
+    @LEventHandler
     public void eventHandler(WeaponClickEvent event) {
         eventFired = true;
     }

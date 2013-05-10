@@ -10,7 +10,7 @@ import java.util.HashMap;
  */
 //TODO Finish making this thread safe
 public class EventManager {
-    private static HashMap<Method, EventHandler> handlers = new HashMap<>();
+    private static HashMap<Method, LEventHandler> handlers = new HashMap<>();
     private static HashMap<Class<? extends LegendsEvent>, ArrayList<Method>> methods = new HashMap<>();
     private static HashMap<Method, EventListener> listeners = new HashMap<>();
 
@@ -25,11 +25,11 @@ public class EventManager {
 
     public static synchronized void registerEvents(EventListener listener) {
         for(Method method : listener.getClass().getMethods()) {
-            if(method.isAnnotationPresent(EventHandler.class)) {
+            if(method.isAnnotationPresent(LEventHandler.class)) {
                 Class[] paramType = method.getParameterTypes();
                 if(paramType.length == 1 &&
                         LegendsEvent.class.isAssignableFrom(paramType[0])) {
-                    handlers.put(method, method.getAnnotation(EventHandler.class));
+                    handlers.put(method, method.getAnnotation(LEventHandler.class));
 
                     ArrayList<Method> methodList = methods.get(paramType[0]);
                     if(methodList == null) methodList = new ArrayList<>();
@@ -53,7 +53,7 @@ public class EventManager {
                 ArrayList<Method> highestPriority = new ArrayList<>();
 
                 for(Method method : methods.get(event.getClass())) {
-                    EventHandler handler = handlers.get(method);
+                    LEventHandler handler = handlers.get(method);
                     switch(handler.priority()) {
                         case LOWEST:
                             lowestPriority.add(method);
