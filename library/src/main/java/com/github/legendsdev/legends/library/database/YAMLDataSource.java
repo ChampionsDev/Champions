@@ -27,7 +27,6 @@ import com.github.legendsdev.legends.library.weapon.Weapon;
 import com.github.legendsdev.legends.library.weapon.WeaponHandler;
 
 import java.io.FileNotFoundException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Logger;

@@ -17,8 +17,6 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.race;
 
 import com.github.legendsdev.legends.library.BasicUser;
-import com.github.legendsdev.legends.library.weapon.Weapon;
-import com.github.legendsdev.legends.library.weapon.WeaponInfo;
 
 import java.util.HashMap;
 

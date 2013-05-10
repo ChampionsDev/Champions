@@ -19,10 +19,8 @@ package com.github.legendsdev.legends.library;
 
 import com.github.legendsdev.legends.library.armor.*;
 import com.github.legendsdev.legends.library.lclass.*;
-import com.github.legendsdev.legends.library.level.Level;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.level.LevelRestrictions;
-import com.github.legendsdev.legends.library.level.LevelUser;
 import com.github.legendsdev.legends.library.race.*;
 import com.github.legendsdev.legends.library.skill.*;
 import com.github.legendsdev.legends.library.weapon.*;

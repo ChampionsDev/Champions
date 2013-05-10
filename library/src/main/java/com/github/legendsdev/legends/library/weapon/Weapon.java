@@ -17,7 +17,6 @@ This file is part of Legends.
 
 package com.github.legendsdev.legends.library.weapon;
 
-import com.github.legendsdev.legends.library.event.EventManager;
 import com.github.legendsdev.legends.library.event.weapon.WeaponClickEvent;
 import com.github.legendsdev.legends.library.event.weapon.WeaponHitEvent;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
@@ -25,8 +24,6 @@ import com.github.legendsdev.legends.library.level.LevelRestrictions;
 import com.github.legendsdev.legends.library.misc.Describable;
 
 import java.util.ArrayList;
-
-import static com.github.legendsdev.legends.library.event.weapon.WeaponClickEvent.ClickType;
 
 /**
  * @author B2OJustin
