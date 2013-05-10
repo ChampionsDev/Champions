@@ -28,10 +28,9 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class Weapon implements LevelRestricted, Describable<Weapon>, WeaponBehavior {
+public class Weapon implements Describable<Weapon>, WeaponBehavior {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
-    private LevelRestrictions levelRestrictions = new LevelRestrictions();
 
     public Weapon() {
     }
@@ -59,11 +58,6 @@ public class Weapon implements LevelRestricted, Describable<Weapon>, WeaponBehav
     @Override
     public ArrayList<String> getDescription() {
         return description;
-    }
-
-    @Override
-    public LevelRestrictions getLevelRestrictions() {
-        return levelRestrictions;
     }
 
 
