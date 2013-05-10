@@ -16,17 +16,52 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.lclass;
 
+import com.github.legendsdev.legends.library.armor.ArmorRestricted;
+import com.github.legendsdev.legends.library.armor.ArmorRestrictions;
 import com.github.legendsdev.legends.library.level.Level;
+import com.github.legendsdev.legends.library.level.LevelRestricted;
+import com.github.legendsdev.legends.library.level.LevelRestrictions;
 import com.github.legendsdev.legends.library.level.LevelUser;
+import com.github.legendsdev.legends.library.race.RaceRestricted;
+import com.github.legendsdev.legends.library.race.RaceRestrictions;
+import com.github.legendsdev.legends.library.skill.SkillRestricted;
+import com.github.legendsdev.legends.library.skill.SkillRestrictions;
+import com.github.legendsdev.legends.library.weapon.WeaponRestricted;
+import com.github.legendsdev.legends.library.weapon.WeaponRestrictions;
 
 /**
  * @author B2OJustin
  */
-public class LClassInfo implements LevelUser {
+public class LClassInfo implements LevelUser, SkillRestricted, ArmorRestricted, WeaponRestricted, LevelRestricted {
     private Level level = new Level(0);
+
+    private WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
+    private ArmorRestrictions armorRestrictions = new ArmorRestrictions();
+    private SkillRestrictions skillRestrictions = new SkillRestrictions();
+    private LevelRestrictions levelRestrictions = new LevelRestrictions();
 
     @Override
     public Level getLevel() {
         return level;
+    }
+
+    @Override
+    public ArmorRestrictions getArmorRestrictions() {
+        return armorRestrictions;
+    }
+
+    @Override
+    public LevelRestrictions getLevelRestrictions() {
+        return levelRestrictions;
+    }
+
+    @Override
+    public SkillRestrictions getSkillRestrictions() {
+        return skillRestrictions;
+    }
+
+    @Override
+    public WeaponRestrictions getWeaponRestrictions() {
+        return weaponRestrictions;
     }
 }
