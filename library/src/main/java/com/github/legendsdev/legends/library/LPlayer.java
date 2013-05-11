@@ -21,6 +21,7 @@ import com.github.legendsdev.legends.library.armor.*;
 import com.github.legendsdev.legends.library.lclass.*;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.level.LevelRestrictions;
+import com.github.legendsdev.legends.library.misc.Informative;
 import com.github.legendsdev.legends.library.race.*;
 import com.github.legendsdev.legends.library.skill.*;
 import com.github.legendsdev.legends.library.weapon.*;
@@ -32,13 +33,18 @@ import java.util.HashMap;
  * @author B2OJustin
  */
 public class LPlayer implements LEntity,
-        WeaponUser<LPlayer>, ArmorUser<LPlayer>, SkillUser<LPlayer>, LClassUser<LPlayer>, RaceUser<LPlayer>,
+        Informative<LPlayer, LPlayerInfo>,
+        WeaponUser<LPlayer>, ArmorUser<LPlayer>, SkillUser<LPlayer>,
         WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, LClassRestricted, RaceRestricted {
 
     private Race race = new Race();
 
     private LClass primaryClass = new LClass();
     private LClass secondaryClass = new LClass();
+
+    private String playerName = "";
+    private ArrayList<String> description = new ArrayList<>();
+    private LPlayerInfo lPlayerInfo = new LPlayerInfo();
 
     private LevelRestrictions levelRestrictions = new LevelRestrictions();
     private WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
@@ -50,8 +56,6 @@ public class LPlayer implements LEntity,
     private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
     private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
-    private HashMap<Race, RaceInfo> raceInfoMap = new HashMap<>();
-    private HashMap<LClass, LClassInfo> lClassInfoMap = new HashMap<>();
 
     private ArrayList<Skill> currentSkills = new ArrayList<>();
 
@@ -68,20 +72,36 @@ public class LPlayer implements LEntity,
         return primaryClass;
     }
 
-    public LClassInfo getPrimaryClassInfo() {
-        return getLClassInfo(primaryClass);
-    }
-
-    public LClassInfo getSecondaryClassInfo() {
-        return getLClassInfo(secondaryClass);
-    }
-
     public LClass getSecondaryClass() {
         return secondaryClass;
     }
 
-    public Weapon getCurrentWeapon() {
+    public Weapon getWeapon() {
         return currentWeapon;
+    }
+
+    public LPlayer setWeapon(Weapon weapon) {
+        if(weapon != null) {
+            currentWeapon = weapon;
+        }
+        return this;
+    }
+
+    public int getWeaponDamage() {
+        int weaponDamage = 0;
+        // Player bonuses
+        weaponDamage += getWeaponInfo(currentWeapon).getBonusWeaponDamage();
+
+        // Class bonuses
+        weaponDamage += primaryClass.getWeaponInfo(currentWeapon).getBonusWeaponDamage();
+        weaponDamage += secondaryClass.getWeaponInfo(currentWeapon).getBonusWeaponDamage();
+
+        // Race bonuses
+        weaponDamage += race.getWeaponInfo(currentWeapon).getBonusWeaponDamage();
+        weaponDamage += race.getLClassInfo(primaryClass).getBonusWeaponDamage();
+        weaponDamage += race.getLClassInfo(secondaryClass).getBonusWeaponDamage();
+
+        return weaponDamage;
     }
 
     @Override
@@ -207,46 +227,32 @@ public class LPlayer implements LEntity,
     }
 
     @Override
-    public HashMap<Race, RaceInfo> getRaceInfoMap() {
-        return raceInfoMap;
+    public ArrayList<String> getDescription() {
+        return description;
     }
 
     @Override
-    public RaceInfo getRaceInfo(Race race) {
-        return raceInfoMap.get(race);
+    public String getName() {
+        return playerName;
     }
 
     @Override
-    public LPlayer setRaceInfo(Race race, RaceInfo info) {
-        if(race != null) {
-            raceInfoMap.put(race, info);
-        }
+    public LPlayer setDescription(ArrayList<String> description) {
+        this.description = description;
         return this;
     }
 
     @Override
-    public HashMap<LClass, LClassInfo> getLClassInfoMap() {
-        return lClassInfoMap;
+    public LPlayerInfo getDefaultInfo() {
+        return lPlayerInfo;
     }
 
     @Override
-    public LClassInfo getLClassInfo(LClass lClass) {
-        if(lClass != null) {
-            LClassInfo lClassInfo = lClassInfoMap.get(lClass);
-            if(lClassInfo == null) {
-                lClassInfo = new LClassInfo();
-                lClassInfoMap.put(lClass, lClassInfo);
-            }
-            return lClassInfo;
+    public LPlayer setDefaultInfo(LPlayerInfo info) {
+        if(info == null) {
+            lPlayerInfo = new LPlayerInfo();
         }
-        return null;
-    }
-
-    @Override
-    public LPlayer setLClassInfo(LClass lClass, LClassInfo info) {
-        if(lClass != null) {
-            lClassInfoMap.put(lClass, info);
-        }
+        else lPlayerInfo = info;
         return this;
     }
 }

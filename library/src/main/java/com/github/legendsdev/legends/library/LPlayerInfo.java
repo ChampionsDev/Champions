@@ -14,20 +14,10 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library.weapon;
-
-import com.github.legendsdev.legends.library.BasicInfo;
-import com.github.legendsdev.legends.library.level.LevelRestricted;
-import com.github.legendsdev.legends.library.level.LevelRestrictions;
+package com.github.legendsdev.legends.library;
 
 /**
  * @author B2OJustin
  */
-public class WeaponInfo extends BasicInfo<WeaponInfo> implements LevelRestricted {
-    private LevelRestrictions levelRestrictions = new LevelRestrictions();
-
-    @Override
-    public LevelRestrictions getLevelRestrictions() {
-        return levelRestrictions;
-    }
+public class LPlayerInfo extends BasicInfo<LPlayerInfo> {
 }

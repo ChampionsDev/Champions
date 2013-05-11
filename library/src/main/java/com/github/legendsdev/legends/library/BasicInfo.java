@@ -24,9 +24,9 @@ import com.github.legendsdev.legends.library.level.LevelRestrictions;
  */
 
 @SuppressWarnings("unchecked")
-public class BasicInfo<SelfType extends BasicInfo> implements LevelRestricted {
-    private LevelRestrictions levelRestrictions = new LevelRestrictions();
-    private int bonusDamage = 0;
+public class BasicInfo<SelfType extends BasicInfo> {
+    private int bonusWeaponDamage = 0;
+    private int bonusSkillDamage = 0;
     private int bonusDefense = 0;
 
     public BasicInfo() {
@@ -46,18 +46,26 @@ public class BasicInfo<SelfType extends BasicInfo> implements LevelRestricted {
         return (SelfType) this;
     }
 
-    public int getBonusDamage() {
-        return bonusDamage;
+    public int getBonusWeaponDamage() {
+        return bonusWeaponDamage;
     }
 
-    public SelfType addBonusDamage(int bonusDamage) {
-        this.bonusDamage += bonusDamage;
+    public SelfType addBonusWeaponDamage(int bonusDamage) {
+        this.bonusWeaponDamage += bonusDamage;
         return (SelfType) this;
     }
 
-    @Override
-    public LevelRestrictions getLevelRestrictions() {
-        return levelRestrictions;
+    public int getBonusSkillDamage() {
+        return bonusSkillDamage;
     }
 
+    public SelfType setBonusSkillDamage(int bonusDamage) {
+        bonusSkillDamage = bonusDamage;
+        return (SelfType) this;
+    }
+
+    public SelfType addBonusSkillDamage(int bonusDamage) {
+        bonusSkillDamage += bonusDamage;
+        return (SelfType) this;
+    }
 }
