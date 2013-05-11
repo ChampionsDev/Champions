@@ -61,24 +61,25 @@ public class EventManager {
                 ArrayList<Method> highPriority = new ArrayList<>();
                 ArrayList<Method> highestPriority = new ArrayList<>();
 
-                // Add upstream methods
+                // Add upstream listener methods
                 for(int i = 0; i < MAX_UPSTREAM; i++) {
                     for(Method method : methods.get(clazz)) {
                         LEventHandler handler = handlers.get(method);
                         switch(handler.priority()) {
                             case LOWEST:
-                                lowestPriority.add(method);
+                                if(!lowestPriority.contains(method)) lowestPriority.add(method);
                                 break;
                             case LOW:
-                                lowPriority.add(method);
+                                if(!lowPriority.contains(method)) lowPriority.add(method);
                                 break;
                             case NORMAL:
-                                normalPriority.add(method);
+                                if(!normalPriority.contains(method)) normalPriority.add(method);
                                 break;
                             case HIGH:
-                                highPriority.add(method);
+                                if(!highPriority.contains(method)) highPriority.add(method);
                                 break;
                             case HIGHEST:
+                                if(!highestPriority.contains(method)) highestPriority.add(method);
                                 highestPriority.add(method);
                                 break;
                         }
