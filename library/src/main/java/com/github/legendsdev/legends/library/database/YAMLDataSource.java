@@ -161,7 +161,7 @@ public class YAMLDataSource implements DataSource {
                 break;
                 case "bonus-damage":
                     int bonusDamage = (int) entry.getValue();
-                    basicInfo.addBonusDamage(bonusDamage);
+                    basicInfo.addBonusWeaponDamage(bonusDamage);
                 break;
                 case "required-level":
                     int requiredLevel = (int) entry.getValue();

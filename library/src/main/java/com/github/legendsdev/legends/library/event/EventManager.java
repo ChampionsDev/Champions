@@ -74,11 +74,31 @@ public class EventManager {
                     }
                 }
 
-                for(Method method : lowestPriority) method.invoke(listeners.get(method), event);
-                for(Method method : lowPriority) method.invoke(listeners.get(method), event);
-                for(Method method : normalPriority) method.invoke(listeners.get(method), event);
-                for(Method method : highPriority) method.invoke(listeners.get(method), event);
-                for(Method method : highestPriority) method.invoke(listeners.get(method), event);
+                for(Method method : lowestPriority) {
+                    if (method.getParameterTypes()[0].isAssignableFrom(event.getClass())) {
+                        method.invoke(listeners.get(method), event);
+                    }
+                }
+                for(Method method : lowPriority) {
+                    if (method.getParameterTypes()[0].isAssignableFrom(event.getClass())) {
+                        method.invoke(listeners.get(method), event);
+                    }
+                }
+                for(Method method : normalPriority) {
+                    if (method.getParameterTypes()[0].isAssignableFrom(event.getClass())) {
+                        method.invoke(listeners.get(method), event);
+                    }
+                }
+                for(Method method : highPriority) {
+                    if (method.getParameterTypes()[0].isAssignableFrom(event.getClass())) {
+                        method.invoke(listeners.get(method), event);
+                    }
+                }
+                for(Method method : highestPriority) {
+                    if (method.getParameterTypes()[0].isAssignableFrom(event.getClass())) {
+                        method.invoke(listeners.get(method), event);
+                    }
+                }
             }
         } catch (IllegalAccessException | InvocationTargetException ignored){
         }
