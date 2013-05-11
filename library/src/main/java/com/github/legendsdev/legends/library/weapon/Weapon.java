@@ -19,18 +19,18 @@ package com.github.legendsdev.legends.library.weapon;
 
 import com.github.legendsdev.legends.library.event.weapon.WeaponClickEvent;
 import com.github.legendsdev.legends.library.event.weapon.WeaponHitEvent;
-import com.github.legendsdev.legends.library.level.LevelRestricted;
-import com.github.legendsdev.legends.library.level.LevelRestrictions;
-import com.github.legendsdev.legends.library.misc.Describable;
+import com.github.legendsdev.legends.library.misc.Informative;
 
 import java.util.ArrayList;
 
 /**
  * @author B2OJustin
  */
-public class Weapon implements Describable<Weapon>, WeaponBehavior {
+public class Weapon implements Informative<Weapon, WeaponInfo>, WeaponBehavior {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
+
+    private WeaponInfo weaponInfo = new WeaponInfo();
 
     public Weapon() {
     }
@@ -42,6 +42,17 @@ public class Weapon implements Describable<Weapon>, WeaponBehavior {
     
     public Weapon(String name, ArrayList<String> description, WeaponBehavior behaviour) {
         
+    }
+
+    @Override
+    public WeaponInfo getDefaultInfo() {
+        return weaponInfo;
+    }
+
+    @Override
+    public Weapon setDefaultInfo(WeaponInfo weaponInfo) {
+        this.weaponInfo = weaponInfo;
+        return this;
     }
 
     @Override

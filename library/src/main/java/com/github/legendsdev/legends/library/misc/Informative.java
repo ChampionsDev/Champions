@@ -21,8 +21,10 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public interface Describable<T> {
+public interface Informative<SelfType, InfoType> {
     public ArrayList<String> getDescription();
     public String getName();
-    public T setDescription(ArrayList<String> description);
+    public SelfType setDescription(ArrayList<String> description);
+    public InfoType getDefaultInfo();
+    public SelfType setDefaultInfo(InfoType info);
 }

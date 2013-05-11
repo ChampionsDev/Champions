@@ -19,8 +19,8 @@ package com.github.legendsdev.legends.library.race;
 
 
 import com.github.legendsdev.legends.library.armor.*;
-import com.github.legendsdev.legends.library.lclass.LClassRestricted;
-import com.github.legendsdev.legends.library.lclass.LClassRestrictions;
+import com.github.legendsdev.legends.library.lclass.*;
+import com.github.legendsdev.legends.library.misc.Informative;
 import com.github.legendsdev.legends.library.skill.*;
 import com.github.legendsdev.legends.library.weapon.*;
 
@@ -30,15 +30,18 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
+public class Race implements Informative<Race, RaceInfo>, ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, LClassUser<Race>,
         SkillRestricted, WeaponRestricted, ArmorRestricted, LClassRestricted {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
     private ArrayList<Skill> currentSkills = new ArrayList<>();
 
-    private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
     private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
+    private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
+    private HashMap<LClass, LClassInfo> lClassInfoMap = new HashMap<>();
+
+    private RaceInfo raceInfo = new RaceInfo();
 
     private WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
     private ArmorRestrictions armorRestrictions = new ArmorRestrictions();
@@ -55,6 +58,17 @@ public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
 
     public Race setDescription(ArrayList<String> description) {
         this.description = description;
+        return this;
+    }
+
+    @Override
+    public RaceInfo getDefaultInfo() {
+        return raceInfo;
+    }
+
+    @Override
+    public Race setDefaultInfo(RaceInfo info) {
+        this.raceInfo = info;
         return this;
     }
 
@@ -171,5 +185,31 @@ public class Race implements ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
     @Override
     public LClassRestrictions getLClassRestrictions() {
         return lClassRestrictions;
+    }
+
+    @Override
+    public HashMap<LClass, LClassInfo> getLClassInfoMap() {
+        return lClassInfoMap;
+    }
+
+    @Override
+    public LClassInfo getLClassInfo(LClass lClass) {
+        if(lClass != null) {
+            LClassInfo lClassInfo = lClassInfoMap.get(lClass);
+            if(lClassInfo == null) {
+                lClassInfo = new LClassInfo();
+                lClassInfoMap.put(lClass, lClassInfo);
+            }
+            return lClassInfo;
+        }
+        return null;
+    }
+
+    @Override
+    public Race setLClassInfo(LClass lClass, LClassInfo info) {
+        if(lClass != null) {
+            lClassInfoMap.put(lClass, info);
+        }
+        return this;
     }
 }

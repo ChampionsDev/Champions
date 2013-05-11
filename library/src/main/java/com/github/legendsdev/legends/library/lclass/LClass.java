@@ -3,7 +3,7 @@ package com.github.legendsdev.legends.library.lclass;
 import com.github.legendsdev.legends.library.armor.*;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.level.LevelRestrictions;
-import com.github.legendsdev.legends.library.misc.Describable;
+import com.github.legendsdev.legends.library.misc.Informative;
 import com.github.legendsdev.legends.library.skill.*;
 import com.github.legendsdev.legends.library.weapon.*;
 
@@ -13,7 +13,7 @@ import java.util.HashMap;
 /**
  * @author YoshiGenius
  */
-public class LClass implements Describable<LClass>,
+public class LClass implements Informative<LClass, LClassInfo>,
         LevelRestricted, WeaponRestricted, ArmorRestricted, SkillRestricted,
         WeaponUser<LClass>, SkillUser<LClass>, ArmorUser<LClass> {
 
@@ -25,6 +25,8 @@ public class LClass implements Describable<LClass>,
     private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
     private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
+
+    private LClassInfo lClassInfo = new LClassInfo();
 
     private LevelRestrictions levelRestrictions = new LevelRestrictions();
     private WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
@@ -53,6 +55,17 @@ public class LClass implements Describable<LClass>,
     @Override
     public LClass setDescription(ArrayList<String> description) {
         this.description = description;
+        return this;
+    }
+
+    @Override
+    public LClassInfo getDefaultInfo() {
+        return lClassInfo;
+    }
+
+    @Override
+    public LClass setDefaultInfo(LClassInfo info) {
+        lClassInfo = info;
         return this;
     }
 

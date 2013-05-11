@@ -17,19 +17,18 @@ This file is part of Legends.
 
 package com.github.legendsdev.legends.library.skill;
 
-import com.github.legendsdev.legends.library.level.LevelRestricted;
-import com.github.legendsdev.legends.library.level.LevelRestrictions;
-import com.github.legendsdev.legends.library.misc.Describable;
+import com.github.legendsdev.legends.library.misc.Informative;
 
 import java.util.ArrayList;
 
 /**
  * @author B2OJustin
  */
-public class Skill implements LevelRestricted, Describable<Skill> {
+public class Skill implements Informative<Skill, SkillInfo> {
     private String name = "";
-    private int mana = 0;
     private ArrayList<String> description = new ArrayList<>();
+
+    private SkillInfo skillInfo = new SkillInfo();
 
     public Skill() {
     }
@@ -37,15 +36,6 @@ public class Skill implements LevelRestricted, Describable<Skill> {
     public Skill(String name, ArrayList<String> description) {
         this.name = name;
         this.description = description;
-    }
-
-    public int getManaCost() {
-        return this.mana;
-    }
-    
-    public Skill setManaCost(int mana) {
-        this.mana = mana;
-        return this;
     }
 
     public String getName() {
@@ -62,7 +52,13 @@ public class Skill implements LevelRestricted, Describable<Skill> {
     }
 
     @Override
-    public LevelRestrictions getLevelRestrictions() {
-        return null; //TODO getLevelRestrictions method stub
+    public SkillInfo getDefaultInfo() {
+        return skillInfo;
+    }
+
+    @Override
+    public Skill setDefaultInfo(SkillInfo info) {
+        this.skillInfo = info;
+        return this;
     }
 }

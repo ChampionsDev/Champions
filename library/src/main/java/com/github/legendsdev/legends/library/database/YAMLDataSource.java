@@ -173,8 +173,9 @@ public class YAMLDataSource implements DataSource {
                 break;
             }
         }
-        return (T) basicInfo;
+        return basicInfo;
     }
+
 
     @Override
     public synchronized LClass loadLClass(String name) {

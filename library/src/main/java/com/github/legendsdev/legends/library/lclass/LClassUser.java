@@ -18,13 +18,14 @@ package com.github.legendsdev.legends.library.lclass;
 
 import com.github.legendsdev.legends.library.BasicUser;
 
+import java.util.HashMap;
+
 /**
  * @author B2OJustin
  */
 //TODO implement setters for LClassUser
 public interface LClassUser<SelfType extends LClassUser> extends BasicUser {
-    public LClass getPrimaryClass();
-    public LClassInfo getPrimaryClassInfo();
-    public LClassInfo getSecondaryClassInfo();
-    public LClass getSecondaryClass();
+    public HashMap<LClass, LClassInfo> getLClassInfoMap();
+    public LClassInfo getLClassInfo(LClass lClass);
+    public SelfType setLClassInfo(LClass lClass, LClassInfo info);
 }

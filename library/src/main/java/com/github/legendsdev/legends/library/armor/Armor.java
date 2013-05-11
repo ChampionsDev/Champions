@@ -17,16 +17,17 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.armor;
 
 
-import com.github.legendsdev.legends.library.misc.Describable;
+import com.github.legendsdev.legends.library.misc.Informative;
 
 import java.util.ArrayList;
 
 /**
  * @author B2OJustin
  */
-public class Armor implements Describable<Armor> {
+public class Armor implements Informative<Armor, ArmorInfo> {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
+    private ArmorInfo armorInfo = new ArmorInfo();
 
     public Armor() {
     }
@@ -38,6 +39,17 @@ public class Armor implements Describable<Armor> {
 
     public Armor setDescription(ArrayList<String> description) {
         this.description = description;
+        return this;
+    }
+
+    @Override
+    public ArmorInfo getDefaultInfo() {
+        return armorInfo;
+    }
+
+    @Override
+    public Armor setDefaultInfo(ArmorInfo info) {
+        armorInfo = info;
         return this;
     }
 

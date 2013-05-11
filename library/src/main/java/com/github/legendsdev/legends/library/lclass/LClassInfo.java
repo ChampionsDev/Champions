@@ -16,13 +16,14 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.lclass;
 
+import com.github.legendsdev.legends.library.BasicInfo;
 import com.github.legendsdev.legends.library.level.Level;
 import com.github.legendsdev.legends.library.level.LevelUser;
 
 /**
  * @author B2OJustin
  */
-public class LClassInfo implements LevelUser {
+public class LClassInfo extends BasicInfo<LClassInfo> implements LevelUser {
     private Level level = new Level(0);
 
 

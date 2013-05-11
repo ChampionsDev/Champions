@@ -25,9 +25,9 @@ import com.github.legendsdev.legends.library.level.LevelRestrictions;
 
 @SuppressWarnings("unchecked")
 public class BasicInfo<SelfType extends BasicInfo> implements LevelRestricted {
+    private LevelRestrictions levelRestrictions = new LevelRestrictions();
     private int bonusDamage = 0;
     private int bonusDefense = 0;
-    private LevelRestrictions levelRestrictions = new LevelRestrictions();
 
     public BasicInfo() {
     }

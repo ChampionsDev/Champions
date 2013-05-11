@@ -31,6 +31,8 @@ public class SkillInfo implements LevelUser, LevelRestricted {
     private int cooldownSeconds = 0;
     private double healthCost = 0;
     private double hungerCost = 0;
+
+    private LevelRestrictions levelRestrictions = new LevelRestrictions();
     
     public SkillInfo() {
     }
@@ -83,6 +85,6 @@ public class SkillInfo implements LevelUser, LevelRestricted {
 
     @Override
     public LevelRestrictions getLevelRestrictions() {
-        return null; //TODO getLevelRestrictions method stub
+        return levelRestrictions;
     }
 }

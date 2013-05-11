@@ -39,8 +39,6 @@ public class LPlayer implements LEntity,
 
     private LClass primaryClass = new LClass();
     private LClass secondaryClass = new LClass();
-    private LClassInfo primaryClassInfo = new LClassInfo();
-    private LClassInfo secondaryClassInfo = new LClassInfo();
 
     private LevelRestrictions levelRestrictions = new LevelRestrictions();
     private WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
@@ -53,6 +51,7 @@ public class LPlayer implements LEntity,
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
     private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
     private HashMap<Race, RaceInfo> raceInfoMap = new HashMap<>();
+    private HashMap<LClass, LClassInfo> lClassInfoMap = new HashMap<>();
 
     private ArrayList<Skill> currentSkills = new ArrayList<>();
 
@@ -65,22 +64,18 @@ public class LPlayer implements LEntity,
         return this.race;
     }
 
-    @Override
     public LClass getPrimaryClass() {
-        return this.primaryClass;
+        return primaryClass;
     }
 
-    @Override
     public LClassInfo getPrimaryClassInfo() {
-        return primaryClassInfo;
+        return getLClassInfo(primaryClass);
     }
 
-    @Override
     public LClassInfo getSecondaryClassInfo() {
-        return secondaryClassInfo;
+        return getLClassInfo(secondaryClass);
     }
 
-    @Override
     public LClass getSecondaryClass() {
         return secondaryClass;
     }
@@ -161,7 +156,15 @@ public class LPlayer implements LEntity,
 
     @Override
     public WeaponInfo getWeaponInfo(Weapon weapon) {
-        return weaponInfoMap.get(weapon);
+        if(weapon != null) {
+            WeaponInfo weaponInfo = weaponInfoMap.get(weapon);
+            if(weaponInfo == null) {
+                weaponInfo = new WeaponInfo();
+                weaponInfoMap.put(weapon, weaponInfo);
+            }
+            return weaponInfo;
+        }
+        return null;
     }
 
     @Override
@@ -179,7 +182,15 @@ public class LPlayer implements LEntity,
 
     @Override
     public ArmorInfo getArmorInfo(Armor armor) {
-        return armorInfoMap.get(armor);
+        if(armor != null) {
+            ArmorInfo armorInfo = armorInfoMap.get(armor);
+            if(armorInfo == null) {
+                armorInfo = new ArmorInfo();
+                armorInfoMap.put(armor, armorInfo);
+            }
+            return armorInfo;
+        }
+        return null;
     }
 
     @Override
@@ -209,6 +220,32 @@ public class LPlayer implements LEntity,
     public LPlayer setRaceInfo(Race race, RaceInfo info) {
         if(race != null) {
             raceInfoMap.put(race, info);
+        }
+        return this;
+    }
+
+    @Override
+    public HashMap<LClass, LClassInfo> getLClassInfoMap() {
+        return lClassInfoMap;
+    }
+
+    @Override
+    public LClassInfo getLClassInfo(LClass lClass) {
+        if(lClass != null) {
+            LClassInfo lClassInfo = lClassInfoMap.get(lClass);
+            if(lClassInfo == null) {
+                lClassInfo = new LClassInfo();
+                lClassInfoMap.put(lClass, lClassInfo);
+            }
+            return lClassInfo;
+        }
+        return null;
+    }
+
+    @Override
+    public LPlayer setLClassInfo(LClass lClass, LClassInfo info) {
+        if(lClass != null) {
+            lClassInfoMap.put(lClass, info);
         }
         return this;
     }
