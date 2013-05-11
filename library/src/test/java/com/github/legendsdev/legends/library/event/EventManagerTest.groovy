@@ -31,10 +31,14 @@ class EventManagerTest extends GroovyTestCase implements EventListener {
         EventManager.registerEvents(this);
     }
 
-    void testCallEvent() {
+    void testCallUpstreamEvent() {
         EventManager.callEvent(new WeaponClickEvent(new Weapon(), WeaponClickEvent.ClickType.LEFT_CLICK));
-        assertTrue("Downstream event not called", downstreamEventFired);
-        assertTrue("Upstream event not called", upstreamEventFired);
+        assertTrue("Upstream events not called", upstreamEventFired);
+    }
+
+    void testCallDownstreamEvent() {
+        EventManager.callEvent(new WeaponEvent(new Weapon()));
+        assertFalse("Downstream event called inappropriately", downstreamEventFired);
     }
 
     @LEventHandler
