@@ -17,25 +17,33 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.event
 
 import com.github.legendsdev.legends.library.event.weapon.WeaponClickEvent
+import com.github.legendsdev.legends.library.event.weapon.WeaponEvent
 import com.github.legendsdev.legends.library.weapon.Weapon
 
 /**
  * @author B2OJustin
  */
 class EventManagerTest extends GroovyTestCase implements EventListener {
-    boolean eventFired = false;
+    boolean upstreamEventFired = false;
+    boolean downstreamEventFired = false;
 
     void setUp() {
         EventManager.registerEvents(this);
     }
 
     void testCallEvent() {
-        EventManager.callEvent(new WeaponClickEvent(new Weapon(), WeaponClickEvent.ClickType.LEFT_CLICK))
-        assertTrue(eventFired);
+        EventManager.callEvent(new WeaponClickEvent(new Weapon(), WeaponClickEvent.ClickType.LEFT_CLICK));
+        assertTrue("Downstream event not called", downstreamEventFired);
+        assertTrue("Upstream event not called", upstreamEventFired);
     }
 
     @LEventHandler
-    public void eventHandler(WeaponClickEvent event) {
-        eventFired = true;
+    public void upstreamHandler(WeaponEvent event) {
+        upstreamEventFired = true;
+    }
+
+    @LEventHandler
+    public void downstreamHandler(WeaponClickEvent weaponClickEvent) {
+        downstreamEventFired = true;
     }
 }
