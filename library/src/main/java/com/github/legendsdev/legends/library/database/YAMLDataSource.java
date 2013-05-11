@@ -22,6 +22,7 @@ import com.github.legendsdev.legends.library.armor.Armor;
 import com.github.legendsdev.legends.library.armor.ArmorHandler;
 import com.github.legendsdev.legends.library.database.helper.YAMLHelper;
 import com.github.legendsdev.legends.library.lclass.LClass;
+import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.race.Race;
 import com.github.legendsdev.legends.library.weapon.Weapon;
 import com.github.legendsdev.legends.library.weapon.WeaponHandler;
@@ -164,12 +165,16 @@ public class YAMLDataSource implements DataSource {
                     basicInfo.addBonusWeaponDamage(bonusDamage);
                 break;
                 case "required-level":
-                    int requiredLevel = (int) entry.getValue();
-                    basicInfo.getLevelRestrictions().setMinLevel(requiredLevel);
+                    if(basicInfo instanceof LevelRestricted) {
+                        int requiredLevel = (int) entry.getValue();
+                        ((LevelRestricted)basicInfo).getLevelRestrictions().setMinLevel(requiredLevel);
+                    }
                 break;
                 case "maximum-level":
-                    int maximumLevel = (int) entry.getValue();
-                    basicInfo.getLevelRestrictions().setMaxLevel(maximumLevel);
+                    if(basicInfo instanceof  LevelRestricted) {
+                        int maximumLevel = (int) entry.getValue();
+                        ((LevelRestricted)basicInfo).getLevelRestrictions().setMaxLevel(maximumLevel);
+                    }
                 break;
             }
         }
