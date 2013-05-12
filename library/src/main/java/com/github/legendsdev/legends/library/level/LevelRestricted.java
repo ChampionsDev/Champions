@@ -19,6 +19,7 @@ package com.github.legendsdev.legends.library.level;
 /**
  * @author B2OJustin
  */
-public interface LevelRestricted {
+public interface LevelRestricted<SelfType extends LevelRestricted> {
     public LevelRestrictions getLevelRestrictions();
+    public SelfType setLevelRestrictions(LevelRestrictions levelRestrictions);
 }

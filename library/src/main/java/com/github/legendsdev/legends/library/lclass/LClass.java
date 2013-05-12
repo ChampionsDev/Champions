@@ -14,7 +14,7 @@ import java.util.HashMap;
  * @author YoshiGenius
  */
 public class LClass implements Informative<LClass, LClassInfo>,
-        LevelRestricted, WeaponRestricted, ArmorRestricted, SkillRestricted,
+        LevelRestricted<LClass>, WeaponRestricted<LClass>, ArmorRestricted<LClass>, SkillRestricted<LClass>,
         WeaponUser<LClass>, SkillUser<LClass>, ArmorUser<LClass> {
 
     private ArrayList<String> description = new ArrayList<>();
@@ -75,8 +75,20 @@ public class LClass implements Informative<LClass, LClassInfo>,
     }
 
     @Override
+    public LClass setArmorRestrictions(ArmorRestrictions armorRestrictions) {
+        this.armorRestrictions = armorRestrictions;
+        return this;
+    }
+
+    @Override
     public LevelRestrictions getLevelRestrictions() {
         return levelRestrictions;
+    }
+
+    @Override
+    public LClass setLevelRestrictions(LevelRestrictions levelRestrictions) {
+        this.levelRestrictions = levelRestrictions;
+        return this;
     }
 
     @Override
@@ -85,8 +97,20 @@ public class LClass implements Informative<LClass, LClassInfo>,
     }
 
     @Override
+    public LClass setSkillRestrictions(SkillRestrictions skillRestrictions) {
+        this.skillRestrictions = skillRestrictions;
+        return this;
+    }
+
+    @Override
     public WeaponRestrictions getWeaponRestrictions() {
         return weaponRestrictions;
+    }
+
+    @Override
+    public LClass setWeaponRestrictions(WeaponRestrictions restrictions) {
+        this.weaponRestrictions = restrictions;
+        return this;
     }
 
     @Override

@@ -19,6 +19,7 @@ package com.github.legendsdev.legends.library.skill;
 /**
  * @author B2OJustin
  */
-public interface SkillRestricted {
+public interface SkillRestricted<SelfType extends SkillRestricted> {
     public SkillRestrictions getSkillRestrictions();
+    public SelfType setSkillRestrictions(SkillRestrictions skillRestrictions);
 }

@@ -19,6 +19,7 @@ package com.github.legendsdev.legends.library.weapon;
 /**
  * @author B2OJustin
  */
-public interface WeaponRestricted {
+public interface WeaponRestricted<SelfType extends WeaponRestricted> {
     public WeaponRestrictions getWeaponRestrictions();
+    public SelfType setWeaponRestrictions(WeaponRestrictions restrictions);
 }

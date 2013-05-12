@@ -19,6 +19,7 @@ package com.github.legendsdev.legends.library.armor;
 /**
  * @author B2OJustin
  */
-public interface ArmorRestricted {
+public interface ArmorRestricted<SelfType extends ArmorRestricted> {
     public ArmorRestrictions getArmorRestrictions();
+    public SelfType setArmorRestrictions(ArmorRestrictions armorRestrictions);
 }

@@ -16,8 +16,10 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.lclass;
 
+import com.github.legendsdev.legends.library.restriction.BasicRestrictions;
+
 /**
  * @author B2OJustin
  */
-public class LClassRestrictions {
+public class LClassRestrictions extends BasicRestrictions<LClass> {
 }

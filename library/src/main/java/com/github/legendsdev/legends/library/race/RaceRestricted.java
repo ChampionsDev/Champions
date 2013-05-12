@@ -19,6 +19,7 @@ package com.github.legendsdev.legends.library.race;
 /**
  * @author B2OJustin
  */
-public interface RaceRestricted {
+public interface RaceRestricted<SelfType extends RaceRestricted> {
     public RaceRestrictions getRaceRestrictions();
+    public SelfType setRaceRestrictions(RaceRestrictions raceRestrictions);
 }

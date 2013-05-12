@@ -24,9 +24,7 @@ public class SQLHelper {
                 } catch (ClassNotFoundException | SQLException e) {}
                 break;
             case MYSQL:
-                try {
-                    
-                } catch (ClassNotFoundException | SQLException e) {}
+                break;
         }
     }
     

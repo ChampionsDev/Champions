@@ -35,7 +35,7 @@ import java.util.HashMap;
 public class LPlayer implements LEntity,
         Informative<LPlayer, LPlayerInfo>,
         WeaponUser<LPlayer>, ArmorUser<LPlayer>, SkillUser<LPlayer>,
-        WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, LClassRestricted, RaceRestricted {
+        WeaponRestricted<LPlayer>, ArmorRestricted<LPlayer>, SkillRestricted<LPlayer>, LevelRestricted<LPlayer>, LClassRestricted<LPlayer>, RaceRestricted<LPlayer> {
 
     private Race race = new Race();
 
@@ -222,8 +222,20 @@ public class LPlayer implements LEntity,
     }
 
     @Override
+    public LPlayer setSkillRestrictions(SkillRestrictions skillRestrictions) {
+        this.skillRestrictions = skillRestrictions;
+        return this;
+    }
+
+    @Override
     public ArmorRestrictions getArmorRestrictions() {
         return armorRestrictions;
+    }
+
+    @Override
+    public LPlayer setArmorRestrictions(ArmorRestrictions armorRestrictions) {
+        this.armorRestrictions = armorRestrictions;
+        return this;
     }
 
     @Override
@@ -232,13 +244,28 @@ public class LPlayer implements LEntity,
     }
 
     @Override
+    public LPlayer setWeaponRestrictions(WeaponRestrictions restrictions) {
+        return null; //TODO setWeaponRestrictions method stub
+    }
+
+    @Override
     public LevelRestrictions getLevelRestrictions() {
         return levelRestrictions;
     }
 
     @Override
+    public LPlayer setLevelRestrictions(LevelRestrictions levelRestrictions) {
+        return null; //TODO setLevelRestrictions method stub
+    }
+
+    @Override
     public LClassRestrictions getLClassRestrictions() {
         return lClassRestrictions;
+    }
+
+    @Override
+    public LPlayer setLClassRestrictions(LClassRestrictions restrictions) {
+        return null; //TODO setLClassRestrictions method stub
     }
 
     @Override
@@ -296,6 +323,12 @@ public class LPlayer implements LEntity,
     @Override
     public RaceRestrictions getRaceRestrictions() {
         return raceRestrictions;
+    }
+
+    @Override
+    public LPlayer setRaceRestrictions(RaceRestrictions raceRestrictions) {
+        this.raceRestrictions = raceRestrictions;
+        return this;
     }
 
     @Override
