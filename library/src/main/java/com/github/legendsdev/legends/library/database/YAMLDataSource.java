@@ -17,7 +17,7 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.database;
 
 import com.github.legendsdev.legends.library.BasicInfo;
-import com.github.legendsdev.legends.library.LPlayer;
+import com.github.legendsdev.legends.library.lplayer.LPlayer;
 import com.github.legendsdev.legends.library.armor.*;
 import com.github.legendsdev.legends.library.database.helper.YAMLHelper;
 import com.github.legendsdev.legends.library.lclass.*;

@@ -14,28 +14,12 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library.event.weapon;
+package com.github.legendsdev.legends.library.lplayer;
 
-import com.github.legendsdev.legends.library.LEntity;
-import com.github.legendsdev.legends.library.lplayer.LPlayer;
-import com.github.legendsdev.legends.library.weapon.Weapon;
+import com.github.legendsdev.legends.library.BasicInfo;
 
 /**
  * @author B2OJustin
  */
-public class WeaponHitEvent extends WeaponEvent {
-    public Object target;
-
-    public WeaponHitEvent(Weapon weapon, LPlayer source, Object target) {
-        super(weapon, source);
-        this.target = target;
-    }
-
-    public LPlayer getSource() {
-        return getLPlayer();
-    }
-
-    public Object getTarget() {
-        return target;
-    }
+public class LPlayerInfo extends BasicInfo<LPlayerInfo> {
 }

@@ -14,9 +14,11 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library;
+package com.github.legendsdev.legends.library.lplayer;
 
 
+import com.github.legendsdev.legends.library.BasicInfo;
+import com.github.legendsdev.legends.library.LEntity;
 import com.github.legendsdev.legends.library.armor.Armor;
 import com.github.legendsdev.legends.library.armor.ArmorInfo;
 import com.github.legendsdev.legends.library.armor.ArmorRestricted;

@@ -1,6 +1,6 @@
 package com.github.legendsdev.legends.library.event;
 
-import com.github.legendsdev.legends.library.LPlayer;
+import com.github.legendsdev.legends.library.lplayer.LPlayer;
 
 /**
  * @author YoshiGenius
