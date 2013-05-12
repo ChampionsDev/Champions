@@ -13,9 +13,7 @@ Levels:
   experience-curve: 'L * 20'
   experience-sources:
     MOB_KILL:
-      exp-gain: 5
     PLAYER_KILL:
-      exp-gain: 50
     QUESTING:
     
 Weapons:
@@ -47,13 +45,3 @@ Skills:
       cooldown: 60000
       health-cost: 10
       delay: 5000
-        
-Traits:
-  default: deny
-  permitted-traits:
-    Werewolf:
-      bonus-stamina: 20
-    Vampire:
-      bonus-health: 20
-    Mage:
-      bonus-mana: 20 

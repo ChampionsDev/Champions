@@ -22,5 +22,24 @@ import com.github.legendsdev.legends.library.BasicInfo;
  * @author B2OJustin
  */
 public class RaceInfo extends BasicInfo<RaceInfo> {
+    public int healthPerLevel = 0;
+    public int manaPerLevel = 0;
 
+    public RaceInfo setHealthPerLevel(int healthPerLevel) {
+        this.healthPerLevel = healthPerLevel;
+        return this;
+    }
+
+    public RaceInfo setManaPerLevel(int manaPerLevel) {
+        this.manaPerLevel = manaPerLevel;
+        return this;
+    }
+
+    public int getHealthPerLevel() {
+        return healthPerLevel;
+    }
+
+    public int getManaPerLevel() {
+        return manaPerLevel;
+    }
 }

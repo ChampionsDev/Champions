@@ -28,6 +28,8 @@ public class BasicInfo<SelfType extends BasicInfo> {
     private int bonusWeaponDamage = 0;
     private int bonusSkillDamage = 0;
     private int bonusDefense = 0;
+    private int bonusHealth = 0;
+    private int bonusMana = 0;
 
     public BasicInfo() {
     }
@@ -68,4 +70,28 @@ public class BasicInfo<SelfType extends BasicInfo> {
         bonusSkillDamage += bonusDamage;
         return (SelfType) this;
     }
+
+    public void setBonusWeaponDamage(int bonusWeaponDamage) {
+        this.bonusWeaponDamage = bonusWeaponDamage;
+    }
+
+    public int getBonusHealth() {
+        return bonusHealth;
+    }
+
+    public SelfType setBonusHealth(int bonusHealth) {
+        this.bonusHealth = bonusHealth;
+        return (SelfType) this;
+    }
+
+    public int getBonusMana() {
+        return bonusMana;
+    }
+
+    public SelfType setBonusMana(int bonusMana) {
+        this.bonusMana = bonusMana;
+        return (SelfType) this;
+    }
+
+    public SelfType
 }
