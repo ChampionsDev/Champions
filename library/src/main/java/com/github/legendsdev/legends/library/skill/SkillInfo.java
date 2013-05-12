@@ -31,6 +31,7 @@ public class SkillInfo implements LevelUser, LevelRestricted {
     private int cooldownSeconds = 0;
     private double healthCost = 0;
     private double hungerCost = 0;
+    private int damage = 0;
 
     private LevelRestrictions levelRestrictions = new LevelRestrictions();
     
@@ -80,6 +81,15 @@ public class SkillInfo implements LevelUser, LevelRestricted {
     
     public SkillInfo setHungerCost(int hungerCost) {
         this.hungerCost = hungerCost;
+        return this;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public SkillInfo setDamage(int damage) {
+        this.damage = damage;
         return this;
     }
 

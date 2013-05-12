@@ -30,6 +30,7 @@ public class BasicInfo<SelfType extends BasicInfo> {
     private int bonusDefense = 0;
     private int bonusHealth = 0;
     private int bonusMana = 0;
+    private int bonusStamina = 0;
 
     public static BasicInfo combine(List<BasicInfo> infos) {
         BasicInfo info = new BasicInfo();
@@ -39,6 +40,7 @@ public class BasicInfo<SelfType extends BasicInfo> {
             info.addBonusMana(inf.getBonusMana());
             info.addBonusHealth(inf.getBonusHealth());
             info.addBonusWeaponDamage(inf.getBonusWeaponDamage());
+            info.addBonusStamina(inf.getBonusStamina());
         }
         return info;
     }
@@ -117,5 +119,19 @@ public class BasicInfo<SelfType extends BasicInfo> {
     public SelfType setBonusMana(int bonusMana) {
         this.bonusMana = bonusMana;
         return (SelfType) this;
+    }
+
+    public SelfType addBonusStamina(int bonusStamina) {
+        this.bonusStamina += bonusStamina;
+        return (SelfType) this;
+    }
+
+    public SelfType setBonusStamina(int bonusStamina) {
+        this.bonusStamina = bonusStamina;
+        return (SelfType) this;
+    }
+
+    public int getBonusStamina() {
+        return bonusStamina;
     }
 }

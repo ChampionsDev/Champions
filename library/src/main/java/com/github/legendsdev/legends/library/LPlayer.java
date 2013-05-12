@@ -63,16 +63,24 @@ public class LPlayer implements LEntity,
     private Armor currentArmor = new Armor();
 
     private int weaponDamage = 0;
+    private int skillDamage = 0;
+    private int defense = 0;
     private int currentHealth = 0;
     private int maxHealth = 0;
-
     private int currentMana = 0;
     private int maxMana = 0;
-
     private int currentStamina = 0;
     private int maxStamina = 0;
 
     public LPlayer(Race race, LClass primaryClass, LClass secondaryClass) {
+        this.race = race;
+        this.primaryClass = primaryClass;
+        this.secondaryClass = secondaryClass;
+        update();
+        // TODO loading of current health, mana, stamina
+        currentHealth = maxHealth;
+        currentMana = maxMana;
+        currentStamina = maxStamina;
     }
 
     public Race getRace() {
@@ -94,69 +102,69 @@ public class LPlayer implements LEntity,
     public LPlayer setWeapon(Weapon weapon) {
         if(weapon != null) {
             currentWeapon = weapon;
-
-            // Weapon damage
-            weaponDamage = 0;
-            weaponDamage += getWeaponInfo(currentWeapon).getBonusWeaponDamage();
-            weaponDamage += getArmorInfo(currentArmor).getBonusWeaponDamage();
-            weaponDamage += lPlayerInfo.getBonusWeaponDamage();
-            // Class bonuses
-            weaponDamage += primaryClass.getWeaponInfo(currentWeapon).getBonusWeaponDamage();
-            weaponDamage += primaryClass.getArmorInfo(currentArmor).getBonusWeaponDamage();
-            weaponDamage += secondaryClass.getWeaponInfo(currentWeapon).getBonusWeaponDamage();
-            weaponDamage += secondaryClass.getArmorInfo(currentArmor).getBonusWeaponDamage();
-            // Race bonuses
-            weaponDamage += race.getWeaponInfo(currentWeapon).getBonusWeaponDamage();
-            weaponDamage += race.getArmorInfo(currentArmor).getBonusWeaponDamage();
-            weaponDamage += race.getLClassInfo(primaryClass).getBonusWeaponDamage();
-            weaponDamage += race.getLClassInfo(secondaryClass).getBonusWeaponDamage();
         }
         return this;
     }
 
+    public int getHealth() {
+        return currentHealth;
+    }
+
+    public int getMana() {
+        return currentMana;
+    }
+
+    public int getMaxMana() {
+        return maxMana;
+    }
+
+    public int getStamina() {
+        return currentStamina;
+    }
+
+    public int getMaxStamina() {
+        return maxStamina;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
     public LPlayer update() {
-        // Weapon damage
-        weaponDamage = 0;
-        weaponDamage += getWeaponInfo(currentWeapon).getBonusWeaponDamage();
-        weaponDamage += getArmorInfo(currentArmor).getBonusWeaponDamage();
-        weaponDamage += lPlayerInfo.getBonusWeaponDamage();
+        ArrayList<BasicInfo> infoList = new ArrayList<>();
         // Class bonuses
-        weaponDamage += primaryClass.getWeaponInfo(currentWeapon).getBonusWeaponDamage();
-        weaponDamage += primaryClass.getArmorInfo(currentArmor).getBonusWeaponDamage();
-        weaponDamage += secondaryClass.getWeaponInfo(currentWeapon).getBonusWeaponDamage();
-        weaponDamage += secondaryClass.getArmorInfo(currentArmor).getBonusWeaponDamage();
-        // Race bonuses
-        weaponDamage += race.getWeaponInfo(currentWeapon).getBonusWeaponDamage();
-        weaponDamage += race.getArmorInfo(currentArmor).getBonusWeaponDamage();
-        weaponDamage += race.getLClassInfo(primaryClass).getBonusWeaponDamage();
-        weaponDamage += race.getLClassInfo(secondaryClass).getBonusWeaponDamage();
+        infoList.add(primaryClass.getArmorInfo(currentArmor));
+        infoList.add(primaryClass.getWeaponInfo(currentWeapon));
+        infoList.add(secondaryClass.getArmorInfo(currentArmor));
+        infoList.add(secondaryClass.getWeaponInfo(currentWeapon));
+        infoList.add(primaryClass.getDefaultInfo());
+        infoList.add(secondaryClass.getDefaultInfo());
 
-        // Max health
-        maxHealth = 0;
-        maxHealth += getWeaponInfo(currentWeapon).getBonusHealth();
-        maxHealth += getArmorInfo(currentArmor).getBonusHealth();
-        maxHealth += lPlayerInfo.getBonusHealth();
-        // Class bonuses
-        maxHealth += primaryClass.getArmorInfo(currentArmor).getBonusHealth();
-        maxHealth += primaryClass.getWeaponInfo(currentWeapon).getBonusHealth();
-        maxHealth += secondaryClass.getArmorInfo(currentArmor).getBonusHealth();
-        maxHealth += secondaryClass.getWeaponInfo(currentWeapon).getBonusHealth();
         // Race bonuses
-        maxHealth += race.getWeaponInfo(currentWeapon).getBonusHealth();
-        maxHealth += race.getArmorInfo(currentArmor).getBonusHealth();
-        maxHealth += race.getLClassInfo(primaryClass).getBonusHealth();
-        maxHealth += race.getLClassInfo(secondaryClass).getBonusHealth();
+        infoList.add(race.getArmorInfo(currentArmor));
+        infoList.add(race.getWeaponInfo(currentWeapon));
+        infoList.add(race.getLClassInfo(primaryClass));
+        infoList.add(race.getLClassInfo(secondaryClass));
+        infoList.add(race.getDefaultInfo());
 
-        // Max mana
-        maxMana = 0;
-        maxMana += getWeaponInfo(currentWeapon).getBonusMana();
-        maxMana += getArmorInfo(currentArmor).getBonusMana();
-        maxMana += lPlayerInfo.getBonusMana();
-        // Class bonuses
-        maxMana += primaryClass.getArmorInfo(currentArmor).getBonusMana();
-        maxMana += primaryClass.getWeaponInfo(currentWeapon).getBonusMana();
-        maxMana += secondaryClass.getArmorInfo(currentArmor).getBonusMana();
-        maxMana += secondaryClass.getWeaponInfo(currentWeapon).getBonusMana();
+        // Player bonuses
+        infoList.add(lPlayerInfo);
+        infoList.add(getArmorInfo(currentArmor));
+        infoList.add(getWeaponInfo(currentWeapon));
+
+        BasicInfo basicInfo = BasicInfo.combine(infoList);
+
+        maxMana = basicInfo.getBonusMana();
+        maxHealth = basicInfo.getBonusHealth();
+        maxStamina = basicInfo.getBonusStamina();
+        weaponDamage = basicInfo.getBonusWeaponDamage();
+        skillDamage = basicInfo.getBonusSkillDamage();
+        defense = basicInfo.getBonusDefense();
+
         return this;
     }
 
@@ -164,8 +172,8 @@ public class LPlayer implements LEntity,
         return weaponDamage;
     }
 
-    public LPlayer updateInfo() {
-
+    public int getSkillDamage(Skill skill) {
+        return (skillDamage + skillInfoMap.get(skill).getDamage());
     }
 
     @Override
