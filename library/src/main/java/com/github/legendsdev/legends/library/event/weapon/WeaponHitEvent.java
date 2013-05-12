@@ -16,7 +16,6 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.event.weapon;
 
-import com.github.legendsdev.legends.library.LEntity;
 import com.github.legendsdev.legends.library.lplayer.LPlayer;
 import com.github.legendsdev.legends.library.weapon.Weapon;
 

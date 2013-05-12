@@ -17,11 +17,11 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.database;
 
 import com.github.legendsdev.legends.library.BasicInfo;
-import com.github.legendsdev.legends.library.lplayer.LPlayer;
 import com.github.legendsdev.legends.library.armor.*;
 import com.github.legendsdev.legends.library.database.helper.YAMLHelper;
 import com.github.legendsdev.legends.library.lclass.*;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
+import com.github.legendsdev.legends.library.lplayer.LPlayer;
 import com.github.legendsdev.legends.library.race.Race;
 import com.github.legendsdev.legends.library.restriction.RestrictionHandler;
 import com.github.legendsdev.legends.library.weapon.*;
