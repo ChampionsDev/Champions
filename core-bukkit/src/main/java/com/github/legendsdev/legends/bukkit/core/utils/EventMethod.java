@@ -15,7 +15,7 @@ This file is part of Legends.
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.github.legendsdev.legends.core.utils;
+package com.github.legendsdev.legends.bukkit.core.utils;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;

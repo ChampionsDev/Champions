@@ -1,5 +1,7 @@
 package com.github.legendsdev.legends.library.event;
 
+import com.github.legendsdev.legends.library.listener.BaseListener;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;

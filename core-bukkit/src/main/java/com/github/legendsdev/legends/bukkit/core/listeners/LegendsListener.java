@@ -17,6 +17,7 @@ This file is part of Legends.
 package com.github.legendsdev.legends.bukkit.core.listeners;
 
 import com.github.legendsdev.legends.library.event.EventListener;
+import com.github.legendsdev.legends.library.event.EventManager;
 import com.github.legendsdev.legends.library.event.weapon.WeaponClickEvent;
 import com.github.legendsdev.legends.library.lplayer.LPlayer;
 import com.github.legendsdev.legends.library.lplayer.LPlayerHandler;
@@ -25,6 +26,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemHeldEvent;
 
 /**
  * @author B2OJustin
@@ -44,8 +46,8 @@ public class LegendsListener implements Listener, EventListener {
                 lEvent = new WeaponClickEvent(playerWeapon, player, WeaponClickEvent.ClickType.RIGHT_CLICK);
             }
             else return;
-
-            playerWeapon.onClick(lEvent);
+            EventManager.callEvent(lEvent);
         }
     }
+
 }
