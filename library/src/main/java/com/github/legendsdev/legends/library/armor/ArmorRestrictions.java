@@ -19,6 +19,8 @@ package com.github.legendsdev.legends.library.armor;
 import com.github.legendsdev.legends.library.restriction.BasicRestrictions;
 
 /**
+ * Stores restriction information for ArmorRestricted objects.
+ *
  * @author B2OJustin
  */
 public class ArmorRestrictions extends BasicRestrictions<Armor> {

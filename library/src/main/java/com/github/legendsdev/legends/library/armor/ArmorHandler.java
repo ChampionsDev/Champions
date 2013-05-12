@@ -19,6 +19,8 @@ package com.github.legendsdev.legends.library.armor;
 import com.github.legendsdev.legends.library.BasicHandler;
 
 /**
+ * Used for storing and retrieving Armor instances
+ *
  * @author B2OJustin
  */
 public class ArmorHandler extends BasicHandler<Armor> {

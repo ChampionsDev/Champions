@@ -22,6 +22,8 @@ import com.github.legendsdev.legends.library.misc.Informative;
 import java.util.ArrayList;
 
 /**
+ * Represents a player Armor object.
+ *
  * @author B2OJustin
  */
 public class Armor implements Informative<Armor, ArmorInfo> {
