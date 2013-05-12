@@ -31,7 +31,7 @@ import java.util.HashMap;
  * @author B2OJustin
  */
 public class Race implements Informative<Race, RaceInfo>, ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, LClassUser<Race>,
-        SkillRestricted<Race>, WeaponRestricted<Race>, ArmorRestricted<Race>, LClassRestricted<Race> {
+        SkillRestricted, WeaponRestricted, ArmorRestricted, LClassRestricted {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
     private ArrayList<Skill> currentSkills = new ArrayList<>();
@@ -42,11 +42,6 @@ public class Race implements Informative<Race, RaceInfo>, ArmorUser<Race>, Skill
     private HashMap<LClass, LClassInfo> lClassInfoMap = new HashMap<>();
 
     private RaceInfo raceInfo = new RaceInfo();
-
-    private WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
-    private ArmorRestrictions armorRestrictions = new ArmorRestrictions();
-    private SkillRestrictions skillRestrictions = new SkillRestrictions();
-    private LClassRestrictions lClassRestrictions = new LClassRestrictions();
 
     public Race() {
     }
@@ -95,16 +90,6 @@ public class Race implements Informative<Race, RaceInfo>, ArmorUser<Race>, Skill
     public Race removeSkill(Skill skill) {
         currentSkills.remove(skill);
         return this;
-    }
-
-    @Override
-    public WeaponRestrictions getWeaponRestrictions() {
-        return weaponRestrictions;
-    }
-
-    @Override
-    public Race setWeaponRestrictions(WeaponRestrictions restrictions) {
-        return null; //TODO setWeaponRestrictions method stub
     }
 
     @Override
@@ -174,39 +159,6 @@ public class Race implements Informative<Race, RaceInfo>, ArmorUser<Race>, Skill
         if(weapon != null) {
             weaponInfoMap.put(weapon, info);
         }
-        return this;
-    }
-
-    @Override
-    public ArmorRestrictions getArmorRestrictions() {
-        return armorRestrictions;
-    }
-
-    @Override
-    public Race setArmorRestrictions(ArmorRestrictions armorRestrictions) {
-        this.armorRestrictions = armorRestrictions;
-        return this;
-    }
-
-    @Override
-    public SkillRestrictions getSkillRestrictions() {
-        return skillRestrictions;
-    }
-
-    @Override
-    public Race setSkillRestrictions(SkillRestrictions skillRestrictions) {
-        this.skillRestrictions = skillRestrictions;
-        return this;
-    }
-
-    @Override
-    public LClassRestrictions getLClassRestrictions() {
-        return lClassRestrictions;
-    }
-
-    @Override
-    public Race setLClassRestrictions(LClassRestrictions restrictions) {
-        this.lClassRestrictions = restrictions;
         return this;
     }
 

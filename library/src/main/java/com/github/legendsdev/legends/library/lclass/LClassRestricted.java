@@ -19,7 +19,5 @@ package com.github.legendsdev.legends.library.lclass;
 /**
  * @author B2OJustin
  */
-public interface LClassRestricted<SelfType extends LClassRestricted> {
-    public LClassRestrictions getLClassRestrictions();
-    public SelfType setLClassRestrictions(LClassRestrictions restrictions);
+public interface LClassRestricted {
 }

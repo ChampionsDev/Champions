@@ -14,7 +14,7 @@ import java.util.HashMap;
  * @author YoshiGenius
  */
 public class LClass implements Informative<LClass, LClassInfo>,
-        LevelRestricted<LClass>, WeaponRestricted<LClass>, ArmorRestricted<LClass>, SkillRestricted<LClass>,
+        LevelRestricted, WeaponRestricted, ArmorRestricted, SkillRestricted,
         WeaponUser<LClass>, SkillUser<LClass>, ArmorUser<LClass> {
 
     private ArrayList<String> description = new ArrayList<>();
@@ -27,11 +27,6 @@ public class LClass implements Informative<LClass, LClassInfo>,
     private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
 
     private LClassInfo lClassInfo = new LClassInfo();
-
-    private LevelRestrictions levelRestrictions = new LevelRestrictions();
-    private WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
-    private ArmorRestrictions armorRestrictions = new ArmorRestrictions();
-    private SkillRestrictions skillRestrictions = new SkillRestrictions();
 
 
     public LClass() {
@@ -66,50 +61,6 @@ public class LClass implements Informative<LClass, LClassInfo>,
     @Override
     public LClass setDefaultInfo(LClassInfo info) {
         lClassInfo = info;
-        return this;
-    }
-
-    @Override
-    public ArmorRestrictions getArmorRestrictions() {
-        return armorRestrictions;
-    }
-
-    @Override
-    public LClass setArmorRestrictions(ArmorRestrictions armorRestrictions) {
-        this.armorRestrictions = armorRestrictions;
-        return this;
-    }
-
-    @Override
-    public LevelRestrictions getLevelRestrictions() {
-        return levelRestrictions;
-    }
-
-    @Override
-    public LClass setLevelRestrictions(LevelRestrictions levelRestrictions) {
-        this.levelRestrictions = levelRestrictions;
-        return this;
-    }
-
-    @Override
-    public SkillRestrictions getSkillRestrictions() {
-        return skillRestrictions;
-    }
-
-    @Override
-    public LClass setSkillRestrictions(SkillRestrictions skillRestrictions) {
-        this.skillRestrictions = skillRestrictions;
-        return this;
-    }
-
-    @Override
-    public WeaponRestrictions getWeaponRestrictions() {
-        return weaponRestrictions;
-    }
-
-    @Override
-    public LClass setWeaponRestrictions(WeaponRestrictions restrictions) {
-        this.weaponRestrictions = restrictions;
         return this;
     }
 

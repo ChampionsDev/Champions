@@ -23,6 +23,7 @@ import com.github.legendsdev.legends.library.database.helper.YAMLHelper;
 import com.github.legendsdev.legends.library.lclass.*;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.race.Race;
+import com.github.legendsdev.legends.library.restriction.RestrictionHandler;
 import com.github.legendsdev.legends.library.weapon.*;
 
 import java.io.FileNotFoundException;
@@ -81,15 +82,15 @@ public class YAMLDataSource implements DataSource {
                         break;
 
                     case "Weapons":
-                        race.setWeaponRestrictions(loadWeaponRestrictions(race, "Weapons", yml));
+                        RestrictionHandler.getInstance().setWeaponRestrictions(race, loadWeaponRestrictions(race, "Weapons", yml));
                     break;
 
                     case "Armor":
-                        race.setArmorRestrictions(loadArmorRestrictions(race, "Armor", yml));
+                        RestrictionHandler.getInstance().setArmorRestrictions(race, loadArmorRestrictions(race, "Armor", yml));
                     break;
 
                     case "Class":
-                        race.setLClassRestrictions(loadLClassRestrictions(race, "Class", yml));
+                        RestrictionHandler.getInstance().setClassRestrictions(race, loadClassRestrictions(race, "Class", yml));
                 }
             }
 
@@ -128,7 +129,7 @@ public class YAMLDataSource implements DataSource {
                     int bonusMana = (int) entry.getValue();
                     basicInfo.addBonusMana(bonusMana);
                 break;
-                case "required-level":
+                /*case "required-level":    // TODO
                     if(basicInfo instanceof LevelRestricted) {
                         int requiredLevel = (int) entry.getValue();
                         ((LevelRestricted)basicInfo).getLevelRestrictions().setMinLevel(requiredLevel);
@@ -139,26 +140,27 @@ public class YAMLDataSource implements DataSource {
                         int maximumLevel = (int) entry.getValue();
                         ((LevelRestricted)basicInfo).getLevelRestrictions().setMaxLevel(maximumLevel);
                     }
-                break;
+                break;*/
             }
         }
         return basicInfo;
     }
 
     protected WeaponRestrictions loadWeaponRestrictions(WeaponRestricted restricted, String path, YAMLHelper yml) {
+        WeaponRestrictions restrictions = new WeaponRestrictions();
         for(String wepKey : yml.getKeys("Weapons")) {
             switch(wepKey) {
                 case "default":
                     if(yml.getString("Weapons.default").equals("allow")) {
-                        restricted.getWeaponRestrictions().setDefault(true);
+                        restrictions.setDefault(true);
                     }
-                    else restricted.getWeaponRestrictions().setDefault(false);
+                    else restrictions.setDefault(false);
                     break;
                 case "permitted-weapon":
                     for(String wepID : yml.getKeys("Weapons.permitted-weapon")) {
                         Weapon weapon = WeaponHandler.getInstance().get(wepID);
                         if(weapon != null) {
-                            restricted.getWeaponRestrictions().setAllowed(weapon, true);
+                            restrictions.setAllowed(weapon, true);
                             if(restricted instanceof WeaponUser) {
                                 LinkedHashMap<String, Object> infoMap = yml.getObject(LinkedHashMap.class, String.format("Weapons.permitted-weapon.%s", wepID));
                                 loadBasicInfo(((WeaponUser)restricted).getWeaponInfo(weapon), infoMap);
@@ -169,27 +171,28 @@ public class YAMLDataSource implements DataSource {
                 case "restricted-weapon":
                     for(String wepID : yml.getStringList("Weapons.restricted-weapon")) {
                         Weapon weapon = WeaponHandler.getInstance().get(wepID);
-                        restricted.getWeaponRestrictions().setAllowed(weapon, false);
+                        restrictions.setAllowed(weapon, false);
                     }
             }
         }
-        return restricted.getWeaponRestrictions();
+        return restrictions;
     }
 
     protected ArmorRestrictions loadArmorRestrictions(ArmorRestricted restricted, String path, YAMLHelper yml) {
+        ArmorRestrictions restrictions = new ArmorRestrictions();
         for(String armorKey : yml.getKeys("Armor")) {
             switch(armorKey) {
                 case "default":
                     if(yml.getString("Armor.default").equals("allow")) {
-                        restricted.getArmorRestrictions().setDefault(true);
+                        restrictions.setDefault(true);
                     }
-                    else restricted.getArmorRestrictions().setDefault(false);
+                    else restrictions.setDefault(false);
                     break;
                 case "permitted-armor":
                     for(String armorID : yml.getKeys("Armor.permitted-armor")) {
                         Armor armor = ArmorHandler.getInstance().get(armorID);
                         if(armor != null) {
-                            restricted.getArmorRestrictions().setAllowed(armor, true);
+                            restrictions.setAllowed(armor, true);
                             if(restricted instanceof ArmorUser) {
                                 LinkedHashMap<String, Object> infoMap = yml.getObject(LinkedHashMap.class, String.format("Armor.permitted-armor.%s", armorID));
                                 loadBasicInfo(((ArmorUser)restricted).getArmorInfo(armor), infoMap);
@@ -200,27 +203,28 @@ public class YAMLDataSource implements DataSource {
                 case "restricted-armor":
                     for(String armorID : yml.getStringList("Armor.restricted-armor")) {
                         Armor armor = ArmorHandler.getInstance().get(armorID);
-                        restricted.getArmorRestrictions().setAllowed(armor, false);
+                        restrictions.setAllowed(armor, false);
                     }
             }
         }
-        return restricted.getArmorRestrictions();
+        return restrictions;
     }
 
-    protected LClassRestrictions loadLClassRestrictions(LClassRestricted restricted, String path, YAMLHelper yml) {
+    protected LClassRestrictions loadClassRestrictions(LClassRestricted restricted, String path, YAMLHelper yml) {
+        LClassRestrictions restrictions = new LClassRestrictions();
         for(String classKey : yml.getKeys("Class")) {
             switch(classKey) {
                 case "default":
                     if(yml.getString("Class.default").equals("allow")) {
-                        restricted.getLClassRestrictions().setDefault(true);
+                        restrictions.setDefault(true);
                     }
-                    else restricted.getLClassRestrictions().setDefault(false);
+                    else restrictions.setDefault(false);
                     break;
                 case "permitted-class":
                     for(String classID : yml.getKeys("Class.permitted-class")) {
                         LClass lClass = LClassHandler.getInstance().get(classID);
                         if(lClass != null) {
-                            restricted.getLClassRestrictions().setAllowed(lClass, true);
+                            restrictions.setAllowed(lClass, true);
                             if(restricted instanceof LClassUser) {
                                 LinkedHashMap<String, Object> infoMap = yml.getObject(LinkedHashMap.class, String.format("Class.permitted-class.%s", classID));
                                 loadBasicInfo(((LClassUser)restricted).getLClassInfo(lClass), infoMap);
@@ -232,12 +236,12 @@ public class YAMLDataSource implements DataSource {
                     for(String classID : yml.getKeys("Class.restricted-class")) {
                         LClass lClass = LClassHandler.getInstance().get(classID);
                         if(lClass != null) {
-                            restricted.getLClassRestrictions().setAllowed(lClass, false);
+                            restrictions.setAllowed(lClass, false);
                         }
                     }
             }
         }
-        return restricted.getLClassRestrictions();
+        return restrictions;
     }
 
 

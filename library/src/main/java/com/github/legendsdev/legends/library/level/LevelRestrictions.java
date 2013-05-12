@@ -17,12 +17,10 @@ This file is part of Legends.
 
 package com.github.legendsdev.legends.library.level;
 
-import com.github.legendsdev.legends.library.restriction.LevelRestrictor;
-
 /**
  * @author B2OJustin
  */
-public class LevelRestrictions implements LevelRestrictor {
+public class LevelRestrictions {
     private Level minLevel;
     private Level maxLevel;
 
@@ -63,7 +61,6 @@ public class LevelRestrictions implements LevelRestrictor {
         return this;
     }
 
-    @Override
     public boolean isAllowed(Level level) {
         return (level.getLevel() >= getMinLevel().getLevel() && level.getLevel() <= getMaxLevel().getLevel());
     }

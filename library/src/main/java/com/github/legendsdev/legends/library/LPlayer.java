@@ -35,7 +35,7 @@ import java.util.HashMap;
 public class LPlayer implements LEntity,
         Informative<LPlayer, LPlayerInfo>,
         WeaponUser<LPlayer>, ArmorUser<LPlayer>, SkillUser<LPlayer>,
-        WeaponRestricted<LPlayer>, ArmorRestricted<LPlayer>, SkillRestricted<LPlayer>, LevelRestricted<LPlayer>, LClassRestricted<LPlayer>, RaceRestricted<LPlayer> {
+        WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, LClassRestricted, RaceRestricted {
 
     private Race race = new Race();
 
@@ -45,13 +45,6 @@ public class LPlayer implements LEntity,
     private String playerName = "";
     private ArrayList<String> description = new ArrayList<>();
     private LPlayerInfo lPlayerInfo = new LPlayerInfo();
-
-    private LevelRestrictions levelRestrictions = new LevelRestrictions();
-    private WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
-    private ArmorRestrictions armorRestrictions = new ArmorRestrictions();
-    private LClassRestrictions lClassRestrictions = new LClassRestrictions();
-    private RaceRestrictions raceRestrictions = new RaceRestrictions();
-    private SkillRestrictions skillRestrictions = new SkillRestrictions();
 
     private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
@@ -217,58 +210,6 @@ public class LPlayer implements LEntity,
     }
 
     @Override
-    public SkillRestrictions getSkillRestrictions() {
-        return skillRestrictions;
-    }
-
-    @Override
-    public LPlayer setSkillRestrictions(SkillRestrictions skillRestrictions) {
-        this.skillRestrictions = skillRestrictions;
-        return this;
-    }
-
-    @Override
-    public ArmorRestrictions getArmorRestrictions() {
-        return armorRestrictions;
-    }
-
-    @Override
-    public LPlayer setArmorRestrictions(ArmorRestrictions armorRestrictions) {
-        this.armorRestrictions = armorRestrictions;
-        return this;
-    }
-
-    @Override
-    public WeaponRestrictions getWeaponRestrictions() {
-        return weaponRestrictions;
-    }
-
-    @Override
-    public LPlayer setWeaponRestrictions(WeaponRestrictions restrictions) {
-        return null; //TODO setWeaponRestrictions method stub
-    }
-
-    @Override
-    public LevelRestrictions getLevelRestrictions() {
-        return levelRestrictions;
-    }
-
-    @Override
-    public LPlayer setLevelRestrictions(LevelRestrictions levelRestrictions) {
-        return null; //TODO setLevelRestrictions method stub
-    }
-
-    @Override
-    public LClassRestrictions getLClassRestrictions() {
-        return lClassRestrictions;
-    }
-
-    @Override
-    public LPlayer setLClassRestrictions(LClassRestrictions restrictions) {
-        return null; //TODO setLClassRestrictions method stub
-    }
-
-    @Override
     public HashMap<Weapon, WeaponInfo> getWeaponInfoMap() {
         return weaponInfoMap;
     }
@@ -317,17 +258,6 @@ public class LPlayer implements LEntity,
         if(armor != null) {
             armorInfoMap.put(armor, info);
         }
-        return this;
-    }
-
-    @Override
-    public RaceRestrictions getRaceRestrictions() {
-        return raceRestrictions;
-    }
-
-    @Override
-    public LPlayer setRaceRestrictions(RaceRestrictions raceRestrictions) {
-        this.raceRestrictions = raceRestrictions;
         return this;
     }
 

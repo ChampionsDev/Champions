@@ -24,10 +24,4 @@ import com.github.legendsdev.legends.library.level.LevelRestrictions;
  * @author B2OJustin
  */
 public class WeaponInfo extends BasicInfo<WeaponInfo> implements LevelRestricted {
-    private LevelRestrictions levelRestrictions = new LevelRestrictions();
-
-    @Override
-    public LevelRestrictions getLevelRestrictions() {
-        return levelRestrictions;
-    }
 }
