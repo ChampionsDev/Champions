@@ -16,8 +16,8 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library;
 
-import com.github.legendsdev.legends.library.level.LevelRestricted;
-import com.github.legendsdev.legends.library.level.LevelRestrictions;
+import java.util.List;
+import java.util.Arrays;
 
 /**
  * @author B2OJustin
@@ -31,6 +31,22 @@ public class BasicInfo<SelfType extends BasicInfo> {
     private int bonusHealth = 0;
     private int bonusMana = 0;
 
+    public static BasicInfo combine(List<BasicInfo> infos) {
+        BasicInfo info = new BasicInfo();
+        for (BasicInfo inf : infos) {
+            info.addBonusDefense(inf.getBonusDefense());
+            info.addBonusSkillDamage(inf.getBonusSkillDamage());
+            info.addBonusMana(inf.getBonusMana());
+            info.addBonusHealth(inf.getBonusHealth());
+            info.addBonusWeaponDamage(inf.getBonusWeaponDamage());
+        }
+        return info;
+    }
+    
+    public static BasicInfo combine(BasicInfo... info) {
+        return combine(Arrays.asList(info));
+    }
+    
     public BasicInfo() {
     }
 
@@ -78,6 +94,11 @@ public class BasicInfo<SelfType extends BasicInfo> {
     public int getBonusHealth() {
         return bonusHealth;
     }
+    
+    public SelfType addBonusHealth(int bonusHealth) {
+        this.bonusHealth += bonusHealth;
+        return (SelfType) this;
+    }
 
     public SelfType setBonusHealth(int bonusHealth) {
         this.bonusHealth = bonusHealth;
@@ -87,11 +108,14 @@ public class BasicInfo<SelfType extends BasicInfo> {
     public int getBonusMana() {
         return bonusMana;
     }
+    
+    public SelfType addBonusMana(int bonusMana) {
+        this.bonusMana += bonusMana;
+        return (SelfType) this;
+    }
 
     public SelfType setBonusMana(int bonusMana) {
         this.bonusMana = bonusMana;
         return (SelfType) this;
     }
-
-    public SelfType
 }
