@@ -17,14 +17,24 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library;
 
 
-import com.github.legendsdev.legends.library.armor.*;
-import com.github.legendsdev.legends.library.lclass.*;
+import com.github.legendsdev.legends.library.armor.Armor;
+import com.github.legendsdev.legends.library.armor.ArmorInfo;
+import com.github.legendsdev.legends.library.armor.ArmorRestricted;
+import com.github.legendsdev.legends.library.armor.ArmorUser;
+import com.github.legendsdev.legends.library.lclass.LClass;
+import com.github.legendsdev.legends.library.lclass.LClassRestricted;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
-import com.github.legendsdev.legends.library.level.LevelRestrictions;
 import com.github.legendsdev.legends.library.misc.Informative;
-import com.github.legendsdev.legends.library.race.*;
-import com.github.legendsdev.legends.library.skill.*;
-import com.github.legendsdev.legends.library.weapon.*;
+import com.github.legendsdev.legends.library.race.Race;
+import com.github.legendsdev.legends.library.race.RaceRestricted;
+import com.github.legendsdev.legends.library.skill.Skill;
+import com.github.legendsdev.legends.library.skill.SkillInfo;
+import com.github.legendsdev.legends.library.skill.SkillRestricted;
+import com.github.legendsdev.legends.library.skill.SkillUser;
+import com.github.legendsdev.legends.library.weapon.Weapon;
+import com.github.legendsdev.legends.library.weapon.WeaponInfo;
+import com.github.legendsdev.legends.library.weapon.WeaponRestricted;
+import com.github.legendsdev.legends.library.weapon.WeaponUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;

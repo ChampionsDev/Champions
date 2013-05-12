@@ -1,6 +1,7 @@
 package com.github.legendsdev.legends.library.database.helper;
 
 import com.github.legendsdev.legends.library.database.SQLDataSource;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

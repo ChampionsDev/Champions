@@ -19,6 +19,7 @@ package com.github.legendsdev.legends.library.database;
 import com.github.legendsdev.legends.library.LPlayer;
 import com.github.legendsdev.legends.library.lclass.LClass;
 import com.github.legendsdev.legends.library.race.Race;
+
 import java.util.logging.Logger;
 
 /**
