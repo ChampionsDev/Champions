@@ -129,18 +129,18 @@ public class YAMLDataSource implements DataSource {
                     int bonusMana = (int) entry.getValue();
                     basicInfo.addBonusMana(bonusMana);
                 break;
-                /*case "required-level":    // TODO
+                case "required-level":    // TODO
                     if(basicInfo instanceof LevelRestricted) {
                         int requiredLevel = (int) entry.getValue();
-                        ((LevelRestricted)basicInfo).getLevelRestrictions().setMinLevel(requiredLevel);
+                        RestrictionHandler.getInstance().getLevelRestrictions((LevelRestricted)basicInfo).setMinLevel(requiredLevel);
                     }
                 break;
                 case "maximum-level":
                     if(basicInfo instanceof  LevelRestricted) {
                         int maximumLevel = (int) entry.getValue();
-                        ((LevelRestricted)basicInfo).getLevelRestrictions().setMaxLevel(maximumLevel);
+                        RestrictionHandler.getInstance().getLevelRestrictions((LevelRestricted)basicInfo).setMaxLevel(maximumLevel);
                     }
-                break;*/
+                break;
             }
         }
         return basicInfo;
