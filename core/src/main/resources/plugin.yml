@@ -1,5 +1,4 @@
 name: Legends
 version: $VERSION
-main: net.dawnfirerealms.legends.core.LegendsPlugin
+main: com.github.legendsdev.legends.core.LegendsCore
 authors: [Ranzdo, B2OJustin, YoshiGenius]
-soft-depend: [mmSupernaturals]
