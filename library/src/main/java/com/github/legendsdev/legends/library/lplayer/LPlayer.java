@@ -27,6 +27,7 @@ import com.github.legendsdev.legends.library.lclass.LClass;
 import com.github.legendsdev.legends.library.lclass.LClassRestricted;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.misc.Informative;
+import com.github.legendsdev.legends.library.party.Party;
 import com.github.legendsdev.legends.library.race.Race;
 import com.github.legendsdev.legends.library.race.RaceRestricted;
 import com.github.legendsdev.legends.library.skill.Skill;
@@ -67,6 +68,8 @@ public class LPlayer implements LEntity,
     private Weapon currentWeapon = new Weapon();
     private Armor currentArmor = new Armor();
 
+    private Party party;
+
     private int weaponDamage = 0;
     private int skillDamage = 0;
     private int defense = 0;
@@ -82,6 +85,7 @@ public class LPlayer implements LEntity,
         this.primaryClass = primaryClass;
         this.secondaryClass = secondaryClass;
         update();
+        party = new Party(this);
         // TODO loading of current health, mana, stamina
         currentHealth = maxHealth;
         currentMana = maxMana;
@@ -90,6 +94,16 @@ public class LPlayer implements LEntity,
 
     public Race getRace() {
         return this.race;
+    }
+
+    public LPlayer setParty(Party party) {
+        if(party == null) this.party = new Party(this);
+        else this.party = party;
+        return this;
+    }
+
+    public Party getParty() {
+        return party;
     }
 
     public LClass getPrimaryClass() {
