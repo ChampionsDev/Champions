@@ -18,6 +18,9 @@ package com.github.legendsdev.legends.library.event
 
 import com.github.legendsdev.legends.library.event.weapon.WeaponClickEvent
 import com.github.legendsdev.legends.library.event.weapon.WeaponEvent
+import com.github.legendsdev.legends.library.lclass.LClass
+import com.github.legendsdev.legends.library.lplayer.LPlayer
+import com.github.legendsdev.legends.library.race.Race
 import com.github.legendsdev.legends.library.weapon.Weapon
 
 /**
@@ -26,19 +29,21 @@ import com.github.legendsdev.legends.library.weapon.Weapon
 class EventManagerTest extends GroovyTestCase implements EventListener {
     boolean upstreamEventFired = false;
     boolean downstreamEventFired = false;
+    LPlayer lPlayer;
 
     void setUp() {
         EventManager.registerEvents(this);
+        lPlayer = new LPlayer(new Race(), new LClass(), new LClass());
     }
 
     void testCallUpstreamEvent() {
-        EventManager.callEvent(new WeaponClickEvent(new Weapon(), WeaponClickEvent.ClickType.LEFT_CLICK));
+        EventManager.callEvent(new WeaponClickEvent(new Weapon(), lPlayer, WeaponClickEvent.ClickType.LEFT_CLICK));
         assertTrue("Upstream events not called", upstreamEventFired);
         assertTrue(downstreamEventFired);
     }
 
     void testCallDownstreamEvent() {
-        EventManager.callEvent(new WeaponEvent(new Weapon()));
+        EventManager.callEvent(new WeaponEvent(new Weapon(), lPlayer));
         assertFalse("Downstream event called inappropriately", downstreamEventFired);
         assertTrue(upstreamEventFired);
     }
