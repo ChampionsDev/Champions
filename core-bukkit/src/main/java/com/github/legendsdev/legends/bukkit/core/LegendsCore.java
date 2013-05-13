@@ -40,13 +40,13 @@ public class LegendsCore extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-        LegendsCore.instance = this;
-		commandHandler = new CommandHandler(this);
-		configHandler = new ConfigHandler(getDataFolder());
-        DependencyHandler.resolve();
+            LegendsCore.instance = this;
+            commandHandler = new CommandHandler(this);
+            configHandler = new ConfigHandler(getDataFolder());
+            DependencyHandler.resolve();
 
-        getServer().getPluginManager().registerEvents(new LegendsListener(), this);
-        EventManager.registerEvents(new BaseListener());
+            getServer().getPluginManager().registerEvents(new LegendsListener(), this);
+            EventManager.registerEvents(new BaseListener());
 	}
 	
 	@Override
