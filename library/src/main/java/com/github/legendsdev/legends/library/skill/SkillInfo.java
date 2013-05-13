@@ -92,9 +92,4 @@ public class SkillInfo implements LevelUser, LevelRestricted {
         this.damage = damage;
         return this;
     }
-
-    @Override
-    public LevelRestrictions getLevelRestrictions() {
-        return levelRestrictions;
-    }
 }

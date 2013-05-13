@@ -16,27 +16,25 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.event.weapon;
 
-import com.github.legendsdev.legends.library.LEntity;
+import com.github.legendsdev.legends.library.lplayer.LPlayer;
 import com.github.legendsdev.legends.library.weapon.Weapon;
 
 /**
  * @author B2OJustin
  */
 public class WeaponHitEvent extends WeaponEvent {
-    public LEntity source;
-    public LEntity target;
+    public Object target;
 
-    public WeaponHitEvent(Weapon weapon, LEntity source, LEntity target) {
-        super(weapon);
-        this.source = source;
+    public WeaponHitEvent(Weapon weapon, LPlayer source, Object target) {
+        super(weapon, source);
         this.target = target;
     }
 
-    public LEntity getSource() {
-        return source;
+    public LPlayer getSource() {
+        return getLPlayer();
     }
 
-    public LEntity getTarget() {
+    public Object getTarget() {
         return target;
     }
 }

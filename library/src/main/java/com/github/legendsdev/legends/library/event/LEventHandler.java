@@ -6,6 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * Marks a method to be registered with the EventManager
+ *
  * @author YoshiGenius
  */
 @Retention(RetentionPolicy.RUNTIME)

@@ -17,8 +17,9 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.armor;
 
 /**
+ * Indicates that an object restricts armor usage.
+ *
  * @author B2OJustin
  */
 public interface ArmorRestricted {
-    public ArmorRestrictions getArmorRestrictions();
 }

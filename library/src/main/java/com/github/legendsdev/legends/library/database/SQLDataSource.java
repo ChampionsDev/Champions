@@ -16,8 +16,8 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.database;
 
-import com.github.legendsdev.legends.library.LPlayer;
 import com.github.legendsdev.legends.library.lclass.LClass;
+import com.github.legendsdev.legends.library.lplayer.LPlayer;
 import com.github.legendsdev.legends.library.race.Race;
 
 import java.util.logging.Logger;
@@ -25,15 +25,36 @@ import java.util.logging.Logger;
 /**
  * @author B2OJustin
  */
-public class OracleDataSource implements DataSource {
+public class SQLDataSource implements DataSource {
+    
+    public static enum SQLDatabaseType {
+        MYSQL, SQLITE, POSTGRESQL, NOSQL;
+    }
+    
+    private SQLDatabaseType databasetype;
+
+    private SQLDatabaseType getDatabaseType() {
+        return this.databasetype;
+    }
+    
     @Override
     public String getName() {
-        return "Oracle";
+        switch (this.getDatabaseType()) {
+            case MYSQL:
+                return "MySQL";
+            case SQLITE:
+                return "SQLite";
+            case POSTGRESQL:
+                return "PostGreSQL";
+            case NOSQL:
+                return "NoSQL";
+        }
+        return "SQL";
     }
 
     @Override
     public Logger getLogger() {
-        return null; //TODO getLogger method stub
+        return Logger.getLogger(SQLDataSource.class.getName());
     }
 
     @Override

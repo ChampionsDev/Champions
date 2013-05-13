@@ -19,6 +19,8 @@ package com.github.legendsdev.legends.library.armor;
 import com.github.legendsdev.legends.library.BasicInfo;
 
 /**
+ * Stores information or bonuses related to Armor
+ *
  * @author B2OJustin
  */
 public class ArmorInfo extends BasicInfo<ArmorInfo> {

@@ -14,14 +14,12 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library.armor;
+package com.github.legendsdev.legends.library.lplayer;
 
-import com.github.legendsdev.legends.library.restriction.BasicRestrictions;
+import com.github.legendsdev.legends.library.BasicInfo;
 
 /**
- * Stores restriction information for ArmorRestricted objects.
- *
  * @author B2OJustin
  */
-public class ArmorRestrictions extends BasicRestrictions<Armor> {
+public class LPlayerInfo extends BasicInfo<LPlayerInfo> {
 }

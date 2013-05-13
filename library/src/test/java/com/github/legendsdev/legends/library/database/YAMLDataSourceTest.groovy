@@ -17,6 +17,7 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.database
 
 import com.github.legendsdev.legends.library.race.Race
+import com.github.legendsdev.legends.library.restriction.RestrictionHandler
 import com.github.legendsdev.legends.library.weapon.Weapon
 import com.github.legendsdev.legends.library.weapon.WeaponHandler
 
@@ -29,7 +30,7 @@ class YAMLDataSourceTest extends GroovyTestCase {
     WeaponHandler weaponHandler;
 
     void setUp() {
-        yamlDataSource = new YAMLDataSource("core/src/main/resources/");
+        yamlDataSource = new YAMLDataSource("../core-bukkit/src/main/resources/resources/");
         weaponHandler = WeaponHandler.getInstance();
     }
 
@@ -37,6 +38,7 @@ class YAMLDataSourceTest extends GroovyTestCase {
     }
 
     void testLoadRace() {
+        RestrictionHandler restrictionHandler = RestrictionHandler.getInstance();
         // Register weapons
         weaponHandler.register("WOOD_AXE", new Weapon());
         weaponHandler.register("IRON_AXE", new Weapon());
@@ -46,11 +48,11 @@ class YAMLDataSourceTest extends GroovyTestCase {
         assertEquals("Test", race.getName());
 
         assertTrue(race.getDescription().contains("Test Race"));
-        assertTrue(race.getWeaponRestrictions().isAllowed(weaponHandler.get("WOOD_AXE")));
-        assertTrue(race.getWeaponRestrictions().isAllowed(weaponHandler.get("IRON_AXE")));
-        assertTrue(race.getWeaponRestrictions().isAllowed(weaponHandler.get("DIAMOND_AXE")));
+        assertTrue(restrictionHandler.getWeaponRestrictions(race).isAllowed(weaponHandler.get("WOOD_AXE")));
+        assertTrue(restrictionHandler.getWeaponRestrictions(race).isAllowed(weaponHandler.get("IRON_AXE")));
+        assertTrue(restrictionHandler.getWeaponRestrictions(race).isAllowed(weaponHandler.get("DIAMOND_AXE")));
 
-        assertEquals(race.getWeaponInfo(weaponHandler.get("IRON_AXE")).getBonusDamage(), 10)
+        assertEquals(race.getWeaponInfo(weaponHandler.get("IRON_AXE")).getBonusWeaponDamage(), 10)
     }
 
     void testLoadLClass() {

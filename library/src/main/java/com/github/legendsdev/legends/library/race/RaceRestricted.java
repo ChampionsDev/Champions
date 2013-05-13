@@ -20,5 +20,4 @@ package com.github.legendsdev.legends.library.race;
  * @author B2OJustin
  */
 public interface RaceRestricted {
-    public RaceRestrictions getRaceRestrictions();
 }

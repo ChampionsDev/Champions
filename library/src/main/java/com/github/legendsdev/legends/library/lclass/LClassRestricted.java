@@ -20,5 +20,4 @@ package com.github.legendsdev.legends.library.lclass;
  * @author B2OJustin
  */
 public interface LClassRestricted {
-    public LClassRestrictions getLClassRestrictions();
 }

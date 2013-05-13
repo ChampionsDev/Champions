@@ -16,8 +16,8 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library;
 
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author B2OJustin

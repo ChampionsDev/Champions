@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
+ * Manages calling and registering of events.
+ *
  * @author YoshiGenius
  */
 //TODO Finish making this thread safe

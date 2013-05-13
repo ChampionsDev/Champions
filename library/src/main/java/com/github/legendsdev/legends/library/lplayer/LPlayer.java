@@ -14,17 +14,29 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library;
+package com.github.legendsdev.legends.library.lplayer;
 
 
-import com.github.legendsdev.legends.library.armor.*;
-import com.github.legendsdev.legends.library.lclass.*;
+import com.github.legendsdev.legends.library.BasicInfo;
+import com.github.legendsdev.legends.library.LEntity;
+import com.github.legendsdev.legends.library.armor.Armor;
+import com.github.legendsdev.legends.library.armor.ArmorInfo;
+import com.github.legendsdev.legends.library.armor.ArmorRestricted;
+import com.github.legendsdev.legends.library.armor.ArmorUser;
+import com.github.legendsdev.legends.library.lclass.LClass;
+import com.github.legendsdev.legends.library.lclass.LClassRestricted;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
-import com.github.legendsdev.legends.library.level.LevelRestrictions;
 import com.github.legendsdev.legends.library.misc.Informative;
-import com.github.legendsdev.legends.library.race.*;
-import com.github.legendsdev.legends.library.skill.*;
-import com.github.legendsdev.legends.library.weapon.*;
+import com.github.legendsdev.legends.library.race.Race;
+import com.github.legendsdev.legends.library.race.RaceRestricted;
+import com.github.legendsdev.legends.library.skill.Skill;
+import com.github.legendsdev.legends.library.skill.SkillInfo;
+import com.github.legendsdev.legends.library.skill.SkillRestricted;
+import com.github.legendsdev.legends.library.skill.SkillUser;
+import com.github.legendsdev.legends.library.weapon.Weapon;
+import com.github.legendsdev.legends.library.weapon.WeaponInfo;
+import com.github.legendsdev.legends.library.weapon.WeaponRestricted;
+import com.github.legendsdev.legends.library.weapon.WeaponUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,13 +57,6 @@ public class LPlayer implements LEntity,
     private String playerName = "";
     private ArrayList<String> description = new ArrayList<>();
     private LPlayerInfo lPlayerInfo = new LPlayerInfo();
-
-    private LevelRestrictions levelRestrictions = new LevelRestrictions();
-    private WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
-    private ArmorRestrictions armorRestrictions = new ArmorRestrictions();
-    private LClassRestrictions lClassRestrictions = new LClassRestrictions();
-    private RaceRestrictions raceRestrictions = new RaceRestrictions();
-    private SkillRestrictions skillRestrictions = new SkillRestrictions();
 
     private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
@@ -217,31 +222,6 @@ public class LPlayer implements LEntity,
     }
 
     @Override
-    public SkillRestrictions getSkillRestrictions() {
-        return skillRestrictions;
-    }
-
-    @Override
-    public ArmorRestrictions getArmorRestrictions() {
-        return armorRestrictions;
-    }
-
-    @Override
-    public WeaponRestrictions getWeaponRestrictions() {
-        return weaponRestrictions;
-    }
-
-    @Override
-    public LevelRestrictions getLevelRestrictions() {
-        return levelRestrictions;
-    }
-
-    @Override
-    public LClassRestrictions getLClassRestrictions() {
-        return lClassRestrictions;
-    }
-
-    @Override
     public HashMap<Weapon, WeaponInfo> getWeaponInfoMap() {
         return weaponInfoMap;
     }
@@ -291,11 +271,6 @@ public class LPlayer implements LEntity,
             armorInfoMap.put(armor, info);
         }
         return this;
-    }
-
-    @Override
-    public RaceRestrictions getRaceRestrictions() {
-        return raceRestrictions;
     }
 
     @Override

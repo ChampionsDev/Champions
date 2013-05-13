@@ -14,10 +14,17 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library;
+package com.github.legendsdev.legends.library.lplayer;
+
+import com.github.legendsdev.legends.library.BasicHandler;
 
 /**
  * @author B2OJustin
  */
-public class LPlayerInfo extends BasicInfo<LPlayerInfo> {
+public class LPlayerHandler extends BasicHandler<LPlayer> {
+    private static LPlayerHandler instance = new LPlayerHandler();
+
+    public static LPlayerHandler getInstance() {
+        return instance;
+    }
 }

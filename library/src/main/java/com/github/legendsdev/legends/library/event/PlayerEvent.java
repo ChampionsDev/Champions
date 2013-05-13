@@ -1,8 +1,10 @@
 package com.github.legendsdev.legends.library.event;
 
-import com.github.legendsdev.legends.library.LPlayer;
+import com.github.legendsdev.legends.library.lplayer.LPlayer;
 
 /**
+ * Base class for all LPlayer events
+ *
  * @author YoshiGenius
  */
 public class PlayerEvent extends LegendsEvent {

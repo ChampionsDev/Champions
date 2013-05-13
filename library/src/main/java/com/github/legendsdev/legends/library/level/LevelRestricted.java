@@ -20,5 +20,4 @@ package com.github.legendsdev.legends.library.level;
  * @author B2OJustin
  */
 public interface LevelRestricted {
-    public LevelRestrictions getLevelRestrictions();
 }

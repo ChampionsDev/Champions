@@ -17,8 +17,11 @@ This file is part of Legends.
 
 package com.github.legendsdev.legends.bukkit.core;
 
+import com.github.legendsdev.legends.bukkit.core.listeners.LegendsListener;
 import com.github.legendsdev.legends.bukkit.core.utils.ConfigHandler;
 import com.github.legendsdev.legends.bukkit.core.utils.DependencyHandler;
+import com.github.legendsdev.legends.library.event.EventManager;
+import com.github.legendsdev.legends.library.listener.BaseListener;
 import org.bukkit.plugin.java.JavaPlugin;
 import se.ranzdo.bukkit.methodcommand.CommandHandler;
 
@@ -37,11 +40,13 @@ public class LegendsCore extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-        LegendsCore.instance = this;
-		commandHandler = new CommandHandler(this);
-		configHandler = new ConfigHandler(getDataFolder());
-        DependencyHandler.resolve();
+            LegendsCore.instance = this;
+            commandHandler = new CommandHandler(this);
+            configHandler = new ConfigHandler(getDataFolder());
+            DependencyHandler.resolve();
 
+            getServer().getPluginManager().registerEvents(new LegendsListener(), this);
+            EventManager.registerEvents(new BaseListener());
 	}
 	
 	@Override

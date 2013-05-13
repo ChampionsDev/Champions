@@ -20,5 +20,4 @@ package com.github.legendsdev.legends.library.weapon;
  * @author B2OJustin
  */
 public interface WeaponRestricted {
-    public WeaponRestrictions getWeaponRestrictions();
 }

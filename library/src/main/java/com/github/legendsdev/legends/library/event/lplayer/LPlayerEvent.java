@@ -14,13 +14,22 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library.restriction;
+package com.github.legendsdev.legends.library.event.lplayer;
 
-import com.github.legendsdev.legends.library.level.Level;
+import com.github.legendsdev.legends.library.event.LegendsEvent;
+import com.github.legendsdev.legends.library.lplayer.LPlayer;
 
 /**
  * @author B2OJustin
  */
-public interface LevelRestrictor {
-    public boolean isAllowed(Level level);
+public class LPlayerEvent extends LegendsEvent {
+    private final LPlayer player;
+
+    public LPlayerEvent(LPlayer player) {
+        this.player = player;
+    }
+
+    public LPlayer getLPlayer() {
+        return this.player;
+    }
 }

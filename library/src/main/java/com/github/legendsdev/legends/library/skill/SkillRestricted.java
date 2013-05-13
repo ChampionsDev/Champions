@@ -20,5 +20,4 @@ package com.github.legendsdev.legends.library.skill;
  * @author B2OJustin
  */
 public interface SkillRestricted {
-    public SkillRestrictions getSkillRestrictions();
 }
