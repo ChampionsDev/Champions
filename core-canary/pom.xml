@@ -15,6 +15,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>net.canarymod</groupId>
+            <artifactId>CanaryRecode</artifactId>
+            <version>0.4</version>
+        </dependency>
+        <dependency>
             <groupId>com.github.legendsdev.legends</groupId>
             <artifactId>legends-lib</artifactId>
             <version>0.0.1-SNAPSHOT</version>

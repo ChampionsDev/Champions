@@ -15,10 +15,10 @@ This file is part of Legends.
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.github.legendsdev.legends.core;
+package com.github.legendsdev.legends.bukkit.core;
 
-import com.github.legendsdev.legends.core.utils.ConfigHandler;
-import com.github.legendsdev.legends.core.utils.DependencyHandler;
+import com.github.legendsdev.legends.bukkit.core.utils.ConfigHandler;
+import com.github.legendsdev.legends.bukkit.core.utils.DependencyHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 import se.ranzdo.bukkit.methodcommand.CommandHandler;
 

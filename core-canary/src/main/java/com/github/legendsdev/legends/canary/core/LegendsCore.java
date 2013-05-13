@@ -16,9 +16,35 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.canary.core;
 
+import net.canarymod.Canary;
+import net.canarymod.hook.HookHandler;
+import net.canarymod.plugin.Plugin;
+
 
 /**
  * @author B2OJustin
  */
-public class LegendsCore {
+public class LegendsCore extends Plugin {
+
+    @Override
+    public void enable() {
+        long start = System.currentTimeMillis();
+        getLogman().info("[Legends] starting up");
+        // TODO::: Canary startup code
+        Canary.hooks().registerListener(new LegendsMainListener(this), this);
+        long end = System.currentTimeMillis();
+        long startup = end - start;
+        getLogman().info("[Legends] finished loading after " + startup + "ms");
+    }
+
+    @Override
+    public void disable() {
+        long start = System.currentTimeMillis();
+        getLogman().info("[Legends] shutting down");
+        // TODO::: Canary shutdown code
+        
+        long end = System.currentTimeMillis();
+        long startup = end - start;
+        getLogman().info("[Legends] finished disabling after " + startup + "ms");
+    }
 }

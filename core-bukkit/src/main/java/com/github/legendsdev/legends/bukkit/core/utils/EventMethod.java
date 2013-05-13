@@ -15,12 +15,11 @@ This file is part of Legends.
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.github.legendsdev.legends.core.utils;
-
-import org.bukkit.event.Event;
-import org.bukkit.event.EventPriority;
+package com.github.legendsdev.legends.bukkit.core.utils;
 
 import java.lang.reflect.Method;
+import org.bukkit.event.Event;
+import org.bukkit.event.EventPriority;
 
 /**
  * @author Ranzdo

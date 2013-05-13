@@ -15,7 +15,7 @@ This file is part of Legends.
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.github.legendsdev.legends.core.utils;
+package com.github.legendsdev.legends.bukkit.core.utils;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
