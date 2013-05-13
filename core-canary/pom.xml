@@ -18,6 +18,7 @@
             <groupId>com.github.legendsdev.legends</groupId>
             <artifactId>legends-lib</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -33,6 +34,13 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <artifactSet>
+                            <includes>
+                                <minimizeJar>true</minimizeJar>
+                            </includes>
+                            </artifactSet>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

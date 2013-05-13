@@ -23,7 +23,7 @@ class YAMLHelperTest extends GroovyTestCase {
     YAMLHelper yamlHelper;
 
     void setUp() {
-        yamlHelper = new YAMLHelper("../core-bukkit/src/main/resources/races/Test.yml");
+        yamlHelper = new YAMLHelper("../core-bukkit/src/main/resources/resources/races/Test.yml");
     }
 
     void testGetObject() {

@@ -30,7 +30,7 @@ class YAMLDataSourceTest extends GroovyTestCase {
     WeaponHandler weaponHandler;
 
     void setUp() {
-        yamlDataSource = new YAMLDataSource("../core-bukkit/src/main/resources/");
+        yamlDataSource = new YAMLDataSource("../core-bukkit/src/main/resources/resources/");
         weaponHandler = WeaponHandler.getInstance();
     }
 
