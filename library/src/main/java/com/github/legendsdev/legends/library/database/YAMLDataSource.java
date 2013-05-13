@@ -24,9 +24,15 @@ import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.lplayer.LPlayer;
 import com.github.legendsdev.legends.library.race.Race;
 import com.github.legendsdev.legends.library.restriction.RestrictionHandler;
+import com.github.legendsdev.legends.library.util.FileClassLoader;
 import com.github.legendsdev.legends.library.weapon.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -68,8 +74,15 @@ public class YAMLDataSource implements DataSource {
     @SuppressWarnings("unchecked")
     public synchronized Race loadRace(String name) {
         String filePath = configPath + RACE_PATH + name.replace(" ", "_") + ".yml";
-        Race race = new Race();
         try {
+            Race race;
+
+            // Load custom race file if exists
+            Class raceClass = FileClassLoader.load(Race.class, configPath + RACE_PATH, name);
+            if(raceClass != null) {
+                race = (Race)raceClass.newInstance();
+            } else race = new Race();
+
             YAMLHelper yml = new YAMLHelper(filePath);
 
             for(String mainKey : yml.getKeys("")) {
@@ -94,15 +107,17 @@ public class YAMLDataSource implements DataSource {
                 }
             }
 
+            return race;
+
         } catch (FileNotFoundException e) {
             logger.warning("Could not find file for race '" + name + "' at " + filePath);
             e.printStackTrace();
         } catch (ClassCastException e) {
             logger.warning("You seem to have an error in your yaml. Could not load race '" + name + "'");
             e.printStackTrace();
-        }
+        } catch(IllegalAccessException | InstantiationException ignored) {}
 
-        return race;
+        return null;
     }
 
     protected <T extends BasicInfo> T loadBasicInfo(T basicInfo, LinkedHashMap<String, Object> infoMap) throws ClassCastException {
