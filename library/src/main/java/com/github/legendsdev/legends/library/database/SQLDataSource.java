@@ -30,11 +30,15 @@ public class SQLDataSource implements DataSource {
     public static enum SQLDatabaseType {
         MYSQL, SQLITE, POSTGRESQL, NOSQL;
     }
-    
-    private SQLDatabaseType databasetype;
 
-    private SQLDatabaseType getDatabaseType() {
-        return this.databasetype;
+    public SQLDataSource(SQLDataSource.SQLDatabaseType databaseType) {
+        this.databaseType = databaseType;
+    }
+
+    private SQLDatabaseType databaseType;
+
+    public SQLDatabaseType getDatabaseType() {
+        return this.databaseType;
     }
     
     @Override
