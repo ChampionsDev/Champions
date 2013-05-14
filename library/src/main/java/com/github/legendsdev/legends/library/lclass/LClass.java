@@ -4,7 +4,10 @@ import com.github.legendsdev.legends.library.armor.Armor;
 import com.github.legendsdev.legends.library.armor.ArmorInfo;
 import com.github.legendsdev.legends.library.armor.ArmorRestricted;
 import com.github.legendsdev.legends.library.armor.ArmorUser;
+import com.github.legendsdev.legends.library.level.Exp;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
+import com.github.legendsdev.legends.library.level.expsource.ExpSource;
+import com.github.legendsdev.legends.library.level.expsource.ExpSourceType;
 import com.github.legendsdev.legends.library.misc.Informative;
 import com.github.legendsdev.legends.library.skill.Skill;
 import com.github.legendsdev.legends.library.skill.SkillInfo;
@@ -17,6 +20,7 @@ import com.github.legendsdev.legends.library.weapon.WeaponUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * @author YoshiGenius
@@ -34,6 +38,8 @@ public class LClass implements Informative<LClass, LClassInfo>,
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
     private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
 
+    private HashMap<ExpSourceType, HashMap<ExpSource, Integer>> expMap = new HashMap<>();
+
     private LClassInfo lClassInfo = new LClassInfo();
 
 
@@ -43,6 +49,14 @@ public class LClass implements Informative<LClass, LClassInfo>,
     public LClass(String name, ArrayList<String> description) {
         this.name = name;
         this.description = description;
+    }
+
+    public Exp getExpGain(ExpSource source) {
+        Exp exp = new Exp();
+        Integer amount = expMap.get(source.getType()).get(source);
+        if(amount == null) amount = 0;
+        exp.setExp(amount);
+        return exp;
     }
 
     @Override

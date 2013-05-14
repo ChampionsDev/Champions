@@ -16,6 +16,7 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.party;
 
+import com.github.legendsdev.legends.library.level.expsource.ExpSource;
 import com.github.legendsdev.legends.library.lplayer.LPlayer;
 
 import java.util.ArrayList;
@@ -66,7 +67,10 @@ public class Party {
         return this;
     }
 
-    //TODO experience sources and party exp distribution
-    /*public Party addExp(Exp exp, ExpSource source) {
-    }*/
+    public Party addExp(ExpSource source) {
+        for(LPlayer player : members) {
+            player.addExp(source);
+        }
+        return this;
+    }
 }

@@ -24,8 +24,10 @@ import com.github.legendsdev.legends.library.armor.ArmorInfo;
 import com.github.legendsdev.legends.library.armor.ArmorRestricted;
 import com.github.legendsdev.legends.library.armor.ArmorUser;
 import com.github.legendsdev.legends.library.lclass.LClass;
+import com.github.legendsdev.legends.library.lclass.LClassInfo;
 import com.github.legendsdev.legends.library.lclass.LClassRestricted;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
+import com.github.legendsdev.legends.library.level.expsource.ExpSource;
 import com.github.legendsdev.legends.library.misc.Informative;
 import com.github.legendsdev.legends.library.party.Party;
 import com.github.legendsdev.legends.library.race.Race;
@@ -53,7 +55,10 @@ public class LPlayer implements LEntity,
     private Race race = new Race();
 
     private LClass primaryClass = new LClass();
+    private LClassInfo primaryClassInfo = new LClassInfo();
+
     private LClass secondaryClass = new LClass();
+    private LClassInfo secondaryClassInfo = new LClassInfo();
 
     private String playerName = "";
     private ArrayList<String> description = new ArrayList<>();
@@ -112,6 +117,21 @@ public class LPlayer implements LEntity,
 
     public LClass getSecondaryClass() {
         return secondaryClass;
+    }
+
+    public LClassInfo getSecondaryClassInfo() {
+        return secondaryClassInfo;
+    }
+
+    public LClassInfo getPrimaryClassInfo() {
+        return primaryClassInfo;
+    }
+
+    // Experience wrapper methods
+    public LPlayer addExp(ExpSource source) {
+        primaryClassInfo.getLevel().addExp(primaryClass.getExpGain(source));
+        secondaryClassInfo.getLevel().addExp(secondaryClass.getExpGain(source));
+        return this;
     }
 
     public Weapon getWeapon() {

@@ -14,20 +14,23 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library.lclass;
+package com.github.legendsdev.legends.library.level.expsource;
 
-import com.github.legendsdev.legends.library.BasicInfo;
-import com.github.legendsdev.legends.library.level.Level;
-import com.github.legendsdev.legends.library.level.LevelUser;
+import com.github.legendsdev.legends.library.skill.Skill;
 
 /**
  * @author B2OJustin
  */
-public class LClassInfo extends BasicInfo<LClassInfo> implements LevelUser {
-    private Level level = new Level(0);
+public class SkillUseExpSource extends ExpSource {
+    public Skill skill;
 
-    @Override
-    public Level getLevel() {
-        return level;
+    public SkillUseExpSource(Skill skill) {
+        super(ExpSourceType.SKILL);
+        this.skill = skill;
     }
+
+    public Skill getSkill() {
+        return skill;
+    }
+
 }
