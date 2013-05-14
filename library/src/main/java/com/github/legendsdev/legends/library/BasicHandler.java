@@ -16,4 +16,8 @@ public class BasicHandler<T> {
         return objectMap.get(id);
     }
 
+    public void remove(String id) {
+        objectMap.remove(id);
+    }
+
 }
