@@ -21,6 +21,9 @@ package com.github.legendsdev.legends.library;
  */
 public class Configuration {
     private String dataSourceName = "SQLITE";
+    private String defaultRace = "Default";
+    private String defaultPrimaryClass = "Default";
+    private String defaultSecondaryClass = "Default";
 
     public static Configuration instance = new Configuration();
 
@@ -29,6 +32,22 @@ public class Configuration {
     }
 
     private Configuration() {
+    }
+
+    public String getDefaultRace() {
+        return defaultRace;
+    }
+
+    public String getDataSourceName() {
+        return dataSourceName;
+    }
+
+    public String getDefaultPrimaryClass() {
+        return defaultPrimaryClass;
+    }
+
+    public String getDefaultSecondaryClass() {
+        return defaultSecondaryClass;
     }
 
 
