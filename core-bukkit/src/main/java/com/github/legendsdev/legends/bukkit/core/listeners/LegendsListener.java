@@ -32,7 +32,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 /**
  * @author B2OJustin
  */
-public class LegendsListener implements Listener, EventListener {
+public class LegendsListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {

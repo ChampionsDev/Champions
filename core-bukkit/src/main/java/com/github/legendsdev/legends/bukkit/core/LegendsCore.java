@@ -21,10 +21,21 @@ import com.github.legendsdev.legends.bukkit.core.listeners.LegendsListener;
 import com.github.legendsdev.legends.bukkit.core.utils.ConfigHandler;
 import com.github.legendsdev.legends.bukkit.core.utils.DependencyHandler;
 import com.github.legendsdev.legends.library.database.YAMLDataSource;
+import com.github.legendsdev.legends.library.util.JarUtils;
+import org.apache.commons.io.FileUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import se.ranzdo.bukkit.methodcommand.CommandHandler;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.util.Enumeration;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 import java.util.logging.Logger;
 
 /**
@@ -33,6 +44,7 @@ import java.util.logging.Logger;
 public class LegendsCore extends JavaPlugin {
     private static Logger logger = Logger.getLogger(LegendsCore.class.getName());
     private static LegendsCore instance;
+    private static String JAR_RESOURCE_DIRECTORY = "resources/";
     private static String CONFIG_PATH = "Legends/";
 	
 	private CommandHandler commandHandler;
@@ -51,15 +63,17 @@ public class LegendsCore extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new LegendsListener(), this);
 
-        // Load configuration
-        YAMLDataSource  yamlDataSource = new YAMLDataSource(CONFIG_PATH);
+        // Copy default configuration
         try {
-            yamlDataSource.loadConfiguration("config.yml");
-        } catch (FileNotFoundException ex) {
-            logger.warning("Configuration file not found... saving defaults.");
-            yamlDataSource.saveConfiguration("config.yml");
+            logger.info("Copying default configuration files...");
+            int filesCopied = JarUtils.copyDirectoryFromJar(LegendsCore.class, JAR_RESOURCE_DIRECTORY, CONFIG_PATH, false);
+            logger.info(String.format("Copied %d files", filesCopied));
+        } catch (IOException e) {
+            logger.severe("Could not write default configuration files to disk.");
+            e.printStackTrace();
         }
 
+        logger.info("Legends successfully enabled!");
 	}
 	
 	@Override

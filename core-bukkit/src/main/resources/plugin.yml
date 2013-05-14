@@ -1,4 +1,4 @@
 name: Legends
-version: $VERSION
-main: com.github.legendsdev.legends.core.LegendsCore
+version: 0.0.1a
+main: com.github.legendsdev.legends.bukkit.core.LegendsCore
 authors: [Ranzdo, B2OJustin, YoshiGenius]
