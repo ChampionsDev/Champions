@@ -17,6 +17,10 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.lplayer;
 
 import com.github.legendsdev.legends.library.BasicHandler;
+import com.github.legendsdev.legends.library.Configuration;
+import com.github.legendsdev.legends.library.database.DataManager;
+import com.github.legendsdev.legends.library.lclass.LClassHandler;
+import com.github.legendsdev.legends.library.race.RaceHandler;
 
 /**
  * @author B2OJustin
@@ -26,5 +30,35 @@ public class LPlayerHandler extends BasicHandler<LPlayer> {
 
     public static LPlayerHandler getInstance() {
         return instance;
+    }
+
+    public LPlayer get(String id) {
+        LPlayer lPlayer = super.get(id);
+
+        // Attempt load from cache
+        if(lPlayer == null) {
+            lPlayer = LPlayerCache.getPlayer(id);
+            if(lPlayer != null) register(id, lPlayer);
+        }
+
+        // Attempt load from database
+        if(lPlayer == null) {
+            lPlayer = DataManager.getDataSource().loadLPlayer(id);
+            if(lPlayer != null) register(id, lPlayer);
+        }
+
+        // Create new player data
+        if(lPlayer == null) {
+            Configuration config = Configuration.getInstance();
+            lPlayer = new LPlayer(
+                    RaceHandler.getInstance().get(config.getDefaultRace()),
+                    LClassHandler.getInstance().get(config.getDefaultPrimaryClass()),
+                    LClassHandler.getInstance().get(config.getDefaultSecondaryClass()
+            ));
+            register(id, lPlayer);
+            DataManager.getDataSource().saveLPlayer(lPlayer);
+        }
+
+        return lPlayer;
     }
 }

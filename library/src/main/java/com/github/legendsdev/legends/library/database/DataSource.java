@@ -30,6 +30,8 @@ public interface DataSource {
     public Logger getLogger();
 
     public LPlayer loadLPlayer(String name);
+    public void saveLPlayer(LPlayer lPlayer);
     public Race loadRace(String name);
     public LClass loadLClass(String name);
+
 }
