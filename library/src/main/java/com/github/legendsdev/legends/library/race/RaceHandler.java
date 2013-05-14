@@ -17,6 +17,7 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.race;
 
 import com.github.legendsdev.legends.library.BasicHandler;
+import com.github.legendsdev.legends.library.database.DataManager;
 
 /**
  * @author B2OJustin
@@ -26,5 +27,15 @@ public class RaceHandler extends BasicHandler<Race> {
 
     public static RaceHandler getInstance() {
         return instance;
+    }
+
+    @Override
+    public Race get(String id) {
+        Race race = super.get(id);
+        if(race == null) {
+            race = DataManager.getDataSource().loadRace(id);
+            if(race != null) register(id, race);
+        }
+        return race;
     }
 }
