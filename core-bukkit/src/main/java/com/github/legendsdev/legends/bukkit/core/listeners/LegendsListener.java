@@ -26,11 +26,23 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 /**
  * @author B2OJustin
  */
 public class LegendsListener implements Listener, EventListener {
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        LPlayerHandler.getInstance().load(event.getPlayer().getName());
+    }
+
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        LPlayerHandler.getInstance().remove(event.getPlayer().getName(), true);
+    }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
