@@ -20,16 +20,20 @@ package com.github.legendsdev.legends.bukkit.core;
 import com.github.legendsdev.legends.bukkit.core.listeners.LegendsListener;
 import com.github.legendsdev.legends.bukkit.core.utils.ConfigHandler;
 import com.github.legendsdev.legends.bukkit.core.utils.DependencyHandler;
-import com.github.legendsdev.legends.library.event.EventManager;
-import com.github.legendsdev.legends.library.listener.BaseListener;
+import com.github.legendsdev.legends.library.database.YAMLDataSource;
 import org.bukkit.plugin.java.JavaPlugin;
 import se.ranzdo.bukkit.methodcommand.CommandHandler;
+
+import java.io.FileNotFoundException;
+import java.util.logging.Logger;
 
 /**
  * @author B2OJustin
  */
 public class LegendsCore extends JavaPlugin {
-	private static LegendsCore instance;
+    private static Logger logger = Logger.getLogger(LegendsCore.class.getName());
+    private static LegendsCore instance;
+    private static String CONFIG_PATH = "Legends/";
 	
 	private CommandHandler commandHandler;
 	private ConfigHandler configHandler;
@@ -40,13 +44,22 @@ public class LegendsCore extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-            LegendsCore.instance = this;
-            commandHandler = new CommandHandler(this);
-            configHandler = new ConfigHandler(getDataFolder());
-            DependencyHandler.resolve();
+        LegendsCore.instance = this;
+        commandHandler = new CommandHandler(this);
+        configHandler = new ConfigHandler(getDataFolder());
+        DependencyHandler.resolve();
 
-            getServer().getPluginManager().registerEvents(new LegendsListener(), this);
-            EventManager.registerEvents(new BaseListener());
+        getServer().getPluginManager().registerEvents(new LegendsListener(), this);
+
+        // Load configuration
+        YAMLDataSource  yamlDataSource = new YAMLDataSource(CONFIG_PATH);
+        try {
+            yamlDataSource.loadConfiguration("config.yml");
+        } catch (FileNotFoundException ex) {
+            logger.warning("Configuration file not found... saving defaults.");
+            yamlDataSource.saveConfiguration("config.yml");
+        }
+
 	}
 	
 	@Override
@@ -56,9 +69,5 @@ public class LegendsCore extends JavaPlugin {
 
 	public CommandHandler getCommandHandler() {
 		return commandHandler;
-	}
-
-	public ConfigHandler getConfigHandler() {
-		return configHandler;
 	}
 }
