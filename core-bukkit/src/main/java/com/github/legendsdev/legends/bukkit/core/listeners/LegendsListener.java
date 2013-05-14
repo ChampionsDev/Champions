@@ -45,6 +45,7 @@ public class LegendsListener implements Listener, EventListener {
                 lEvent = new WeaponClickEvent(playerWeapon, player, WeaponClickEvent.ClickType.RIGHT_CLICK);
             }
             else return;
+            playerWeapon.onClick(lEvent);
             EventManager.callEvent(lEvent);
         }
     }
