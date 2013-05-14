@@ -72,6 +72,11 @@ public class YAMLDataSource implements DataSource {
     }
 
     @Override
+    public void saveLPlayer(LPlayer lPlayer) {
+        //TODO saveLPlayer method stub
+    }
+
+    @Override
     @SuppressWarnings("unchecked")
     public synchronized Race loadRace(String name) {
         String filePath = configPath + RACE_PATH + name.replace(" ", "_") + ".yml";
@@ -267,19 +272,18 @@ public class YAMLDataSource implements DataSource {
     }
 
     //TODO implement yaml configuration loading
-    public synchronized Configuration loadConfiguration(Configuration config, String file) throws FileNotFoundException {
+    public synchronized Configuration loadConfiguration(String file) throws FileNotFoundException {
         YAMLHelper yml = new YAMLHelper(configPath + file);
         for(String configKey : yml.getKeys("")) {
             switch(configKey) {
 
             }
         }
-        return config;
+        return Configuration.getInstance();
     }
 
     // TODO implement yaml configuration saving
-    public synchronized YAMLDataSource saveConfiguration(Configuration config, String file) {
-
+    public synchronized YAMLDataSource saveConfiguration(String file) {
         return this;
     }
 }
