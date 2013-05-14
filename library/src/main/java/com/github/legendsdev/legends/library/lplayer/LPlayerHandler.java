@@ -55,10 +55,19 @@ public class LPlayerHandler extends BasicHandler<LPlayer> {
                     LClassHandler.getInstance().get(config.getDefaultPrimaryClass()),
                     LClassHandler.getInstance().get(config.getDefaultSecondaryClass()
             ));
-            register(id, lPlayer);
+            super.register(id, lPlayer);
             DataManager.getDataSource().saveLPlayer(lPlayer);
         }
 
         return lPlayer;
+    }
+
+    public LPlayerHandler remove(String id, boolean cache) {
+        if(cache) {
+            LPlayer lPlayer = get(id);
+            LPlayerCache.cachePlayer(id, lPlayer);
+        }
+        super.remove(id);
+        return this;
     }
 }
