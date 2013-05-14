@@ -42,6 +42,11 @@ public class H2DataSource implements DataSource {
     }
 
     @Override
+    public void saveLPlayer(LPlayer lPlayer) {
+        //TODO saveLPlayer method stub
+    }
+
+    @Override
     public Race loadRace(String name) {
         return null; //TODO loadRace method stub
     }
