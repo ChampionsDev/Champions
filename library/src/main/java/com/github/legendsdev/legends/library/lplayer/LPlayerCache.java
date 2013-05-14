@@ -16,8 +16,6 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.lplayer;
 
-import com.github.legendsdev.legends.library.BasicHandler;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 

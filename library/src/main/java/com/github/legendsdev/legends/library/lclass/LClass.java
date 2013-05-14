@@ -20,7 +20,6 @@ import com.github.legendsdev.legends.library.weapon.WeaponUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 /**
  * @author YoshiGenius
