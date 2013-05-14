@@ -33,25 +33,16 @@ public class LPlayerCache {
         }
     };
 
-    private static LPlayerCache instance = new LPlayerCache();
-
-    public static LPlayerCache getInstance() {
-        return instance;
-    }
-
-    public static LPlayerCache setCacheSize(int cacheSize) {
+    public static void setCacheSize(int cacheSize) {
         LPlayerCache.cacheSize = cacheSize;
-        return instance;
     }
 
-    public static LPlayerCache cachePlayer(String playerName, LPlayer player) {
+    public static void cachePlayer(String playerName, LPlayer player) {
         cacheMap.put(playerName, player);
-        return instance;
     }
 
-    public static LPlayerCache removePlayer(String playerName) {
+    public static void removePlayer(String playerName) {
         cacheMap.remove(playerName);
-        return instance;
     }
 
     public static LPlayer getPlayer(String playerName) {
