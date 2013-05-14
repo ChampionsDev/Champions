@@ -32,7 +32,7 @@ public class LPlayerHandler extends BasicHandler<LPlayer> {
         return instance;
     }
 
-    public LPlayer get(String id) {
+    public LPlayer load(String id) {
         LPlayer lPlayer = super.get(id);
 
         // Attempt load from cache

@@ -29,8 +29,7 @@ public class RaceHandler extends BasicHandler<Race> {
         return instance;
     }
 
-    @Override
-    public Race get(String id) {
+    public Race load(String id) {
         Race race = super.get(id);
         if(race == null) {
             race = DataManager.getDataSource().loadRace(id);
