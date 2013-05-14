@@ -30,4 +30,24 @@ public class MobKillExpSource extends ExpSource {
     public int getMobId() {
         return mobId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        MobKillExpSource that = (MobKillExpSource) o;
+
+        if (mobId != that.mobId) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + mobId;
+        return result;
+    }
 }

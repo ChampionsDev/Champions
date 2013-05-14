@@ -33,4 +33,23 @@ public class SkillUseExpSource extends ExpSource {
         return skill;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        SkillUseExpSource that = (SkillUseExpSource) o;
+
+        if (skill != null ? !skill.equals(that.skill) : that.skill != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (skill != null ? skill.hashCode() : 0);
+        return result;
+    }
 }

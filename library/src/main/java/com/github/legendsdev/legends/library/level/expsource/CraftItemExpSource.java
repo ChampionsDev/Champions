@@ -30,4 +30,24 @@ public class CraftItemExpSource extends ExpSource {
     public int getBlockId() {
         return blockId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        CraftItemExpSource that = (CraftItemExpSource) o;
+
+        if (blockId != that.blockId) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + blockId;
+        return result;
+    }
 }

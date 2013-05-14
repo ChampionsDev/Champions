@@ -31,4 +31,24 @@ public class EnchantExpSource extends ExpSource {
     public String getEnchantId() {
         return enchantId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        EnchantExpSource that = (EnchantExpSource) o;
+
+        if (enchantId != null ? !enchantId.equals(that.enchantId) : that.enchantId != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (enchantId != null ? enchantId.hashCode() : 0);
+        return result;
+    }
 }
