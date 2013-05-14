@@ -54,7 +54,7 @@ public class LPlayerCache {
         return instance;
     }
 
-    public static LPlayer getPlayer(String playerName, LPlayer player) {
+    public static LPlayer getPlayer(String playerName) {
         return cacheMap.get(playerName);
     }
 }
