@@ -20,4 +20,8 @@ public class BasicHandler<T> {
         objectMap.remove(id);
     }
 
+    public boolean isRegistered(String id) {
+        return objectMap.containsKey(id);
+    }
+
 }
