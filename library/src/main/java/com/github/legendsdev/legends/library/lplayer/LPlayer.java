@@ -54,10 +54,10 @@ public class LPlayer implements LEntity,
 
     private Race race = new Race();
 
-    private LClass primaryClass = new LClass();
+    private LClass primaryClass;
     private LClassInfo primaryClassInfo = new LClassInfo();
 
-    private LClass secondaryClass = new LClass();
+    private LClass secondaryClass;
     private LClassInfo secondaryClassInfo = new LClassInfo();
 
     private String playerName = "";
