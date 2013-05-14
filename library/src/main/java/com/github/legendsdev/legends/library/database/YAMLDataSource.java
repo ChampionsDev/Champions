@@ -17,6 +17,7 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.database;
 
 import com.github.legendsdev.legends.library.BasicInfo;
+import com.github.legendsdev.legends.library.Configuration;
 import com.github.legendsdev.legends.library.armor.*;
 import com.github.legendsdev.legends.library.database.helper.YAMLHelper;
 import com.github.legendsdev.legends.library.lclass.*;
@@ -45,7 +46,7 @@ import java.util.logging.Logger;
 @SuppressWarnings("unchecked")
 public class YAMLDataSource implements DataSource {
     private static final Logger logger = Logger.getLogger(YAMLDataSource.class.getName());
-    private String configPath = "";
+    private String configPath = "Legends/";
     private final String RACE_PATH = "races/";
     private final String SKILL_PATH = "skills/";
     private final String PLAYER_PATH = "players/";
@@ -263,5 +264,22 @@ public class YAMLDataSource implements DataSource {
     @Override
     public synchronized LClass loadLClass(String name) {
         return null; //TODO loadLClass method stub
+    }
+
+    //TODO implement yaml configuration loading
+    public synchronized Configuration loadConfiguration(Configuration config, String file) throws FileNotFoundException {
+        YAMLHelper yml = new YAMLHelper(configPath + file);
+        for(String configKey : yml.getKeys("")) {
+            switch(configKey) {
+
+            }
+        }
+        return config;
+    }
+
+    // TODO implement yaml configuration saving
+    public synchronized YAMLDataSource saveConfiguration(Configuration config, String file) {
+
+        return this;
     }
 }
