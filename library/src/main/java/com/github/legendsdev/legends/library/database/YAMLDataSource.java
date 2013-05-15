@@ -112,10 +112,8 @@ public class YAMLDataSource implements DataSource {
 
         } catch (FileNotFoundException e) {
             logger.warning("Could not find file for race '" + name + "' at " + filePath);
-            e.printStackTrace();
         } catch (ClassCastException e) {
             logger.warning("You seem to have an error in your yaml. Could not load race '" + name + "'");
-            e.printStackTrace();
         } catch(IllegalAccessException | InstantiationException ignored) {}
 
         return null;
@@ -318,10 +316,8 @@ public class YAMLDataSource implements DataSource {
 
         } catch (FileNotFoundException e) {
             logger.warning("Could not find file for class '" + name + "' at " + filePath);
-            e.printStackTrace();
         } catch (ClassCastException e) {
             logger.warning("You seem to have an error in your yaml. Could not load class '" + name + "'");
-            e.printStackTrace();
         } catch(IllegalAccessException | InstantiationException ignored) {}
 
         return null;
