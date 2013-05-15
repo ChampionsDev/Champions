@@ -263,7 +263,45 @@ public class YAMLDataSource implements DataSource {
 
     @Override
     public synchronized LClass loadLClass(String name) {
-        return null; //TODO loadLClass method stub
+        String filePath = configPath + CLASS_PATH + name.replace(" ", "_") + ".yml";
+        LClass lClass;
+        try {
+            // Load custom class file if exists
+            Class lClassClass = FileClassLoader.load(Race.class, configPath + CLASS_PATH, name);
+            if(lClassClass != null) {
+                lClass = (LClass)lClassClass.newInstance();
+            } else lClass = new LClass();
+
+            YAMLHelper yml = new YAMLHelper(filePath);
+
+            for(String mainKey : yml.getKeys("")) {
+                switch(mainKey) {
+                    case "name":
+                        lClass.setName(yml.getString("name"));
+                        break;
+                    case "description":
+                        lClass.setDescription(yml.getStringList("description"));
+                        break;
+                    case "Weapons":
+                        RestrictionHandler.getInstance().setWeaponRestrictions(lClass, loadWeaponRestrictions(lClass, "Weapons", yml));
+                        break;
+                    case "Armor":
+                        RestrictionHandler.getInstance().setArmorRestrictions(lClass, loadArmorRestrictions(lClass, "Armor", yml));
+                        break;
+                }
+            }
+
+            return lClass;
+
+        } catch (FileNotFoundException e) {
+            logger.warning("Could not find file for class '" + name + "' at " + filePath);
+            e.printStackTrace();
+        } catch (ClassCastException e) {
+            logger.warning("You seem to have an error in your yaml. Could not load class '" + name + "'");
+            e.printStackTrace();
+        } catch(IllegalAccessException | InstantiationException ignored) {}
+
+        return null;
     }
 
     public synchronized Configuration loadConfiguration(Configuration config, String file) throws FileNotFoundException {
