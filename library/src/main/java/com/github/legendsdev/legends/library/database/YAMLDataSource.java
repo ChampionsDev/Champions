@@ -18,6 +18,7 @@ package com.github.legendsdev.legends.library.database;
 
 import com.github.legendsdev.legends.library.BasicInfo;
 import com.github.legendsdev.legends.library.Configuration;
+import com.github.legendsdev.legends.library.StatsInfo;
 import com.github.legendsdev.legends.library.armor.*;
 import com.github.legendsdev.legends.library.database.helper.YAMLHelper;
 import com.github.legendsdev.legends.library.lclass.*;
@@ -144,6 +145,8 @@ public class YAMLDataSource implements DataSource {
                     int bonusMana = (int) entry.getValue();
                     basicInfo.addBonusMana(bonusMana);
                     break;
+
+                // Level restricted
                 case "required-level":    // TODO
                     if(basicInfo instanceof LevelRestricted) {
                         int requiredLevel = (int) entry.getValue();
@@ -154,6 +157,26 @@ public class YAMLDataSource implements DataSource {
                     if(basicInfo instanceof  LevelRestricted) {
                         int maximumLevel = (int) entry.getValue();
                         RestrictionHandler.getInstance().getLevelRestrictions((LevelRestricted)basicInfo).setMaxLevel(maximumLevel);
+                    }
+                    break;
+
+                // Stats
+                case "health-per-level":
+                    if(basicInfo instanceof StatsInfo) {
+                        int healthPerLevel = (int) entry.getValue();
+                        ((StatsInfo)basicInfo).setHealthPerLevel(healthPerLevel);
+                    }
+                    break;
+                case "mana-per-level":
+                    if(basicInfo instanceof StatsInfo) {
+                        int manaPerLevel = (int) entry.getValue();
+                        ((StatsInfo)basicInfo).setManaPerLevel(manaPerLevel);
+                    }
+                    break;
+                case "stamina-per-level":
+                    if(basicInfo instanceof StatsInfo) {
+                        int staminaPerLevel = (int) entry.getValue();
+                        ((StatsInfo)basicInfo).setStaminaPerLevel(staminaPerLevel);
                     }
                     break;
             }
@@ -263,7 +286,45 @@ public class YAMLDataSource implements DataSource {
 
     @Override
     public synchronized LClass loadLClass(String name) {
-        return null; //TODO loadLClass method stub
+        String filePath = configPath + CLASS_PATH + name.replace(" ", "_") + ".yml";
+        LClass lClass;
+        try {
+            // Load custom class file if exists
+            Class lClassClass = FileClassLoader.load(Race.class, configPath + CLASS_PATH, name);
+            if(lClassClass != null) {
+                lClass = (LClass)lClassClass.newInstance();
+            } else lClass = new LClass();
+
+            YAMLHelper yml = new YAMLHelper(filePath);
+
+            for(String mainKey : yml.getKeys("")) {
+                switch(mainKey) {
+                    case "name":
+                        lClass.setName(yml.getString("name"));
+                        break;
+                    case "description":
+                        lClass.setDescription(yml.getStringList("description"));
+                        break;
+                    case "Weapons":
+                        RestrictionHandler.getInstance().setWeaponRestrictions(lClass, loadWeaponRestrictions(lClass, "Weapons", yml));
+                        break;
+                    case "Armor":
+                        RestrictionHandler.getInstance().setArmorRestrictions(lClass, loadArmorRestrictions(lClass, "Armor", yml));
+                        break;
+                }
+            }
+
+            return lClass;
+
+        } catch (FileNotFoundException e) {
+            logger.warning("Could not find file for class '" + name + "' at " + filePath);
+            e.printStackTrace();
+        } catch (ClassCastException e) {
+            logger.warning("You seem to have an error in your yaml. Could not load class '" + name + "'");
+            e.printStackTrace();
+        } catch(IllegalAccessException | InstantiationException ignored) {}
+
+        return null;
     }
 
     public synchronized Configuration loadConfiguration(Configuration config, String file) throws FileNotFoundException {

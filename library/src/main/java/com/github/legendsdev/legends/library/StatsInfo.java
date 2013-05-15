@@ -14,18 +14,16 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library.misc;
-
-import java.util.ArrayList;
+package com.github.legendsdev.legends.library;
 
 /**
  * @author B2OJustin
  */
-public interface Informative<SelfType, InfoType> {
-    public ArrayList<String> getDescription();
-    public String getName();
-    public SelfType setName(String name);
-    public SelfType setDescription(ArrayList<String> description);
-    public InfoType getDefaultInfo();
-    public SelfType setDefaultInfo(InfoType info);
+public interface StatsInfo<SelfType extends StatsInfo> {
+    public SelfType setHealthPerLevel(int healthPerLevel);
+    public SelfType setManaPerLevel(int manaPerLevel);
+    public SelfType setStaminaPerLevel(int staminaPerLevel);
+    public int getHealthPerLevel();
+    public int getManaPerLevel();
+    public int getStaminaPerLevel();
 }

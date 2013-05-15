@@ -42,6 +42,12 @@ public class Skill implements Informative<Skill, SkillInfo> {
         return this.name;
     }
 
+    @Override
+    public Skill setName(String name) {
+        this.name = name;
+        return this;
+    }
+
     public ArrayList<String> getDescription() {
         return this.description;
     }

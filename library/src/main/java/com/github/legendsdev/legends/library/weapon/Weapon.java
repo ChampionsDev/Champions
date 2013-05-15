@@ -67,6 +67,12 @@ public class Weapon implements Informative<Weapon, WeaponInfo>, WeaponBehavior {
     }
 
     @Override
+    public Weapon setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    @Override
     public ArrayList<String> getDescription() {
         return description;
     }
