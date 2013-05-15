@@ -2,3 +2,5 @@ name: Legends
 version: 0.0.1a
 main: com.github.legendsdev.legends.bukkit.core.LegendsCore
 authors: [Ranzdo, B2OJustin, YoshiGenius]
+commands:
+  class:
