@@ -54,6 +54,7 @@ public class YAMLDataSource implements DataSource {
 
     public YAMLDataSource(String configPath) {
         this.configPath = configPath;
+        if(!configPath.endsWith("/")) configPath.concat("/");
     }
 
     @Override
@@ -267,6 +268,8 @@ public class YAMLDataSource implements DataSource {
 
     public synchronized Configuration loadConfiguration(Configuration config, String file) throws FileNotFoundException {
         YAMLHelper yml = new YAMLHelper(configPath + file);
+
+        // Main configuration
         for(String configKey : yml.getKeys("")) {
             switch(configKey) {
                 case "database-type":
@@ -283,7 +286,19 @@ public class YAMLDataSource implements DataSource {
                     break;
             }
         }
-        return Configuration.getInstance();
+
+        // YAML database configuration
+        if(config.getDatabaseType().toUpperCase().equals("YAML")) {
+            for(String yamlKey : yml.getKeys("YAML")) {
+                switch(yamlKey.toLowerCase()) {
+                    case "config-path":
+                        config.setYamlConfigPath(yml.getString("YAML.config-path"));
+                        break;
+                }
+            }
+        }
+
+        return config;
     }
 
     // TODO implement yaml configuration saving
