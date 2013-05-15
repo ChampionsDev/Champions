@@ -11,4 +11,6 @@ public interface Positionable {
 
     public LLocation getPosition();
 
+    public void setLocation(LLocation location);
+
 }

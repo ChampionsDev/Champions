@@ -335,6 +335,9 @@ public class LPlayer implements LEntity,
 
     @Override
     public LPlayerInfo getDefaultInfo() {
+        if (this.lPlayerInfo == null) {
+            lPlayerInfo = new LPlayerInfo();
+        }
         return lPlayerInfo;
     }
 
@@ -350,5 +353,10 @@ public class LPlayer implements LEntity,
     @Override
     public LLocation getPosition() {
         return this.location;
+    }
+
+    @Override
+    public void setLocation(LLocation location) {
+        this.location = location;
     }
 }
