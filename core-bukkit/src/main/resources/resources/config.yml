@@ -2,3 +2,6 @@ database-type: yaml
 default-race: Human
 default-primary-class: Default
 default-secondary-class: Default
+
+YAML:
+  config-path: "Legends/"
