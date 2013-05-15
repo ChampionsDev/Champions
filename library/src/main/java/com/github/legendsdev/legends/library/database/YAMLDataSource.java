@@ -173,6 +173,12 @@ public class YAMLDataSource implements DataSource {
                         ((StatsInfo)basicInfo).setManaPerLevel(manaPerLevel);
                     }
                     break;
+                case "stamina-per-level":
+                    if(basicInfo instanceof StatsInfo) {
+                        int staminaPerLevel = (int) entry.getValue();
+                        ((StatsInfo)basicInfo).setStaminaPerLevel(staminaPerLevel);
+                    }
+                    break;
             }
         }
         return basicInfo;

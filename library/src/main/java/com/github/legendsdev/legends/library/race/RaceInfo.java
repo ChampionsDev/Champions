@@ -25,6 +25,7 @@ import com.github.legendsdev.legends.library.StatsInfo;
 public class RaceInfo extends BasicInfo<RaceInfo> implements StatsInfo<RaceInfo> {
     public int healthPerLevel = 0;
     public int manaPerLevel = 0;
+    public int staminaPerLevel = 0;
 
     public RaceInfo setHealthPerLevel(int healthPerLevel) {
         this.healthPerLevel = healthPerLevel;
@@ -36,11 +37,22 @@ public class RaceInfo extends BasicInfo<RaceInfo> implements StatsInfo<RaceInfo>
         return this;
     }
 
+    @Override
+    public RaceInfo setStaminaPerLevel(int staminaPerLevel) {
+        this.staminaPerLevel = staminaPerLevel;
+        return this;
+    }
+
     public int getHealthPerLevel() {
         return healthPerLevel;
     }
 
     public int getManaPerLevel() {
         return manaPerLevel;
+    }
+
+    @Override
+    public int getStaminaPerLevel() {
+        return staminaPerLevel;
     }
 }

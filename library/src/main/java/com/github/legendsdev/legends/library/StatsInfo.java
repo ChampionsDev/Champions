@@ -22,6 +22,8 @@ package com.github.legendsdev.legends.library;
 public interface StatsInfo<SelfType extends StatsInfo> {
     public SelfType setHealthPerLevel(int healthPerLevel);
     public SelfType setManaPerLevel(int manaPerLevel);
+    public SelfType setStaminaPerLevel(int staminaPerLevel);
     public int getHealthPerLevel();
     public int getManaPerLevel();
+    public int getStaminaPerLevel();
 }

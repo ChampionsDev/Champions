@@ -28,6 +28,7 @@ public class LClassInfo extends BasicInfo<LClassInfo> implements LevelUser, Stat
     private Level level = new Level(0);
     public int healthPerLevel = 0;
     public int manaPerLevel = 0;
+    public int staminaPerLevel = 0;
 
     public LClassInfo setHealthPerLevel(int healthPerLevel) {
         this.healthPerLevel = healthPerLevel;
@@ -39,6 +40,12 @@ public class LClassInfo extends BasicInfo<LClassInfo> implements LevelUser, Stat
         return this;
     }
 
+    @Override
+    public LClassInfo setStaminaPerLevel(int staminaPerLevel) {
+        this.staminaPerLevel = staminaPerLevel;
+        return this;
+    }
+
     public int getHealthPerLevel() {
         return healthPerLevel;
     }
@@ -46,6 +53,12 @@ public class LClassInfo extends BasicInfo<LClassInfo> implements LevelUser, Stat
     public int getManaPerLevel() {
         return manaPerLevel;
     }
+
+    @Override
+    public int getStaminaPerLevel() {
+        return staminaPerLevel;
+    }
+
     @Override
     public Level getLevel() {
         return level;
