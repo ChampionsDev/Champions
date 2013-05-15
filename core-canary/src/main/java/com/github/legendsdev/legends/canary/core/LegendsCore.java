@@ -17,7 +17,6 @@ This file is part of Legends.
 package com.github.legendsdev.legends.canary.core;
 
 import net.canarymod.Canary;
-import net.canarymod.hook.HookHandler;
 import net.canarymod.plugin.Plugin;
 
 

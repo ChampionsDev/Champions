@@ -17,9 +17,10 @@ This file is part of Legends.
 
 package com.github.legendsdev.legends.bukkit.core.utils;
 
-import java.lang.reflect.Method;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
+
+import java.lang.reflect.Method;
 
 /**
  * @author Ranzdo
