@@ -19,6 +19,7 @@ package com.github.legendsdev.legends.library.lplayer;
 
 import com.github.legendsdev.legends.library.BasicInfo;
 import com.github.legendsdev.legends.library.LEntity;
+import com.github.legendsdev.legends.library.LLocation;
 import com.github.legendsdev.legends.library.armor.Armor;
 import com.github.legendsdev.legends.library.armor.ArmorInfo;
 import com.github.legendsdev.legends.library.armor.ArmorRestricted;
@@ -29,6 +30,7 @@ import com.github.legendsdev.legends.library.lclass.LClassRestricted;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.level.expsource.ExpSource;
 import com.github.legendsdev.legends.library.misc.Informative;
+import com.github.legendsdev.legends.library.misc.Positionable;
 import com.github.legendsdev.legends.library.party.Party;
 import com.github.legendsdev.legends.library.race.Race;
 import com.github.legendsdev.legends.library.race.RaceRestricted;
@@ -50,7 +52,7 @@ import java.util.HashMap;
 public class LPlayer implements LEntity,
         Informative<LPlayer, LPlayerInfo>,
         WeaponUser<LPlayer>, ArmorUser<LPlayer>, SkillUser<LPlayer>,
-        WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, LClassRestricted, RaceRestricted {
+        WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, LClassRestricted, RaceRestricted, Positionable {
 
     private Race race = new Race();
 
@@ -84,6 +86,7 @@ public class LPlayer implements LEntity,
     private int maxMana = 0;
     private int currentStamina = 0;
     private int maxStamina = 0;
+    private LLocation location;
 
     public LPlayer(Race race, LClass primaryClass, LClass secondaryClass) {
         this.race = race;
@@ -95,6 +98,7 @@ public class LPlayer implements LEntity,
         currentHealth = maxHealth;
         currentMana = maxMana;
         currentStamina = maxStamina;
+        this.location = null;
     }
 
     public Race getRace() {
@@ -331,6 +335,9 @@ public class LPlayer implements LEntity,
 
     @Override
     public LPlayerInfo getDefaultInfo() {
+        if (this.lPlayerInfo == null) {
+            lPlayerInfo = new LPlayerInfo();
+        }
         return lPlayerInfo;
     }
 
@@ -341,5 +348,15 @@ public class LPlayer implements LEntity,
         }
         else lPlayerInfo = info;
         return this;
+    }
+
+    @Override
+    public LLocation getPosition() {
+        return this.location;
+    }
+
+    @Override
+    public void setLocation(LLocation location) {
+        this.location = location;
     }
 }
