@@ -20,7 +20,7 @@ package com.github.legendsdev.legends.library;
  * @author B2OJustin
  */
 public class Configuration {
-    private String dataSourceName = "SQLITE";
+    private String databaseType = "YAML";
     private String defaultRace = "Default";
     private String defaultPrimaryClass = "Default";
     private String defaultSecondaryClass = "Default";
@@ -34,21 +34,36 @@ public class Configuration {
     private Configuration() {
     }
 
+
+    public String getDatabaseType() {
+        return databaseType;
+    }
+
+    public void setDatabaseType(String databaseType) {
+        this.databaseType = databaseType;
+    }
+
     public String getDefaultRace() {
         return defaultRace;
     }
 
-    public String getDataSourceName() {
-        return dataSourceName;
+    public void setDefaultRace(String defaultRace) {
+        this.defaultRace = defaultRace;
     }
 
     public String getDefaultPrimaryClass() {
         return defaultPrimaryClass;
     }
 
+    public void setDefaultPrimaryClass(String defaultPrimaryClass) {
+        this.defaultPrimaryClass = defaultPrimaryClass;
+    }
+
     public String getDefaultSecondaryClass() {
         return defaultSecondaryClass;
     }
 
-
+    public void setDefaultSecondaryClass(String defaultSecondaryClass) {
+        this.defaultSecondaryClass = defaultSecondaryClass;
+    }
 }
