@@ -51,9 +51,9 @@ public class LPlayerHandler extends BasicHandler<LPlayer> {
         if(lPlayer == null) {
             Configuration config = Configuration.getInstance();
             lPlayer = new LPlayer(
-                    RaceHandler.getInstance().get(config.getDefaultRace()),
-                    LClassHandler.getInstance().get(config.getDefaultPrimaryClass()),
-                    LClassHandler.getInstance().get(config.getDefaultSecondaryClass()
+                    RaceHandler.getInstance().load(config.getDefaultRace()),
+                    LClassHandler.getInstance().load(config.getDefaultPrimaryClass()),
+                    LClassHandler.getInstance().load(config.getDefaultSecondaryClass()
             ));
             super.register(id, lPlayer);
             DataManager.getDataSource().saveLPlayer(lPlayer);

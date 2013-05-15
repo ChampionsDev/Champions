@@ -17,14 +17,28 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.lclass;
 
 import com.github.legendsdev.legends.library.BasicHandler;
+import com.github.legendsdev.legends.library.database.DataManager;
+
+import java.util.logging.Logger;
 
 /**
  * @author B2OJustin
  */
 public class LClassHandler extends BasicHandler<LClass> {
+    private static Logger logger = Logger.getLogger(LClassHandler.class.getName());
     private static LClassHandler instance = new LClassHandler();
 
     public static LClassHandler getInstance() {
         return instance;
+    }
+
+    public LClass load(String id) {
+        LClass lClass = super.get(id);
+        if(lClass == null) {
+            lClass = DataManager.getDataSource().loadLClass(id);
+            if(lClass != null) register(id, lClass);
+            else logger.warning("Could not load class '" + id + "'");
+        }
+        return lClass;
     }
 }

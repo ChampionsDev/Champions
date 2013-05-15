@@ -19,10 +19,13 @@ package com.github.legendsdev.legends.library.race;
 import com.github.legendsdev.legends.library.BasicHandler;
 import com.github.legendsdev.legends.library.database.DataManager;
 
+import java.util.logging.Logger;
+
 /**
  * @author B2OJustin
  */
 public class RaceHandler extends BasicHandler<Race> {
+    private static Logger logger = Logger.getLogger(RaceHandler.class.getName());
     private static RaceHandler instance = new RaceHandler();
 
     public static RaceHandler getInstance() {
@@ -34,6 +37,7 @@ public class RaceHandler extends BasicHandler<Race> {
         if(race == null) {
             race = DataManager.getDataSource().loadRace(id);
             if(race != null) register(id, race);
+            else logger.warning("Could not load race '" + id + "'");
         }
         return race;
     }

@@ -85,9 +85,6 @@ public class LegendsCore extends JavaPlugin {
         //Initialize data management
         DataManager.init(Configuration.getInstance());
 
-        // Testing
-        RaceHandler.getInstance().load("Test");
-
         logger.info("Legends successfully enabled!");
 	}
 	
