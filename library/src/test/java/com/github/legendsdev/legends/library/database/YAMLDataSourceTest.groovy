@@ -16,6 +16,7 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.database
 
+import com.github.legendsdev.legends.library.Configuration
 import com.github.legendsdev.legends.library.race.Race
 import com.github.legendsdev.legends.library.restriction.RestrictionHandler
 import com.github.legendsdev.legends.library.weapon.Weapon
@@ -53,6 +54,12 @@ class YAMLDataSourceTest extends GroovyTestCase {
         assertTrue(restrictionHandler.getWeaponRestrictions(race).isAllowed(weaponHandler.get("DIAMOND_AXE")));
 
         assertEquals(race.getWeaponInfo(weaponHandler.get("IRON_AXE")).getBonusWeaponDamage(), 10)
+    }
+
+    void testLoadConfiguration() {
+        Configuration config = Configuration.getInstance();
+        yamlDataSource.loadConfiguration(config, "config.yml");
+        assertEquals(config.getYamlConfigPath(), "Legends/");
     }
 
     void testLoadLClass() {
