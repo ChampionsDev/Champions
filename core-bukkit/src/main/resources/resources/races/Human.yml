@@ -1,0 +1,16 @@
+name: Human
+description: [Human Race]
+
+Stats:
+  health-per-level: 5
+  mana-per-level: 5
+  bonus-health: 10
+  bonus-mana: 10
+  bonus-mana-regen: 1
+
+Weapons:
+  default: allow
+
+
+Armor:
+  default: allow

@@ -1,0 +1,17 @@
+name: Default
+description: [Default Class]
+
+primary: true
+secondary: true
+
+Stats:
+  health-per-level: 5
+  bonus-health: 0
+  mana-per-level: 5
+  bonus-mana: 0
+
+Weapons:
+  default: allow
+
+Armor:
+  default: allow
