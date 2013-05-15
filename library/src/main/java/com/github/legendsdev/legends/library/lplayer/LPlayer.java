@@ -318,6 +318,12 @@ public class LPlayer implements LEntity,
     }
 
     @Override
+    public LPlayer setName(String name) {
+        this.playerName = name;
+        return this;
+    }
+
+    @Override
     public LPlayer setDescription(ArrayList<String> description) {
         this.description = description;
         return this;

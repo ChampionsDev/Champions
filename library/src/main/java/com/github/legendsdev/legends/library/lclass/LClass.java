@@ -69,6 +69,12 @@ public class LClass implements Informative<LClass, LClassInfo>,
     }
 
     @Override
+    public LClass setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    @Override
     public LClass setDescription(ArrayList<String> description) {
         this.description = description;
         return this;

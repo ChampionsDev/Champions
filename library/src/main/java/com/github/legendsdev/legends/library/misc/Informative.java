@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public interface Informative<SelfType, InfoType> {
     public ArrayList<String> getDescription();
     public String getName();
+    public SelfType setName(String name);
     public SelfType setDescription(ArrayList<String> description);
     public InfoType getDefaultInfo();
     public SelfType setDefaultInfo(InfoType info);
