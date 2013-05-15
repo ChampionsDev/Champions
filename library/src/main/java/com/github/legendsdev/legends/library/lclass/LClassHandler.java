@@ -37,8 +37,8 @@ public class LClassHandler extends BasicHandler<LClass> {
         if(lClass == null) {
             lClass = DataManager.getDataSource().loadLClass(id);
             if(lClass != null) {
-                logger.info("Loaded class '" + id + "' from database");
                 register(id, lClass);
+                logger.info("Loaded class '" + id + "' from database");
             }
             else logger.warning("Could not load class '" + id + "'");
         }

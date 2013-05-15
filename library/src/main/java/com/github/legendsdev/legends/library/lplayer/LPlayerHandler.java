@@ -41,15 +41,19 @@ public class LPlayerHandler extends BasicHandler<LPlayer> {
         // Attempt load from cache
         if(lPlayer == null) {
             lPlayer = LPlayerCache.getPlayer(id);
-            if(lPlayer != null) register(id, lPlayer);
-            logger.info("Loaded player '" + id + "' from cache");
+            if(lPlayer != null) {
+                register(id, lPlayer);
+                logger.info("Loaded player '" + id + "' from cache");
+            }
         }
 
         // Attempt load from database
         if(lPlayer == null) {
             lPlayer = DataManager.getDataSource().loadLPlayer(id);
-            if(lPlayer != null) register(id, lPlayer);
-            logger.info("Loaded player data for '" + id + "' from database");
+            if(lPlayer != null) {
+                register(id, lPlayer);
+                logger.info("Loaded player data for '" + id + "' from database");
+            }
         }
 
         // Create new player data
