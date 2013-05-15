@@ -18,6 +18,7 @@ package com.github.legendsdev.legends.library.database;
 
 import com.github.legendsdev.legends.library.BasicInfo;
 import com.github.legendsdev.legends.library.Configuration;
+import com.github.legendsdev.legends.library.StatsInfo;
 import com.github.legendsdev.legends.library.armor.*;
 import com.github.legendsdev.legends.library.database.helper.YAMLHelper;
 import com.github.legendsdev.legends.library.lclass.*;
@@ -144,6 +145,8 @@ public class YAMLDataSource implements DataSource {
                     int bonusMana = (int) entry.getValue();
                     basicInfo.addBonusMana(bonusMana);
                     break;
+
+                // Level restricted
                 case "required-level":    // TODO
                     if(basicInfo instanceof LevelRestricted) {
                         int requiredLevel = (int) entry.getValue();
@@ -154,6 +157,20 @@ public class YAMLDataSource implements DataSource {
                     if(basicInfo instanceof  LevelRestricted) {
                         int maximumLevel = (int) entry.getValue();
                         RestrictionHandler.getInstance().getLevelRestrictions((LevelRestricted)basicInfo).setMaxLevel(maximumLevel);
+                    }
+                    break;
+
+                // Stats
+                case "health-per-level":
+                    if(basicInfo instanceof StatsInfo) {
+                        int healthPerLevel = (int) entry.getValue();
+                        ((StatsInfo)basicInfo).setHealthPerLevel(healthPerLevel);
+                    }
+                    break;
+                case "mana-per-level":
+                    if(basicInfo instanceof StatsInfo) {
+                        int manaPerLevel = (int) entry.getValue();
+                        ((StatsInfo)basicInfo).setManaPerLevel(manaPerLevel);
                     }
                     break;
             }

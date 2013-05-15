@@ -17,15 +17,35 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.lclass;
 
 import com.github.legendsdev.legends.library.BasicInfo;
+import com.github.legendsdev.legends.library.StatsInfo;
 import com.github.legendsdev.legends.library.level.Level;
 import com.github.legendsdev.legends.library.level.LevelUser;
 
 /**
  * @author B2OJustin
  */
-public class LClassInfo extends BasicInfo<LClassInfo> implements LevelUser {
+public class LClassInfo extends BasicInfo<LClassInfo> implements LevelUser, StatsInfo<LClassInfo> {
     private Level level = new Level(0);
+    public int healthPerLevel = 0;
+    public int manaPerLevel = 0;
 
+    public LClassInfo setHealthPerLevel(int healthPerLevel) {
+        this.healthPerLevel = healthPerLevel;
+        return this;
+    }
+
+    public LClassInfo setManaPerLevel(int manaPerLevel) {
+        this.manaPerLevel = manaPerLevel;
+        return this;
+    }
+
+    public int getHealthPerLevel() {
+        return healthPerLevel;
+    }
+
+    public int getManaPerLevel() {
+        return manaPerLevel;
+    }
     @Override
     public Level getLevel() {
         return level;

@@ -17,11 +17,12 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.race;
 
 import com.github.legendsdev.legends.library.BasicInfo;
+import com.github.legendsdev.legends.library.StatsInfo;
 
 /**
  * @author B2OJustin
  */
-public class RaceInfo extends BasicInfo<RaceInfo> {
+public class RaceInfo extends BasicInfo<RaceInfo> implements StatsInfo<RaceInfo> {
     public int healthPerLevel = 0;
     public int manaPerLevel = 0;
 
