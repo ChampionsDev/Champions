@@ -19,10 +19,6 @@
             <url>http://repo.bukkit.org/content/groups/public/</url>
         </repository>
         <repository>
-            <id>ranzdo-repo</id>
-            <url>http://repo.ranzdo.se/content/groups/public/</url>
-        </repository>
-        <repository>
             <id>ranzdo-ci-repo</id>
             <url>http://ci.ranzdo.se/plugin/repository/everything/</url>
         </repository>
@@ -41,13 +37,6 @@
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
             <version>1.5.2-R0.1</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>se.ranzdo.bukkit</groupId>
-            <artifactId>methodcommand</artifactId>
-            <version>0.1</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
