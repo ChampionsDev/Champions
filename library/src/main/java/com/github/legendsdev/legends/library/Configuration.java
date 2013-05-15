@@ -21,6 +21,10 @@ package com.github.legendsdev.legends.library;
  */
 public class Configuration {
     private String databaseType = "YAML";
+
+    //YAML
+    private String yamlConfigPath = "";
+
     private String defaultRace = "Default";
     private String defaultPrimaryClass = "Default";
     private String defaultSecondaryClass = "Default";
@@ -65,5 +69,13 @@ public class Configuration {
 
     public void setDefaultSecondaryClass(String defaultSecondaryClass) {
         this.defaultSecondaryClass = defaultSecondaryClass;
+    }
+
+    public String getYamlConfigPath() {
+        return yamlConfigPath;
+    }
+
+    public void setYamlConfigPath(String yamlConfigPath) {
+        this.yamlConfigPath = yamlConfigPath;
     }
 }
