@@ -17,6 +17,8 @@ This file is part of Legends.
 
 package com.github.legendsdev.legends.library.database;
 
+import com.github.legendsdev.legends.library.Configuration;
+
 import java.util.HashMap;
 
 /**
@@ -41,7 +43,13 @@ public class DataManager {
     public static DataSource getDataSource() {
         return dataSource;
     }
-    
+
+    /**
+     * Sets the current DataSource
+     * it is automatically registered if necessary.
+     *
+     * @param dataSource
+     */
     public static void setDataSource(DataSource dataSource) {
         if(!dataSources.containsKey(dataSource.getName())) {
             dataSources.put(dataSource.getName(), dataSource);
@@ -51,6 +59,19 @@ public class DataManager {
 
     public static void registerDataSource(DataSource dataSource) {
         dataSources.put(dataSource.getName(), dataSource);
+    }
+
+    /**
+     * Initializes the DataManager using the Configuration instance.
+     *
+     * @param config Configuration to retrieve database settings.
+     */
+    public static void init(Configuration config) {
+        switch(config.getDatabaseType().toUpperCase()) {
+            case "YAML":
+                setDataSource(new YAMLDataSource(config.getYamlConfigPath()));
+                break;
+        }
     }
     
 
