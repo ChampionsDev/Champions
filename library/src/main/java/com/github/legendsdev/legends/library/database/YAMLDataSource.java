@@ -41,7 +41,7 @@ import java.util.logging.Logger;
 @SuppressWarnings("unchecked")
 public class YAMLDataSource implements DataSource {
     private static final Logger logger = Logger.getLogger(YAMLDataSource.class.getName());
-    private String configPath = "Legends/";
+    private String configPath;
     private final String RACE_PATH = "races/";
     private final String SKILL_PATH = "skills/";
     private final String PLAYER_PATH = "players/";
@@ -94,17 +94,15 @@ public class YAMLDataSource implements DataSource {
                     case "description":
                         race.setDescription(yml.getStringList("description"));
                         break;
-
                     case "Weapons":
                         RestrictionHandler.getInstance().setWeaponRestrictions(race, loadWeaponRestrictions(race, "Weapons", yml));
-                    break;
-
+                        break;
                     case "Armor":
                         RestrictionHandler.getInstance().setArmorRestrictions(race, loadArmorRestrictions(race, "Armor", yml));
-                    break;
-
+                        break;
                     case "Class":
                         RestrictionHandler.getInstance().setClassRestrictions(race, loadClassRestrictions(race, "Class", yml));
+                        break;
                 }
             }
 
@@ -128,35 +126,35 @@ public class YAMLDataSource implements DataSource {
                 case "bonus-defense":
                     int bonusDefense = (int) entry.getValue();
                     basicInfo.addBonusDefense(bonusDefense);
-                break;
+                    break;
                 case "bonus-damage":
                     int bonusDamage = (int) entry.getValue();
                     basicInfo.addBonusWeaponDamage(bonusDamage);
-                break;
+                    break;
                 case "bonus-stamina":
                     int bonusStamina = (int) entry.getValue();
                     basicInfo.addBonusStamina(bonusStamina);
-                break;
+                    break;
                 case "bonus-health":
                     int bonusHealth = (int) entry.getValue();
                     basicInfo.addBonusHealth(bonusHealth);
-                break;
+                    break;
                 case "bonus-mana":
                     int bonusMana = (int) entry.getValue();
                     basicInfo.addBonusMana(bonusMana);
-                break;
+                    break;
                 case "required-level":    // TODO
                     if(basicInfo instanceof LevelRestricted) {
                         int requiredLevel = (int) entry.getValue();
                         RestrictionHandler.getInstance().getLevelRestrictions((LevelRestricted)basicInfo).setMinLevel(requiredLevel);
                     }
-                break;
+                    break;
                 case "maximum-level":
                     if(basicInfo instanceof  LevelRestricted) {
                         int maximumLevel = (int) entry.getValue();
                         RestrictionHandler.getInstance().getLevelRestrictions((LevelRestricted)basicInfo).setMaxLevel(maximumLevel);
                     }
-                break;
+                    break;
             }
         }
         return basicInfo;
@@ -189,6 +187,7 @@ public class YAMLDataSource implements DataSource {
                         Weapon weapon = WeaponHandler.getInstance().get(wepID);
                         restrictions.setAllowed(weapon, false);
                     }
+                    break;
             }
         }
         return restrictions;
@@ -266,12 +265,22 @@ public class YAMLDataSource implements DataSource {
         return null; //TODO loadLClass method stub
     }
 
-    //TODO implement yaml configuration loading
-    public synchronized Configuration loadConfiguration(String file) throws FileNotFoundException {
+    public synchronized Configuration loadConfiguration(Configuration config, String file) throws FileNotFoundException {
         YAMLHelper yml = new YAMLHelper(configPath + file);
         for(String configKey : yml.getKeys("")) {
             switch(configKey) {
-
+                case "database-type":
+                    config.setDatabaseType(yml.getString(configKey));
+                    break;
+                case "default-race":
+                    config.setDefaultRace(yml.getString(configKey));
+                    break;
+                case "default-primary-class":
+                    config.setDefaultPrimaryClass(yml.getString(configKey));
+                    break;
+                case "default-secondary-class":
+                    config.setDefaultSecondaryClass(yml.getString(configKey));
+                    break;
             }
         }
         return Configuration.getInstance();
