@@ -17,8 +17,6 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.database
 
 import com.github.legendsdev.legends.library.Configuration
-import com.github.legendsdev.legends.library.lclass.LClassHandler
-import com.github.legendsdev.legends.library.level.Level
 import com.github.legendsdev.legends.library.lplayer.LPlayer
 import com.github.legendsdev.legends.library.lplayer.LPlayerHandler
 import com.github.legendsdev.legends.library.race.Race
