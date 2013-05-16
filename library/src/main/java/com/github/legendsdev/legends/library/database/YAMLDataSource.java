@@ -22,6 +22,7 @@ import com.github.legendsdev.legends.library.StatsInfo;
 import com.github.legendsdev.legends.library.armor.*;
 import com.github.legendsdev.legends.library.database.helper.YAMLHelper;
 import com.github.legendsdev.legends.library.lclass.*;
+import com.github.legendsdev.legends.library.level.Level;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.lplayer.LPlayer;
 import com.github.legendsdev.legends.library.race.Race;
@@ -35,6 +36,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -84,6 +86,20 @@ public class YAMLDataSource implements DataSource {
         playerMap.put("secondary-class", lPlayer.getSecondaryClass().getName());
         playerMap.put("secondary-class-level", lPlayer.getSecondaryClassInfo().getLevel().getLevel());
         playerMap.put("secondary-class-exp", lPlayer.getSecondaryClassInfo().getLevel().getExp());
+
+        // Previous primary classes
+        LinkedHashMap<String, Integer> previousPrimaryClasses = new LinkedHashMap<>();
+        for(Map.Entry<LClass, Level> entry : lPlayer.getPreviousPrimaryClasses().entrySet()) {
+            previousPrimaryClasses.put(entry.getKey().getName(), entry.getValue().getLevel());
+        }
+        playerMap.put("previous-primary-class", previousPrimaryClasses);
+
+        // Previous secondary classes
+        LinkedHashMap<String, Integer> previousSecondaryClasses = new LinkedHashMap<>();
+        for(Map.Entry<LClass, Level> entry : lPlayer.getPreviousSecondaryClasses().entrySet()) {
+            previousPrimaryClasses.put(entry.getKey().getName(), entry.getValue().getLevel());
+        }
+        playerMap.put("previous-secondary-class", previousSecondaryClasses);
 
         try {
             File outputFile = new File(configPath + PLAYER_PATH + lPlayer.getName() + ".yml");
