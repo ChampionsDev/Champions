@@ -27,6 +27,7 @@ import com.github.legendsdev.legends.library.armor.ArmorUser;
 import com.github.legendsdev.legends.library.lclass.LClass;
 import com.github.legendsdev.legends.library.lclass.LClassInfo;
 import com.github.legendsdev.legends.library.lclass.LClassRestricted;
+import com.github.legendsdev.legends.library.level.Level;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.level.expsource.ExpSource;
 import com.github.legendsdev.legends.library.misc.Informative;
@@ -45,6 +46,7 @@ import com.github.legendsdev.legends.library.weapon.WeaponUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * @author B2OJustin
@@ -65,6 +67,9 @@ public class LPlayer implements LEntity,
     private String playerName = "";
     private ArrayList<String> description = new ArrayList<>();
     private LPlayerInfo lPlayerInfo = new LPlayerInfo();
+
+    private LinkedHashMap<LClass, Level> previousPrimaryClasses = new LinkedHashMap<>();
+    private LinkedHashMap<LClass, Level> previousSecondaryClasses = new LinkedHashMap<>();
 
     private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
@@ -103,6 +108,24 @@ public class LPlayer implements LEntity,
 
     public Race getRace() {
         return this.race;
+    }
+
+    public LinkedHashMap<LClass, Level> getPreviousPrimaryClasses() {
+        return previousPrimaryClasses;
+    }
+
+    public LinkedHashMap<LClass, Level> getPreviousSecondaryClasses() {
+        return previousSecondaryClasses;
+    }
+
+    public LPlayer addPreviousPrimaryClass(LClass lClass, Level level) {
+        previousPrimaryClasses.put(lClass, level);
+        return this;
+    }
+
+    public LPlayer addPreviousSecondaryClass(LClass lClass, Level level) {
+        previousSecondaryClasses.put(lClass, level);
+        return this;
     }
 
     public LPlayer setParty(Party party) {
