@@ -64,6 +64,7 @@ public class LPlayerHandler extends BasicHandler<LPlayer> {
                     LClassHandler.getInstance().load(config.getDefaultPrimaryClass()),
                     LClassHandler.getInstance().load(config.getDefaultSecondaryClass()
             ));
+            lPlayer.setName(id);
             super.register(id, lPlayer);
             logger.info("Created new player data for '" + id + "'");
             DataManager.getDataSource().saveLPlayer(lPlayer);
