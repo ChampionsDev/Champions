@@ -17,11 +17,12 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.database
 
 import com.github.legendsdev.legends.library.Configuration
+import com.github.legendsdev.legends.library.lplayer.LPlayer
+import com.github.legendsdev.legends.library.lplayer.LPlayerHandler
 import com.github.legendsdev.legends.library.race.Race
 import com.github.legendsdev.legends.library.restriction.RestrictionHandler
 import com.github.legendsdev.legends.library.weapon.Weapon
 import com.github.legendsdev.legends.library.weapon.WeaponHandler
-
 
 /**
  * @author B2OJustin
@@ -33,6 +34,9 @@ class YAMLDataSourceTest extends GroovyTestCase {
     void setUp() {
         yamlDataSource = new YAMLDataSource("../core-bukkit/src/main/resources/resources/");
         weaponHandler = WeaponHandler.getInstance();
+        yamlDataSource.loadConfiguration(Configuration.getInstance(), "config.yml");
+        Configuration.getInstance().setYamlConfigPath("../core-bukkit/src/main/resources/resources/")
+        DataManager.init(Configuration.getInstance());
     }
 
     void testLoadLPlayer() {
@@ -63,6 +67,11 @@ class YAMLDataSourceTest extends GroovyTestCase {
         Configuration config = Configuration.getInstance();
         yamlDataSource.loadConfiguration(config, "config.yml");
         assertEquals(config.getYamlConfigPath(), "Legends/");
+    }
+
+    void testSaveLPlayer() {
+        LPlayer lPlayer = LPlayerHandler.getInstance().load("TESTPLAYERDATA");
+        DataManager.getDataSource().saveLPlayer(lPlayer);
     }
 
     void testLoadLClass() {

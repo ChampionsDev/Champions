@@ -28,8 +28,13 @@ import com.github.legendsdev.legends.library.race.Race;
 import com.github.legendsdev.legends.library.restriction.RestrictionHandler;
 import com.github.legendsdev.legends.library.util.FileClassLoader;
 import com.github.legendsdev.legends.library.weapon.*;
+import org.apache.commons.io.FileUtils;
+import org.yaml.snakeyaml.Yaml;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.logging.Logger;
 
 /**
@@ -45,6 +50,7 @@ public class YAMLDataSource implements DataSource {
     private final String SKILL_PATH = "skills/";
     private final String PLAYER_PATH = "players/";
     private final String CLASS_PATH = "classes/";
+
 
     @Override
     public String getName() {
@@ -67,8 +73,29 @@ public class YAMLDataSource implements DataSource {
     }
 
     @Override
+    //TODO implement multi-path tier classing
     public void saveLPlayer(LPlayer lPlayer) {
-        //TODO saveLPlayer method stub
+        LinkedHashMap<String, Object> playerMap = new LinkedHashMap<>(20);
+        playerMap.put("name", lPlayer.getName());
+        playerMap.put("description", lPlayer.getDescription());
+        playerMap.put("primary-class", lPlayer.getPrimaryClass().getName());
+        playerMap.put("primary-class-level", lPlayer.getPrimaryClassInfo().getLevel().getLevel());
+        playerMap.put("primary-class-exp", lPlayer.getPrimaryClassInfo().getLevel().getExp());
+        playerMap.put("secondary-class", lPlayer.getSecondaryClass().getName());
+        playerMap.put("secondary-class-level", lPlayer.getSecondaryClassInfo().getLevel().getLevel());
+        playerMap.put("secondary-class-exp", lPlayer.getSecondaryClassInfo().getLevel().getExp());
+
+        try {
+            File outputFile = new File(configPath + PLAYER_PATH + lPlayer.getName() + ".yml");
+            if(!outputFile.exists()) {
+                outputFile.getParentFile().mkdirs();
+                outputFile.createNewFile();
+            }
+            Yaml yaml = new Yaml();
+            FileUtils.writeStringToFile(outputFile, yaml.dump(playerMap));
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 
     @Override
