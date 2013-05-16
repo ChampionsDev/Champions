@@ -119,6 +119,89 @@ public class YAMLDataSource implements DataSource {
         return null;
     }
 
+    @Override
+    public synchronized LClass loadLClass(String name) {
+        String filePath = configPath + CLASS_PATH + name.replace(" ", "_") + ".yml";
+        LClass lClass;
+        try {
+            // Load custom class file if exists
+            Class lClassClass = FileClassLoader.load(Race.class, configPath + CLASS_PATH, name);
+            if(lClassClass != null) {
+                lClass = (LClass)lClassClass.newInstance();
+            } else lClass = new LClass();
+
+            YAMLHelper yml = new YAMLHelper(filePath);
+
+            for(String mainKey : yml.getKeys("")) {
+                switch(mainKey) {
+                    case "name":
+                        lClass.setName(yml.getString("name"));
+                        break;
+                    case "description":
+                        lClass.setDescription(yml.getStringList("description"));
+                        break;
+                    case "Weapons":
+                        RestrictionHandler.getInstance().setWeaponRestrictions(lClass, loadWeaponRestrictions(lClass, yml));
+                        break;
+                    case "Armor":
+                        RestrictionHandler.getInstance().setArmorRestrictions(lClass, loadArmorRestrictions(lClass, yml));
+                        break;
+                    case "Stats":
+                        loadStats(lClass.getDefaultInfo(), yml);
+                }
+            }
+
+            return lClass;
+
+        } catch (FileNotFoundException e) {
+            logger.warning("Could not find file for class '" + name + "' at " + filePath);
+        } catch (ClassCastException e) {
+            logger.warning("You seem to have an error in your yaml. Could not load class '" + name + "'");
+        } catch(IllegalAccessException | InstantiationException ignored) {}
+
+        return null;
+    }
+
+    public synchronized Configuration loadConfiguration(Configuration config, String file) throws FileNotFoundException {
+        YAMLHelper yml = new YAMLHelper(configPath + file);
+
+        // Main configuration
+        for(String configKey : yml.getKeys("")) {
+            switch(configKey) {
+                case "database-type":
+                    config.setDatabaseType(yml.getString(configKey));
+                    break;
+                case "default-race":
+                    config.setDefaultRace(yml.getString(configKey));
+                    break;
+                case "default-primary-class":
+                    config.setDefaultPrimaryClass(yml.getString(configKey));
+                    break;
+                case "default-secondary-class":
+                    config.setDefaultSecondaryClass(yml.getString(configKey));
+                    break;
+            }
+        }
+
+        // YAML database configuration
+        if(config.getDatabaseType().toUpperCase().equals("YAML")) {
+            for(String yamlKey : yml.getKeys("YAML")) {
+                switch(yamlKey.toLowerCase()) {
+                    case "config-path":
+                        config.setYamlConfigPath(yml.getString("YAML.config-path"));
+                        break;
+                }
+            }
+        }
+
+        return config;
+    }
+
+    // TODO implement yaml configuration saving
+    public synchronized YAMLDataSource saveConfiguration(String file) {
+        return this;
+    }
+
     protected <T extends BasicInfo> T loadBasicInfo(T basicInfo, String path, YAMLHelper yml) throws ClassCastException {
         for(String infoKey : yml.getKeys(path)) {
             switch(infoKey) {
@@ -166,16 +249,16 @@ public class YAMLDataSource implements DataSource {
         for(String statKey : yml.getKeys("Stats")) {
             switch(statKey) {
                 case "health-per-level":
-                        int healthPerLevel = yml.getInt("Stats.health-per-level");
-                        stats.setHealthPerLevel(healthPerLevel);
+                    int healthPerLevel = yml.getInt("Stats.health-per-level");
+                    stats.setHealthPerLevel(healthPerLevel);
                     break;
                 case "mana-per-level":
-                        int manaPerLevel = yml.getInt("Stats.mana-per-level");
-                        stats.setManaPerLevel(manaPerLevel);
+                    int manaPerLevel = yml.getInt("Stats.mana-per-level");
+                    stats.setManaPerLevel(manaPerLevel);
                     break;
                 case "stamina-per-level":
-                        int staminaPerLevel = yml.getInt("Stats.stamina-per-level");
-                        stats.setStaminaPerLevel(staminaPerLevel);
+                    int staminaPerLevel = yml.getInt("Stats.stamina-per-level");
+                    stats.setStaminaPerLevel(staminaPerLevel);
                     break;
             }
         }
@@ -280,89 +363,5 @@ public class YAMLDataSource implements DataSource {
             }
         }
         return restrictions;
-    }
-
-
-    @Override
-    public synchronized LClass loadLClass(String name) {
-        String filePath = configPath + CLASS_PATH + name.replace(" ", "_") + ".yml";
-        LClass lClass;
-        try {
-            // Load custom class file if exists
-            Class lClassClass = FileClassLoader.load(Race.class, configPath + CLASS_PATH, name);
-            if(lClassClass != null) {
-                lClass = (LClass)lClassClass.newInstance();
-            } else lClass = new LClass();
-
-            YAMLHelper yml = new YAMLHelper(filePath);
-
-            for(String mainKey : yml.getKeys("")) {
-                switch(mainKey) {
-                    case "name":
-                        lClass.setName(yml.getString("name"));
-                        break;
-                    case "description":
-                        lClass.setDescription(yml.getStringList("description"));
-                        break;
-                    case "Weapons":
-                        RestrictionHandler.getInstance().setWeaponRestrictions(lClass, loadWeaponRestrictions(lClass, yml));
-                        break;
-                    case "Armor":
-                        RestrictionHandler.getInstance().setArmorRestrictions(lClass, loadArmorRestrictions(lClass, yml));
-                        break;
-                    case "Stats":
-                        loadStats(lClass.getDefaultInfo(), yml);
-                }
-            }
-
-            return lClass;
-
-        } catch (FileNotFoundException e) {
-            logger.warning("Could not find file for class '" + name + "' at " + filePath);
-        } catch (ClassCastException e) {
-            logger.warning("You seem to have an error in your yaml. Could not load class '" + name + "'");
-        } catch(IllegalAccessException | InstantiationException ignored) {}
-
-        return null;
-    }
-
-    public synchronized Configuration loadConfiguration(Configuration config, String file) throws FileNotFoundException {
-        YAMLHelper yml = new YAMLHelper(configPath + file);
-
-        // Main configuration
-        for(String configKey : yml.getKeys("")) {
-            switch(configKey) {
-                case "database-type":
-                    config.setDatabaseType(yml.getString(configKey));
-                    break;
-                case "default-race":
-                    config.setDefaultRace(yml.getString(configKey));
-                    break;
-                case "default-primary-class":
-                    config.setDefaultPrimaryClass(yml.getString(configKey));
-                    break;
-                case "default-secondary-class":
-                    config.setDefaultSecondaryClass(yml.getString(configKey));
-                    break;
-            }
-        }
-
-        // YAML database configuration
-        if(config.getDatabaseType().toUpperCase().equals("YAML")) {
-            for(String yamlKey : yml.getKeys("YAML")) {
-                switch(yamlKey.toLowerCase()) {
-                    case "config-path":
-                        config.setYamlConfigPath(yml.getString("YAML.config-path"));
-                        break;
-                }
-            }
-        }
-
-        return config;
-    }
-
-    // TODO implement yaml configuration saving
-    public synchronized YAMLDataSource saveConfiguration(String file) {
-        return this;
     }
 }
