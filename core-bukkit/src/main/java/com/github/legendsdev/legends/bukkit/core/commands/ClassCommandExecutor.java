@@ -43,7 +43,7 @@ public class ClassCommandExecutor implements CommandExecutor {
                     commandSender.sendMessage(description.toArray(new String[description.size()]));
                 }
                 else {
-                    commandSender.sendMessage("Sorry, we don't have any class named '" + params[1]+ "'");
+                    commandSender.sendMessage("Sorry, we don't have any class named '" + params[1] + "'");
                 }
                 break;
         }
