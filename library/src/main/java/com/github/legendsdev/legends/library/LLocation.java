@@ -9,12 +9,20 @@ public class LLocation {
     private final double x;
     private final double y;
     private final double z;
+    private final float yaw;
+    private final float pitch;
 
-    public LLocation(LWorld world, double x, double y, double z) {
+    public LLocation(LWorld world, double x, double y, double z, float yaw, float pitch) {
         this.world = world;
         this.z = z;
         this.y = y;
         this.x = x;
+        this.yaw = yaw;
+        this.pitch = pitch;
+    }
+
+    public LLocation(LWorld world, double x, double y, double z) {
+        this(world, x, y, z, 0, 0);
     }
 
     public LWorld getWorld() {
@@ -31,6 +39,14 @@ public class LLocation {
 
     public double getZ() {
         return this.z;
+    }
+
+    public float getYaw() {
+        return this.yaw;
+    }
+
+    public float getPitch() {
+        return this.pitch;
     }
 
     public int getBlockX() {
