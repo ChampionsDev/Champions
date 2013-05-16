@@ -16,7 +16,6 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.bukkit.core.listeners;
 
-import com.github.legendsdev.legends.library.event.EventListener;
 import com.github.legendsdev.legends.library.event.EventManager;
 import com.github.legendsdev.legends.library.event.weapon.WeaponClickEvent;
 import com.github.legendsdev.legends.library.lplayer.LPlayer;

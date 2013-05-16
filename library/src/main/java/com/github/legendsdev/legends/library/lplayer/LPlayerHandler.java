@@ -22,10 +22,13 @@ import com.github.legendsdev.legends.library.database.DataManager;
 import com.github.legendsdev.legends.library.lclass.LClassHandler;
 import com.github.legendsdev.legends.library.race.RaceHandler;
 
+import java.util.logging.Logger;
+
 /**
  * @author B2OJustin
  */
 public class LPlayerHandler extends BasicHandler<LPlayer> {
+    private static Logger logger = Logger.getLogger(LPlayerHandler.class.getName());
     private static LPlayerHandler instance = new LPlayerHandler();
 
     public static LPlayerHandler getInstance() {
@@ -38,13 +41,19 @@ public class LPlayerHandler extends BasicHandler<LPlayer> {
         // Attempt load from cache
         if(lPlayer == null) {
             lPlayer = LPlayerCache.getPlayer(id);
-            if(lPlayer != null) register(id, lPlayer);
+            if(lPlayer != null) {
+                register(id, lPlayer);
+                logger.info("Loaded player '" + id + "' from cache");
+            }
         }
 
         // Attempt load from database
         if(lPlayer == null) {
             lPlayer = DataManager.getDataSource().loadLPlayer(id);
-            if(lPlayer != null) register(id, lPlayer);
+            if(lPlayer != null) {
+                register(id, lPlayer);
+                logger.info("Loaded player data for '" + id + "' from database");
+            }
         }
 
         // Create new player data
@@ -56,6 +65,7 @@ public class LPlayerHandler extends BasicHandler<LPlayer> {
                     LClassHandler.getInstance().load(config.getDefaultSecondaryClass()
             ));
             super.register(id, lPlayer);
+            logger.info("Created new player data for '" + id + "'");
             DataManager.getDataSource().saveLPlayer(lPlayer);
         }
 

@@ -36,7 +36,10 @@ public class RaceHandler extends BasicHandler<Race> {
         Race race = super.get(id);
         if(race == null) {
             race = DataManager.getDataSource().loadRace(id);
-            if(race != null) register(id, race);
+            if(race != null) {
+                register(id, race);
+                logger.info("Loaded race '" + id + "' from database");
+            }
             else logger.warning("Could not load race '" + id + "'");
         }
         return race;

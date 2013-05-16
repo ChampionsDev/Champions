@@ -52,7 +52,10 @@ class YAMLDataSourceTest extends GroovyTestCase {
         assertTrue(restrictionHandler.getWeaponRestrictions(race).isAllowed(weaponHandler.get("WOOD_AXE")));
         assertTrue(restrictionHandler.getWeaponRestrictions(race).isAllowed(weaponHandler.get("IRON_AXE")));
         assertTrue(restrictionHandler.getWeaponRestrictions(race).isAllowed(weaponHandler.get("DIAMOND_AXE")));
-
+        assertEquals(5, race.getDefaultInfo().getHealthPerLevel());
+        assertEquals(2, race.getDefaultInfo().getManaPerLevel());
+        assertEquals(12, race.getDefaultInfo().getBonusHealth());
+        assertEquals(23, race.getDefaultInfo().getBonusMana());
         assertEquals(race.getWeaponInfo(weaponHandler.get("IRON_AXE")).getBonusWeaponDamage(), 10)
     }
 

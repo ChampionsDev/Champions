@@ -17,28 +17,16 @@ This file is part of Legends.
 
 package com.github.legendsdev.legends.bukkit.core;
 
+import com.github.legendsdev.legends.bukkit.core.commands.ClassCommandExecutor;
 import com.github.legendsdev.legends.bukkit.core.listeners.LegendsListener;
-import com.github.legendsdev.legends.bukkit.core.utils.ConfigHandler;
 import com.github.legendsdev.legends.bukkit.core.utils.DependencyHandler;
 import com.github.legendsdev.legends.library.Configuration;
 import com.github.legendsdev.legends.library.database.DataManager;
 import com.github.legendsdev.legends.library.database.YAMLDataSource;
-import com.github.legendsdev.legends.library.race.RaceHandler;
 import com.github.legendsdev.legends.library.util.JarUtils;
-import org.apache.commons.io.FileUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import se.ranzdo.bukkit.methodcommand.CommandHandler;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLDecoder;
-import java.util.Enumeration;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 import java.util.logging.Logger;
 
 /**
@@ -51,9 +39,6 @@ public class LegendsCore extends JavaPlugin {
     private static String JAR_RESOURCE_DIRECTORY = "resources/";
     private static String CONFIG_PATH = "Legends/";
     private static String MAIN_CONFIG_FILE = "config.yml";
-	
-	private CommandHandler commandHandler;
-	private ConfigHandler configHandler;
 
     public static LegendsCore getInstance() {
         return instance;
@@ -62,8 +47,7 @@ public class LegendsCore extends JavaPlugin {
 	@Override
 	public void onEnable() {
         LegendsCore.instance = this;
-        commandHandler = new CommandHandler(this);
-        configHandler = new ConfigHandler(getDataFolder());
+
         DependencyHandler.resolve();
 
         getServer().getPluginManager().registerEvents(new LegendsListener(), this);
@@ -79,21 +63,14 @@ public class LegendsCore extends JavaPlugin {
             yamlDataSource.loadConfiguration(Configuration.getInstance(), MAIN_CONFIG_FILE);
         } catch (IOException e) {
             logger.severe("Could not write default configuration files to disk.");
-            e.printStackTrace();
         }
 
         //Initialize data management
         DataManager.init(Configuration.getInstance());
 
-        logger.info("Legends successfully enabled!");
-	}
-	
-	@Override
-	public void onDisable() {
-		configHandler.cleanup();
-	}
+        // Register commands
+        getCommand("class").setExecutor(new ClassCommandExecutor());
 
-	public CommandHandler getCommandHandler() {
-		return commandHandler;
+        logger.info("Legends successfully enabled!");
 	}
 }
