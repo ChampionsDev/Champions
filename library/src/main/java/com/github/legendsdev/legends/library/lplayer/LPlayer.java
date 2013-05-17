@@ -29,7 +29,7 @@ import com.github.legendsdev.legends.library.lclass.LClassInfo;
 import com.github.legendsdev.legends.library.lclass.LClassRestricted;
 import com.github.legendsdev.legends.library.level.Level;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
-import com.github.legendsdev.legends.library.level.expsource.ExpSource;
+import com.github.legendsdev.legends.library.level.exp.sources.ExpSource;
 import com.github.legendsdev.legends.library.misc.Informative;
 import com.github.legendsdev.legends.library.misc.Positionable;
 import com.github.legendsdev.legends.library.party.Party;

@@ -16,7 +16,7 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.party;
 
-import com.github.legendsdev.legends.library.level.expsource.ExpSource;
+import com.github.legendsdev.legends.library.level.exp.sources.ExpSource;
 import com.github.legendsdev.legends.library.lplayer.LPlayer;
 
 import java.util.ArrayList;
