@@ -6,6 +6,7 @@ import com.github.legendsdev.legends.library.armor.ArmorRestricted;
 import com.github.legendsdev.legends.library.armor.ArmorUser;
 import com.github.legendsdev.legends.library.level.exp.Exp;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
+import com.github.legendsdev.legends.library.level.exp.ExpGroup;
 import com.github.legendsdev.legends.library.level.exp.sources.ExpSource;
 import com.github.legendsdev.legends.library.level.exp.sources.ExpSourceType;
 import com.github.legendsdev.legends.library.misc.Informative;
@@ -37,7 +38,7 @@ public class LClass implements Informative<LClass, LClassInfo>,
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
     private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
 
-    private HashMap<ExpSourceType, HashMap<ExpSource, Integer>> expMap = new HashMap<>();
+    private ArrayList<ExpGroup> expGroups = new ArrayList<>();
 
     private LClassInfo lClassInfo = new LClassInfo();
 
@@ -52,10 +53,29 @@ public class LClass implements Informative<LClass, LClassInfo>,
 
     public Exp getExpGain(ExpSource source) {
         Exp exp = new Exp();
-        Integer amount = expMap.get(source.getType()).get(source);
-        if(amount == null) amount = 0;
-        exp.setExp(amount);
+        for(ExpGroup group : expGroups) {
+            exp.addExp(group.getExp(source));
+        }
         return exp;
+    }
+
+    public ArrayList<ExpGroup> getExpGroups() {
+        return expGroups;
+    }
+
+    public LClass addExpGroup(ExpGroup expGroup) {
+        expGroups.add(expGroup);
+        return this;
+    }
+
+    public LClass removeExpGroup(ExpGroup expGroup) {
+        expGroups.remove(expGroup);
+        return this;
+    }
+
+    public LClass setExpGroups(ArrayList<ExpGroup> expGroups) {
+        this.expGroups = expGroups;
+        return this;
     }
 
     @Override
