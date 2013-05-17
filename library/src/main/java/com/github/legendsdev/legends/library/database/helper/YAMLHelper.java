@@ -125,5 +125,9 @@ public class YAMLHelper {
     public LinkedHashMap<String, Integer> getIntMap(String path) throws ClassCastException {
         return (LinkedHashMap<String, Integer>) getObject(path);
     }
+
+    public LinkedHashMap<String, Double> getDoubleMap(String path) throws ClassCastException {
+        return (LinkedHashMap<String, Double>) getObject(path);
+    }
 }
 
