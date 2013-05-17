@@ -55,4 +55,24 @@ public class ExpGroup {
         if(exp == null) exp = new Exp(0);
         return exp;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ExpGroup expGroup = (ExpGroup) o;
+
+        if (expMap != null ? !expMap.equals(expGroup.expMap) : expGroup.expMap != null) return false;
+        if (name != null ? !name.equals(expGroup.name) : expGroup.name != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = expMap != null ? expMap.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
+    }
 }
