@@ -22,9 +22,9 @@ import com.github.legendsdev.legends.library.lplayer.LPlayer;
  * @author B2OJustin
  */
 public class PlayerKillExpSource extends ExpSource {
-    public LPlayer player;
+    public String player;
 
-    public PlayerKillExpSource(LPlayer player) {
+    public PlayerKillExpSource(String player) {
         super(ExpSourceType.PLAYER_KILL);
         this.player = player;
     }

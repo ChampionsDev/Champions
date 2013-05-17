@@ -1,0 +1,26 @@
+name: Default
+description: [Default Class]
+
+primary: true
+secondary: true
+
+Stats:
+  health-per-level: 5
+  bonus-health: 0
+  mana-per-level: 5
+  bonus-mana: 0
+  
+Levels:
+  experience-curve: L * 100
+  max-level: 50
+  mastery-level: 50
+  experience-sources:
+    MOB_KILL:
+    PLAYER_KILL:
+    
+
+Weapons:
+  default: allow
+
+Armor:
+  default: allow

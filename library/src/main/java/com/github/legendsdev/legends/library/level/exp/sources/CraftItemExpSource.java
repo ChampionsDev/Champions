@@ -20,15 +20,15 @@ package com.github.legendsdev.legends.library.level.exp.sources;
  * @author B2OJustin
  */
 public class CraftItemExpSource extends ExpSource {
-    public int blockId;
+    public String blockName;
 
-    public CraftItemExpSource(int blockId) {
+    public CraftItemExpSource(String blockName) {
         super(ExpSourceType.CRAFT);
-        this.blockId = blockId;
+        this.blockName = this.blockName;
     }
 
-    public int getBlockId() {
-        return blockId;
+    public String getBlockName() {
+        return blockName;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class CraftItemExpSource extends ExpSource {
 
         CraftItemExpSource that = (CraftItemExpSource) o;
 
-        if (blockId != that.blockId) return false;
+        if (blockName != null ? !blockName.equals(that.blockName) : that.blockName != null) return false;
 
         return true;
     }
@@ -47,7 +47,7 @@ public class CraftItemExpSource extends ExpSource {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + blockId;
+        result = 31 * result + (blockName != null ? blockName.hashCode() : 0);
         return result;
     }
 }

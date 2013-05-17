@@ -17,6 +17,8 @@ This file is part of Legends.
 
 package com.github.legendsdev.legends.library.level;
 
+import com.github.legendsdev.legends.library.level.exp.Exp;
+
 /**
  * @author YoshiGenius
  */

@@ -20,15 +20,15 @@ package com.github.legendsdev.legends.library.level.exp.sources;
  * @author B2OJustin
  */
 public class MobKillExpSource extends ExpSource {
-    private int mobId;
+    private String mobName;
 
-    public MobKillExpSource(int mobId) {
+    public MobKillExpSource(String mobName) {
         super(ExpSourceType.MOB_KILL);
-        this.mobId = mobId;
+        this.mobName = mobName;
     }
 
-    public int getMobId() {
-        return mobId;
+    public String getMobName() {
+        return mobName;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class MobKillExpSource extends ExpSource {
 
         MobKillExpSource that = (MobKillExpSource) o;
 
-        if (mobId != that.mobId) return false;
+        if (mobName != null ? !mobName.equals(that.mobName) : that.mobName != null) return false;
 
         return true;
     }
@@ -47,7 +47,7 @@ public class MobKillExpSource extends ExpSource {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + mobId;
+        result = 31 * result + (mobName != null ? mobName.hashCode() : 0);
         return result;
     }
 }

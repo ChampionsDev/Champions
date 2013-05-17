@@ -17,8 +17,10 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.database;
 
 import com.github.legendsdev.legends.library.lclass.LClass;
+import com.github.legendsdev.legends.library.level.exp.ExpGroup;
 import com.github.legendsdev.legends.library.lplayer.LPlayer;
 import com.github.legendsdev.legends.library.race.Race;
+import com.github.legendsdev.legends.library.skill.Skill;
 
 import java.util.logging.Logger;
 
@@ -33,5 +35,7 @@ public interface DataSource {
     public void saveLPlayer(LPlayer lPlayer);
     public Race loadRace(String name);
     public LClass loadLClass(String name);
+    public Skill loadSkill(String name);
 
+    public ExpGroup loadExpGroup(String name);
 }

@@ -24,10 +24,14 @@ import com.github.legendsdev.legends.library.database.helper.YAMLHelper;
 import com.github.legendsdev.legends.library.lclass.*;
 import com.github.legendsdev.legends.library.level.Level;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
+import com.github.legendsdev.legends.library.level.exp.ExpGroup;
+import com.github.legendsdev.legends.library.level.exp.sources.*;
 import com.github.legendsdev.legends.library.lplayer.LPlayer;
 import com.github.legendsdev.legends.library.race.Race;
 import com.github.legendsdev.legends.library.race.RaceHandler;
 import com.github.legendsdev.legends.library.restriction.RestrictionHandler;
+import com.github.legendsdev.legends.library.skill.Skill;
+import com.github.legendsdev.legends.library.skill.SkillHandler;
 import com.github.legendsdev.legends.library.util.FileClassLoader;
 import com.github.legendsdev.legends.library.weapon.*;
 import org.apache.commons.io.FileUtils;
@@ -53,6 +57,7 @@ public class YAMLDataSource implements DataSource {
     private final String SKILL_PATH = "skills/";
     private final String PLAYER_PATH = "players/";
     private final String CLASS_PATH = "classes/";
+    private final String EXP_PATH = "exp/";
 
 
     @Override
@@ -223,6 +228,9 @@ public class YAMLDataSource implements DataSource {
                         break;
                     case "Stats":
                         loadStats(lClass.getDefaultInfo(), yml);
+                        break;
+                    case "Levels":
+
                 }
             }
 
@@ -237,7 +245,66 @@ public class YAMLDataSource implements DataSource {
         return null;
     }
 
-    public synchronized Configuration loadConfiguration(Configuration config, String file) throws FileNotFoundException {
+    @Override
+    public Skill loadSkill(String name) {
+        return null; //TODO loadSkill method stub
+    }
+
+    @Override
+    public ExpGroup loadExpGroup(String name) {
+        String filePath = configPath + EXP_PATH + name.replace(" ", "_") + ".yml";
+        try {
+            ExpGroup expGroup = new ExpGroup(name);
+            YAMLHelper yml = new YAMLHelper(filePath);
+            for(String typeKey : yml.getKeys("")) {
+                switch(ExpSourceType.valueOf(typeKey.toUpperCase())) {
+                    case MOB_KILL:
+                        for(Map.Entry<String, Double> mobEntry : yml.getDoubleMap(typeKey).entrySet()) {
+                            expGroup.add(new MobKillExpSource(mobEntry.getKey()), mobEntry.getValue());
+                        }
+                        break;
+                    case PLAYER_KILL:
+                        for(Map.Entry<String, Double> playerEntry : yml.getDoubleMap(typeKey).entrySet()) {
+                            expGroup.add(new PlayerKillExpSource(playerEntry.getKey()), playerEntry.getValue());
+                        }
+                        break;
+                    case BLOCK_BREAK:
+                        for(Map.Entry<String, Double> blockEntry : yml.getDoubleMap(typeKey).entrySet()) {
+                            expGroup.add(new BlockBreakExpSource(blockEntry.getKey()), blockEntry.getValue());
+                        }
+                        break;
+                    case BLOCK_PLACE:
+                        for(Map.Entry<String, Double> blockEntry : yml.getDoubleMap(typeKey).entrySet()) {
+                            expGroup.add(new BlockPlaceExpSource(blockEntry.getKey()), blockEntry.getValue());
+                        }
+                        break;
+                    case CRAFT:
+                        for(Map.Entry<String, Double> blockEntry : yml.getDoubleMap(typeKey).entrySet()) {
+                            expGroup.add(new CraftItemExpSource(blockEntry.getKey()), blockEntry.getValue());
+                        }
+                        break;
+                    case ENCHANT:
+                        for(Map.Entry<String, Double> blockEntry : yml.getDoubleMap(typeKey).entrySet()) {
+                            expGroup.add(new EnchantExpSource(blockEntry.getKey()), blockEntry.getValue());
+                        }
+                        break;
+                    case SKILL:
+                        for(Map.Entry<String, Double> skillEntry : yml.getDoubleMap(typeKey).entrySet()) {
+                            expGroup.add(new SkillUseExpSource(SkillHandler.getInstance().load(skillEntry.getKey())), skillEntry.getValue());
+                        }
+                        break;
+                }
+            }
+            return expGroup;
+        } catch (FileNotFoundException e) {
+            logger.warning("Could not find file for experience source '" + name + "' at " + filePath);
+        } catch (ClassCastException e) {
+            logger.warning("You seem to have an error in your yaml. Could not load experience source '" + name + "'");
+        }
+        return null;
+    }
+
+    public synchronized void loadConfiguration(Configuration config, String file) throws FileNotFoundException {
         YAMLHelper yml = new YAMLHelper(configPath + file);
 
         // Main configuration
@@ -268,8 +335,6 @@ public class YAMLDataSource implements DataSource {
                 }
             }
         }
-
-        return config;
     }
 
     // TODO implement yaml configuration saving

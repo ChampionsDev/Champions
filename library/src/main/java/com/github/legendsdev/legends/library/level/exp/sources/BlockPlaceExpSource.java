@@ -20,14 +20,14 @@ package com.github.legendsdev.legends.library.level.exp.sources;
  * @author B2OJustin
  */
 public class BlockPlaceExpSource extends ExpSource {
-    private int blockId;
+    private String blockId;
 
-    public BlockPlaceExpSource(int blockId) {
+    public BlockPlaceExpSource(String blockId) {
         super(ExpSourceType.BLOCK_PLACE);
         this.blockId = blockId;
     }
 
-    public int getBlockId() {
+    public String getBlockName() {
         return blockId;
     }
 
@@ -39,7 +39,7 @@ public class BlockPlaceExpSource extends ExpSource {
 
         BlockPlaceExpSource that = (BlockPlaceExpSource) o;
 
-        if (blockId != that.blockId) return false;
+        if (blockId != null ? !blockId.equals(that.blockId) : that.blockId != null) return false;
 
         return true;
     }
@@ -47,7 +47,7 @@ public class BlockPlaceExpSource extends ExpSource {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + blockId;
+        result = 31 * result + (blockId != null ? blockId.hashCode() : 0);
         return result;
     }
 }

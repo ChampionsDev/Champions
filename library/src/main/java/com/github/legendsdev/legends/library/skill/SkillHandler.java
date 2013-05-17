@@ -17,16 +17,20 @@
 
 package com.github.legendsdev.legends.library.skill;
 
+import com.github.legendsdev.legends.library.BasicHandler;
+import com.github.legendsdev.legends.library.database.DataManager;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * @author YoshiGenius
  */
 
 // TODO make this consistent with the other handler APIs
-public class SkillHandler {
-    private static ArrayList<Skill> skills = new ArrayList<>();
+public class SkillHandler extends BasicHandler<Skill> {
+    private static final Logger logger = Logger.getLogger(SkillHandler.class.getName());
     private static SkillHandler instance = new SkillHandler();
 
     public static SkillHandler getInstance() {
@@ -35,57 +39,17 @@ public class SkillHandler {
 
     private SkillHandler(){
     }
-    
-    public static List<Skill> getSkills() {
-        return SkillHandler.skills;
-    }
-    
-    public static Skill getSkill(String name) {
-        if (!skillExists(name)) {
-            return null;
-        }
-        for (Skill s : skills) {
-            if (s.getName().equalsIgnoreCase(name)) {
-                return s;
-            }
-        }
-        return null;
-    }
-    
-    public static boolean skillExists(String name) {
-        if (name == null) {
-            return false;
-        }
-        for (Skill s : skills) {
-            if (s.getName().equalsIgnoreCase(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
-    public static boolean skillExists(Skill skill) {
-        return skills.contains(skill);
-    }
-    
-    public static boolean addSkill(Skill skill) {
-        if (skill == null || skillExists(skill)) {
-            return false;
-        } else {
-            return SkillHandler.skills.add(skill);
+    public Skill load(String id) {
+        Skill skill = super.get(id);
+        if(skill == null) {
+            skill = DataManager.getDataSource().loadSkill(id);
+            if(skill != null) {
+                super.register(id, skill);
+                logger.info("Loaded skill '" + id + "' from database.");
+            }
+            else logger.warning("Could not load skill '" + id + "'");
         }
+        return skill;
     }
-    
-    public static boolean deleteSkill(Skill skill) {
-        if (skill == null || !skillExists(skill)) {
-            return false;
-        } else {
-            return SkillHandler.skills.remove(skill);
-        }
-    }
-    
-    public static boolean deleteSkill(String skill) {
-        return deleteSkill(getSkill(skill));
-    }
-
 }

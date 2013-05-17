@@ -16,8 +16,35 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.level.exp;
 
+import com.github.legendsdev.legends.library.BasicHandler;
+import com.github.legendsdev.legends.library.database.DataManager;
+
+import java.util.logging.Logger;
+
 /**
  * @author B2OJustin
  */
-public class ExpGroupHandler {
+public class ExpGroupHandler extends BasicHandler<ExpGroup> {
+    private static ExpGroupHandler instance = new ExpGroupHandler();
+    private static final Logger logger = Logger.getLogger(ExpGroupHandler.class.getName());
+
+    public ExpGroupHandler getInstance() {
+        return instance;
+    }
+
+    private ExpGroupHandler() {
+    }
+
+    public ExpGroup load(String id) {
+        ExpGroup expGroup = super.get(id);
+        if(expGroup == null) {
+            expGroup = DataManager.getDataSource().loadExpGroup(id);
+            if(expGroup != null) {
+                super.register(id, expGroup);
+                logger.info("Loaded experience group '" + id + "' from database.");
+            }
+            else logger.warning("Could not load experience group '" + id + "'");
+        }
+        return expGroup;
+    }
 }

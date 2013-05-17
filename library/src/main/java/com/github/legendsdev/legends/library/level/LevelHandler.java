@@ -16,8 +16,10 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.level;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
+import com.github.legendsdev.legends.library.level.exp.ExpGroup;
+import com.github.legendsdev.legends.library.level.exp.sources.ExpSource;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
@@ -27,11 +29,6 @@ import java.util.logging.Logger;
 public class LevelHandler {
     private static LevelHandler instance = new LevelHandler();
     private static Logger logger = Logger.getLogger(LevelHandler.class.getName());
-
-    private static HashMap<Integer, Double> expRequired = new HashMap<>();
-    private static String curveFormula = "";
-
-    private static ScriptEngine scriptEngine = new ScriptEngineManager().getEngineByName("JavaScript");
 
     public LevelHandler getInstance() {
         return instance;
@@ -43,38 +40,4 @@ public class LevelHandler {
     public static Logger getLogger() {
         return logger;
     }
-
-    public static void setCurve(String curveFormula) {
-        LevelHandler.curveFormula = curveFormula;
-        expRequired.clear();
-    }
-
-    public static Level getLevel(double totalExp) {
-        return new Level(0); // TODO method stub
-    }
-
-    private static double getExp(int level) {
-        double expReq = 0;
-        if(expRequired.containsKey(level)) expReq = expRequired.get(level);
-        else try {
-            for(int i = 0; i < level; i++) {
-                if(!expRequired.containsKey(level)) {
-                    scriptEngine.put("L", level);
-                    scriptEngine.put("E", expReq);
-                    expReq = (double) scriptEngine.eval(curveFormula);
-                    expRequired.put(level, expReq);
-                }
-                else {
-                    expReq = expRequired.get(level);
-                }
-            }
-        } catch (Exception e) {
-            logger.warning("Experience curve could not be calculated.");
-            e.printStackTrace();
-        }
-        return expReq;
-    }
-
-
-
 }

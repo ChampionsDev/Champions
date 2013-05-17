@@ -16,8 +16,43 @@ This file is part of Legends.
 */
 package com.github.legendsdev.legends.library.level.exp;
 
+import com.github.legendsdev.legends.library.level.exp.sources.ExpSource;
+
+import java.util.HashMap;
+
 /**
  * @author B2OJustin
  */
 public class ExpGroup {
+    private HashMap<ExpSource, Exp> expMap = new HashMap<>();
+    private String name;
+
+    public ExpGroup(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ExpGroup add(ExpSource source, Exp exp) {
+        expMap.put(source, exp);
+        return this;
+    }
+
+    public ExpGroup add(ExpSource source, double exp) {
+        add(source, new Exp(exp));
+        return this;
+    }
+
+    public ExpGroup remove(ExpSource source) {
+        expMap.remove(source);
+        return this;
+    }
+
+    public Exp getExp(ExpSource source) {
+        Exp exp = expMap.get(source);
+        if(exp == null) exp = new Exp(0);
+        return exp;
+    }
 }

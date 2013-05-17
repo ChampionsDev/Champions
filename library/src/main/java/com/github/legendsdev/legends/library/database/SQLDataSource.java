@@ -17,8 +17,10 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.database;
 
 import com.github.legendsdev.legends.library.lclass.LClass;
+import com.github.legendsdev.legends.library.level.exp.ExpGroup;
 import com.github.legendsdev.legends.library.lplayer.LPlayer;
 import com.github.legendsdev.legends.library.race.Race;
+import com.github.legendsdev.legends.library.skill.Skill;
 
 import java.util.logging.Logger;
 
@@ -79,5 +81,15 @@ public class SQLDataSource implements DataSource {
     @Override
     public LClass loadLClass(String name) {
         return null; //TODO loadLClass method stub
+    }
+
+    @Override
+    public Skill loadSkill(String name) {
+        return null; //TODO loadSkill method stub
+    }
+
+    @Override
+    public ExpGroup loadExpGroup(String name) {
+        return null; //TODO loadExpGroup method stub
     }
 }
