@@ -26,6 +26,7 @@ import com.github.legendsdev.legends.library.level.Level;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.lplayer.LPlayer;
 import com.github.legendsdev.legends.library.race.Race;
+import com.github.legendsdev.legends.library.race.RaceHandler;
 import com.github.legendsdev.legends.library.restriction.RestrictionHandler;
 import com.github.legendsdev.legends.library.util.FileClassLoader;
 import com.github.legendsdev.legends.library.weapon.*;
@@ -71,15 +72,46 @@ public class YAMLDataSource implements DataSource {
 
     @Override
     public synchronized LPlayer loadLPlayer(String name) {
-        return null; //TODO loadLPlayer method stub
+        String filePath = configPath + PLAYER_PATH + name.replace(" ", "_") + ".yml";
+        LPlayer lPlayer = null;
+        try {
+            YAMLHelper yamlHelper = new YAMLHelper(filePath);
+
+            lPlayer = new LPlayer(
+                    RaceHandler.getInstance().load(yamlHelper.getString("race")),
+                    LClassHandler.getInstance().load(yamlHelper.getString("primary-class")),
+                    LClassHandler.getInstance().load(yamlHelper.getString("secondary-class"))
+            );
+            lPlayer.setName(name);
+            lPlayer.setDescription(yamlHelper.getStringList("description"));
+            lPlayer.getPrimaryClassInfo().getLevel().setLevel(yamlHelper.getInt("primary-class-level"));
+            lPlayer.getPrimaryClassInfo().getLevel().setExp(yamlHelper.getDouble("primary-class-exp"));
+            lPlayer.getSecondaryClassInfo().getLevel().setLevel(yamlHelper.getInt("secondary-class-level"));
+            lPlayer.getSecondaryClassInfo().getLevel().setExp(yamlHelper.getDouble("secondary-class-exp"));
+
+            for(Map.Entry<String, Integer> entry : yamlHelper.getIntMap("previous-primary-class").entrySet()) {
+                lPlayer.addPreviousPrimaryClass(LClassHandler.getInstance().load(entry.getKey()), new Level(entry.getValue()));
+            }
+
+            for(Map.Entry<String, Integer> entry : yamlHelper.getIntMap("previous-secondary-class").entrySet()) {
+                lPlayer.addPreviousPrimaryClass(LClassHandler.getInstance().load(entry.getKey()), new Level(entry.getValue()));
+            }
+
+
+        } catch (FileNotFoundException ex) {
+            logger.warning("Could not find file for player '" + name + "' at " + filePath);
+        } catch (ClassCastException ex) {
+            logger.warning("You seem to have an error in your yaml. Could not load player '" + name + "'");
+        }
+        return lPlayer;
     }
 
     @Override
-    //TODO implement multi-path tier classing
     public void saveLPlayer(LPlayer lPlayer) {
         LinkedHashMap<String, Object> playerMap = new LinkedHashMap<>(20);
         playerMap.put("name", lPlayer.getName());
         playerMap.put("description", lPlayer.getDescription());
+        playerMap.put("race", lPlayer.getRace().getName());
         playerMap.put("primary-class", lPlayer.getPrimaryClass().getName());
         playerMap.put("primary-class-level", lPlayer.getPrimaryClassInfo().getLevel().getLevel());
         playerMap.put("primary-class-exp", lPlayer.getPrimaryClassInfo().getLevel().getExp());
