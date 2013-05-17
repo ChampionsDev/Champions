@@ -1,10 +1,11 @@
 name: TESTPLAYERDATA
 description: []
+race: Human
 primary-class: Default
 primary-class-level: 0
 primary-class-exp: 0.0
 secondary-class: Default
 secondary-class-level: 0
 secondary-class-exp: 0.0
-previous-primary-class: {}
+previous-primary-class: {Default: 10}
 previous-secondary-class: {}

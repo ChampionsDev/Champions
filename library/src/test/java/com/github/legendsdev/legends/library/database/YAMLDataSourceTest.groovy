@@ -17,9 +17,13 @@ This file is part of Legends.
 package com.github.legendsdev.legends.library.database
 
 import com.github.legendsdev.legends.library.Configuration
+import com.github.legendsdev.legends.library.lclass.LClass
+import com.github.legendsdev.legends.library.lclass.LClassHandler
+import com.github.legendsdev.legends.library.level.Level
 import com.github.legendsdev.legends.library.lplayer.LPlayer
 import com.github.legendsdev.legends.library.lplayer.LPlayerHandler
 import com.github.legendsdev.legends.library.race.Race
+import com.github.legendsdev.legends.library.race.RaceHandler
 import com.github.legendsdev.legends.library.restriction.RestrictionHandler
 import com.github.legendsdev.legends.library.weapon.Weapon
 import com.github.legendsdev.legends.library.weapon.WeaponHandler
@@ -30,6 +34,9 @@ import com.github.legendsdev.legends.library.weapon.WeaponHandler
 class YAMLDataSourceTest extends GroovyTestCase {
     YAMLDataSource yamlDataSource;
     WeaponHandler weaponHandler;
+    RaceHandler raceHandler;
+    LClassHandler lClassHandler;
+    RestrictionHandler restrictionHandler;
 
     void setUp() {
         yamlDataSource = new YAMLDataSource("../core-bukkit/src/main/resources/resources/");
@@ -37,13 +44,18 @@ class YAMLDataSourceTest extends GroovyTestCase {
         yamlDataSource.loadConfiguration(Configuration.getInstance(), "config.yml");
         Configuration.getInstance().setYamlConfigPath("../core-bukkit/src/main/resources/resources/")
         DataManager.init(Configuration.getInstance());
+        raceHandler = RaceHandler.getInstance();
+        lClassHandler = LClassHandler.getInstance();
+        restrictionHandler = RestrictionHandler.getInstance();
     }
 
     void testLoadLPlayer() {
+        LPlayer lPlayer = LPlayerHandler.getInstance().load("TESTPLAYERDATA");
+        assertEquals("Default", lPlayer.getPrimaryClass().getName());
+        assertEquals(10, lPlayer.getPreviousPrimaryClasses().get(LClassHandler.getInstance().load("Default")).getLevel());
     }
 
     void testLoadRace() {
-        RestrictionHandler restrictionHandler = RestrictionHandler.getInstance();
         // Register weapons
         weaponHandler.register("WOOD_AXE", new Weapon());
         weaponHandler.register("IRON_AXE", new Weapon());
@@ -70,10 +82,15 @@ class YAMLDataSourceTest extends GroovyTestCase {
     }
 
     void testSaveLPlayer() {
-        LPlayer lPlayer = LPlayerHandler.getInstance().load("TESTPLAYERDATA");
+        LPlayer lPlayer = new LPlayer(raceHandler.load("Human"), lClassHandler.load("Default"), lClassHandler.load("Default"));
+        lPlayer.setName("TESTPLAYERDATA");
+        lPlayer.addPreviousPrimaryClass(lClassHandler.load("Default"), new Level(10));
         DataManager.getDataSource().saveLPlayer(lPlayer);
     }
 
     void testLoadLClass() {
+        LClass lClass = LClassHandler.getInstance().load("Default");
+        assertEquals(5, lClass.getDefaultInfo().getHealthPerLevel())
+        assertEquals(5, lClass.getDefaultInfo().getManaPerLevel());
     }
 }
