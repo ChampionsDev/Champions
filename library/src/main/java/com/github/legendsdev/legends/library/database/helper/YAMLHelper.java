@@ -110,8 +110,20 @@ public class YAMLHelper {
         return (ArrayList<LinkedHashMap<String, Object>>)getObject(path);
     }
 
-    public int getInt(String path) {
+    public int getInt(String path) throws ClassCastException {
         return (int) getObject(path);
+    }
+
+    public double getDouble(String path) throws ClassCastException {
+        return (double) getObject(path);
+    }
+
+    public LinkedHashMap<String, Object> getMap(String path) throws ClassCastException {
+        return (LinkedHashMap<String, Object>) getObject(path);
+    }
+
+    public LinkedHashMap<String, Integer> getIntMap(String path) throws ClassCastException {
+        return (LinkedHashMap<String, Integer>) getObject(path);
     }
 }
 
