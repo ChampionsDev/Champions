@@ -14,36 +14,12 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library.level.expsource;
+package com.github.legendsdev.legends.library.level.exp.sources;
 
 /**
  * @author B2OJustin
  */
-public class ExpSource {
-    private ExpSourceType type;
-
-    public ExpSource(ExpSourceType type) {
-        this.type = type;
-    }
-
-    public ExpSourceType getType() {
-        return type;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ExpSource expSource = (ExpSource) o;
-
-        if (type != expSource.type) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return type != null ? type.hashCode() : 0;
-    }
+public enum ExpSourceType {
+    BLOCK_BREAK, BLOCK_PLACE, PLAYER_KILL,
+    MOB_KILL, ENCHANT, CRAFT, SKILL
 }

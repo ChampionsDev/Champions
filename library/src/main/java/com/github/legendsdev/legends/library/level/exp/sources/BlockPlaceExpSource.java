@@ -14,16 +14,16 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library.level.expsource;
+package com.github.legendsdev.legends.library.level.exp.sources;
 
 /**
  * @author B2OJustin
  */
-public class BlockBreakExpSource extends ExpSource {
+public class BlockPlaceExpSource extends ExpSource {
     private int blockId;
 
-    public BlockBreakExpSource(int blockId) {
-        super(ExpSourceType.BLOCK_BREAK);
+    public BlockPlaceExpSource(int blockId) {
+        super(ExpSourceType.BLOCK_PLACE);
         this.blockId = blockId;
     }
 
@@ -37,7 +37,7 @@ public class BlockBreakExpSource extends ExpSource {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        BlockBreakExpSource that = (BlockBreakExpSource) o;
+        BlockPlaceExpSource that = (BlockPlaceExpSource) o;
 
         if (blockId != that.blockId) return false;
 

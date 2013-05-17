@@ -14,19 +14,22 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library.level.expsource;
-
-import com.github.legendsdev.legends.library.lplayer.LPlayer;
+package com.github.legendsdev.legends.library.level.exp.sources;
 
 /**
  * @author B2OJustin
  */
-public class PlayerKillExpSource extends ExpSource {
-    public LPlayer player;
+public class EnchantExpSource extends ExpSource {
 
-    public PlayerKillExpSource(LPlayer player) {
-        super(ExpSourceType.PLAYER_KILL);
-        this.player = player;
+    public String enchantId;
+
+    public EnchantExpSource(String enchantId) {
+        super(ExpSourceType.ENCHANT);
+        this.enchantId = enchantId;
+    }
+
+    public String getEnchantId() {
+        return enchantId;
     }
 
     @Override
@@ -35,9 +38,9 @@ public class PlayerKillExpSource extends ExpSource {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        PlayerKillExpSource that = (PlayerKillExpSource) o;
+        EnchantExpSource that = (EnchantExpSource) o;
 
-        if (player != null ? !player.equals(that.player) : that.player != null) return false;
+        if (enchantId != null ? !enchantId.equals(that.enchantId) : that.enchantId != null) return false;
 
         return true;
     }
@@ -45,7 +48,7 @@ public class PlayerKillExpSource extends ExpSource {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (player != null ? player.hashCode() : 0);
+        result = 31 * result + (enchantId != null ? enchantId.hashCode() : 0);
         return result;
     }
 }

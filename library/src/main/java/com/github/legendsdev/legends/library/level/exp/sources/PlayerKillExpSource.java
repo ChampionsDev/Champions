@@ -14,21 +14,19 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library.level.expsource;
+package com.github.legendsdev.legends.library.level.exp.sources;
+
+import com.github.legendsdev.legends.library.lplayer.LPlayer;
 
 /**
  * @author B2OJustin
  */
-public class MobKillExpSource extends ExpSource {
-    private int mobId;
+public class PlayerKillExpSource extends ExpSource {
+    public LPlayer player;
 
-    public MobKillExpSource(int mobId) {
-        super(ExpSourceType.MOB_KILL);
-        this.mobId = mobId;
-    }
-
-    public int getMobId() {
-        return mobId;
+    public PlayerKillExpSource(LPlayer player) {
+        super(ExpSourceType.PLAYER_KILL);
+        this.player = player;
     }
 
     @Override
@@ -37,9 +35,9 @@ public class MobKillExpSource extends ExpSource {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        MobKillExpSource that = (MobKillExpSource) o;
+        PlayerKillExpSource that = (PlayerKillExpSource) o;
 
-        if (mobId != that.mobId) return false;
+        if (player != null ? !player.equals(that.player) : that.player != null) return false;
 
         return true;
     }
@@ -47,7 +45,7 @@ public class MobKillExpSource extends ExpSource {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + mobId;
+        result = 31 * result + (player != null ? player.hashCode() : 0);
         return result;
     }
 }

@@ -14,12 +14,10 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library.level.expsource;
+package com.github.legendsdev.legends.library.level.exp;
 
 /**
  * @author B2OJustin
  */
-public enum ExpSourceType {
-    BLOCK_BREAK, BLOCK_PLACE, PLAYER_KILL,
-    MOB_KILL, ENCHANT, CRAFT, SKILL
+public class ExpGroupHandler {
 }

@@ -14,23 +14,21 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library.level.expsource;
-
-import com.github.legendsdev.legends.library.skill.Skill;
+package com.github.legendsdev.legends.library.level.exp.sources;
 
 /**
  * @author B2OJustin
  */
-public class SkillUseExpSource extends ExpSource {
-    public Skill skill;
+public class BlockBreakExpSource extends ExpSource {
+    private int blockId;
 
-    public SkillUseExpSource(Skill skill) {
-        super(ExpSourceType.SKILL);
-        this.skill = skill;
+    public BlockBreakExpSource(int blockId) {
+        super(ExpSourceType.BLOCK_BREAK);
+        this.blockId = blockId;
     }
 
-    public Skill getSkill() {
-        return skill;
+    public int getBlockId() {
+        return blockId;
     }
 
     @Override
@@ -39,9 +37,9 @@ public class SkillUseExpSource extends ExpSource {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        SkillUseExpSource that = (SkillUseExpSource) o;
+        BlockBreakExpSource that = (BlockBreakExpSource) o;
 
-        if (skill != null ? !skill.equals(that.skill) : that.skill != null) return false;
+        if (blockId != that.blockId) return false;
 
         return true;
     }
@@ -49,7 +47,7 @@ public class SkillUseExpSource extends ExpSource {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (skill != null ? skill.hashCode() : 0);
+        result = 31 * result + blockId;
         return result;
     }
 }

@@ -15,7 +15,7 @@ This file is part of Legends.
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.github.legendsdev.legends.library.level;
+package com.github.legendsdev.legends.library.level.exp;
 
 /**
  * @author YoshiGenius

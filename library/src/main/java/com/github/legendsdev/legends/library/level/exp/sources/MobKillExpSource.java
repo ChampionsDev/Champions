@@ -14,21 +14,21 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.legendsdev.legends.library.level.expsource;
+package com.github.legendsdev.legends.library.level.exp.sources;
 
 /**
  * @author B2OJustin
  */
-public class CraftItemExpSource extends ExpSource {
-    public int blockId;
+public class MobKillExpSource extends ExpSource {
+    private int mobId;
 
-    public CraftItemExpSource(int blockId) {
-        super(ExpSourceType.CRAFT);
-        this.blockId = blockId;
+    public MobKillExpSource(int mobId) {
+        super(ExpSourceType.MOB_KILL);
+        this.mobId = mobId;
     }
 
-    public int getBlockId() {
-        return blockId;
+    public int getMobId() {
+        return mobId;
     }
 
     @Override
@@ -37,9 +37,9 @@ public class CraftItemExpSource extends ExpSource {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        CraftItemExpSource that = (CraftItemExpSource) o;
+        MobKillExpSource that = (MobKillExpSource) o;
 
-        if (blockId != that.blockId) return false;
+        if (mobId != that.mobId) return false;
 
         return true;
     }
@@ -47,7 +47,7 @@ public class CraftItemExpSource extends ExpSource {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + blockId;
+        result = 31 * result + mobId;
         return result;
     }
 }
