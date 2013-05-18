@@ -28,7 +28,7 @@ public class ExpGroupHandler extends BasicHandler<ExpGroup> {
     private static ExpGroupHandler instance = new ExpGroupHandler();
     private static final Logger logger = Logger.getLogger(ExpGroupHandler.class.getName());
 
-    public ExpGroupHandler getInstance() {
+    public static ExpGroupHandler getInstance() {
         return instance;
     }
 

@@ -118,6 +118,10 @@ public class YAMLHelper {
         return (double) getObject(path);
     }
 
+    public float getFloat(String path) throws ClassCastException  {
+        return (float) getObject(path);
+    }
+
     public LinkedHashMap<String, Object> getMap(String path) throws ClassCastException {
         return (LinkedHashMap<String, Object>) getObject(path);
     }

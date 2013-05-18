@@ -26,15 +26,27 @@ import com.github.legendsdev.legends.library.level.LevelUser;
  */
 public class LClassInfo extends BasicInfo<LClassInfo> implements LevelUser, StatsInfo<LClassInfo> {
     private Level level = new Level(0);
-    public int healthPerLevel = 0;
-    public int manaPerLevel = 0;
-    public int staminaPerLevel = 0;
+    private int healthPerLevel = 0;
+    private int manaPerLevel = 0;
+    private int staminaPerLevel = 0;
+    private Level masteryLevel = new Level(0);
 
+    public LClassInfo setMasteryLevel(Level level) {
+        masteryLevel = level;
+        return this;
+    }
+
+    public Level getMasteryLevel() {
+        return masteryLevel;
+    }
+
+    @Override
     public LClassInfo setHealthPerLevel(int healthPerLevel) {
         this.healthPerLevel = healthPerLevel;
         return this;
     }
 
+    @Override
     public LClassInfo setManaPerLevel(int manaPerLevel) {
         this.manaPerLevel = manaPerLevel;
         return this;
@@ -46,10 +58,12 @@ public class LClassInfo extends BasicInfo<LClassInfo> implements LevelUser, Stat
         return this;
     }
 
+    @Override
     public int getHealthPerLevel() {
         return healthPerLevel;
     }
 
+    @Override
     public int getManaPerLevel() {
         return manaPerLevel;
     }

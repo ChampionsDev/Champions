@@ -25,6 +25,7 @@ import com.github.legendsdev.legends.library.lclass.*;
 import com.github.legendsdev.legends.library.level.Level;
 import com.github.legendsdev.legends.library.level.LevelRestricted;
 import com.github.legendsdev.legends.library.level.exp.ExpGroup;
+import com.github.legendsdev.legends.library.level.exp.ExpGroupHandler;
 import com.github.legendsdev.legends.library.level.exp.sources.*;
 import com.github.legendsdev.legends.library.lplayer.LPlayer;
 import com.github.legendsdev.legends.library.race.Race;
@@ -230,6 +231,8 @@ public class YAMLDataSource implements DataSource {
                         loadStats(lClass.getDefaultInfo(), yml);
                         break;
                     case "Levels":
+                        loadLevels(lClass, yml);
+                        break;
 
                 }
             }
@@ -251,7 +254,7 @@ public class YAMLDataSource implements DataSource {
     }
 
     @Override
-    public ExpGroup loadExpGroup(String name) {
+    public synchronized ExpGroup loadExpGroup(String name) {
         String filePath = configPath + EXP_PATH + name.replace(" ", "_") + ".yml";
         try {
             ExpGroup expGroup = new ExpGroup(name);
@@ -407,6 +410,44 @@ public class YAMLDataSource implements DataSource {
             loadBasicInfo((BasicInfo)stats, "Stats", yml);
         }
         return stats;
+    }
+
+    protected synchronized LClass loadLevels(LClass lClass, YAMLHelper yml) {
+        if(lClass == null) return null;
+        for (String levelKey : yml.getKeys("Levels")) {
+            switch(levelKey) {
+                case "experience-sources":
+                    for(String sourcekey : yml.getKeys("Levels.experience-sources")) {
+                            float expModifier = 1f;
+                            for(String modKey : yml.getKeys(String.format("Levels.experience-sources.%s", sourcekey))) {
+                                switch(modKey) {
+                                    case "modifier":
+                                        expModifier = yml.getFloat(String.format("Levels.experience-sources.%s.%s", sourcekey, modKey));
+                                        break;
+                                 }
+                            lClass.addExpGroup(ExpGroupHandler.getInstance().load(sourcekey), expModifier);
+                            }
+                    }
+                    break;
+                case "max-level":
+                    // Sets mastery level to max level if necessary
+                    int maxLevel = yml.getInt("Levels.max-level");
+                    RestrictionHandler.getInstance().getLevelRestrictions(lClass).setMaxLevel(maxLevel);
+                    if(lClass.getDefaultInfo().getMasteryLevel().equals(new Level(0))) {
+                        lClass.getDefaultInfo().setMasteryLevel(new Level(maxLevel));
+                    }
+                    break;
+                case "mastery-level":
+                    lClass.getDefaultInfo().setMasteryLevel(new Level(yml.getInt("Levels.mastery-level")));
+                    break;
+                case "experience-curve":
+                    //TODO experience curve implementation
+                    break;
+            }
+
+
+        }
+        return lClass;
     }
 
     protected synchronized WeaponRestrictions loadWeaponRestrictions(WeaponRestricted restricted, YAMLHelper yml) {

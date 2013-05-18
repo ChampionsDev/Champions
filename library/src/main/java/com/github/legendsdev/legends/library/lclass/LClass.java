@@ -21,6 +21,8 @@ import com.github.legendsdev.legends.library.weapon.WeaponUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @author YoshiGenius
@@ -38,7 +40,7 @@ public class LClass implements Informative<LClass, LClassInfo>,
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
     private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
 
-    private ArrayList<ExpGroup> expGroups = new ArrayList<>();
+    private LinkedHashMap<ExpGroup, Float> expGroups = new LinkedHashMap<>();
 
     private LClassInfo lClassInfo = new LClassInfo();
 
@@ -53,28 +55,24 @@ public class LClass implements Informative<LClass, LClassInfo>,
 
     public Exp getExpGain(ExpSource source) {
         Exp exp = new Exp();
-        for(ExpGroup group : expGroups) {
-            exp.addExp(group.getExp(source));
+        for(Map.Entry<ExpGroup, Float> entry : expGroups.entrySet()) {
+            exp.addExp(entry.getKey().getExp(source).getExp() * entry.getValue());
         }
         return exp;
     }
 
-    public ArrayList<ExpGroup> getExpGroups() {
-        return expGroups;
+    public LClass addExpGroup(ExpGroup expGroup, float modifier) {
+        expGroups.put(expGroup, modifier);
+        return this;
     }
 
     public LClass addExpGroup(ExpGroup expGroup) {
-        expGroups.add(expGroup);
+        addExpGroup(expGroup, 1f);
         return this;
     }
 
     public LClass removeExpGroup(ExpGroup expGroup) {
         expGroups.remove(expGroup);
-        return this;
-    }
-
-    public LClass setExpGroups(ArrayList<ExpGroup> expGroups) {
-        this.expGroups = expGroups;
         return this;
     }
 
