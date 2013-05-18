@@ -18,6 +18,7 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.weapon;
 
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
+import com.github.championsdev.champions.library.event.weapon.WeaponEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
 import com.github.championsdev.champions.library.misc.Informative;
 
@@ -85,5 +86,9 @@ public class Weapon implements Informative<Weapon, WeaponInfo>, WeaponBehavior {
 
     @Override
     public void onHit(WeaponHitEvent event) {
+    }
+
+    @Override
+    public void onSelect(WeaponEvent event) {
     }
 }

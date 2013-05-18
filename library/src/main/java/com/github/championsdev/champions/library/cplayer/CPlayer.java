@@ -176,8 +176,28 @@ public class CPlayer implements CEntity,
         return currentHealth;
     }
 
+    public CPlayer removeHealth(int health) {
+        currentHealth -= health;
+        return this;
+    }
+
     public int getMana() {
         return currentMana;
+    }
+
+    public CPlayer setMana(int mana) {
+        currentMana = mana;
+        return this;
+    }
+
+    public CPlayer removeMana(int mana) {
+        currentMana -= mana;
+        return this;
+    }
+
+    public CPlayer addMana(int mana) {
+        currentMana += mana;
+        return this;
     }
 
     public int getMaxMana() {
@@ -186,6 +206,11 @@ public class CPlayer implements CEntity,
 
     public int getStamina() {
         return currentStamina;
+    }
+
+    public CPlayer removeStamina(int stamina) {
+        currentStamina -= stamina;
+        return this;
     }
 
     public int getMaxStamina() {

@@ -29,8 +29,8 @@ public class SkillInfo implements LevelUser, LevelRestricted {
     private Level level = new Level(1);
     private int manaCost = 0;
     private int cooldownSeconds = 0;
-    private double healthCost = 0;
-    private double hungerCost = 0;
+    private int healthCost = 0;
+    private int staminaCost = 0;
     private int damage = 0;
 
     private LevelRestrictions levelRestrictions = new LevelRestrictions();
@@ -51,12 +51,12 @@ public class SkillInfo implements LevelUser, LevelRestricted {
         return this.cooldownSeconds;
     }
     
-    public double getHealthCost() {
+    public int getHealthCost() {
         return this.healthCost;
     }
     
-    public double getHungerCost() {
-        return this.hungerCost;
+    public int getStaminaCost() {
+        return this.staminaCost;
     }
     
     public SkillInfo setLevel(Level level) {
@@ -79,8 +79,8 @@ public class SkillInfo implements LevelUser, LevelRestricted {
         return this;
     }
     
-    public SkillInfo setHungerCost(int hungerCost) {
-        this.hungerCost = hungerCost;
+    public SkillInfo setStaminaCost(int staminaCost) {
+        this.staminaCost = staminaCost;
         return this;
     }
 

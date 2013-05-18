@@ -17,6 +17,8 @@ This file is part of Champions.
 
 package com.github.championsdev.champions.library.skill;
 
+import com.github.championsdev.champions.library.cplayer.CPlayer;
+import com.github.championsdev.champions.library.event.skill.SkillUseEvent;
 import com.github.championsdev.champions.library.misc.Informative;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class Skill implements Informative<Skill, SkillInfo> {
+public class Skill implements Informative<Skill, SkillInfo>, SkillBehavior {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
 
@@ -66,5 +68,15 @@ public class Skill implements Informative<Skill, SkillInfo> {
     public Skill setDefaultInfo(SkillInfo info) {
         this.skillInfo = info;
         return this;
+    }
+
+    @Override
+    public void onUse(SkillUseEvent event) {
+        if(event.getSource() instanceof CPlayer) {
+            CPlayer player = (CPlayer) event.getSource();
+            player.removeMana(player.getSkillInfo(event.getSkill()).getManaCost());
+            player.removeStamina(player.getSkillInfo(event.getSkill()).getStaminaCost());
+            player.removeHealth(player.getSkillInfo(event.getSkill()).getHealthCost());
+        }
     }
 }

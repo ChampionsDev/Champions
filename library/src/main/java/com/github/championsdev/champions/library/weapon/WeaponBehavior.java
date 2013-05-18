@@ -1,6 +1,7 @@
 package com.github.championsdev.champions.library.weapon;
 
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
+import com.github.championsdev.champions.library.event.weapon.WeaponEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
 
 /**
@@ -9,4 +10,5 @@ import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
 public interface WeaponBehavior {
     public void onClick(WeaponClickEvent event);
     public void onHit(WeaponHitEvent event);
+    public void onSelect(WeaponEvent event);
 }
