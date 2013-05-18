@@ -16,8 +16,8 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.party;
 
-import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
+import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
 
 import java.util.ArrayList;
 

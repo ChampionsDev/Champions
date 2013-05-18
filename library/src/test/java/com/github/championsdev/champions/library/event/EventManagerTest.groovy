@@ -16,10 +16,10 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.event
 
-import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent
-import com.github.championsdev.champions.library.event.weapon.WeaponEvent
 import com.github.championsdev.champions.library.cclass.CClass
 import com.github.championsdev.champions.library.cplayer.CPlayer
+import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent
+import com.github.championsdev.champions.library.event.weapon.WeaponEvent
 import com.github.championsdev.champions.library.race.Race
 import com.github.championsdev.champions.library.weapon.Weapon
 

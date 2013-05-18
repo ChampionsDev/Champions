@@ -16,10 +16,10 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.bukkit.core.listeners;
 
-import com.github.championsdev.champions.library.event.EventManager;
-import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.cplayer.CPlayerHandler;
+import com.github.championsdev.champions.library.event.EventManager;
+import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
 import com.github.championsdev.champions.library.weapon.Weapon;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

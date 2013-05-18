@@ -19,9 +19,9 @@ package com.github.championsdev.champions.library.database
 import com.github.championsdev.champions.library.Configuration
 import com.github.championsdev.champions.library.cclass.CClass
 import com.github.championsdev.champions.library.cclass.CClassHandler
-import com.github.championsdev.champions.library.level.Level
 import com.github.championsdev.champions.library.cplayer.CPlayer
 import com.github.championsdev.champions.library.cplayer.CPlayerHandler
+import com.github.championsdev.champions.library.level.Level
 import com.github.championsdev.champions.library.race.Race
 import com.github.championsdev.champions.library.race.RaceHandler
 import com.github.championsdev.champions.library.restriction.RestrictionHandler

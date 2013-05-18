@@ -16,8 +16,8 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.event.cplayer;
 
-import com.github.championsdev.champions.library.event.ChampionsEvent;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
+import com.github.championsdev.champions.library.event.ChampionsEvent;
 
 /**
  * @author B2OJustin

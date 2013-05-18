@@ -17,10 +17,7 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.event.skill;
 
 import com.github.championsdev.champions.library.CEntity;
-import com.github.championsdev.champions.library.cplayer.CPlayer;
-import com.github.championsdev.champions.library.event.cplayer.CPlayerEvent;
 import com.github.championsdev.champions.library.skill.Skill;
-import com.github.championsdev.champions.library.skill.SkillInfo;
 
 /**
  * @author B2OJustin
