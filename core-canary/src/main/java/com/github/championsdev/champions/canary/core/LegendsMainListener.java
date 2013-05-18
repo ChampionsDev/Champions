@@ -7,15 +7,15 @@ import net.canarymod.plugin.PluginListener;
 /**
  * @author YoshiGenius
  */
-public class LegendsMainListener implements PluginListener {
+public class ChampionsMainListener implements PluginListener {
 
-    private final LegendsCore core;
+    private final ChampionsCore core;
     
-    public LegendsMainListener(LegendsCore core) {
+    public ChampionsMainListener(ChampionsCore core) {
         this.core = core;
     }
     
-    public LegendsCore getCore() {
+    public ChampionsCore getCore() {
         return this.core;
     }
     

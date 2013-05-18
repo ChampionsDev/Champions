@@ -20,8 +20,8 @@
             <version>0.4</version>
         </dependency>
         <dependency>
-            <groupId>com.github.legendsdev.legends</groupId>
-            <artifactId>legends-lib</artifactId>
+            <groupId>com.github.Championsdev.Champions</groupId>
+            <artifactId>Champions-lib</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

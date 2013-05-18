@@ -1,7 +1,7 @@
 package com.github.championsdev.champions.library.event;
 
 /**
- * The base class for all Legends events.
+ * The base class for all Champions events.
  *
  * @author YoshiGenius
  */

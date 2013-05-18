@@ -71,7 +71,7 @@
                             <artifactSet>
                                 <includes>
                                     <minimizeJar>true</minimizeJar>
-                                    <include>com.github.legendsdev.legends:legends-lib</include>
+                                    <include>com.github.Championsdev.Champions:Champions-lib</include>
                                     <include>org.yaml:snakeyaml</include>
                                 </includes>
                             </artifactSet>

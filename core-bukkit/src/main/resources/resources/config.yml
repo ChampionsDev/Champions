@@ -4,4 +4,4 @@ default-primary-class: Default
 default-secondary-class: Default
 
 YAML:
-  config-path: "Legends/"
+  config-path: "Champions/"
