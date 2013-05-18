@@ -14,12 +14,12 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.lplayer;
+package com.github.championsdev.champions.library.cplayer;
 
 import com.github.championsdev.champions.library.BasicHandler;
 import com.github.championsdev.champions.library.Configuration;
+import com.github.championsdev.champions.library.cclass.CClassHandler;
 import com.github.championsdev.champions.library.database.DataManager;
-import com.github.championsdev.champions.library.lclass.LClassHandler;
 import com.github.championsdev.champions.library.race.RaceHandler;
 
 import java.util.logging.Logger;
@@ -27,20 +27,20 @@ import java.util.logging.Logger;
 /**
  * @author B2OJustin
  */
-public class LPlayerHandler extends BasicHandler<LPlayer> {
-    private static Logger logger = Logger.getLogger(LPlayerHandler.class.getName());
-    private static LPlayerHandler instance = new LPlayerHandler();
+public class CPlayerHandler extends BasicHandler<CPlayer> {
+    private static Logger logger = Logger.getLogger(CPlayerHandler.class.getName());
+    private static CPlayerHandler instance = new CPlayerHandler();
 
-    public static LPlayerHandler getInstance() {
+    public static CPlayerHandler getInstance() {
         return instance;
     }
 
-    public LPlayer load(String id) {
-        LPlayer lPlayer = super.get(id);
+    public CPlayer load(String id) {
+        CPlayer lPlayer = super.get(id);
 
         // Attempt load from cache
         if(lPlayer == null) {
-            lPlayer = LPlayerCache.getPlayer(id);
+            lPlayer = CPlayerCache.getPlayer(id);
             if(lPlayer != null) {
                 register(id, lPlayer);
                 logger.info("Loaded player '" + id + "' from cache");
@@ -59,10 +59,10 @@ public class LPlayerHandler extends BasicHandler<LPlayer> {
         // Create new player data
         if(lPlayer == null) {
             Configuration config = Configuration.getInstance();
-            lPlayer = new LPlayer(
+            lPlayer = new CPlayer(
                     RaceHandler.getInstance().load(config.getDefaultRace()),
-                    LClassHandler.getInstance().load(config.getDefaultPrimaryClass()),
-                    LClassHandler.getInstance().load(config.getDefaultSecondaryClass()
+                    CClassHandler.getInstance().load(config.getDefaultPrimaryClass()),
+                    CClassHandler.getInstance().load(config.getDefaultSecondaryClass()
             ));
             lPlayer.setName(id);
             super.register(id, lPlayer);
@@ -73,10 +73,10 @@ public class LPlayerHandler extends BasicHandler<LPlayer> {
         return lPlayer;
     }
 
-    public LPlayerHandler remove(String id, boolean cache) {
+    public CPlayerHandler remove(String id, boolean cache) {
         if(cache) {
-            LPlayer lPlayer = get(id);
-            LPlayerCache.cachePlayer(id, lPlayer);
+            CPlayer lPlayer = get(id);
+            CPlayerCache.cachePlayer(id, lPlayer);
         }
         super.remove(id);
         return this;

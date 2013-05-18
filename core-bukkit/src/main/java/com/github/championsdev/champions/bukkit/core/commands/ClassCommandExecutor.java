@@ -16,8 +16,8 @@ This file is part of Legends.
 */
 package com.github.championsdev.champions.bukkit.core.commands;
 
-import com.github.championsdev.champions.library.lclass.LClass;
-import com.github.championsdev.champions.library.lclass.LClassHandler;
+import com.github.championsdev.champions.library.cclass.CClass;
+import com.github.championsdev.champions.library.cclass.CClassHandler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -37,9 +37,9 @@ public class ClassCommandExecutor implements CommandExecutor {
         switch(params[0].toLowerCase()) {
             case "info":
                 if(params.length < 2) return false;
-                LClass lClass = LClassHandler.getInstance().load(params[1]);
-                if(lClass != null) {
-                    ArrayList<String> description = lClass.getDescription();
+                CClass cClass = CClassHandler.getInstance().load(params[1]);
+                if(cClass != null) {
+                    ArrayList<String> description = cClass.getDescription();
                     commandSender.sendMessage(description.toArray(new String[description.size()]));
                 }
                 else {

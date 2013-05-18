@@ -18,8 +18,8 @@ package com.github.championsdev.champions.bukkit.core.listeners;
 
 import com.github.championsdev.champions.library.event.EventManager;
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
-import com.github.championsdev.champions.library.lplayer.LPlayer;
-import com.github.championsdev.champions.library.lplayer.LPlayerHandler;
+import com.github.championsdev.champions.library.cplayer.CPlayer;
+import com.github.championsdev.champions.library.cplayer.CPlayerHandler;
 import com.github.championsdev.champions.library.weapon.Weapon;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -31,21 +31,21 @@ import org.bukkit.event.player.PlayerQuitEvent;
 /**
  * @author B2OJustin
  */
-public class LegendsListener implements Listener {
+public class ChampionsListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        LPlayerHandler.getInstance().load(event.getPlayer().getName());
+        CPlayerHandler.getInstance().load(event.getPlayer().getName());
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
-        LPlayerHandler.getInstance().remove(event.getPlayer().getName(), true);
+        CPlayerHandler.getInstance().remove(event.getPlayer().getName(), true);
     }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        LPlayer player = LPlayerHandler.getInstance().get(event.getPlayer().getName());
+        CPlayer player = CPlayerHandler.getInstance().get(event.getPlayer().getName());
         Weapon playerWeapon = player.getWeapon();
         if(playerWeapon != null) {
             WeaponClickEvent lEvent;

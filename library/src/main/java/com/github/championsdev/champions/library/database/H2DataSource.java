@@ -16,9 +16,9 @@ This file is part of Legends.
 */
 package com.github.championsdev.champions.library.database;
 
-import com.github.championsdev.champions.library.lclass.LClass;
+import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.level.exp.ExpGroup;
-import com.github.championsdev.champions.library.lplayer.LPlayer;
+import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.skill.Skill;
 
@@ -39,12 +39,12 @@ public class H2DataSource implements DataSource {
     }
 
     @Override
-    public LPlayer loadLPlayer(String name) {
+    public CPlayer loadLPlayer(String name) {
         return null; //TODO loadLPlayer method stub
     }
 
     @Override
-    public void saveLPlayer(LPlayer lPlayer) {
+    public void saveLPlayer(CPlayer lPlayer) {
         //TODO saveLPlayer method stub
     }
 
@@ -54,7 +54,7 @@ public class H2DataSource implements DataSource {
     }
 
     @Override
-    public LClass loadLClass(String name) {
+    public CClass loadLClass(String name) {
         return null; //TODO loadLClass method stub
     }
 

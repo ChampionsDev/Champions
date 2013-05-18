@@ -1,6 +1,6 @@
 package com.github.championsdev.champions.library.misc;
 
-import com.github.championsdev.champions.library.LLocation;
+import com.github.championsdev.champions.library.CLocation;
 
 /**
  * @author YoshiGenius
@@ -9,8 +9,8 @@ import com.github.championsdev.champions.library.LLocation;
  */
 public interface Positionable {
 
-    public LLocation getPosition();
+    public CLocation getPosition();
 
-    public void setLocation(LLocation location);
+    public void setLocation(CLocation location);
 
 }

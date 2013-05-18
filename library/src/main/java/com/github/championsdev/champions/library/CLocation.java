@@ -3,16 +3,16 @@ package com.github.championsdev.champions.library;
 /**
  * @author YoshiGenius
  */
-public class LLocation {
+public class CLocation {
 
-    private final LWorld world;
+    private final CWorld world;
     private final double x;
     private final double y;
     private final double z;
     private final float yaw;
     private final float pitch;
 
-    public LLocation(LWorld world, double x, double y, double z, float yaw, float pitch) {
+    public CLocation(CWorld world, double x, double y, double z, float yaw, float pitch) {
         this.world = world;
         this.z = z;
         this.y = y;
@@ -21,11 +21,11 @@ public class LLocation {
         this.pitch = pitch;
     }
 
-    public LLocation(LWorld world, double x, double y, double z) {
+    public CLocation(CWorld world, double x, double y, double z) {
         this(world, x, y, z, 0, 0);
     }
 
-    public LWorld getWorld() {
+    public CWorld getWorld() {
         return this.world;
     }
 
@@ -61,14 +61,14 @@ public class LLocation {
         return locToBlock(this.getZ());
     }
 
-    public LBlock getBlock() {
+    public CBlock getBlock() {
         return this.getWorld().getBlockAt(this);
     }
 
-    public double distance(LLocation o) {
+    public double distance(CLocation o) {
         return Math.sqrt(distanceSquared(o));
     }
-    public double distanceSquared(LLocation o) {
+    public double distanceSquared(CLocation o) {
         if (o == null) {
             throw new IllegalArgumentException("Cannot measure distance to a null location");
         } else if (o.getWorld() == null || getWorld() == null) {

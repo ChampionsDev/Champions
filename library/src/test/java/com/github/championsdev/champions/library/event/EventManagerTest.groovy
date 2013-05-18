@@ -18,8 +18,8 @@ package com.github.championsdev.champions.library.event
 
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent
 import com.github.championsdev.champions.library.event.weapon.WeaponEvent
-import com.github.championsdev.champions.library.lclass.LClass
-import com.github.championsdev.champions.library.lplayer.LPlayer
+import com.github.championsdev.champions.library.cclass.CClass
+import com.github.championsdev.champions.library.cplayer.CPlayer
 import com.github.championsdev.champions.library.race.Race
 import com.github.championsdev.champions.library.weapon.Weapon
 
@@ -29,11 +29,11 @@ import com.github.championsdev.champions.library.weapon.Weapon
 class EventManagerTest extends GroovyTestCase implements EventListener {
     boolean upstreamEventFired = false;
     boolean downstreamEventFired = false;
-    LPlayer lPlayer;
+    CPlayer lPlayer;
 
     void setUp() {
         EventManager.registerEvents(this);
-        lPlayer = new LPlayer(new Race(), new LClass(), new LClass());
+        lPlayer = new CPlayer(new Race(), new CClass(), new CClass());
     }
 
     void testCallUpstreamEvent() {
@@ -48,12 +48,12 @@ class EventManagerTest extends GroovyTestCase implements EventListener {
         assertTrue(upstreamEventFired);
     }
 
-    @LEventHandler
+    @CEventHandler
     public void upstreamHandler(WeaponEvent event) {
         upstreamEventFired = true;
     }
 
-    @LEventHandler
+    @CEventHandler
     public void downstreamHandler(WeaponClickEvent weaponClickEvent) {
         downstreamEventFired = true;
     }

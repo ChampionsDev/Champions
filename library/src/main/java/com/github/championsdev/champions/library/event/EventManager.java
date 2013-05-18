@@ -14,8 +14,8 @@ import java.util.HashMap;
 @SuppressWarnings("unchecked")
 public class EventManager {
     private static int MAX_UPSTREAM = 10;
-    private static HashMap<Method, LEventHandler> handlers = new HashMap<>();
-    private static HashMap<Class<? extends LegendsEvent>, ArrayList<Method>> methods = new HashMap<>();
+    private static HashMap<Method, CEventHandler> handlers = new HashMap<>();
+    private static HashMap<Class<? extends ChampionsEvent>, ArrayList<Method>> methods = new HashMap<>();
     private static HashMap<Method, EventListener> listeners = new HashMap<>();
 
     private static EventManager instance = new EventManager();
@@ -29,11 +29,11 @@ public class EventManager {
 
     public static synchronized void registerEvents(EventListener listener) {
         for(Method method : listener.getClass().getMethods()) {
-            if(method.isAnnotationPresent(LEventHandler.class)) {
+            if(method.isAnnotationPresent(CEventHandler.class)) {
                 Class[] paramType = method.getParameterTypes();
                 if(paramType.length == 1 &&
-                        LegendsEvent.class.isAssignableFrom(paramType[0])) {
-                    handlers.put(method, method.getAnnotation(LEventHandler.class));
+                        ChampionsEvent.class.isAssignableFrom(paramType[0])) {
+                    handlers.put(method, method.getAnnotation(CEventHandler.class));
 
                     // Register upstream events to method
                     Class clazz = paramType[0];
@@ -53,7 +53,7 @@ public class EventManager {
     }
 
     // TODO this can be optimized by mapping the priorities before the event needs to be called.
-    public static synchronized void callEvent(LegendsEvent event) {
+    public static synchronized void callEvent(ChampionsEvent event) {
         try {
             Class clazz = event.getClass();
             if(methods.containsKey(clazz)) {
@@ -66,7 +66,7 @@ public class EventManager {
                 // Add upstream listener methods
                 for(int i = 0; i < MAX_UPSTREAM; i++) {
                     for(Method method : methods.get(clazz)) {
-                        LEventHandler handler = handlers.get(method);
+                        CEventHandler handler = handlers.get(method);
                         switch(handler.priority()) {
                             case LOWEST:
                                 if(!lowestPriority.contains(method)) lowestPriority.add(method);

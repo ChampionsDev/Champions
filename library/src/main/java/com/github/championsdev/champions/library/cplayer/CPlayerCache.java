@@ -14,7 +14,7 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.lplayer;
+package com.github.championsdev.champions.library.cplayer;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -22,20 +22,20 @@ import java.util.Map;
 /**
  * @author B2OJustin
  */
-public class LPlayerCache {
+public class CPlayerCache {
     private static int cacheSize = 20;
-    private static LinkedHashMap<String, LPlayer> cacheMap = new LinkedHashMap<String, LPlayer>(cacheSize, 0.75f) {
+    private static LinkedHashMap<String, CPlayer> cacheMap = new LinkedHashMap<String, CPlayer>(cacheSize, 0.75f) {
         @Override
-        protected boolean removeEldestEntry(Map.Entry<String, LPlayer> eldest) {
+        protected boolean removeEldestEntry(Map.Entry<String, CPlayer> eldest) {
             return size() > cacheSize;
         }
     };
 
     public static void setCacheSize(int cacheSize) {
-        LPlayerCache.cacheSize = cacheSize;
+        CPlayerCache.cacheSize = cacheSize;
     }
 
-    public static void cachePlayer(String playerName, LPlayer player) {
+    public static void cachePlayer(String playerName, CPlayer player) {
         cacheMap.put(playerName, player);
     }
 
@@ -43,7 +43,7 @@ public class LPlayerCache {
         cacheMap.remove(playerName);
     }
 
-    public static LPlayer getPlayer(String playerName) {
+    public static CPlayer getPlayer(String playerName) {
         return cacheMap.get(playerName);
     }
 }

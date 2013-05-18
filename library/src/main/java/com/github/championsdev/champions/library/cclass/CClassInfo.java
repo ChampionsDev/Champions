@@ -14,7 +14,7 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.lclass;
+package com.github.championsdev.champions.library.cclass;
 
 import com.github.championsdev.champions.library.BasicInfo;
 import com.github.championsdev.champions.library.StatsInfo;
@@ -24,14 +24,14 @@ import com.github.championsdev.champions.library.level.LevelUser;
 /**
  * @author B2OJustin
  */
-public class LClassInfo extends BasicInfo<LClassInfo> implements LevelUser, StatsInfo<LClassInfo> {
+public class CClassInfo extends BasicInfo<CClassInfo> implements LevelUser, StatsInfo<CClassInfo> {
     private Level level = new Level(0);
     private int healthPerLevel = 0;
     private int manaPerLevel = 0;
     private int staminaPerLevel = 0;
     private Level masteryLevel = new Level(0);
 
-    public LClassInfo setMasteryLevel(Level level) {
+    public CClassInfo setMasteryLevel(Level level) {
         masteryLevel = level;
         return this;
     }
@@ -41,19 +41,19 @@ public class LClassInfo extends BasicInfo<LClassInfo> implements LevelUser, Stat
     }
 
     @Override
-    public LClassInfo setHealthPerLevel(int healthPerLevel) {
+    public CClassInfo setHealthPerLevel(int healthPerLevel) {
         this.healthPerLevel = healthPerLevel;
         return this;
     }
 
     @Override
-    public LClassInfo setManaPerLevel(int manaPerLevel) {
+    public CClassInfo setManaPerLevel(int manaPerLevel) {
         this.manaPerLevel = manaPerLevel;
         return this;
     }
 
     @Override
-    public LClassInfo setStaminaPerLevel(int staminaPerLevel) {
+    public CClassInfo setStaminaPerLevel(int staminaPerLevel) {
         this.staminaPerLevel = staminaPerLevel;
         return this;
     }

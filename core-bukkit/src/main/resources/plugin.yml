@@ -1,6 +1,6 @@
 name: Legends
 version: 0.0.1a
-main: com.github.championsdev.champions.bukkit.core.LegendsCore
+main: com.github.championsdev.champions.bukkit.core.ChampionsCore
 authors: [Ranzdo, B2OJustin, YoshiGenius]
 commands:
   class:

@@ -14,22 +14,22 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.event.lplayer;
+package com.github.championsdev.champions.library.event.cplayer;
 
-import com.github.championsdev.champions.library.event.LegendsEvent;
-import com.github.championsdev.champions.library.lplayer.LPlayer;
+import com.github.championsdev.champions.library.event.ChampionsEvent;
+import com.github.championsdev.champions.library.cplayer.CPlayer;
 
 /**
  * @author B2OJustin
  */
-public class LPlayerEvent extends LegendsEvent {
-    private final LPlayer player;
+public class CPlayerEvent extends ChampionsEvent {
+    private final CPlayer player;
 
-    public LPlayerEvent(LPlayer player) {
+    public CPlayerEvent(CPlayer player) {
         this.player = player;
     }
 
-    public LPlayer getLPlayer() {
+    public CPlayer getLPlayer() {
         return this.player;
     }
 }

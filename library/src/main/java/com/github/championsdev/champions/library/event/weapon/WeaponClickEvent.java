@@ -1,6 +1,6 @@
 package com.github.championsdev.champions.library.event.weapon;
 
-import com.github.championsdev.champions.library.lplayer.LPlayer;
+import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.weapon.Weapon;
 
 /**
@@ -13,7 +13,7 @@ public class WeaponClickEvent extends WeaponEvent {
         LEFT_CLICK, RIGHT_CLICK
     }
 
-    public WeaponClickEvent(Weapon weapon, LPlayer player, ClickType clickType) {
+    public WeaponClickEvent(Weapon weapon, CPlayer player, ClickType clickType) {
         super(weapon, player);
         this.clickType = clickType;
     }

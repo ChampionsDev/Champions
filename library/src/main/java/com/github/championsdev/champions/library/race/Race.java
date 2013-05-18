@@ -22,10 +22,10 @@ import com.github.championsdev.champions.library.armor.Armor;
 import com.github.championsdev.champions.library.armor.ArmorInfo;
 import com.github.championsdev.champions.library.armor.ArmorRestricted;
 import com.github.championsdev.champions.library.armor.ArmorUser;
-import com.github.championsdev.champions.library.lclass.LClass;
-import com.github.championsdev.champions.library.lclass.LClassInfo;
-import com.github.championsdev.champions.library.lclass.LClassRestricted;
-import com.github.championsdev.champions.library.lclass.LClassUser;
+import com.github.championsdev.champions.library.cclass.CClass;
+import com.github.championsdev.champions.library.cclass.CClassInfo;
+import com.github.championsdev.champions.library.cclass.CClassRestricted;
+import com.github.championsdev.champions.library.cclass.CClassUser;
 import com.github.championsdev.champions.library.misc.Informative;
 import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.skill.SkillInfo;
@@ -42,8 +42,8 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public class Race implements Informative<Race, RaceInfo>, ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, LClassUser<Race>,
-        SkillRestricted, WeaponRestricted, ArmorRestricted, LClassRestricted {
+public class Race implements Informative<Race, RaceInfo>, ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, CClassUser<Race>,
+        SkillRestricted, WeaponRestricted, ArmorRestricted, CClassRestricted {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
     private ArrayList<Skill> currentSkills = new ArrayList<>();
@@ -51,7 +51,7 @@ public class Race implements Informative<Race, RaceInfo>, ArmorUser<Race>, Skill
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
     private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
     private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
-    private HashMap<LClass, LClassInfo> lClassInfoMap = new HashMap<>();
+    private HashMap<CClass, CClassInfo> lClassInfoMap = new HashMap<>();
 
     private RaceInfo raceInfo = new RaceInfo();
 
@@ -175,27 +175,27 @@ public class Race implements Informative<Race, RaceInfo>, ArmorUser<Race>, Skill
     }
 
     @Override
-    public HashMap<LClass, LClassInfo> getLClassInfoMap() {
+    public HashMap<CClass, CClassInfo> getLClassInfoMap() {
         return lClassInfoMap;
     }
 
     @Override
-    public LClassInfo getLClassInfo(LClass lClass) {
-        if(lClass != null) {
-            LClassInfo lClassInfo = lClassInfoMap.get(lClass);
-            if(lClassInfo == null) {
-                lClassInfo = new LClassInfo();
-                lClassInfoMap.put(lClass, lClassInfo);
+    public CClassInfo getLClassInfo(CClass cClass) {
+        if(cClass != null) {
+            CClassInfo cClassInfo = lClassInfoMap.get(cClass);
+            if(cClassInfo == null) {
+                cClassInfo = new CClassInfo();
+                lClassInfoMap.put(cClass, cClassInfo);
             }
-            return lClassInfo;
+            return cClassInfo;
         }
         return null;
     }
 
     @Override
-    public Race setLClassInfo(LClass lClass, LClassInfo info) {
-        if(lClass != null) {
-            lClassInfoMap.put(lClass, info);
+    public Race setLClassInfo(CClass cClass, CClassInfo info) {
+        if(cClass != null) {
+            lClassInfoMap.put(cClass, info);
         }
         return this;
     }

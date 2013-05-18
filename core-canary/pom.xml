@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.legendsdev</groupId>
-        <artifactId>legends</artifactId>
+        <groupId>com.github.championsdev</groupId>
+        <artifactId>champions</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>legends-canary</artifactId>
+    <artifactId>champions-canary</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>

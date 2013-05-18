@@ -17,7 +17,7 @@ This file is part of Legends.
 package com.github.championsdev.champions.library.party;
 
 import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
-import com.github.championsdev.champions.library.lplayer.LPlayer;
+import com.github.championsdev.champions.library.cplayer.CPlayer;
 
 import java.util.ArrayList;
 
@@ -25,15 +25,15 @@ import java.util.ArrayList;
  * @author B2OJustin
  */
 public class Party {
-    private ArrayList<LPlayer> members = new ArrayList<>();
-    private LPlayer partyLeader;
+    private ArrayList<CPlayer> members = new ArrayList<>();
+    private CPlayer partyLeader;
 
-    public Party(LPlayer partyLeader) {
+    public Party(CPlayer partyLeader) {
         this.partyLeader = partyLeader;
         addMember(partyLeader);
     }
 
-    public Party addMember(LPlayer player) {
+    public Party addMember(CPlayer player) {
         if(!members.contains(player)) {
             members.add(player);
             player.setParty(this);
@@ -41,7 +41,7 @@ public class Party {
         return this;
     }
 
-    public Party removeMember(LPlayer player) {
+    public Party removeMember(CPlayer player) {
         members.remove(player);
         if(partyLeader == player) {
             partyLeader = members.get(0);
@@ -50,7 +50,7 @@ public class Party {
         return this;
     }
 
-    public Party setLeader(LPlayer player) {
+    public Party setLeader(CPlayer player) {
         if(!members.contains(player)) {
             members.add(player);
         }
@@ -58,7 +58,7 @@ public class Party {
         return this;
     }
 
-    public ArrayList<LPlayer> getMembers() {
+    public ArrayList<CPlayer> getMembers() {
         return members;
     }
 
@@ -68,7 +68,7 @@ public class Party {
     }
 
     public Party addExp(ExpSource source) {
-        for(LPlayer player : members) {
+        for(CPlayer player : members) {
             player.addExp(source);
         }
         return this;

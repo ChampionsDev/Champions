@@ -5,6 +5,6 @@ package com.github.championsdev.champions.library.event;
  *
  * @author YoshiGenius
  */
-public class LegendsEvent {
+public class ChampionsEvent {
 
 }

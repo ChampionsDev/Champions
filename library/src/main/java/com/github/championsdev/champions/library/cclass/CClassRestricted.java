@@ -14,12 +14,10 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.lplayer;
-
-import com.github.championsdev.champions.library.BasicInfo;
+package com.github.championsdev.champions.library.cclass;
 
 /**
  * @author B2OJustin
  */
-public class LPlayerInfo extends BasicInfo<LPlayerInfo> {
+public interface CClassRestricted {
 }

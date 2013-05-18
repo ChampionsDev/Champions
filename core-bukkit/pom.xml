@@ -4,12 +4,12 @@
 
 
     <parent>
-        <groupId>com.github.legendsdev</groupId>
-        <artifactId>legends</artifactId>
+        <groupId>com.github.championsdev</groupId>
+        <artifactId>champions</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>legends-bukkit</artifactId>
+    <artifactId>champions-bukkit</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
 
@@ -27,8 +27,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.legendsdev.legends</groupId>
-            <artifactId>legends-lib</artifactId>
+            <groupId>com.github.championsdev.champions</groupId>
+            <artifactId>champions-lib</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

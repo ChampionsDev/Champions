@@ -21,13 +21,13 @@ import com.github.championsdev.champions.library.Configuration;
 import com.github.championsdev.champions.library.StatsInfo;
 import com.github.championsdev.champions.library.armor.*;
 import com.github.championsdev.champions.library.database.helper.YAMLHelper;
-import com.github.championsdev.champions.library.lclass.*;
+import com.github.championsdev.champions.library.cclass.*;
 import com.github.championsdev.champions.library.level.Level;
 import com.github.championsdev.champions.library.level.LevelRestricted;
 import com.github.championsdev.champions.library.level.exp.ExpGroup;
 import com.github.championsdev.champions.library.level.exp.ExpGroupHandler;
 import com.github.championsdev.champions.library.level.exp.sources.*;
-import com.github.championsdev.champions.library.lplayer.LPlayer;
+import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.race.RaceHandler;
 import com.github.championsdev.champions.library.restriction.RestrictionHandler;
@@ -77,16 +77,16 @@ public class YAMLDataSource implements DataSource {
     }
 
     @Override
-    public synchronized LPlayer loadLPlayer(String name) {
+    public synchronized CPlayer loadLPlayer(String name) {
         String filePath = configPath + PLAYER_PATH + name.replace(" ", "_") + ".yml";
-        LPlayer lPlayer = null;
+        CPlayer lPlayer = null;
         try {
             YAMLHelper yamlHelper = new YAMLHelper(filePath);
 
-            lPlayer = new LPlayer(
+            lPlayer = new CPlayer(
                     RaceHandler.getInstance().load(yamlHelper.getString("race")),
-                    LClassHandler.getInstance().load(yamlHelper.getString("primary-class")),
-                    LClassHandler.getInstance().load(yamlHelper.getString("secondary-class"))
+                    CClassHandler.getInstance().load(yamlHelper.getString("primary-class")),
+                    CClassHandler.getInstance().load(yamlHelper.getString("secondary-class"))
             );
             lPlayer.setName(name);
             lPlayer.setDescription(yamlHelper.getStringList("description"));
@@ -96,11 +96,11 @@ public class YAMLDataSource implements DataSource {
             lPlayer.getSecondaryClassInfo().getLevel().setExp(yamlHelper.getDouble("secondary-class-exp"));
 
             for(Map.Entry<String, Integer> entry : yamlHelper.getIntMap("previous-primary-class").entrySet()) {
-                lPlayer.addPreviousPrimaryClass(LClassHandler.getInstance().load(entry.getKey()), new Level(entry.getValue()));
+                lPlayer.addPreviousPrimaryClass(CClassHandler.getInstance().load(entry.getKey()), new Level(entry.getValue()));
             }
 
             for(Map.Entry<String, Integer> entry : yamlHelper.getIntMap("previous-secondary-class").entrySet()) {
-                lPlayer.addPreviousPrimaryClass(LClassHandler.getInstance().load(entry.getKey()), new Level(entry.getValue()));
+                lPlayer.addPreviousPrimaryClass(CClassHandler.getInstance().load(entry.getKey()), new Level(entry.getValue()));
             }
 
 
@@ -113,7 +113,7 @@ public class YAMLDataSource implements DataSource {
     }
 
     @Override
-    public void saveLPlayer(LPlayer lPlayer) {
+    public void saveLPlayer(CPlayer lPlayer) {
         LinkedHashMap<String, Object> playerMap = new LinkedHashMap<>(20);
         playerMap.put("name", lPlayer.getName());
         playerMap.put("description", lPlayer.getDescription());
@@ -127,14 +127,14 @@ public class YAMLDataSource implements DataSource {
 
         // Previous primary classes
         LinkedHashMap<String, Integer> previousPrimaryClasses = new LinkedHashMap<>();
-        for(Map.Entry<LClass, Level> entry : lPlayer.getPreviousPrimaryClasses().entrySet()) {
+        for(Map.Entry<CClass, Level> entry : lPlayer.getPreviousPrimaryClasses().entrySet()) {
             previousPrimaryClasses.put(entry.getKey().getName(), entry.getValue().getLevel());
         }
         playerMap.put("previous-primary-class", previousPrimaryClasses);
 
         // Previous secondary classes
         LinkedHashMap<String, Integer> previousSecondaryClasses = new LinkedHashMap<>();
-        for(Map.Entry<LClass, Level> entry : lPlayer.getPreviousSecondaryClasses().entrySet()) {
+        for(Map.Entry<CClass, Level> entry : lPlayer.getPreviousSecondaryClasses().entrySet()) {
             previousPrimaryClasses.put(entry.getKey().getName(), entry.getValue().getLevel());
         }
         playerMap.put("previous-secondary-class", previousSecondaryClasses);
@@ -201,43 +201,43 @@ public class YAMLDataSource implements DataSource {
     }
 
     @Override
-    public synchronized LClass loadLClass(String name) {
+    public synchronized CClass loadLClass(String name) {
         String filePath = configPath + CLASS_PATH + name.replace(" ", "_") + ".yml";
-        LClass lClass;
+        CClass cClass;
         try {
             // Load custom class file if exists
             Class lClassClass = FileClassLoader.load(Race.class, configPath + CLASS_PATH, name);
             if(lClassClass != null) {
-                lClass = (LClass)lClassClass.newInstance();
-            } else lClass = new LClass();
+                cClass = (CClass)lClassClass.newInstance();
+            } else cClass = new CClass();
 
             YAMLHelper yml = new YAMLHelper(filePath);
 
             for(String mainKey : yml.getKeys("")) {
                 switch(mainKey) {
                     case "name":
-                        lClass.setName(yml.getString("name"));
+                        cClass.setName(yml.getString("name"));
                         break;
                     case "description":
-                        lClass.setDescription(yml.getStringList("description"));
+                        cClass.setDescription(yml.getStringList("description"));
                         break;
                     case "Weapons":
-                        RestrictionHandler.getInstance().setWeaponRestrictions(lClass, loadWeaponRestrictions(lClass, yml));
+                        RestrictionHandler.getInstance().setWeaponRestrictions(cClass, loadWeaponRestrictions(cClass, yml));
                         break;
                     case "Armor":
-                        RestrictionHandler.getInstance().setArmorRestrictions(lClass, loadArmorRestrictions(lClass, yml));
+                        RestrictionHandler.getInstance().setArmorRestrictions(cClass, loadArmorRestrictions(cClass, yml));
                         break;
                     case "Stats":
-                        loadStats(lClass.getDefaultInfo(), yml);
+                        loadStats(cClass.getDefaultInfo(), yml);
                         break;
                     case "Levels":
-                        loadLevels(lClass, yml);
+                        loadLevels(cClass, yml);
                         break;
 
                 }
             }
 
-            return lClass;
+            return cClass;
 
         } catch (FileNotFoundException e) {
             logger.warning("Could not find file for class '" + name + "' at " + filePath);
@@ -412,8 +412,8 @@ public class YAMLDataSource implements DataSource {
         return stats;
     }
 
-    protected synchronized LClass loadLevels(LClass lClass, YAMLHelper yml) {
-        if(lClass == null) return null;
+    protected synchronized CClass loadLevels(CClass cClass, YAMLHelper yml) {
+        if(cClass == null) return null;
         for (String levelKey : yml.getKeys("Levels")) {
             switch(levelKey) {
                 case "experience-sources":
@@ -425,20 +425,20 @@ public class YAMLDataSource implements DataSource {
                                         expModifier = yml.getFloat(String.format("Levels.experience-sources.%s.%s", sourcekey, modKey));
                                         break;
                                  }
-                            lClass.addExpGroup(ExpGroupHandler.getInstance().load(sourcekey), expModifier);
+                            cClass.addExpGroup(ExpGroupHandler.getInstance().load(sourcekey), expModifier);
                             }
                     }
                     break;
                 case "max-level":
                     // Sets mastery level to max level if necessary
                     int maxLevel = yml.getInt("Levels.max-level");
-                    RestrictionHandler.getInstance().getLevelRestrictions(lClass).setMaxLevel(maxLevel);
-                    if(lClass.getDefaultInfo().getMasteryLevel().equals(new Level(0))) {
-                        lClass.getDefaultInfo().setMasteryLevel(new Level(maxLevel));
+                    RestrictionHandler.getInstance().getLevelRestrictions(cClass).setMaxLevel(maxLevel);
+                    if(cClass.getDefaultInfo().getMasteryLevel().equals(new Level(0))) {
+                        cClass.getDefaultInfo().setMasteryLevel(new Level(maxLevel));
                     }
                     break;
                 case "mastery-level":
-                    lClass.getDefaultInfo().setMasteryLevel(new Level(yml.getInt("Levels.mastery-level")));
+                    cClass.getDefaultInfo().setMasteryLevel(new Level(yml.getInt("Levels.mastery-level")));
                     break;
                 case "experience-curve":
                     //TODO experience curve implementation
@@ -447,7 +447,7 @@ public class YAMLDataSource implements DataSource {
 
 
         }
-        return lClass;
+        return cClass;
     }
 
     protected synchronized WeaponRestrictions loadWeaponRestrictions(WeaponRestricted restricted, YAMLHelper yml) {
@@ -513,8 +513,8 @@ public class YAMLDataSource implements DataSource {
         return restrictions;
     }
 
-    protected LClassRestrictions loadClassRestrictions(LClassRestricted restricted, YAMLHelper yml) {
-        LClassRestrictions restrictions = new LClassRestrictions();
+    protected CClassRestrictions loadClassRestrictions(CClassRestricted restricted, YAMLHelper yml) {
+        CClassRestrictions restrictions = new CClassRestrictions();
         for(String classKey : yml.getKeys("Class")) {
             switch(classKey) {
                 case "default":
@@ -525,20 +525,20 @@ public class YAMLDataSource implements DataSource {
                     break;
                 case "permitted-class":
                     for(String classID : yml.getKeys("Class.permitted-class")) {
-                        LClass lClass = LClassHandler.getInstance().get(classID);
-                        if(lClass != null) {
-                            restrictions.setAllowed(lClass, true);
-                            if(restricted instanceof LClassUser) {
-                                loadBasicInfo(((LClassUser)restricted).getLClassInfo(lClass), String.format("Class.permitted-class.%s", classID), yml);
+                        CClass cClass = CClassHandler.getInstance().get(classID);
+                        if(cClass != null) {
+                            restrictions.setAllowed(cClass, true);
+                            if(restricted instanceof CClassUser) {
+                                loadBasicInfo(((CClassUser)restricted).getLClassInfo(cClass), String.format("Class.permitted-class.%s", classID), yml);
                             }
                         }
                     }
                     break;
                 case "restricted-class":
                     for(String classID : yml.getKeys("Class.restricted-class")) {
-                        LClass lClass = LClassHandler.getInstance().get(classID);
-                        if(lClass != null) {
-                            restrictions.setAllowed(lClass, false);
+                        CClass cClass = CClassHandler.getInstance().get(classID);
+                        if(cClass != null) {
+                            restrictions.setAllowed(cClass, false);
                         }
                     }
             }

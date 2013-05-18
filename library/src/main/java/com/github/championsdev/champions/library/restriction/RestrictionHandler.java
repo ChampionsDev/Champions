@@ -18,8 +18,8 @@ package com.github.championsdev.champions.library.restriction;
 
 import com.github.championsdev.champions.library.armor.ArmorRestricted;
 import com.github.championsdev.champions.library.armor.ArmorRestrictions;
-import com.github.championsdev.champions.library.lclass.LClassRestricted;
-import com.github.championsdev.champions.library.lclass.LClassRestrictions;
+import com.github.championsdev.champions.library.cclass.CClassRestricted;
+import com.github.championsdev.champions.library.cclass.CClassRestrictions;
 import com.github.championsdev.champions.library.level.LevelRestricted;
 import com.github.championsdev.champions.library.level.LevelRestrictions;
 import com.github.championsdev.champions.library.race.RaceRestricted;
@@ -40,7 +40,7 @@ public class RestrictionHandler {
     private HashMap<SkillRestricted, SkillRestrictions> skillMap = new HashMap<>();
     private HashMap<LevelRestricted, LevelRestrictions> levelMap = new HashMap<>();
     private HashMap<RaceRestricted, RaceRestrictions> raceMap = new HashMap<>();
-    private HashMap<LClassRestricted, LClassRestrictions> classMap = new HashMap<>();
+    private HashMap<CClassRestricted, CClassRestrictions> classMap = new HashMap<>();
     private HashMap<WeaponRestricted, WeaponRestrictions> weaponMap = new HashMap<>();
     private HashMap<ArmorRestricted, ArmorRestrictions> armorMap = new HashMap<>();
 
@@ -92,16 +92,16 @@ public class RestrictionHandler {
         return this;
     }
 
-    public LClassRestrictions getClassRestrictions(LClassRestricted restricted) {
-        LClassRestrictions restrictions = classMap.get(restricted);
+    public CClassRestrictions getClassRestrictions(CClassRestricted restricted) {
+        CClassRestrictions restrictions = classMap.get(restricted);
         if(restrictions == null) {
-            restrictions = new LClassRestrictions();
+            restrictions = new CClassRestrictions();
             classMap.put(restricted, restrictions);
         }
         return restrictions;
     }
 
-    public RestrictionHandler setClassRestrictions(LClassRestricted restricted, LClassRestrictions restrictions) {
+    public RestrictionHandler setClassRestrictions(CClassRestricted restricted, CClassRestrictions restrictions) {
         classMap.put(restricted, restrictions);
         return this;
     }

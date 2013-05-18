@@ -1,4 +1,4 @@
-package com.github.championsdev.champions.library.lclass;
+package com.github.championsdev.champions.library.cclass;
 
 import com.github.championsdev.champions.library.armor.Armor;
 import com.github.championsdev.champions.library.armor.ArmorInfo;
@@ -26,9 +26,9 @@ import java.util.Map;
 /**
  * @author YoshiGenius
  */
-public class LClass implements Informative<LClass, LClassInfo>,
+public class CClass implements Informative<CClass, CClassInfo>,
         LevelRestricted, WeaponRestricted, ArmorRestricted, SkillRestricted,
-        WeaponUser<LClass>, SkillUser<LClass>, ArmorUser<LClass> {
+        WeaponUser<CClass>, SkillUser<CClass>, ArmorUser<CClass> {
 
     private ArrayList<String> description = new ArrayList<>();
     private String name = "";
@@ -41,13 +41,13 @@ public class LClass implements Informative<LClass, LClassInfo>,
 
     private LinkedHashMap<ExpGroup, Float> expGroups = new LinkedHashMap<>();
 
-    private LClassInfo lClassInfo = new LClassInfo();
+    private CClassInfo cClassInfo = new CClassInfo();
 
 
-    public LClass() {
+    public CClass() {
     }
 
-    public LClass(String name, ArrayList<String> description) {
+    public CClass(String name, ArrayList<String> description) {
         this.name = name;
         this.description = description;
     }
@@ -60,17 +60,17 @@ public class LClass implements Informative<LClass, LClassInfo>,
         return exp;
     }
 
-    public LClass addExpGroup(ExpGroup expGroup, float modifier) {
+    public CClass addExpGroup(ExpGroup expGroup, float modifier) {
         expGroups.put(expGroup, modifier);
         return this;
     }
 
-    public LClass addExpGroup(ExpGroup expGroup) {
+    public CClass addExpGroup(ExpGroup expGroup) {
         addExpGroup(expGroup, 1f);
         return this;
     }
 
-    public LClass removeExpGroup(ExpGroup expGroup) {
+    public CClass removeExpGroup(ExpGroup expGroup) {
         expGroups.remove(expGroup);
         return this;
     }
@@ -86,25 +86,25 @@ public class LClass implements Informative<LClass, LClassInfo>,
     }
 
     @Override
-    public LClass setName(String name) {
+    public CClass setName(String name) {
         this.name = name;
         return this;
     }
 
     @Override
-    public LClass setDescription(ArrayList<String> description) {
+    public CClass setDescription(ArrayList<String> description) {
         this.description = description;
         return this;
     }
 
     @Override
-    public LClassInfo getDefaultInfo() {
-        return lClassInfo;
+    public CClassInfo getDefaultInfo() {
+        return cClassInfo;
     }
 
     @Override
-    public LClass setDefaultInfo(LClassInfo info) {
-        lClassInfo = info;
+    public CClass setDefaultInfo(CClassInfo info) {
+        cClassInfo = info;
         return this;
     }
 
@@ -127,7 +127,7 @@ public class LClass implements Informative<LClass, LClassInfo>,
     }
 
     @Override
-    public LClass setArmorInfo(Armor armor, ArmorInfo info) {
+    public CClass setArmorInfo(Armor armor, ArmorInfo info) {
         if(armor != null) {
             armorInfoMap.put(armor, info);
         }
@@ -140,7 +140,7 @@ public class LClass implements Informative<LClass, LClassInfo>,
     }
 
     @Override
-    public LClass addSkill(Skill skill) {
+    public CClass addSkill(Skill skill) {
         if(skill != null) {
             currentSkills.add(skill);
         }
@@ -148,7 +148,7 @@ public class LClass implements Informative<LClass, LClassInfo>,
     }
 
     @Override
-    public LClass removeSkill(Skill skill) {
+    public CClass removeSkill(Skill skill) {
         currentSkills.remove(skill);
         return this;
     }
@@ -172,7 +172,7 @@ public class LClass implements Informative<LClass, LClassInfo>,
     }
 
     @Override
-    public LClass setSkillInfo(Skill skill, SkillInfo info) {
+    public CClass setSkillInfo(Skill skill, SkillInfo info) {
         if(skill != null) {
             skillInfoMap.put(skill, info);
         }
@@ -198,7 +198,7 @@ public class LClass implements Informative<LClass, LClassInfo>,
     }
 
     @Override
-    public LClass setWeaponInfo(Weapon weapon, WeaponInfo info) {
+    public CClass setWeaponInfo(Weapon weapon, WeaponInfo info) {
         if(weapon != null) {
             weaponInfoMap.put(weapon, info);
         }

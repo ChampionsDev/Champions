@@ -16,7 +16,7 @@ This file is part of Legends.
 */
 package com.github.championsdev.champions.library.event.weapon;
 
-import com.github.championsdev.champions.library.lplayer.LPlayer;
+import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.weapon.Weapon;
 
 /**
@@ -25,12 +25,12 @@ import com.github.championsdev.champions.library.weapon.Weapon;
 public class WeaponHitEvent extends WeaponEvent {
     public Object target;
 
-    public WeaponHitEvent(Weapon weapon, LPlayer source, Object target) {
+    public WeaponHitEvent(Weapon weapon, CPlayer source, Object target) {
         super(weapon, source);
         this.target = target;
     }
 
-    public LPlayer getSource() {
+    public CPlayer getSource() {
         return getLPlayer();
     }
 

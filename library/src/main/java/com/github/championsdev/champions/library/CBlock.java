@@ -3,25 +3,25 @@ package com.github.championsdev.champions.library;
 /**
  * @author YoshiGenius
  */
-public class LBlock {
+public class CBlock {
 
-    private final LLocation location;
-    private LWorld world;
+    private final CLocation location;
+    private CWorld world;
     private final short dataValue;
     private final int id;
 
-    public LBlock(LLocation location, int id, short dataValue) {
+    public CBlock(CLocation location, int id, short dataValue) {
         this.location = location;
         this.world = location.getWorld();
         this.id = id;
         this.dataValue = dataValue;
     }
 
-    public LLocation getLocation() {
+    public CLocation getLocation() {
         return this.location;
     }
 
-    public LWorld getWorld() {
+    public CWorld getWorld() {
         return this.world;
     }
 

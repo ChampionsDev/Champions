@@ -16,9 +16,9 @@ This file is part of Legends.
 */
 package com.github.championsdev.champions.library.database;
 
-import com.github.championsdev.champions.library.lclass.LClass;
+import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.level.exp.ExpGroup;
-import com.github.championsdev.champions.library.lplayer.LPlayer;
+import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.skill.Skill;
 
@@ -31,10 +31,10 @@ public interface DataSource {
     public String getName();
     public Logger getLogger();
 
-    public LPlayer loadLPlayer(String name);
-    public void saveLPlayer(LPlayer lPlayer);
+    public CPlayer loadLPlayer(String name);
+    public void saveLPlayer(CPlayer lPlayer);
     public Race loadRace(String name);
-    public LClass loadLClass(String name);
+    public CClass loadLClass(String name);
     public Skill loadSkill(String name);
 
     public ExpGroup loadExpGroup(String name);

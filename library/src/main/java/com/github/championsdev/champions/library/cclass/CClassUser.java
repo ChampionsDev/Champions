@@ -14,7 +14,7 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.lclass;
+package com.github.championsdev.champions.library.cclass;
 
 import com.github.championsdev.champions.library.BasicUser;
 
@@ -23,9 +23,9 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-//TODO implement setters for LClassUser
-public interface LClassUser<SelfType extends LClassUser> extends BasicUser {
-    public HashMap<LClass, LClassInfo> getLClassInfoMap();
-    public LClassInfo getLClassInfo(LClass lClass);
-    public SelfType setLClassInfo(LClass lClass, LClassInfo info);
+//TODO implement setters for CClassUser
+public interface CClassUser<SelfType extends CClassUser> extends BasicUser {
+    public HashMap<CClass, CClassInfo> getLClassInfoMap();
+    public CClassInfo getLClassInfo(CClass cClass);
+    public SelfType setLClassInfo(CClass cClass, CClassInfo info);
 }

@@ -17,11 +17,11 @@ This file is part of Legends.
 package com.github.championsdev.champions.library.database
 
 import com.github.championsdev.champions.library.Configuration
-import com.github.championsdev.champions.library.lclass.LClass
-import com.github.championsdev.champions.library.lclass.LClassHandler
+import com.github.championsdev.champions.library.cclass.CClass
+import com.github.championsdev.champions.library.cclass.CClassHandler
 import com.github.championsdev.champions.library.level.Level
-import com.github.championsdev.champions.library.lplayer.LPlayer
-import com.github.championsdev.champions.library.lplayer.LPlayerHandler
+import com.github.championsdev.champions.library.cplayer.CPlayer
+import com.github.championsdev.champions.library.cplayer.CPlayerHandler
 import com.github.championsdev.champions.library.race.Race
 import com.github.championsdev.champions.library.race.RaceHandler
 import com.github.championsdev.champions.library.restriction.RestrictionHandler
@@ -35,7 +35,7 @@ class YAMLDataSourceTest extends GroovyTestCase {
     YAMLDataSource yamlDataSource;
     WeaponHandler weaponHandler;
     RaceHandler raceHandler;
-    LClassHandler lClassHandler;
+    CClassHandler lClassHandler;
     RestrictionHandler restrictionHandler;
 
     void setUp() {
@@ -45,14 +45,14 @@ class YAMLDataSourceTest extends GroovyTestCase {
         Configuration.getInstance().setYamlConfigPath("../core-bukkit/src/main/resources/resources/")
         DataManager.init(Configuration.getInstance());
         raceHandler = RaceHandler.getInstance();
-        lClassHandler = LClassHandler.getInstance();
+        lClassHandler = CClassHandler.getInstance();
         restrictionHandler = RestrictionHandler.getInstance();
     }
 
     void testLoadLPlayer() {
-        LPlayer lPlayer = LPlayerHandler.getInstance().load("TESTPLAYERDATA");
+        CPlayer lPlayer = CPlayerHandler.getInstance().load("TESTPLAYERDATA");
         assertEquals("Default", lPlayer.getPrimaryClass().getName());
-        assertEquals(10, lPlayer.getPreviousPrimaryClasses().get(LClassHandler.getInstance().load("Default")).getLevel());
+        assertEquals(10, lPlayer.getPreviousPrimaryClasses().get(CClassHandler.getInstance().load("Default")).getLevel());
     }
 
     void testLoadRace() {
@@ -82,14 +82,14 @@ class YAMLDataSourceTest extends GroovyTestCase {
     }
 
     void testSaveLPlayer() {
-        LPlayer lPlayer = new LPlayer(raceHandler.load("Human"), lClassHandler.load("Default"), lClassHandler.load("Default"));
+        CPlayer lPlayer = new CPlayer(raceHandler.load("Human"), lClassHandler.load("Default"), lClassHandler.load("Default"));
         lPlayer.setName("TESTPLAYERDATA");
         lPlayer.addPreviousPrimaryClass(lClassHandler.load("Default"), new Level(10));
         DataManager.getDataSource().saveLPlayer(lPlayer);
     }
 
     void testLoadLClass() {
-        LClass lClass = LClassHandler.getInstance().load("Default");
+        CClass lClass = CClassHandler.getInstance().load("Default");
         assertEquals(5, lClass.getDefaultInfo().getHealthPerLevel())
         assertEquals(5, lClass.getDefaultInfo().getManaPerLevel());
     }

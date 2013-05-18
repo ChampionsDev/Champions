@@ -14,10 +14,12 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library;
+package com.github.championsdev.champions.library.cclass;
+
+import com.github.championsdev.champions.library.restriction.BasicRestrictions;
 
 /**
  * @author B2OJustin
  */
-public interface LEntity {
+public class CClassRestrictions extends BasicRestrictions<CClass> {
 }

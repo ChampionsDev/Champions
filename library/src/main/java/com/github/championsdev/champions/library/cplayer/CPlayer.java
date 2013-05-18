@@ -14,19 +14,19 @@ This file is part of Legends.
     You should have received a copy of the GNU General Public License
     along with Legends.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.lplayer;
+package com.github.championsdev.champions.library.cplayer;
 
 
 import com.github.championsdev.champions.library.BasicInfo;
-import com.github.championsdev.champions.library.LEntity;
-import com.github.championsdev.champions.library.LLocation;
+import com.github.championsdev.champions.library.CEntity;
+import com.github.championsdev.champions.library.CLocation;
 import com.github.championsdev.champions.library.armor.Armor;
 import com.github.championsdev.champions.library.armor.ArmorInfo;
 import com.github.championsdev.champions.library.armor.ArmorRestricted;
 import com.github.championsdev.champions.library.armor.ArmorUser;
-import com.github.championsdev.champions.library.lclass.LClass;
-import com.github.championsdev.champions.library.lclass.LClassInfo;
-import com.github.championsdev.champions.library.lclass.LClassRestricted;
+import com.github.championsdev.champions.library.cclass.CClass;
+import com.github.championsdev.champions.library.cclass.CClassInfo;
+import com.github.championsdev.champions.library.cclass.CClassRestricted;
 import com.github.championsdev.champions.library.level.Level;
 import com.github.championsdev.champions.library.level.LevelRestricted;
 import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
@@ -51,25 +51,25 @@ import java.util.LinkedHashMap;
 /**
  * @author B2OJustin
  */
-public class LPlayer implements LEntity,
-        Informative<LPlayer, LPlayerInfo>,
-        WeaponUser<LPlayer>, ArmorUser<LPlayer>, SkillUser<LPlayer>,
-        WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, LClassRestricted, RaceRestricted, Positionable {
+public class CPlayer implements CEntity,
+        Informative<CPlayer, CPlayerInfo>,
+        WeaponUser<CPlayer>, ArmorUser<CPlayer>, SkillUser<CPlayer>,
+        WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, CClassRestricted, RaceRestricted, Positionable {
 
     private Race race = new Race();
 
-    private LClass primaryClass;
-    private LClassInfo primaryClassInfo = new LClassInfo();
+    private CClass primaryClass;
+    private CClassInfo primaryClassInfo = new CClassInfo();
 
-    private LClass secondaryClass;
-    private LClassInfo secondaryClassInfo = new LClassInfo();
+    private CClass secondaryClass;
+    private CClassInfo secondaryClassInfo = new CClassInfo();
 
     private String playerName = "";
     private ArrayList<String> description = new ArrayList<>();
-    private LPlayerInfo lPlayerInfo = new LPlayerInfo();
+    private CPlayerInfo cPlayerInfo = new CPlayerInfo();
 
-    private LinkedHashMap<LClass, Level> previousPrimaryClasses = new LinkedHashMap<>();
-    private LinkedHashMap<LClass, Level> previousSecondaryClasses = new LinkedHashMap<>();
+    private LinkedHashMap<CClass, Level> previousPrimaryClasses = new LinkedHashMap<>();
+    private LinkedHashMap<CClass, Level> previousSecondaryClasses = new LinkedHashMap<>();
 
     private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
@@ -91,9 +91,9 @@ public class LPlayer implements LEntity,
     private int maxMana = 0;
     private int currentStamina = 0;
     private int maxStamina = 0;
-    private LLocation location;
+    private CLocation location;
 
-    public LPlayer(Race race, LClass primaryClass, LClass secondaryClass) {
+    public CPlayer(Race race, CClass primaryClass, CClass secondaryClass) {
         this.race = race;
         this.primaryClass = primaryClass;
         this.secondaryClass = secondaryClass;
@@ -110,25 +110,25 @@ public class LPlayer implements LEntity,
         return this.race;
     }
 
-    public LinkedHashMap<LClass, Level> getPreviousPrimaryClasses() {
+    public LinkedHashMap<CClass, Level> getPreviousPrimaryClasses() {
         return previousPrimaryClasses;
     }
 
-    public LinkedHashMap<LClass, Level> getPreviousSecondaryClasses() {
+    public LinkedHashMap<CClass, Level> getPreviousSecondaryClasses() {
         return previousSecondaryClasses;
     }
 
-    public LPlayer addPreviousPrimaryClass(LClass lClass, Level level) {
-        previousPrimaryClasses.put(lClass, level);
+    public CPlayer addPreviousPrimaryClass(CClass cClass, Level level) {
+        previousPrimaryClasses.put(cClass, level);
         return this;
     }
 
-    public LPlayer addPreviousSecondaryClass(LClass lClass, Level level) {
-        previousSecondaryClasses.put(lClass, level);
+    public CPlayer addPreviousSecondaryClass(CClass cClass, Level level) {
+        previousSecondaryClasses.put(cClass, level);
         return this;
     }
 
-    public LPlayer setParty(Party party) {
+    public CPlayer setParty(Party party) {
         if(party == null) this.party = new Party(this);
         else this.party = party;
         return this;
@@ -138,24 +138,24 @@ public class LPlayer implements LEntity,
         return party;
     }
 
-    public LClass getPrimaryClass() {
+    public CClass getPrimaryClass() {
         return primaryClass;
     }
 
-    public LClass getSecondaryClass() {
+    public CClass getSecondaryClass() {
         return secondaryClass;
     }
 
-    public LClassInfo getSecondaryClassInfo() {
+    public CClassInfo getSecondaryClassInfo() {
         return secondaryClassInfo;
     }
 
-    public LClassInfo getPrimaryClassInfo() {
+    public CClassInfo getPrimaryClassInfo() {
         return primaryClassInfo;
     }
 
     // Experience wrapper methods
-    public LPlayer addExp(ExpSource source) {
+    public CPlayer addExp(ExpSource source) {
         primaryClassInfo.getLevel().addExp(primaryClass.getExpGain(source));
         secondaryClassInfo.getLevel().addExp(secondaryClass.getExpGain(source));
         return this;
@@ -165,7 +165,7 @@ public class LPlayer implements LEntity,
         return currentWeapon;
     }
 
-    public LPlayer setWeapon(Weapon weapon) {
+    public CPlayer setWeapon(Weapon weapon) {
         if(weapon != null) {
             currentWeapon = weapon;
         }
@@ -200,7 +200,7 @@ public class LPlayer implements LEntity,
         return defense;
     }
 
-    public LPlayer update() {
+    public CPlayer update() {
         ArrayList<BasicInfo> infoList = new ArrayList<>();
         // Class bonuses
         infoList.add(primaryClass.getArmorInfo(currentArmor));
@@ -218,7 +218,7 @@ public class LPlayer implements LEntity,
         infoList.add(race.getDefaultInfo());
 
         // Player bonuses
-        infoList.add(lPlayerInfo);
+        infoList.add(cPlayerInfo);
         infoList.add(getArmorInfo(currentArmor));
         infoList.add(getWeaponInfo(currentWeapon));
 
@@ -248,7 +248,7 @@ public class LPlayer implements LEntity,
     }
 
     @Override
-    public LPlayer addSkill(Skill skill) {
+    public CPlayer addSkill(Skill skill) {
         if(skill != null) {
             currentSkills.add(skill);
         }
@@ -256,7 +256,7 @@ public class LPlayer implements LEntity,
     }
 
     @Override
-    public LPlayer removeSkill(Skill skill) {
+    public CPlayer removeSkill(Skill skill) {
         currentSkills.remove(skill);
         return this;
     }
@@ -267,7 +267,7 @@ public class LPlayer implements LEntity,
     }
 
     @Override
-    public LPlayer setSkillInfo(Skill skill, SkillInfo info) {
+    public CPlayer setSkillInfo(Skill skill, SkillInfo info) {
         if(skill != null) {
             skillInfoMap.put(skill, info);
         }
@@ -301,7 +301,7 @@ public class LPlayer implements LEntity,
     }
 
     @Override
-    public LPlayer setWeaponInfo(Weapon weapon, WeaponInfo info) {
+    public CPlayer setWeaponInfo(Weapon weapon, WeaponInfo info) {
         if(weapon != null) {
             weaponInfoMap.put(weapon, info);
         }
@@ -327,7 +327,7 @@ public class LPlayer implements LEntity,
     }
 
     @Override
-    public LPlayer setArmorInfo(Armor armor, ArmorInfo info) {
+    public CPlayer setArmorInfo(Armor armor, ArmorInfo info) {
         if(armor != null) {
             armorInfoMap.put(armor, info);
         }
@@ -345,41 +345,41 @@ public class LPlayer implements LEntity,
     }
 
     @Override
-    public LPlayer setName(String name) {
+    public CPlayer setName(String name) {
         this.playerName = name;
         return this;
     }
 
     @Override
-    public LPlayer setDescription(ArrayList<String> description) {
+    public CPlayer setDescription(ArrayList<String> description) {
         this.description = description;
         return this;
     }
 
     @Override
-    public LPlayerInfo getDefaultInfo() {
-        if (this.lPlayerInfo == null) {
-            lPlayerInfo = new LPlayerInfo();
+    public CPlayerInfo getDefaultInfo() {
+        if (this.cPlayerInfo == null) {
+            cPlayerInfo = new CPlayerInfo();
         }
-        return lPlayerInfo;
+        return cPlayerInfo;
     }
 
     @Override
-    public LPlayer setDefaultInfo(LPlayerInfo info) {
+    public CPlayer setDefaultInfo(CPlayerInfo info) {
         if(info == null) {
-            lPlayerInfo = new LPlayerInfo();
+            cPlayerInfo = new CPlayerInfo();
         }
-        else lPlayerInfo = info;
+        else cPlayerInfo = info;
         return this;
     }
 
     @Override
-    public LLocation getPosition() {
+    public CLocation getPosition() {
         return this.location;
     }
 
     @Override
-    public void setLocation(LLocation location) {
+    public void setLocation(CLocation location) {
         this.location = location;
     }
 }
