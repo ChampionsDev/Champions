@@ -1,11 +1,5 @@
-Legends Core
+Champions Core
 ====
-
-##About
-Due to the relocation of a similar project from Bukkit, a group of developers assembled by taiwe2 got together to create
-a new fully customizable and extensible RPG plugin for Bukkit.
-
-The team members are: YoshiGenius, B2OJustin, and Ranzdo.
 
 ##Pull Requests
 Our current policy on pull requests is as follows:
@@ -16,8 +10,8 @@ Our current policy on pull requests is as follows:
 4. Each new individual feature should be squashed into a single commit, so we can easily rollback code that causes errors
 
 ##Documentation
-See the javadocs at [Legends JavaDocs](http://jd.yoshigenius.com/apidocs/legends/)
-and the usage docs at the wiki: [Legends Wiki](https://github.com/Legends-Dev/Legends-Core/wiki)
+See the javadocs at [Champions JavaDocs](http://jd.yoshigenius.com/apidocs/champions/)
+and the usage docs at the wiki: [Champions Wiki](https://github.com/ChampionsDev/Champions/wiki)
 
 Note: The links above may change at any time, but forwards will hopefully be set up.
 
