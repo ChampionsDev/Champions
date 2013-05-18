@@ -9,6 +9,6 @@
     <modules>
         <module>library</module>
         <module>core-bukkit</module>
-        <!-- module>core-canary</module> -->
+        <!-- <module>core-canary</module> -->
     </modules>
 </project>
