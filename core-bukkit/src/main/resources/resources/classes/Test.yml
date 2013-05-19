@@ -1,5 +1,5 @@
-name: Default
-description: [Default Class]
+name: Test
+description: [Test Class]
 
 primary: true
 secondary: true
@@ -16,7 +16,6 @@ Levels:
   mastery-level: 50
   experience-sources:
     MOB_KILL:
-    PLAYER_KILL:
     
 
 Weapons:

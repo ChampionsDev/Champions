@@ -39,7 +39,7 @@ public class CClass implements Informative<CClass, CClassInfo>,
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
     private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
 
-    private LinkedHashMap<ExpGroup, Float> expGroups = new LinkedHashMap<>();
+    private LinkedHashMap<ExpGroup, Double> expGroups = new LinkedHashMap<>();
 
     private CClassInfo cClassInfo = new CClassInfo();
 
@@ -54,13 +54,13 @@ public class CClass implements Informative<CClass, CClassInfo>,
 
     public Exp getExpGain(ExpSource source) {
         Exp exp = new Exp();
-        for(Map.Entry<ExpGroup, Float> entry : expGroups.entrySet()) {
+        for(Map.Entry<ExpGroup, Double> entry : expGroups.entrySet()) {
             exp.addExp(entry.getKey().getExp(source).getExp() * entry.getValue());
         }
         return exp;
     }
 
-    public CClass addExpGroup(ExpGroup expGroup, float modifier) {
+    public CClass addExpGroup(ExpGroup expGroup, double modifier) {
         expGroups.put(expGroup, modifier);
         return this;
     }

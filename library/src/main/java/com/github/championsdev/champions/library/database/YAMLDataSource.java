@@ -243,6 +243,7 @@ public class YAMLDataSource implements DataSource {
             logger.warning("Could not find file for class '" + name + "' at " + filePath);
         } catch (ClassCastException e) {
             logger.warning("You seem to have an error in your yaml. Could not load class '" + name + "'");
+            e.printStackTrace();
         } catch(IllegalAccessException | InstantiationException ignored) {}
 
         return null;
@@ -303,6 +304,7 @@ public class YAMLDataSource implements DataSource {
             logger.warning("Could not find file for experience source '" + name + "' at " + filePath);
         } catch (ClassCastException e) {
             logger.warning("You seem to have an error in your yaml. Could not load experience source '" + name + "'");
+            e.printStackTrace();
         }
         return null;
     }
@@ -417,16 +419,16 @@ public class YAMLDataSource implements DataSource {
         for (String levelKey : yml.getKeys("Levels")) {
             switch(levelKey) {
                 case "experience-sources":
-                    for(String sourcekey : yml.getKeys("Levels.experience-sources")) {
+                    for(String sourceKey : yml.getKeys("Levels.experience-sources")) {
                             float expModifier = 1f;
-                            for(String modKey : yml.getKeys(String.format("Levels.experience-sources.%s", sourcekey))) {
+                            for(String modKey : yml.getKeys(String.format("Levels.experience-sources.%s", sourceKey))) {
                                 switch(modKey) {
                                     case "modifier":
-                                        expModifier = yml.getFloat(String.format("Levels.experience-sources.%s.%s", sourcekey, modKey));
+                                        expModifier = yml.getFloat(String.format("Levels.experience-sources.%s.%s", sourceKey, modKey));
                                         break;
                                  }
-                            cClass.addExpGroup(ExpGroupHandler.getInstance().load(sourcekey), expModifier);
                             }
+                        cClass.addExpGroup(ExpGroupHandler.getInstance().load(sourceKey), expModifier);
                     }
                     break;
                 case "max-level":

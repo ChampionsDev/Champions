@@ -16,14 +16,20 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.bukkit.core.listeners;
 
+import com.github.championsdev.champions.bukkit.core.ChampionsCore;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.cplayer.CPlayerHandler;
+import com.github.championsdev.champions.library.database.DataManager;
 import com.github.championsdev.champions.library.event.EventManager;
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
+import com.github.championsdev.champions.library.level.exp.sources.MobKillExpSource;
+import com.github.championsdev.champions.library.level.exp.sources.PlayerKillExpSource;
 import com.github.championsdev.champions.library.weapon.Weapon;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -40,7 +46,9 @@ public class ChampionsListener implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
-        CPlayerHandler.getInstance().remove(event.getPlayer().getName(), true);
+        CPlayer cPlayer = CPlayerHandler.getInstance().load(event.getPlayer().getName());
+        DataManager.getDataSource().saveLPlayer(cPlayer);
+        CPlayerHandler.getInstance().remove(cPlayer.getName(), true);
     }
 
     @EventHandler
@@ -58,6 +66,20 @@ public class ChampionsListener implements Listener {
             else return;
             playerWeapon.onClick(lEvent);
             EventManager.callEvent(lEvent);
+        }
+    }
+
+    @EventHandler
+    public void onEntityDeath(EntityDeathEvent event) {
+        CPlayer player = CPlayerHandler.getInstance().get(event.getEntity().getKiller().getName());
+        if(player != null) {
+            if(event.getEntity() instanceof Player) {
+                player.addExp(new PlayerKillExpSource(player.getName()));
+            }
+            else {
+                player.addExp(new MobKillExpSource(event.getEntity().getType().name()));
+                ChampionsCore.getInstance().getLogger().info("GAINED EXP - TOTAL PRIMARY: " + player.getPrimaryClassInfo().getLevel().getExp());
+            }
         }
     }
 
