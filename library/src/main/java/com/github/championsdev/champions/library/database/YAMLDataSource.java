@@ -117,11 +117,11 @@ public class YAMLDataSource implements DataSource {
         LinkedHashMap<String, Object> playerMap = new LinkedHashMap<>(20);
         playerMap.put("name", lPlayer.getName());
         playerMap.put("description", lPlayer.getDescription());
-        playerMap.put("race", lPlayer.getRace().getName());
-        playerMap.put("primary-class", lPlayer.getPrimaryClass().getName());
+        playerMap.put("race", lPlayer.getRace().getId());
+        playerMap.put("primary-class", lPlayer.getPrimaryClass().getId());
         playerMap.put("primary-class-level", lPlayer.getPrimaryClassInfo().getLevel().getLevel());
         playerMap.put("primary-class-exp", lPlayer.getPrimaryClassInfo().getLevel().getExp());
-        playerMap.put("secondary-class", lPlayer.getSecondaryClass().getName());
+        playerMap.put("secondary-class", lPlayer.getSecondaryClass().getId());
         playerMap.put("secondary-class-level", lPlayer.getSecondaryClassInfo().getLevel().getLevel());
         playerMap.put("secondary-class-exp", lPlayer.getSecondaryClassInfo().getLevel().getExp());
 
@@ -154,16 +154,17 @@ public class YAMLDataSource implements DataSource {
 
     @Override
     @SuppressWarnings("unchecked")
-    public synchronized Race loadRace(String name) {
-        String filePath = configPath + RACE_PATH + name.replace(" ", "_") + ".yml";
+    public synchronized Race loadRace(String id) {
+        String filePath = configPath + RACE_PATH + id.replace(" ", "_") + ".yml";
         try {
             Race race;
 
             // Load custom race file if exists
-            Class raceClass = FileClassLoader.load(Race.class, configPath + RACE_PATH, name);
+            Class raceClass = FileClassLoader.load(Race.class, configPath + RACE_PATH, id);
             if(raceClass != null) {
                 race = (Race)raceClass.newInstance();
             } else race = new Race();
+            race.setId(id);
 
             YAMLHelper yml = new YAMLHelper(filePath);
 
@@ -192,24 +193,25 @@ public class YAMLDataSource implements DataSource {
             return race;
 
         } catch (FileNotFoundException e) {
-            logger.warning("Could not find file for race '" + name + "' at " + filePath);
+            logger.warning("Could not find file for race '" + id + "' at " + filePath);
         } catch (ClassCastException e) {
-            logger.warning("You seem to have an error in your yaml. Could not load race '" + name + "'");
+            logger.warning("You seem to have an error in your yaml. Could not load race '" + id + "'");
         } catch(IllegalAccessException | InstantiationException ignored) {}
 
         return null;
     }
 
     @Override
-    public synchronized CClass loadLClass(String name) {
-        String filePath = configPath + CLASS_PATH + name.replace(" ", "_") + ".yml";
+    public synchronized CClass loadLClass(String id) {
+        String filePath = configPath + CLASS_PATH + id.replace(" ", "_") + ".yml";
         CClass cClass;
         try {
             // Load custom class file if exists
-            Class lClassClass = FileClassLoader.load(Race.class, configPath + CLASS_PATH, name);
+            Class lClassClass = FileClassLoader.load(Race.class, configPath + CLASS_PATH, id);
             if(lClassClass != null) {
                 cClass = (CClass)lClassClass.newInstance();
             } else cClass = new CClass();
+            cClass.setId(id);
 
             YAMLHelper yml = new YAMLHelper(filePath);
 
@@ -240,9 +242,9 @@ public class YAMLDataSource implements DataSource {
             return cClass;
 
         } catch (FileNotFoundException e) {
-            logger.warning("Could not find file for class '" + name + "' at " + filePath);
+            logger.warning("Could not find file for class '" + id + "' at " + filePath);
         } catch (ClassCastException e) {
-            logger.warning("You seem to have an error in your yaml. Could not load class '" + name + "'");
+            logger.warning("You seem to have an error in your yaml. Could not load class '" + id + "'");
             e.printStackTrace();
         } catch(IllegalAccessException | InstantiationException ignored) {}
 

@@ -8,6 +8,7 @@ import com.github.championsdev.champions.library.level.LevelRestricted;
 import com.github.championsdev.champions.library.level.exp.Exp;
 import com.github.championsdev.champions.library.level.exp.ExpGroup;
 import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
+import com.github.championsdev.champions.library.misc.Identifiable;
 import com.github.championsdev.champions.library.misc.Informative;
 import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.skill.SkillInfo;
@@ -26,12 +27,13 @@ import java.util.Map;
 /**
  * @author YoshiGenius
  */
-public class CClass implements Informative<CClass, CClassInfo>,
+public class CClass implements Informative<CClass, CClassInfo>, Identifiable<CClass>,
         LevelRestricted, WeaponRestricted, ArmorRestricted, SkillRestricted,
         WeaponUser<CClass>, SkillUser<CClass>, ArmorUser<CClass> {
 
     private ArrayList<String> description = new ArrayList<>();
     private String name = "";
+    private String id = "";
 
     private ArrayList<Skill> currentSkills = new ArrayList<>();
 
@@ -47,8 +49,9 @@ public class CClass implements Informative<CClass, CClassInfo>,
     public CClass() {
     }
 
-    public CClass(String name, ArrayList<String> description) {
-        this.name = name;
+    public CClass(String id, ArrayList<String> description) {
+        this.name = id;
+        this.id = id;
         this.description = description;
     }
 
@@ -202,6 +205,17 @@ public class CClass implements Informative<CClass, CClassInfo>,
         if(weapon != null) {
             weaponInfoMap.put(weapon, info);
         }
+        return this;
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public CClass setId(String id) {
+        this.id = id;
         return this;
     }
 }

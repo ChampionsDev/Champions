@@ -26,6 +26,7 @@ import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.cclass.CClassInfo;
 import com.github.championsdev.champions.library.cclass.CClassRestricted;
 import com.github.championsdev.champions.library.cclass.CClassUser;
+import com.github.championsdev.champions.library.misc.Identifiable;
 import com.github.championsdev.champions.library.misc.Informative;
 import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.skill.SkillInfo;
@@ -42,9 +43,11 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public class Race implements Informative<Race, RaceInfo>, ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, CClassUser<Race>,
+public class Race implements Informative<Race, RaceInfo>, Identifiable<Race>,
+        ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, CClassUser<Race>,
         SkillRestricted, WeaponRestricted, ArmorRestricted, CClassRestricted {
     private String name = "";
+    private String id = "";
     private ArrayList<String> description = new ArrayList<>();
     private ArrayList<Skill> currentSkills = new ArrayList<>();
 
@@ -197,6 +200,17 @@ public class Race implements Informative<Race, RaceInfo>, ArmorUser<Race>, Skill
         if(cClass != null) {
             lClassInfoMap.put(cClass, info);
         }
+        return this;
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public Race setId(String id) {
+        this.id = id;
         return this;
     }
 }
