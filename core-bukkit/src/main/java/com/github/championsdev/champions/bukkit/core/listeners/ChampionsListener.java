@@ -21,7 +21,7 @@ import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.cplayer.CPlayerHandler;
 import com.github.championsdev.champions.library.event.BaseListener;
 import com.github.championsdev.champions.library.event.EventManager;
-import com.github.championsdev.champions.library.event.cplayer.CPlayerQuitEvent;
+import com.github.championsdev.champions.library.event.cplayer.*;
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
 import com.github.championsdev.champions.library.level.exp.sources.MobKillExpSource;
 import com.github.championsdev.champions.library.level.exp.sources.PlayerKillExpSource;
@@ -46,7 +46,8 @@ public class ChampionsListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        CPlayerHandler.getInstance().load(event.getPlayer().getName());
+        CPlayer player = CPlayerHandler.getInstance().load(event.getPlayer().getName());
+        EventManager.callEvent(new CPlayerJoinEvent(player));
     }
 
     @EventHandler
@@ -77,11 +78,11 @@ public class ChampionsListener implements Listener {
         CPlayer player = CPlayerHandler.getInstance().get(event.getEntity().getKiller().getName());
         if(player != null) {
             if(event.getEntity() instanceof Player) {
-                player.addExp(new PlayerKillExpSource(player.getName()));
+                CPlayer deadPlayer = CPlayerHandler.getInstance().load(((Player) event.getEntity()).getName());
+                EventManager.callEvent(new CPlayerKillEvent(player, deadPlayer));
             }
             else {
-                player.addExp(new MobKillExpSource(event.getEntity().getType().name()));
-                ChampionsCore.getInstance().getLogger().info("GAINED EXP - TOTAL PRIMARY: " + player.getPrimaryClassInfo().getLevel().getExp());
+                EventManager.callEvent(new CPlayerMobKillEvent(player, event.getEntity().getType().name()));
             }
         }
     }

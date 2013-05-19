@@ -14,13 +14,27 @@ This file is part of Champions.
     You should have received a copy of the GNU General Public License
     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.skill;
+package com.github.championsdev.champions.library.event.cplayer;
 
-import com.github.championsdev.champions.library.event.skill.SkillUseEvent;
+import com.github.championsdev.champions.library.cplayer.CPlayer;
+import com.github.championsdev.champions.library.event.ChampionsEvent;
 
 /**
  * @author B2OJustin
  */
-public interface SkillBehavior {
-    public void onUse(SkillUseEvent event);
+public class CPlayerKillEvent extends CPlayerDeathEvent {
+    public CPlayer killer;
+    public CPlayer killed;
+
+    public CPlayerKillEvent(CPlayer killer, CPlayer killed) {
+        super(killer);
+    }
+
+    public CPlayer getKilled() {
+        return killed;
+    }
+
+    public CPlayer getKiller() {
+        return killer;
+    }
 }

@@ -14,13 +14,15 @@ This file is part of Champions.
     You should have received a copy of the GNU General Public License
     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.cplayer;
+package com.github.championsdev.champions.library.event.cplayer;
 
-import com.github.championsdev.champions.library.event.cplayer.CPlayerQuitEvent;
+import com.github.championsdev.champions.library.cplayer.CPlayer;
 
 /**
  * @author B2OJustin
  */
-public interface CPlayerBehavior {
-    public void onQuit(CPlayerQuitEvent event);
+public class CPlayerJoinEvent extends CPlayerEvent {
+    public CPlayerJoinEvent(CPlayer player) {
+        super(player);
+    }
 }

@@ -14,27 +14,22 @@ This file is part of Champions.
     You should have received a copy of the GNU General Public License
     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.event.weapon;
+package com.github.championsdev.champions.library.behavior;
 
+import com.github.championsdev.champions.library.behavior.Behavior;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
-import com.github.championsdev.champions.library.weapon.Weapon;
+import com.github.championsdev.champions.library.event.skill.SkillUseEvent;
 
 /**
  * @author B2OJustin
  */
-public class WeaponHitEvent extends WeaponEvent {
-    public Object target;
-
-    public WeaponHitEvent(Weapon weapon, CPlayer source, Object target) {
-        super(weapon, source);
-        this.target = target;
-    }
-
-    public CPlayer getSource() {
-        return getCPlayer();
-    }
-
-    public Object getTarget() {
-        return target;
+public class SkillBehavior implements Behavior {
+    public void onUse(SkillUseEvent event) {
+        if(event.getSource() instanceof CPlayer) {
+            CPlayer player = (CPlayer) event.getSource();
+            player.removeMana(player.getSkillInfo(event.getSkill()).getManaCost());
+            player.removeStamina(player.getSkillInfo(event.getSkill()).getStaminaCost());
+            player.removeHealth(player.getSkillInfo(event.getSkill()).getHealthCost());
+        }
     }
 }

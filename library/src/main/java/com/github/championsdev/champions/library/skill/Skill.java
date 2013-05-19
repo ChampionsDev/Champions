@@ -17,6 +17,8 @@ This file is part of Champions.
 
 package com.github.championsdev.champions.library.skill;
 
+import com.github.championsdev.champions.library.behavior.Behavioral;
+import com.github.championsdev.champions.library.behavior.SkillBehavior;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.event.skill.SkillUseEvent;
 import com.github.championsdev.champions.library.misc.Informative;
@@ -26,9 +28,11 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class Skill implements Informative<Skill, SkillInfo>, SkillBehavior {
+public class Skill implements Informative<Skill, SkillInfo>, Behavioral<Skill, SkillBehavior> {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
+
+    private SkillBehavior skillBehavior = new SkillBehavior();
 
     private SkillInfo skillInfo = new SkillInfo();
 
@@ -71,12 +75,13 @@ public class Skill implements Informative<Skill, SkillInfo>, SkillBehavior {
     }
 
     @Override
-    public void onUse(SkillUseEvent event) {
-        if(event.getSource() instanceof CPlayer) {
-            CPlayer player = (CPlayer) event.getSource();
-            player.removeMana(player.getSkillInfo(event.getSkill()).getManaCost());
-            player.removeStamina(player.getSkillInfo(event.getSkill()).getStaminaCost());
-            player.removeHealth(player.getSkillInfo(event.getSkill()).getHealthCost());
-        }
+    public SkillBehavior getBehavior() {
+        return skillBehavior;
+    }
+
+    @Override
+    public Skill setBehavior(SkillBehavior behavior) {
+        skillBehavior = behavior;
+        return this;
     }
 }

@@ -24,10 +24,11 @@ import com.github.championsdev.champions.library.armor.Armor;
 import com.github.championsdev.champions.library.armor.ArmorInfo;
 import com.github.championsdev.champions.library.armor.ArmorRestricted;
 import com.github.championsdev.champions.library.armor.ArmorUser;
+import com.github.championsdev.champions.library.behavior.Behavioral;
+import com.github.championsdev.champions.library.behavior.CPlayerBehavior;
 import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.cclass.CClassInfo;
 import com.github.championsdev.champions.library.cclass.CClassRestricted;
-import com.github.championsdev.champions.library.event.cplayer.CPlayerQuitEvent;
 import com.github.championsdev.champions.library.level.Level;
 import com.github.championsdev.champions.library.level.LevelRestricted;
 import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
@@ -52,7 +53,7 @@ import java.util.LinkedHashMap;
 /**
  * @author B2OJustin
  */
-public class CPlayer implements CEntity, CPlayerBehavior,
+public class CPlayer implements CEntity, Behavioral<CPlayer, CPlayerBehavior>,
         Informative<CPlayer, CPlayerInfo>,
         WeaponUser<CPlayer>, ArmorUser<CPlayer>, SkillUser<CPlayer>,
         WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, CClassRestricted, RaceRestricted, Positionable {
@@ -80,6 +81,8 @@ public class CPlayer implements CEntity, CPlayerBehavior,
 
     private Weapon currentWeapon = new Weapon();
     private Armor currentArmor = new Armor();
+
+    private CPlayerBehavior cPlayerBehavior = new CPlayerBehavior();
 
     private Party party;
 
@@ -409,8 +412,14 @@ public class CPlayer implements CEntity, CPlayerBehavior,
         this.location = location;
     }
 
-    // Callbacks
     @Override
-    public void onQuit(CPlayerQuitEvent event) {
+    public CPlayerBehavior getBehavior() {
+        return cPlayerBehavior;
+    }
+
+    @Override
+    public CPlayer setBehavior(CPlayerBehavior behavior) {
+        cPlayerBehavior = behavior;
+        return this;
     }
 }

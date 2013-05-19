@@ -14,27 +14,21 @@ This file is part of Champions.
     You should have received a copy of the GNU General Public License
     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.event.weapon;
+package com.github.championsdev.champions.library.event.cplayer;
 
 import com.github.championsdev.champions.library.cplayer.CPlayer;
-import com.github.championsdev.champions.library.weapon.Weapon;
 
 /**
  * @author B2OJustin
  */
-public class WeaponHitEvent extends WeaponEvent {
-    public Object target;
-
-    public WeaponHitEvent(Weapon weapon, CPlayer source, Object target) {
-        super(weapon, source);
-        this.target = target;
+public class CPlayerMobKillEvent extends CPlayerEvent {
+    public String mobId;
+    public CPlayerMobKillEvent(CPlayer player, String mobID) {
+        super(player);
+        this.mobId = mobID;
     }
 
-    public CPlayer getSource() {
-        return getCPlayer();
-    }
-
-    public Object getTarget() {
-        return target;
+    public String getMobId() {
+        return mobId;
     }
 }
