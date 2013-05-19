@@ -10,7 +10,7 @@ Our current policy on pull requests is as follows:
 4. Each new individual feature should be squashed into a single commit, so we can easily rollback code that causes errors
 
 ##Documentation
-See the javadocs at [Champions JavaDocs](http://jd.yoshigenius.com/apidocs/champions/)
+See the javadocs at [Champions JavaDocs](http://yoshigenius.com/jd/champions/)
 and the usage docs at the wiki: [Champions Wiki](https://github.com/ChampionsDev/Champions/wiki)
 
 Note: The links above may change at any time, but forwards will hopefully be set up.
