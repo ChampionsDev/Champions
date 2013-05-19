@@ -17,19 +17,12 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.event.cplayer;
 
 import com.github.championsdev.champions.library.cplayer.CPlayer;
-import com.github.championsdev.champions.library.event.ChampionsEvent;
 
 /**
  * @author B2OJustin
  */
-public class CPlayerEvent extends ChampionsEvent {
-    private final CPlayer player;
-
-    public CPlayerEvent(CPlayer player) {
-        this.player = player;
-    }
-
-    public CPlayer getCPlayer() {
-        return this.player;
+public class CPlayerQuitEvent extends CPlayerEvent {
+    public CPlayerQuitEvent(CPlayer player) {
+        super(player);
     }
 }

@@ -81,4 +81,9 @@ public class CPlayerHandler extends BasicHandler<CPlayer> {
         super.remove(id);
         return this;
     }
+
+    public CPlayerHandler remove(CPlayer cPlayer, boolean cache) {
+        remove(cPlayer.getName(), cache);
+        return this;
+    }
 }

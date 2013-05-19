@@ -20,7 +20,9 @@ import com.github.championsdev.champions.bukkit.core.ChampionsCore;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.cplayer.CPlayerHandler;
 import com.github.championsdev.champions.library.database.DataManager;
+import com.github.championsdev.champions.library.event.BaseListener;
 import com.github.championsdev.champions.library.event.EventManager;
+import com.github.championsdev.champions.library.event.cplayer.CPlayerQuitEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
 import com.github.championsdev.champions.library.level.exp.sources.MobKillExpSource;
 import com.github.championsdev.champions.library.level.exp.sources.PlayerKillExpSource;
@@ -39,6 +41,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
  */
 public class ChampionsListener implements Listener {
 
+    public ChampionsListener() {
+        EventManager.registerEvents(new BaseListener());
+    }
+
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         CPlayerHandler.getInstance().load(event.getPlayer().getName());
@@ -47,8 +53,7 @@ public class ChampionsListener implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         CPlayer cPlayer = CPlayerHandler.getInstance().load(event.getPlayer().getName());
-        DataManager.getDataSource().saveLPlayer(cPlayer);
-        CPlayerHandler.getInstance().remove(cPlayer.getName(), true);
+        EventManager.callEvent(new CPlayerQuitEvent(cPlayer));
     }
 
     @EventHandler
@@ -64,7 +69,6 @@ public class ChampionsListener implements Listener {
                 lEvent = new WeaponClickEvent(playerWeapon, player, WeaponClickEvent.ClickType.RIGHT_CLICK);
             }
             else return;
-            playerWeapon.onClick(lEvent);
             EventManager.callEvent(lEvent);
         }
     }
