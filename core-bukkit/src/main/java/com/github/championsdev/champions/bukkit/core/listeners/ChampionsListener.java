@@ -19,7 +19,6 @@ package com.github.championsdev.champions.bukkit.core.listeners;
 import com.github.championsdev.champions.bukkit.core.ChampionsCore;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.cplayer.CPlayerHandler;
-import com.github.championsdev.champions.library.database.DataManager;
 import com.github.championsdev.champions.library.event.BaseListener;
 import com.github.championsdev.champions.library.event.EventManager;
 import com.github.championsdev.champions.library.event.cplayer.CPlayerQuitEvent;

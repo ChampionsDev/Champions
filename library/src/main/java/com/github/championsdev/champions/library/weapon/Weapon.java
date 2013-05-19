@@ -17,9 +17,8 @@ This file is part of Champions.
 
 package com.github.championsdev.champions.library.weapon;
 
-import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
-import com.github.championsdev.champions.library.event.weapon.WeaponEvent;
-import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
+import com.github.championsdev.champions.library.behavior.Behavioral;
+import com.github.championsdev.champions.library.behavior.WeaponBehavior;
 import com.github.championsdev.champions.library.misc.Informative;
 
 import java.util.ArrayList;
@@ -27,11 +26,12 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class Weapon implements Informative<Weapon, WeaponInfo>, WeaponBehavior {
+public class Weapon implements Informative<Weapon, WeaponInfo>, Behavioral<Weapon, WeaponBehavior> {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
 
     private WeaponInfo weaponInfo = new WeaponInfo();
+    private WeaponBehavior weaponBehavior = new WeaponBehavior();
 
     public Weapon() {
     }
@@ -78,17 +78,14 @@ public class Weapon implements Informative<Weapon, WeaponInfo>, WeaponBehavior {
         return description;
     }
 
-
-    // Callback methods
     @Override
-    public void onClick(WeaponClickEvent event) {
+    public WeaponBehavior getBehavior() {
+        return weaponBehavior;
     }
 
     @Override
-    public void onHit(WeaponHitEvent event) {
-    }
-
-    @Override
-    public void onSelect(WeaponEvent event) {
+    public Weapon setBehavior(WeaponBehavior behavior) {
+        weaponBehavior = behavior;
+        return this;
     }
 }
