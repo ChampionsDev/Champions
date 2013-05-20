@@ -59,6 +59,8 @@ public class YAMLDataSource implements DataSource {
     private final String PLAYER_PATH = "players/";
     private final String CLASS_PATH = "classes/";
     private final String EXP_PATH = "exp/";
+    private final String WEAPON_TYPE_PATH = "weapons/types/";
+    private final String WEAPON_PATH = "weapons/";
 
 
     @Override
@@ -257,15 +259,58 @@ public class YAMLDataSource implements DataSource {
     }
 
     @Override
-    public Weapon loadWeapon(String name) {
-        return null; //TODO loadWeapon method stub
+    public Weapon loadWeapon(String id) {
+        String filePath = configPath + WEAPON_PATH + id.replace(" ", "_") + ".yml";
+        try {
+            Weapon weapon = new Weapon();
+            YAMLHelper yml = new YAMLHelper(filePath);
+            loadBasicInfo(weapon.getDefaultInfo(), "", yml);
+            for(String key : yml.getKeys("")) {
+                switch(key.toLowerCase()) {
+                    case "name":
+                        weapon.setName(yml.getString("name"));
+                        break;
+                }
+            }
+            return weapon;
+        } catch (FileNotFoundException e) {
+            logger.warning("Could not find file for weapon '" + id + "' at " + filePath);
+        } catch (ClassCastException e) {
+            logger.warning("You seem to have an error in your yaml. Could not load weapon '" + id + "'");
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
-    public synchronized ExpGroup loadExpGroup(String name) {
-        String filePath = configPath + EXP_PATH + name.replace(" ", "_") + ".yml";
+    public WeaponType loadWeaponType(String id) {
+        String filePath = configPath + WEAPON_TYPE_PATH + id.replace(" ", "_") + ".yml";
         try {
-            ExpGroup expGroup = new ExpGroup(name);
+            WeaponType weaponType = new WeaponType();
+            YAMLHelper yml = new YAMLHelper(filePath);
+            loadBasicInfo(weaponType.getDefaultInfo(), "", yml);
+            for(String key : yml.getKeys("")) {
+                switch(key.toLowerCase()) {
+                    case "name":
+                        weaponType.setName(yml.getString("name"));
+                        break;
+                }
+            }
+            return weaponType;
+        } catch (FileNotFoundException e) {
+            logger.warning("Could not find file for weapon type '" + id + "' at " + filePath);
+        } catch (ClassCastException e) {
+            logger.warning("You seem to have an error in your yaml. Could not load weapon type '" + id + "'");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public synchronized ExpGroup loadExpGroup(String id) {
+        String filePath = configPath + EXP_PATH + id.replace(" ", "_") + ".yml";
+        try {
+            ExpGroup expGroup = new ExpGroup(id);
             YAMLHelper yml = new YAMLHelper(filePath);
             for(String typeKey : yml.getKeys("")) {
                 switch(ExpSourceType.valueOf(typeKey.toUpperCase())) {
@@ -308,9 +353,9 @@ public class YAMLDataSource implements DataSource {
             }
             return expGroup;
         } catch (FileNotFoundException e) {
-            logger.warning("Could not find file for experience source '" + name + "' at " + filePath);
+            logger.warning("Could not find file for experience source '" + id + "' at " + filePath);
         } catch (ClassCastException e) {
-            logger.warning("You seem to have an error in your yaml. Could not load experience source '" + name + "'");
+            logger.warning("You seem to have an error in your yaml. Could not load experience source '" + id + "'");
             e.printStackTrace();
         }
         return null;
@@ -321,7 +366,7 @@ public class YAMLDataSource implements DataSource {
 
         // Main configuration
         for(String configKey : yml.getKeys("")) {
-            switch(configKey) {
+            switch(configKey.toLowerCase()) {
                 case "database-type":
                     config.setDatabaseType(yml.getString(configKey));
                     break;
@@ -356,7 +401,7 @@ public class YAMLDataSource implements DataSource {
 
     protected <T extends BasicInfo> T loadBasicInfo(T basicInfo, String path, YAMLHelper yml) throws ClassCastException {
         for(String infoKey : yml.getKeys(path)) {
-            switch(infoKey) {
+            switch(infoKey.toLowerCase()) {
                 case "bonus-defense":
                     int bonusDefense = yml.getInt(path + ".bonus-defense");
                     basicInfo.addBonusDefense(bonusDefense);
@@ -399,7 +444,7 @@ public class YAMLDataSource implements DataSource {
     protected synchronized StatsInfo loadStats(StatsInfo stats, YAMLHelper yml) {
         if(stats == null) return null;
         for(String statKey : yml.getKeys("Stats")) {
-            switch(statKey) {
+            switch(statKey.toLowerCase()) {
                 case "health-per-level":
                     int healthPerLevel = yml.getInt("Stats.health-per-level");
                     stats.setHealthPerLevel(healthPerLevel);
@@ -424,12 +469,12 @@ public class YAMLDataSource implements DataSource {
     protected synchronized CClass loadLevels(CClass cClass, YAMLHelper yml) {
         if(cClass == null) return null;
         for (String levelKey : yml.getKeys("Levels")) {
-            switch(levelKey) {
+            switch(levelKey.toLowerCase()) {
                 case "experience-sources":
                     for(String sourceKey : yml.getKeys("Levels.experience-sources")) {
                             float expModifier = 1f;
                             for(String modKey : yml.getKeys(String.format("Levels.experience-sources.%s", sourceKey))) {
-                                switch(modKey) {
+                                switch(modKey.toLowerCase()) {
                                     case "modifier":
                                         expModifier = yml.getFloat(String.format("Levels.experience-sources.%s.%s", sourceKey, modKey));
                                         break;
@@ -462,7 +507,7 @@ public class YAMLDataSource implements DataSource {
     protected synchronized WeaponRestrictions loadWeaponRestrictions(WeaponRestricted restricted, YAMLHelper yml) {
         WeaponRestrictions restrictions = new WeaponRestrictions();
         for(String wepKey : yml.getKeys("Weapons")) {
-            switch(wepKey) {
+            switch(wepKey.toLowerCase()) {
                 case "default":
                     if(yml.getString("Weapons.default").equals("allow")) {
                         restrictions.setDefault(true);
@@ -494,7 +539,7 @@ public class YAMLDataSource implements DataSource {
     protected ArmorRestrictions loadArmorRestrictions(ArmorRestricted restricted, YAMLHelper yml) {
         ArmorRestrictions restrictions = new ArmorRestrictions();
         for(String armorKey : yml.getKeys("Armor")) {
-            switch(armorKey) {
+            switch(armorKey.toLowerCase()) {
                 case "default":
                     if(yml.getString("Armor.default").equals("allow")) {
                         restrictions.setDefault(true);
@@ -525,7 +570,7 @@ public class YAMLDataSource implements DataSource {
     protected CClassRestrictions loadClassRestrictions(CClassRestricted restricted, YAMLHelper yml) {
         CClassRestrictions restrictions = new CClassRestrictions();
         for(String classKey : yml.getKeys("Class")) {
-            switch(classKey) {
+            switch(classKey.toLowerCase()) {
                 case "default":
                     if(yml.getString("Class.default").equals("allow")) {
                         restrictions.setDefault(true);

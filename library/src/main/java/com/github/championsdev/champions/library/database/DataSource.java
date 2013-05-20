@@ -22,6 +22,7 @@ import com.github.championsdev.champions.library.level.exp.ExpGroup;
 import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.weapon.Weapon;
+import com.github.championsdev.champions.library.weapon.WeaponType;
 
 import java.util.logging.Logger;
 
@@ -38,6 +39,7 @@ public interface DataSource {
     public CClass loadLClass(String name);
     public Skill loadSkill(String name);
     public Weapon loadWeapon(String name);
+    public WeaponType loadWeaponType(String name);
 
     public ExpGroup loadExpGroup(String name);
 }
