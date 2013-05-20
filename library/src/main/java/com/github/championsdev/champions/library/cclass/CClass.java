@@ -14,10 +14,7 @@ import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.skill.SkillInfo;
 import com.github.championsdev.champions.library.skill.SkillRestricted;
 import com.github.championsdev.champions.library.skill.SkillUser;
-import com.github.championsdev.champions.library.weapon.Weapon;
-import com.github.championsdev.champions.library.weapon.WeaponInfo;
-import com.github.championsdev.champions.library.weapon.WeaponRestricted;
-import com.github.championsdev.champions.library.weapon.WeaponUser;
+import com.github.championsdev.champions.library.weapon.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +26,7 @@ import java.util.Map;
  */
 public class CClass implements Informative<CClass, CClassInfo>, Identifiable<CClass>,
         LevelRestricted, WeaponRestricted, ArmorRestricted, SkillRestricted,
-        WeaponUser<CClass>, SkillUser<CClass>, ArmorUser<CClass> {
+        WeaponUser<CClass>, WeaponTypeUser<CClass>, SkillUser<CClass>, ArmorUser<CClass> {
 
     private ArrayList<String> description = new ArrayList<>();
     private String name = "";
@@ -39,6 +36,7 @@ public class CClass implements Informative<CClass, CClassInfo>, Identifiable<CCl
 
     private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
+    private HashMap<WeaponType, WeaponInfo> weaponTypeInfoMap = new HashMap<>();
     private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
 
     private LinkedHashMap<ExpGroup, Double> expGroups = new LinkedHashMap<>();
@@ -216,6 +214,32 @@ public class CClass implements Informative<CClass, CClassInfo>, Identifiable<CCl
     @Override
     public CClass setId(String id) {
         this.id = id;
+        return this;
+    }
+
+    @Override
+    public HashMap<WeaponType, WeaponInfo> getWeaponTypeInfoMap() {
+        return weaponTypeInfoMap;
+    }
+
+    @Override
+    public WeaponInfo getWeaponTypeInfo(WeaponType weaponType) {
+        if(weaponType != null) {
+            WeaponInfo weaponInfo = weaponTypeInfoMap.get(weaponType);
+            if(weaponInfo == null) {
+                weaponInfo = new WeaponInfo();
+                weaponTypeInfoMap.put(weaponType, weaponInfo);
+            }
+            return weaponInfo;
+        }
+        return null;
+    }
+
+    @Override
+    public CClass setWeaponTypeInfo(WeaponType weaponType, WeaponInfo info) {
+        if(weaponType != null) {
+            weaponTypeInfoMap.put(weaponType, info);
+        }
         return this;
     }
 }

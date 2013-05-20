@@ -169,7 +169,7 @@ public class YAMLDataSource implements DataSource {
             race.setId(id);
 
             YAMLHelper yml = new YAMLHelper(filePath);
-
+            // TODO weapon type bonuses
             for(String mainKey : yml.getKeys("")) {
                 switch(mainKey) {
                     case "name":
@@ -217,6 +217,7 @@ public class YAMLDataSource implements DataSource {
 
             YAMLHelper yml = new YAMLHelper(filePath);
 
+            // TODO weapon type bonuses
             for(String mainKey : yml.getKeys("")) {
                 switch(mainKey) {
                     case "name":
