@@ -19,8 +19,6 @@ package com.github.championsdev.champions.library.skill;
 
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.behavior.SkillBehavior;
-import com.github.championsdev.champions.library.cplayer.CPlayer;
-import com.github.championsdev.champions.library.event.skill.SkillUseEvent;
 import com.github.championsdev.champions.library.misc.Informative;
 
 import java.util.ArrayList;

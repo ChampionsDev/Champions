@@ -16,15 +16,12 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.bukkit.core.listeners;
 
-import com.github.championsdev.champions.bukkit.core.ChampionsCore;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.cplayer.CPlayerHandler;
 import com.github.championsdev.champions.library.event.BaseListener;
 import com.github.championsdev.champions.library.event.EventManager;
 import com.github.championsdev.champions.library.event.cplayer.*;
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
-import com.github.championsdev.champions.library.level.exp.sources.MobKillExpSource;
-import com.github.championsdev.champions.library.level.exp.sources.PlayerKillExpSource;
 import com.github.championsdev.champions.library.util.LoreUtil;
 import com.github.championsdev.champions.library.weapon.Weapon;
 import com.github.championsdev.champions.library.weapon.WeaponHandler;

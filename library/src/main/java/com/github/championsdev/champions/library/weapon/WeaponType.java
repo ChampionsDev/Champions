@@ -16,7 +16,6 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.weapon;
 
-import com.github.championsdev.champions.library.behavior.Behavior;
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.behavior.WeaponBehavior;
 import com.github.championsdev.champions.library.misc.Identifiable;
