@@ -26,14 +26,20 @@ import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
 import com.github.championsdev.champions.library.level.exp.sources.MobKillExpSource;
 import com.github.championsdev.champions.library.level.exp.sources.PlayerKillExpSource;
 import com.github.championsdev.champions.library.weapon.Weapon;
+import com.github.championsdev.champions.library.weapon.WeaponHandler;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
 
 /**
  * @author B2OJustin
@@ -85,6 +91,22 @@ public class ChampionsListener implements Listener {
                 EventManager.callEvent(new CPlayerMobKillEvent(player, event.getEntity().getType().name()));
             }
         }
+    }
+
+    @EventHandler
+    public void onPlayerItemHeld(PlayerItemHeldEvent event) {
+        ItemStack item = event.getPlayer().getInventory().getItem(event.getNewSlot());
+        String itemName = item.getType().name();
+        CPlayer cPlayer = CPlayerHandler.getInstance().load(event.getPlayer().getName());
+
+        ArrayList<String> loreList = new ArrayList<>();
+        if(item.hasItemMeta()) {
+            for(String loreString : item.getItemMeta().getLore()) {
+                loreList.add(ChatColor.stripColor(loreString));
+            }
+            if(item.getItemMeta().hasDisplayName()) itemName = item.getItemMeta().getDisplayName();
+        }
+        // TODO set player weapon
     }
 
 }

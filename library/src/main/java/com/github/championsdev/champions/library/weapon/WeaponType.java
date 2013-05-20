@@ -14,11 +14,12 @@ This file is part of Champions.
     You should have received a copy of the GNU General Public License
     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 package com.github.championsdev.champions.library.weapon;
 
+import com.github.championsdev.champions.library.behavior.Behavior;
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.behavior.WeaponBehavior;
+import com.github.championsdev.champions.library.misc.Identifiable;
 import com.github.championsdev.champions.library.misc.Informative;
 
 import java.util.ArrayList;
@@ -26,60 +27,21 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class Weapon implements Informative<Weapon, WeaponInfo>, Behavioral<Weapon, WeaponBehavior> {
-    private String name = "";
-    private WeaponType type = new WeaponType();
-
-    private ArrayList<String> description = new ArrayList<>();
-
+public class WeaponType implements Informative<WeaponType, WeaponInfo>, Identifiable<WeaponType>, Behavioral<WeaponType, WeaponBehavior> {
     private WeaponInfo weaponInfo = new WeaponInfo();
+    private ArrayList<String> description = new ArrayList<>();
     private WeaponBehavior weaponBehavior = new WeaponBehavior();
+    private String name = "";
+    private String id = "";
 
-    public Weapon() {
-    }
-
-    public Weapon(String name, ArrayList<String> description) {
-        this.name = name;
-        this.description = description;
-    }
-    
-    public Weapon(String name, ArrayList<String> description, WeaponBehavior behaviour) {
-    }
-
-    public WeaponType getType() {
-        return type;
-    }
-
-    public Weapon setType(WeaponType type) {
-        this.type = type;
-        return this;
+    @Override
+    public String getId() {
+        return id;
     }
 
     @Override
-    public WeaponInfo getDefaultInfo() {
-        return weaponInfo;
-    }
-
-    @Override
-    public Weapon setDefaultInfo(WeaponInfo weaponInfo) {
-        this.weaponInfo = weaponInfo;
-        return this;
-    }
-
-    @Override
-    public Weapon setDescription(ArrayList<String> description) {
-        this.description = description;
-        return this;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public Weapon setName(String name) {
-        this.name = name;
+    public WeaponType setId(String id) {
+        this.id = id;
         return this;
     }
 
@@ -89,13 +51,41 @@ public class Weapon implements Informative<Weapon, WeaponInfo>, Behavioral<Weapo
     }
 
     @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public WeaponType setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    @Override
+    public WeaponType setDescription(ArrayList<String> description) {
+        this.description = description;
+        return this;
+    }
+
+    @Override
+    public WeaponInfo getDefaultInfo() {
+        return weaponInfo;
+    }
+
+    @Override
+    public WeaponType setDefaultInfo(WeaponInfo info) {
+        this.weaponInfo = info;
+        return this;
+    }
+
+    @Override
     public WeaponBehavior getBehavior() {
         return weaponBehavior;
     }
 
     @Override
-    public Weapon setBehavior(WeaponBehavior behavior) {
-        weaponBehavior = behavior;
+    public WeaponType setBehavior(WeaponBehavior weaponBehavior) {
+        this.weaponBehavior = weaponBehavior;
         return this;
     }
 }
