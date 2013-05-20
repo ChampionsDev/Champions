@@ -257,6 +257,11 @@ public class YAMLDataSource implements DataSource {
     }
 
     @Override
+    public Weapon loadWeapon(String name) {
+        return null; //TODO loadWeapon method stub
+    }
+
+    @Override
     public synchronized ExpGroup loadExpGroup(String name) {
         String filePath = configPath + EXP_PATH + name.replace(" ", "_") + ".yml";
         try {

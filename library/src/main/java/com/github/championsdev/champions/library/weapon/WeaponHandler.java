@@ -17,6 +17,7 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.weapon;
 
 import com.github.championsdev.champions.library.BasicHandler;
+import com.github.championsdev.champions.library.database.DataManager;
 
 /**
  * @author B2OJustin
@@ -26,5 +27,16 @@ public class WeaponHandler extends BasicHandler<Weapon> {
     
     public static WeaponHandler getInstance() {
         return instance;
+    }
+
+    public Weapon load(String id) {
+        Weapon weapon = super.get(id);
+        if(weapon == null) {
+            weapon = DataManager.getDataSource().loadWeapon(id);
+        }
+        if(weapon == null) {
+            weapon = new Weapon().setName(id);
+        }
+        return weapon;
     }
 }

@@ -21,6 +21,7 @@ import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.level.exp.ExpGroup;
 import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.skill.Skill;
+import com.github.championsdev.champions.library.weapon.Weapon;
 
 import java.util.logging.Logger;
 
@@ -61,6 +62,11 @@ public class DATDataSource implements DataSource {
     @Override
     public Skill loadSkill(String name) {
         return null; //TODO loadSkill method stub
+    }
+
+    @Override
+    public Weapon loadWeapon(String name) {
+        return null; //TODO loadWeapon method stub
     }
 
     @Override

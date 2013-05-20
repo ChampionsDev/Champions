@@ -37,4 +37,8 @@ public class CPlayerBehavior implements Behavior {
 
     public void onJoin(CPlayerJoinEvent event) {
     }
+
+    public void onWeaponChange(CPlayerWeaponChangeEvent event) {
+        // TODO restrict weapon usage
+    }
 }
