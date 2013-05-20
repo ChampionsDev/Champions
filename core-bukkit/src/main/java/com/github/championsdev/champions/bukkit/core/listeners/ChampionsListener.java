@@ -25,6 +25,7 @@ import com.github.championsdev.champions.library.event.cplayer.*;
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
 import com.github.championsdev.champions.library.level.exp.sources.MobKillExpSource;
 import com.github.championsdev.champions.library.level.exp.sources.PlayerKillExpSource;
+import com.github.championsdev.champions.library.util.LoreUtil;
 import com.github.championsdev.champions.library.weapon.Weapon;
 import com.github.championsdev.champions.library.weapon.WeaponHandler;
 import org.bukkit.ChatColor;
@@ -106,7 +107,9 @@ public class ChampionsListener implements Listener {
             }
             if(item.getItemMeta().hasDisplayName()) itemName = item.getItemMeta().getDisplayName();
         }
-        // TODO set player weapon
+        Weapon weapon = WeaponHandler.getInstance().load(itemName);
+        LoreUtil.addLoreData(weapon, loreList);
+        EventManager.callEvent(new CPlayerWeaponChangeEvent(cPlayer, weapon));
     }
 
 }

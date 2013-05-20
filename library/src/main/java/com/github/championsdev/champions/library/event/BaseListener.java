@@ -75,4 +75,9 @@ public class BaseListener implements EventListener {
         event.getCPlayer().addExp(new MobKillExpSource(event.getMobId()));
         event.getCPlayer().getBehavior().onMobKill(event);
     }
+
+    @CEventHandler
+    public void onCPlayerWeaponChange(CPlayerWeaponChangeEvent event) {
+        event.getCPlayer().getBehavior().onWeaponChange(event);
+    }
 }
