@@ -180,6 +180,7 @@ public class YAMLDataSource implements DataSource {
                         break;
                     case "Weapons":
                         RestrictionHandler.getInstance().setWeaponRestrictions(race, loadWeaponRestrictions(race, yml));
+                        RestrictionHandler.getInstance().setWeaponTypeRestrictions(race, loadWeaponTypeRestrictions(race, yml));
                         break;
                     case "Armor":
                         RestrictionHandler.getInstance().setArmorRestrictions(race, loadArmorRestrictions(race, yml));
@@ -228,6 +229,7 @@ public class YAMLDataSource implements DataSource {
                         break;
                     case "Weapons":
                         RestrictionHandler.getInstance().setWeaponRestrictions(cClass, loadWeaponRestrictions(cClass, yml));
+                        RestrictionHandler.getInstance().setWeaponTypeRestrictions(cClass, loadWeaponTypeRestrictions(cClass, yml));
                         break;
                     case "Armor":
                         RestrictionHandler.getInstance().setArmorRestrictions(cClass, loadArmorRestrictions(cClass, yml));
@@ -506,35 +508,57 @@ public class YAMLDataSource implements DataSource {
     }
 
     protected synchronized WeaponRestrictions loadWeaponRestrictions(WeaponRestricted restricted, YAMLHelper yml) {
-        WeaponRestrictions restrictions = new WeaponRestrictions();
+        WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
         for(String wepKey : yml.getKeys("Weapons")) {
             switch(wepKey.toLowerCase()) {
                 case "default":
                     if(yml.getString("Weapons.default").equals("allow")) {
-                        restrictions.setDefault(true);
+                        weaponRestrictions.setDefault(true);
                     }
-                    else restrictions.setDefault(false);
+                    else weaponRestrictions.setDefault(false);
                     break;
                 case "permitted-weapon":
                     for(String wepID : yml.getKeys("Weapons.permitted-weapon")) {
-                        Weapon weapon = WeaponHandler.getInstance().get(wepID);
-                        if(weapon != null) {
-                            restrictions.setAllowed(weapon, true);
-                            if(restricted instanceof WeaponUser) {
-                                loadBasicInfo(((WeaponUser)restricted).getWeaponInfo(weapon), String.format("Weapons.permitted-weapon.%s", wepID), yml);
-                            }
+                        Weapon weapon = WeaponHandler.getInstance().load(wepID);
+                        weaponRestrictions.setAllowed(weapon, true);
+                        if(restricted instanceof WeaponUser) {
+                            loadBasicInfo(((WeaponUser)restricted).getWeaponInfo(weapon), String.format("Weapons.permitted-weapon.%s", wepID), yml);
                         }
                     }
                     break;
                 case "restricted-weapon":
                     for(String wepID : yml.getStringList("Weapons.restricted-weapon")) {
-                        Weapon weapon = WeaponHandler.getInstance().get(wepID);
-                        restrictions.setAllowed(weapon, false);
+                        Weapon weapon = WeaponHandler.getInstance().load(wepID);
+                        weaponRestrictions.setAllowed(weapon, false);
                     }
                     break;
             }
         }
-        return restrictions;
+        return weaponRestrictions;
+    }
+
+    protected synchronized WeaponTypeRestrictions loadWeaponTypeRestrictions(WeaponTypeRestricted restricted, YAMLHelper yml) {
+        WeaponTypeRestrictions weaponTypeRestrictions = new WeaponTypeRestrictions();
+        for(String typeKey : yml.getKeys("Weapons")) {
+            switch(typeKey.toLowerCase()) {
+                case "permitted-weapon-type":
+                    for(String typeID : yml.getKeys("Weapons.permitted-weapon-type")) {
+                        WeaponType weaponType = WeaponTypeHandler.getInstance().load(typeID);
+                        weaponTypeRestrictions.setAllowed(weaponType, true);
+                        if(restricted instanceof WeaponTypeUser) {
+                            loadBasicInfo(((WeaponTypeUser)restricted).getWeaponTypeInfo(weaponType), String.format("Weapons.permitted-weapon.%s", typeID), yml);
+                        }
+                    }
+                    break;
+                case "restricted-weapon-type":
+                    for(String typeID : yml.getStringList("Weapons.restricted-weapon-type")) {
+                        WeaponType weaponType = WeaponTypeHandler.getInstance().load(typeID);
+                        weaponTypeRestrictions.setAllowed(weaponType, false);
+                    }
+                    break;
+            }
+        }
+        return weaponTypeRestrictions;
     }
 
     protected ArmorRestrictions loadArmorRestrictions(ArmorRestricted restricted, YAMLHelper yml) {

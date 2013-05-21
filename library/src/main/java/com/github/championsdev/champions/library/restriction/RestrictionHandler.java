@@ -28,6 +28,8 @@ import com.github.championsdev.champions.library.skill.SkillRestricted;
 import com.github.championsdev.champions.library.skill.SkillRestrictions;
 import com.github.championsdev.champions.library.weapon.WeaponRestricted;
 import com.github.championsdev.champions.library.weapon.WeaponRestrictions;
+import com.github.championsdev.champions.library.weapon.WeaponTypeRestricted;
+import com.github.championsdev.champions.library.weapon.WeaponTypeRestrictions;
 
 import java.util.HashMap;
 
@@ -42,6 +44,7 @@ public class RestrictionHandler {
     private HashMap<RaceRestricted, RaceRestrictions> raceMap = new HashMap<>();
     private HashMap<CClassRestricted, CClassRestrictions> classMap = new HashMap<>();
     private HashMap<WeaponRestricted, WeaponRestrictions> weaponMap = new HashMap<>();
+    private HashMap<WeaponTypeRestricted, WeaponTypeRestrictions> weaponTypeMap = new HashMap<>();
     private HashMap<ArmorRestricted, ArmorRestrictions> armorMap = new HashMap<>();
 
     public static RestrictionHandler getInstance() {
@@ -117,6 +120,20 @@ public class RestrictionHandler {
 
     public RestrictionHandler setWeaponRestrictions(WeaponRestricted restricted, WeaponRestrictions restrictions) {
         weaponMap.put(restricted, restrictions);
+        return this;
+    }
+
+    public WeaponTypeRestrictions getWeaponTypeRestrictions(WeaponTypeRestricted restricted) {
+        WeaponTypeRestrictions restrictions = weaponTypeMap.get(restricted);
+        if(restrictions == null) {
+            restrictions = new WeaponTypeRestrictions();
+            weaponTypeMap.put(restricted, restrictions);
+        }
+        return restrictions;
+    }
+
+    public RestrictionHandler setWeaponTypeRestrictions(WeaponTypeRestricted restricted, WeaponTypeRestrictions restrictions) {
+        weaponTypeMap.put(restricted, restrictions);
         return this;
     }
 

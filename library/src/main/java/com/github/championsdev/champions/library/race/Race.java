@@ -42,7 +42,7 @@ import java.util.HashMap;
  */
 public class Race implements Informative<Race, RaceInfo>, Identifiable<Race>,
         ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, WeaponTypeUser<Race>,
-        CClassUser<Race>, SkillRestricted, WeaponRestricted, ArmorRestricted, CClassRestricted {
+        CClassUser<Race>, SkillRestricted, WeaponRestricted, WeaponTypeRestricted, ArmorRestricted, CClassRestricted {
     private String name = "";
     private String id = "";
     private ArrayList<String> description = new ArrayList<>();
