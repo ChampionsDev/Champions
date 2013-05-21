@@ -22,13 +22,6 @@ import com.github.championsdev.champions.library.event.skill.SkillUseEvent;
 /**
  * @author B2OJustin
  */
-public class SkillBehavior implements Behavior {
-    public void onUse(SkillUseEvent event) {
-        if(event.getSource() instanceof CPlayer) {
-            CPlayer player = (CPlayer) event.getSource();
-            player.removeMana(player.getSkillInfo(event.getSkill()).getManaCost());
-            player.removeStamina(player.getSkillInfo(event.getSkill()).getStaminaCost());
-            player.removeHealth(player.getSkillInfo(event.getSkill()).getHealthCost());
-        }
-    }
+public interface SkillBehavior extends Behavior {
+    public void onUse(SkillUseEvent event);
 }

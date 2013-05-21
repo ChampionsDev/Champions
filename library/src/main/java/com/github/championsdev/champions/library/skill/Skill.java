@@ -18,7 +18,7 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.skill;
 
 import com.github.championsdev.champions.library.behavior.Behavioral;
-import com.github.championsdev.champions.library.behavior.SkillBehavior;
+import com.github.championsdev.champions.library.behavior.SkillBehaviorGroup;
 import com.github.championsdev.champions.library.misc.Informative;
 
 import java.util.ArrayList;
@@ -26,11 +26,11 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class Skill implements Informative<Skill, SkillInfo>, Behavioral<Skill, SkillBehavior> {
+public class Skill implements Informative<Skill, SkillInfo>, Behavioral<Skill, SkillBehaviorGroup> {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
 
-    private SkillBehavior skillBehavior = new SkillBehavior();
+    private SkillBehaviorGroup skillBehaviorGroup = new SkillBehaviorGroup();
 
     private SkillInfo skillInfo = new SkillInfo();
 
@@ -73,13 +73,13 @@ public class Skill implements Informative<Skill, SkillInfo>, Behavioral<Skill, S
     }
 
     @Override
-    public SkillBehavior getBehavior() {
-        return skillBehavior;
+    public SkillBehaviorGroup getBehavior() {
+        return skillBehaviorGroup;
     }
 
     @Override
-    public Skill setBehavior(SkillBehavior behavior) {
-        skillBehavior = behavior;
+    public Skill setBehavior(SkillBehaviorGroup behavior) {
+        skillBehaviorGroup = behavior;
         return this;
     }
 }

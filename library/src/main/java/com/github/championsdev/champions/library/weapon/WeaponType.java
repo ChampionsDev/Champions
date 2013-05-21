@@ -17,7 +17,7 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.weapon;
 
 import com.github.championsdev.champions.library.behavior.Behavioral;
-import com.github.championsdev.champions.library.behavior.WeaponBehavior;
+import com.github.championsdev.champions.library.behavior.WeaponBehaviorGroup;
 import com.github.championsdev.champions.library.misc.Identifiable;
 import com.github.championsdev.champions.library.misc.Informative;
 
@@ -26,10 +26,10 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class WeaponType implements Informative<WeaponType, WeaponInfo>, Identifiable<WeaponType>, Behavioral<WeaponType, WeaponBehavior> {
+public class WeaponType implements Informative<WeaponType, WeaponInfo>, Identifiable<WeaponType>, Behavioral<WeaponType, WeaponBehaviorGroup> {
     private WeaponInfo weaponInfo = new WeaponInfo();
     private ArrayList<String> description = new ArrayList<>();
-    private WeaponBehavior weaponBehavior = new WeaponBehavior();
+    private WeaponBehaviorGroup weaponBehaviorGroup = new WeaponBehaviorGroup();
     private String name = "";
     private String id = "";
 
@@ -78,13 +78,13 @@ public class WeaponType implements Informative<WeaponType, WeaponInfo>, Identifi
     }
 
     @Override
-    public WeaponBehavior getBehavior() {
-        return weaponBehavior;
+    public WeaponBehaviorGroup getBehavior() {
+        return weaponBehaviorGroup;
     }
 
     @Override
-    public WeaponType setBehavior(WeaponBehavior weaponBehavior) {
-        this.weaponBehavior = weaponBehavior;
+    public WeaponType setBehavior(WeaponBehaviorGroup weaponBehavior) {
+        this.weaponBehaviorGroup = weaponBehavior;
         return this;
     }
 }

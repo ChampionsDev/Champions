@@ -16,16 +16,14 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.behavior;
 
-import com.github.championsdev.champions.library.event.cplayer.*;
+import java.util.ArrayList;
 
 /**
  * @author B2OJustin
  */
-public interface CPlayerBehavior extends Behavior {
-    public void onQuit(CPlayerQuitEvent event);
-    public void onDeath(CPlayerDeathEvent event);
-    public void onPlayerKill(CPlayerKillEvent event);
-    public void onMobKill(CPlayerMobKillEvent event);
-    public void onJoin(CPlayerJoinEvent event);
-    public void onWeaponChange(CPlayerWeaponChangeEvent event);
+public interface BehaviorGroup<SelfType extends BehaviorGroup, T extends Behavior> {
+    public SelfType attach(T behavior);
+    public SelfType attach(T behavior, int priority);
+    public SelfType detach(T behavior);
+    public ArrayList<T> getBehaviors();
 }

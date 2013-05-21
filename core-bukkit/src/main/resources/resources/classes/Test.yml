@@ -20,6 +20,8 @@ Levels:
 
 Weapons:
   default: allow
+  restricted-weapon-type:
+    - Dagger
 
 Armor:
   default: allow

@@ -7,13 +7,8 @@ import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
 /**
  * @author YoshiGenius
  */
-public class WeaponBehavior implements Behavior {
-    public void onClick(WeaponClickEvent event) {
-    }
-
-    public void onHit(WeaponHitEvent event) {
-    }
-
-    public void onSelect(WeaponEvent event) {
-    }
+public interface WeaponBehavior extends Behavior {
+    public void onClick(WeaponClickEvent event);
+    public void onHit(WeaponHitEvent event);
+    public void onSelect(WeaponEvent event);
 }

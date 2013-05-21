@@ -19,6 +19,7 @@ package com.github.championsdev.champions.library.weapon;
 
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.behavior.WeaponBehavior;
+import com.github.championsdev.champions.library.behavior.WeaponBehaviorGroup;
 import com.github.championsdev.champions.library.misc.Informative;
 
 import java.util.ArrayList;
@@ -26,14 +27,14 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class Weapon implements Informative<Weapon, WeaponInfo>, Behavioral<Weapon, WeaponBehavior> {
+public class Weapon implements Informative<Weapon, WeaponInfo>, Behavioral<Weapon, WeaponBehaviorGroup> {
     private String name = "";
     private WeaponType type = new WeaponType();
 
     private ArrayList<String> description = new ArrayList<>();
 
     private WeaponInfo weaponInfo = new WeaponInfo();
-    private WeaponBehavior weaponBehavior = new WeaponBehavior();
+    private WeaponBehaviorGroup weaponBehaviorGroup = new WeaponBehaviorGroup();
 
     public Weapon() {
     }
@@ -89,13 +90,13 @@ public class Weapon implements Informative<Weapon, WeaponInfo>, Behavioral<Weapo
     }
 
     @Override
-    public WeaponBehavior getBehavior() {
-        return weaponBehavior;
+    public WeaponBehaviorGroup getBehavior() {
+        return weaponBehaviorGroup;
     }
 
     @Override
-    public Weapon setBehavior(WeaponBehavior behavior) {
-        weaponBehavior = behavior;
+    public Weapon setBehavior(WeaponBehaviorGroup behavior) {
+        weaponBehaviorGroup = behavior;
         return this;
     }
 }
