@@ -93,10 +93,15 @@ public class ChampionsListener implements Listener {
 
     @EventHandler
     public void onPlayerItemHeld(PlayerItemHeldEvent event) {
-        ItemStack item = event.getPlayer().getInventory().getItem(event.getNewSlot());
-        String itemName = item.getType().name();
         CPlayer cPlayer = CPlayerHandler.getInstance().load(event.getPlayer().getName());
+        ItemStack item = event.getPlayer().getInventory().getItem(event.getNewSlot());
+        if(item == null) {
+            Weapon weapon = WeaponHandler.getInstance().load("None");
+            EventManager.callEvent(new CPlayerWeaponChangeEvent(cPlayer, weapon));
+            return;
+        }
 
+        String itemName = item.getType().name();
         ArrayList<String> loreList = new ArrayList<>();
         if(item.hasItemMeta()) {
             for(String loreString : item.getItemMeta().getLore()) {
