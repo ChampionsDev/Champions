@@ -33,9 +33,11 @@ public class WeaponHandler extends BasicHandler<Weapon> {
         Weapon weapon = super.get(id);
         if(weapon == null) {
             weapon = DataManager.getDataSource().loadWeapon(id);
+            if(weapon != null) register(id, weapon);
         }
         if(weapon == null) {
             weapon = new Weapon().setName(id);
+            if(weapon != null) register(id, weapon);
         }
         return weapon;
     }
