@@ -25,7 +25,6 @@ import com.github.championsdev.champions.library.armor.ArmorInfo;
 import com.github.championsdev.champions.library.armor.ArmorRestricted;
 import com.github.championsdev.champions.library.armor.ArmorUser;
 import com.github.championsdev.champions.library.behavior.Behavioral;
-import com.github.championsdev.champions.library.behavior.CPlayerBehavior;
 import com.github.championsdev.champions.library.behavior.CPlayerBehaviorGroup;
 import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.cclass.CClassInfo;
