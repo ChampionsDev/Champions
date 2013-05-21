@@ -102,7 +102,7 @@ public class ChampionsListener implements Listener {
             for(String loreString : item.getItemMeta().getLore()) {
                 loreList.add(ChatColor.stripColor(loreString));
             }
-            if(item.getItemMeta().hasDisplayName()) itemName = item.getItemMeta().getDisplayName();
+            if(item.getItemMeta().hasDisplayName()) itemName = ChatColor.stripColor(item.getItemMeta().getDisplayName());
         }
         Weapon weapon = WeaponHandler.getInstance().load(itemName);
         LoreUtil.addLoreData(weapon, loreList);
