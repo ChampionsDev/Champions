@@ -30,52 +30,52 @@ import com.github.championsdev.champions.library.level.exp.sources.PlayerKillExp
  */
 public class BaseListener implements EventListener {
 
-    @CEventHandler
+    @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onSkillUseEvent(SkillUseEvent event) {
         event.getSkill().getBehavior().onUse(event);
     }
 
-    @CEventHandler
+    @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onWeaponHitEvent(WeaponHitEvent event) {
         event.getWeapon().getBehavior().onHit(event);
     }
 
-    @CEventHandler
+    @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onWeaponClickEvent(WeaponClickEvent event) {
         event.getWeapon().getBehavior().onClick(event);
     }
 
-    @CEventHandler
+    @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onCPlayerQuit(CPlayerQuitEvent event) {
         DataManager.getDataSource().saveLPlayer(event.getCPlayer());
         CPlayerHandler.getInstance().remove(event.getCPlayer(), true);
         event.getCPlayer().getBehavior().onQuit(event);
     }
 
-    @CEventHandler
+    @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onCPlayerJoin(CPlayerJoinEvent event) {
         event.getCPlayer().getBehavior().onJoin(event);
     }
 
-    @CEventHandler
+    @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onCPlayerDeath(CPlayerDeathEvent event) {
         event.getCPlayer().getBehavior().onDeath(event);
     }
 
-    @CEventHandler
+    @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onCPlayerKill(CPlayerKillEvent event) {
         event.getKiller().addExp(new PlayerKillExpSource(event.getKilled().getName()));
         event.getKiller().getBehavior().onPlayerKill(event);
         event.getKilled().getBehavior().onPlayerKill(event);
     }
 
-    @CEventHandler
+    @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onCPlayerMobKill(CPlayerMobKillEvent event) {
         event.getCPlayer().addExp(new MobKillExpSource(event.getMobId()));
         event.getCPlayer().getBehavior().onMobKill(event);
     }
 
-    @CEventHandler
+    @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onCPlayerWeaponChange(CPlayerWeaponChangeEvent event) {
         event.getCPlayer().getBehavior().onWeaponChange(event);
     }
