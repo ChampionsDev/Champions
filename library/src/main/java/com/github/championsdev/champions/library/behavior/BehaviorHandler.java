@@ -24,7 +24,7 @@ import java.util.HashMap;
  * @author B2OJustin
  */
 public class BehaviorHandler  {
-    private BehaviorHandler instance = new BehaviorHandler();
+    private static BehaviorHandler instance = new BehaviorHandler();
 
     private HashMap<String, WeaponBehavior> weaponBehaviorMap = new HashMap<>();
     private HashMap<String, CPlayerBehavior> playerBehaviorMap = new HashMap<>();
@@ -34,7 +34,7 @@ public class BehaviorHandler  {
     private SkillBehavior defaultSkillBehavior = new BasicSkillBehavior();
     private CPlayerBehavior defaultCPlayerBehavior = new BasicCPlayerBehavior();
 
-    public BehaviorHandler getInstance() {
+    public static BehaviorHandler getInstance() {
         return instance;
     }
 
