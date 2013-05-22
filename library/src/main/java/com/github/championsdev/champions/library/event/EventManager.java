@@ -82,7 +82,6 @@ public class EventManager {
                                 break;
                             case HIGHEST:
                                 if(!highestPriority.contains(method)) highestPriority.add(method);
-                                highestPriority.add(method);
                                 break;
                         }
                     }
