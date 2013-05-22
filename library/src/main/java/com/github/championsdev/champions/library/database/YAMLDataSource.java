@@ -409,9 +409,29 @@ public class YAMLDataSource implements DataSource {
                     int bonusDefense = yml.getInt(path + ".bonus-defense");
                     basicInfo.addBonusDefense(bonusDefense);
                     break;
-                case "bonus-damage":
-                    int bonusDamage = yml.getInt(path + ".bonus-damage");
+                case "bonus-weapon-damage":
+                    int bonusDamage = yml.getInt(path + ".bonus-weapon-damage");
                     basicInfo.addBonusWeaponDamage(bonusDamage);
+                    break;
+                case "bonus-minimum-weapon-damage":
+                    int bonusMin = yml.getInt(path + ".bonus-minimum-weapon-damage");
+                    basicInfo.addBonusMinWeaponDamage(bonusMin);
+                    break;
+                case "bonus-maximum-weapon-damage":
+                    int bonusMax = yml.getInt(path + ".bonus-maximum-weapon-damage");
+                    basicInfo.addBonusMaxWeaponDamage(bonusMax);
+                    break;
+                case "bonus-skill-damage":
+                    int skillBonusDamage = yml.getInt(path + ".bonus-skill-damage");
+                    basicInfo.addBonusSkillDamage(skillBonusDamage);
+                    break;
+                case "bonus-minimum-skill-damage":
+                    int skillBonusMinDamage = yml.getInt(path + ".bonus-minimum-skill-damage");
+                    basicInfo.addBonusMinSkillDamage(skillBonusMinDamage);
+                    break;
+                case "bonus-maximum-skill-damage":
+                    int skillBonusMaxDamage = yml.getInt(path + ".bonus-maximum-skill-damage");
+                    basicInfo.addBonusMaxSkillDamage(skillBonusMaxDamage);
                     break;
                 case "bonus-stamina":
                     int bonusStamina = yml.getInt(path + ".bonus-stamina");

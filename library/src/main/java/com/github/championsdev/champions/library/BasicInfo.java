@@ -26,7 +26,11 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 public class BasicInfo<SelfType extends BasicInfo> {
     private int bonusWeaponDamage = 0;
+    private int bonusMinWeaponDamage = 0;
+    private int bonusMaxWeaponDamage = 0;
     private int bonusSkillDamage = 0;
+    private int bonusMinSkillDamage = 0;
+    private int bonusMaxSkillDamage = 0;
     private int bonusDefense = 0;
     private int bonusHealth = 0;
     private int bonusMana = 0;
@@ -133,5 +137,61 @@ public class BasicInfo<SelfType extends BasicInfo> {
 
     public int getBonusStamina() {
         return bonusStamina;
+    }
+
+    public int getBonusMinWeaponDamage() {
+        return bonusMinWeaponDamage;
+    }
+
+    public SelfType setBonusMinWeaponDamage(int bonusMinWeaponDamage) {
+        this.bonusMinWeaponDamage = bonusMinWeaponDamage;
+        return (SelfType) this;
+    }
+
+    public SelfType addBonusMinWeaponDamage(int bonusMinWeaponDamage) {
+        this.bonusMinWeaponDamage += bonusMinWeaponDamage;
+        return (SelfType) this;
+    }
+
+    public int getBonusMaxWeaponDamage() {
+        return bonusMaxWeaponDamage;
+    }
+
+    public SelfType setBonusMaxWeaponDamage(int bonusMaxWeaponDamage) {
+        this.bonusMaxWeaponDamage = bonusMaxWeaponDamage;
+        return (SelfType) this;
+    }
+
+    public SelfType addBonusMaxWeaponDamage(int bonusMaxWeaponDamage) {
+        this.bonusMaxWeaponDamage += bonusMaxWeaponDamage;
+        return (SelfType) this;
+    }
+
+    public int getBonusMinSkillDamage() {
+        return bonusMinSkillDamage;
+    }
+
+    public SelfType setBonusMinSkillDamage(int bonusMinSkillDamage) {
+        this.bonusMinSkillDamage = bonusMinSkillDamage;
+        return (SelfType) this;
+    }
+
+    public SelfType addBonusMinSkillDamage(int bonusMinSkillDamage) {
+        this.bonusMinSkillDamage += bonusMinSkillDamage;
+        return (SelfType) this;
+    }
+
+    public int getBonusMaxSkillDamage() {
+        return bonusMaxSkillDamage;
+    }
+
+    public SelfType setBonusMaxSkillDamage(int bonusMaxSkillDamage) {
+        this.bonusMaxSkillDamage = bonusMaxSkillDamage;
+        return (SelfType) this;
+    }
+
+    public SelfType addBonusMaxSkillDamage(int bonusMaxSkillDamage) {
+        this.bonusMaxSkillDamage += bonusMaxSkillDamage;
+        return (SelfType) this;
     }
 }
