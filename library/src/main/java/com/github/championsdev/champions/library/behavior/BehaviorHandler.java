@@ -25,9 +25,14 @@ import java.util.HashMap;
  */
 public class BehaviorHandler  {
     private BehaviorHandler instance = new BehaviorHandler();
+
     private HashMap<String, WeaponBehavior> weaponBehaviorMap = new HashMap<>();
     private HashMap<String, CPlayerBehavior> playerBehaviorMap = new HashMap<>();
     private HashMap<String, SkillBehavior> skillBehaviorMap = new HashMap<>();
+
+    private WeaponBehavior defaultWeaponBehavior = new BasicWeaponBehavior();
+    private SkillBehavior defaultSkillBehavior = new BasicSkillBehavior();
+    private CPlayerBehavior defaultCPlayerBehavior = new BasicCPlayerBehavior();
 
     public BehaviorHandler getInstance() {
         return instance;
@@ -61,5 +66,29 @@ public class BehaviorHandler  {
 
     public SkillBehavior getSkillBehavior(String id) {
         return skillBehaviorMap.get(id);
+    }
+
+    public WeaponBehavior getDefaultWeaponBehavior() {
+        return defaultWeaponBehavior;
+    }
+
+    public void setDefaultWeaponBehavior(WeaponBehavior defaultWeaponBehavior) {
+        this.defaultWeaponBehavior = defaultWeaponBehavior;
+    }
+
+    public SkillBehavior getDefaultSkillBehavior() {
+        return defaultSkillBehavior;
+    }
+
+    public void setDefaultSkillBehavior(SkillBehavior defaultSkillBehavior) {
+        this.defaultSkillBehavior = defaultSkillBehavior;
+    }
+
+    public CPlayerBehavior getDefaultCPlayerBehavior() {
+        return defaultCPlayerBehavior;
+    }
+
+    public void setDefaultCPlayerBehavior(CPlayerBehavior defaultCPlayerBehavior) {
+        this.defaultCPlayerBehavior = defaultCPlayerBehavior;
     }
 }
