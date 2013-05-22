@@ -21,9 +21,9 @@ Weapons:
   permitted-weapon:
     WOOD_AXE:
     IRON_AXE:
-      bonus-damage: 10
+      bonus-weapon-damage: 10
     DIAMOND_AXE:
-      bonus-damage: 10
+      bonus-weapon-damage: 10
 
 
 Armor:

@@ -50,7 +50,7 @@ class YAMLHelperTest extends GroovyTestCase {
         assertTrue(keyList.isEmpty());
 
         keyList = yamlHelper.getKeys("Weapons.permitted-weapon.IRON_AXE");
-        assertTrue(keyList.contains("bonus-damage"));
+        assertTrue(keyList.contains("bonus-weapon-damage"));
     }
 
     void testGetString() {
