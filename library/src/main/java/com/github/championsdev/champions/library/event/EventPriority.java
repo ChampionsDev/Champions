@@ -9,6 +9,6 @@ package com.github.championsdev.champions.library.event;
  */
 public enum EventPriority {
     
-    LOWEST, LOW, NORMAL, HIGH, HIGHEST;
+    LOWEST, LOW, NORMAL, HIGH, HIGHEST, MONITOR;
 
 }

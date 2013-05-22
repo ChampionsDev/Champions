@@ -62,6 +62,7 @@ public class EventManager {
                 ArrayList<Method> normalPriority = new ArrayList<>();
                 ArrayList<Method> highPriority = new ArrayList<>();
                 ArrayList<Method> highestPriority = new ArrayList<>();
+                ArrayList<Method> monitorPriority = new ArrayList<>();
 
                 // Add upstream listener methods
                 for(int i = 0; i < MAX_UPSTREAM; i++) {
@@ -82,6 +83,9 @@ public class EventManager {
                                 break;
                             case HIGHEST:
                                 if(!highestPriority.contains(method)) highestPriority.add(method);
+                                break;
+                            case MONITOR:
+                                if(!monitorPriority.contains(method)) monitorPriority.add(method);
                                 break;
                         }
                     }
@@ -111,6 +115,11 @@ public class EventManager {
                 }
                 for(Method method : highestPriority) {
                     if (method.getParameterTypes()[0].isAssignableFrom(event.getClass())) {
+                        method.invoke(listeners.get(method), event);
+                    }
+                }
+                for(Method method : monitorPriority) {
+                    if(method.getParameterTypes()[0].isAssignableFrom(event.getClass())) {
                         method.invoke(listeners.get(method), event);
                     }
                 }
