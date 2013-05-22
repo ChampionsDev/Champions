@@ -329,6 +329,15 @@ public class CPlayer implements CEntity, Behavioral<CPlayer, CPlayerBehaviorGrou
         return null;
     }
 
+    public WeaponInfo getCurrentWeaponInfo() {
+        WeaponInfo info = weaponInfoMap.get(currentWeapon);
+        if(info == null) {
+            info = new WeaponInfo();
+            weaponInfoMap.put(currentWeapon, info);
+        }
+        return info;
+    }
+
     @Override
     public CPlayer setWeaponInfo(Weapon weapon, WeaponInfo info) {
         if(weapon != null) {
