@@ -24,31 +24,25 @@ import com.github.championsdev.champions.library.event.cplayer.*;
 public class BasicCPlayerBehavior implements CPlayerBehavior {
     @Override
     public void onQuit(CPlayerQuitEvent event) {
-        //TODO onQuit method stub
     }
 
     @Override
     public void onDeath(CPlayerDeathEvent event) {
-        //TODO onDeath method stub
     }
 
     @Override
     public void onPlayerKill(CPlayerKillEvent event) {
-        //TODO onPlayerKill method stub
     }
 
     @Override
     public void onMobKill(CPlayerMobKillEvent event) {
-        //TODO onMobKill method stub
     }
 
     @Override
     public void onJoin(CPlayerJoinEvent event) {
-        //TODO onJoin method stub
     }
 
     @Override
     public void onWeaponChange(CPlayerWeaponChangeEvent event) {
-        //TODO onWeaponChange method stub
     }
 }

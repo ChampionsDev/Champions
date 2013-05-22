@@ -23,7 +23,6 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-//TODO implement setters for CClassUser
 public interface CClassUser<SelfType extends CClassUser> extends BasicUser {
     public HashMap<CClass, CClassInfo> getLClassInfoMap();
     public CClassInfo getLClassInfo(CClass cClass);

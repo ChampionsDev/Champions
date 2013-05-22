@@ -24,6 +24,5 @@ import com.github.championsdev.champions.library.event.skill.SkillUseEvent;
 public class BasicSkillBehavior implements SkillBehavior {
     @Override
     public void onUse(SkillUseEvent event) {
-        //TODO onUse method stub
     }
 }

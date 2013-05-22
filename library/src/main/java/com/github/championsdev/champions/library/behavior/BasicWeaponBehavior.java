@@ -26,16 +26,13 @@ import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
 public class BasicWeaponBehavior implements WeaponBehavior {
     @Override
     public void onClick(WeaponClickEvent event) {
-        //TODO onClick method stub
     }
 
     @Override
     public void onHit(WeaponHitEvent event) {
-        //TODO onHit method stub
     }
 
     @Override
     public void onSelect(WeaponEvent event) {
-        //TODO onSelect method stub
     }
 }

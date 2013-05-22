@@ -26,7 +26,6 @@ import java.util.logging.Logger;
  * @author YoshiGenius
  */
 
-// TODO make this consistent with the other handler APIs
 public class SkillHandler extends BasicHandler<Skill> {
     private static final Logger logger = Logger.getLogger(SkillHandler.class.getName());
     private static SkillHandler instance = new SkillHandler();
