@@ -17,6 +17,7 @@ This file is part of Champions.
 
 package com.github.championsdev.champions.library.weapon;
 
+import com.github.championsdev.champions.library.behavior.BehaviorHandler;
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.behavior.WeaponBehavior;
 import com.github.championsdev.champions.library.behavior.WeaponBehaviorGroup;
@@ -37,14 +38,13 @@ public class Weapon implements Informative<Weapon, WeaponInfo>, Behavioral<Weapo
     private WeaponBehaviorGroup weaponBehaviorGroup = new WeaponBehaviorGroup();
 
     public Weapon() {
+        weaponBehaviorGroup.attach(BehaviorHandler.getInstance().getDefaultWeaponBehavior());
     }
 
     public Weapon(String name, ArrayList<String> description) {
+        this();
         this.name = name;
         this.description = description;
-    }
-    
-    public Weapon(String name, ArrayList<String> description, WeaponBehavior behaviour) {
     }
 
     public WeaponType getType() {

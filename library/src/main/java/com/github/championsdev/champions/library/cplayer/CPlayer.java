@@ -24,6 +24,7 @@ import com.github.championsdev.champions.library.armor.Armor;
 import com.github.championsdev.champions.library.armor.ArmorInfo;
 import com.github.championsdev.champions.library.armor.ArmorRestricted;
 import com.github.championsdev.champions.library.armor.ArmorUser;
+import com.github.championsdev.champions.library.behavior.BehaviorHandler;
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.behavior.CPlayerBehaviorGroup;
 import com.github.championsdev.champions.library.cclass.CClass;
@@ -107,7 +108,7 @@ public class CPlayer implements CEntity, Behavioral<CPlayer, CPlayerBehaviorGrou
         currentHealth = maxHealth;
         currentMana = maxMana;
         currentStamina = maxStamina;
-        this.location = null;
+        cPlayerBehaviorGroup.attach(BehaviorHandler.getInstance().getDefaultCPlayerBehavior());
     }
 
     public Race getRace() {
