@@ -104,4 +104,12 @@ public class FileUtil {
         return null;
     }
 
+    public static boolean isJarFile(File file) {
+        return (file != null && !file.isDirectory() && file.getName().endsWith(".jar"));
+    }
+
+    public static boolean isZipFile(File file) {
+        return (file != null && !file.isDirectory() && file.getName().endsWith(".zip"));
+    }
+
 }
