@@ -58,9 +58,7 @@ public class DataManager {
     }
 
     public static void registerDataSource(DataSource dataSource) {
-        if (!dataSources.containsKey(dataSource.getName())) {
-            dataSources.put(dataSource.getName(), dataSource);
-        }
+        dataSources.put(dataSource.getName(), dataSource);
     }
 
     /**
