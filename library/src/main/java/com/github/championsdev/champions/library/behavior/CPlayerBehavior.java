@@ -21,6 +21,10 @@ import com.github.championsdev.champions.library.event.cplayer.*;
 /**
  * @author B2OJustin
  */
+
+/** TODO it may make more sense to combine all callbacks into a behavior,
+ * so that behaviors are not object-specific and do not require duplication of events.
+ */
 public interface CPlayerBehavior extends Behavior {
     public void onQuit(CPlayerQuitEvent event);
     public void onDeath(CPlayerDeathEvent event);
@@ -28,4 +32,6 @@ public interface CPlayerBehavior extends Behavior {
     public void onMobKill(CPlayerMobKillEvent event);
     public void onJoin(CPlayerJoinEvent event);
     public void onWeaponChange(CPlayerWeaponChangeEvent event);
+    public void onLevelUp(CPlayerLevelUpEvent event);
+    public void onExpGain(CPlayerExpGainEvent event);
 }

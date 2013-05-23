@@ -45,4 +45,12 @@ public class BasicCPlayerBehavior implements CPlayerBehavior {
     @Override
     public void onWeaponChange(CPlayerWeaponChangeEvent event) {
     }
+
+    @Override
+    public void onLevelUp(CPlayerLevelUpEvent event) {
+    }
+
+    @Override
+    public void onExpGain(CPlayerExpGainEvent event) {
+    }
 }
