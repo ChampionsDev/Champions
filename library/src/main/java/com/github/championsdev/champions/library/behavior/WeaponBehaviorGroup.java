@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * @author B2OJustin
  */
 public class WeaponBehaviorGroup implements WeaponBehavior, BehaviorGroup<WeaponBehaviorGroup, WeaponBehavior> {
-    public ArrayList<WeaponBehavior> behaviorList = new ArrayList<>();
+    protected final ArrayList<WeaponBehavior> behaviorList = new ArrayList<>();
 
     @Override
     public WeaponBehaviorGroup attach(WeaponBehavior behavior) {

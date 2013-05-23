@@ -20,17 +20,19 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.zip.ZipFile;
 
 /**
  * @author B2OJustin
  */
-public class JarUtils {
+public class FileUtil {
 
     /**
      * Retrieves a list of files in the path contained within the jar file.
@@ -64,7 +66,7 @@ public class JarUtils {
                 URI fileUri = jarClass.getResource("/" + fileName).toURI();
                 File file = new File(fileName.replace(srcDir, toDir));
                 if(file.exists() && !overwrite) continue;
-                FileUtils.copyURLToFile(fileUri.toURL(), file);
+                org.apache.commons.io.FileUtils.copyURLToFile(fileUri.toURL(), file);
                 System.out.println(String.format("Copied %s to %s", fileName, fileName.replace(srcDir, toDir)));
                 filesCopied++;
             }
@@ -73,4 +75,33 @@ public class JarUtils {
         }
         return filesCopied;
     }
+
+    public static InputStream getResourceFromJar(File fromFile, String insideFile) {
+        if (fromFile.exists() && fromFile.isFile()) {
+            if (fromFile.getName().endsWith(".jar")) {
+                try {
+                    JarFile jarFile = new JarFile(fromFile);
+                    return jarFile.getInputStream(jarFile.getJarEntry(insideFile));
+                } catch (IOException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
+    public static InputStream getResourceFromZip(File fromFile, String insideFile) {
+        if (fromFile.exists() && fromFile.isFile()) {
+            if (fromFile.getName().endsWith(".zip")) {
+                try {
+                    ZipFile zipFile = new ZipFile(fromFile);
+                    return zipFile.getInputStream(zipFile.getEntry(insideFile));
+                } catch (IOException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
 }
