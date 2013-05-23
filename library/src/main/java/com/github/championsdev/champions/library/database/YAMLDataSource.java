@@ -509,7 +509,7 @@ public class YAMLDataSource implements DataSource {
                 case "max-level":
                     // Sets mastery level to max level if necessary
                     int maxLevel = yml.getInt("Levels.max-level");
-                    RestrictionHandler.getInstance().getLevelRestrictions(cClass).setMaxLevel(maxLevel);
+                    cClass.getDefaultInfo().setMaxLevel(new Level(maxLevel));
                     if(cClass.getDefaultInfo().getMasteryLevel().equals(new Level(0))) {
                         cClass.getDefaultInfo().setMasteryLevel(new Level(maxLevel));
                     }
