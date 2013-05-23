@@ -30,6 +30,15 @@ public class CClassInfo extends BasicInfo<CClassInfo> implements LevelUser, Stat
     private int manaPerLevel = 0;
     private int staminaPerLevel = 0;
     private Level masteryLevel = new Level(0);
+    private Level maxLevel = new Level(0);
+
+    public Level getMaxLevel() {
+        return maxLevel;
+    }
+
+    public void setMaxLevel(Level maxLevel) {
+        this.maxLevel = maxLevel;
+    }
 
     public CClassInfo setMasteryLevel(Level level) {
         masteryLevel = level;

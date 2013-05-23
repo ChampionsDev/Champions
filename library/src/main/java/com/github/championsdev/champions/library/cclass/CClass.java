@@ -25,7 +25,7 @@ import java.util.Map;
  * @author YoshiGenius
  */
 public class CClass implements Informative<CClass, CClassInfo>, Identifiable<CClass>,
-        LevelRestricted, WeaponRestricted, WeaponTypeRestricted, ArmorRestricted, SkillRestricted,
+        WeaponRestricted, WeaponTypeRestricted, ArmorRestricted, SkillRestricted,
         WeaponUser<CClass>, WeaponTypeUser<CClass>, SkillUser<CClass>, ArmorUser<CClass> {
 
     private ArrayList<String> description = new ArrayList<>();
