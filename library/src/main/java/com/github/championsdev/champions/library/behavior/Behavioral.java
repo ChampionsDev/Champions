@@ -19,7 +19,7 @@ package com.github.championsdev.champions.library.behavior;
 /**
  * @author B2OJustin
  */
-public interface Behavioral<SelfType extends Behavioral, T extends Behavior> {
-    public T getBehavior();
-    public SelfType setBehavior(T behavior);
+public interface Behavioral<SelfType extends Behavioral> {
+    public BehaviorGroup getBehavior();
+    public SelfType setBehavior(BehaviorGroup behavior);
 }

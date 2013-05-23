@@ -17,23 +17,23 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.weapon;
 
 import com.github.championsdev.champions.library.BasicInfo;
+import com.github.championsdev.champions.library.behavior.BehaviorGroup;
 import com.github.championsdev.champions.library.behavior.Behavioral;
-import com.github.championsdev.champions.library.behavior.WeaponBehaviorGroup;
 import com.github.championsdev.champions.library.level.LevelRestricted;
 
 /**
  * @author B2OJustin
  */
-public class WeaponInfo extends BasicInfo<WeaponInfo> implements LevelRestricted, Behavioral<WeaponInfo, WeaponBehaviorGroup> {
-    public WeaponBehaviorGroup behavior = new WeaponBehaviorGroup();
+public class WeaponInfo extends BasicInfo<WeaponInfo> implements LevelRestricted, Behavioral<WeaponInfo> {
+    public BehaviorGroup behavior = new BehaviorGroup();
 
     @Override
-    public WeaponBehaviorGroup getBehavior() {
+    public BehaviorGroup getBehavior() {
         return behavior;
     }
 
     @Override
-    public WeaponInfo setBehavior(WeaponBehaviorGroup behavior) {
+    public WeaponInfo setBehavior(BehaviorGroup behavior) {
         this.behavior = behavior;
         return this;
     }

@@ -16,14 +16,93 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.behavior;
 
+import com.github.championsdev.champions.library.event.cplayer.*;
+import com.github.championsdev.champions.library.event.skill.SkillUseEvent;
+import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
+import com.github.championsdev.champions.library.event.weapon.WeaponEvent;
+import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
+
 import java.util.ArrayList;
 
 /**
  * @author B2OJustin
  */
-public interface BehaviorGroup<SelfType extends BehaviorGroup, T extends Behavior> {
-    public SelfType attach(T behavior);
-    public SelfType attach(T behavior, int priority);
-    public SelfType detach(T behavior);
-    public ArrayList<T> getBehaviors();
+public class BehaviorGroup implements Behavior {
+    public ArrayList<Behavior> behaviors = new ArrayList<>();
+
+    public BehaviorGroup attach(Behavior behavior) {
+        behaviors.add(behavior);
+        return this;
+    }
+
+    public BehaviorGroup attach(Behavior behavior, int priority) {
+        if(priority > behaviors.size()) behaviors.add(behavior);
+        else behaviors.add(priority, behavior);
+        return this;
+    }
+
+    public BehaviorGroup detach(Behavior behavior) {
+        behaviors.remove(behavior);
+        return this;
+    }
+
+    @Override
+    public void onQuit(CPlayerQuitEvent event) {
+        for(Behavior behavior : behaviors) behavior.onQuit(event);
+    }
+
+    @Override
+    public void onDeath(CPlayerDeathEvent event) {
+        for(Behavior behavior : behaviors) behavior.onDeath(event);
+    }
+
+    @Override
+    public void onPlayerKill(CPlayerKillEvent event) {
+        for(Behavior behavior : behaviors) behavior.onPlayerKill(event);
+    }
+
+    @Override
+    public void onMobKill(CPlayerMobKillEvent event) {
+        for(Behavior behavior : behaviors) behavior.onMobKill(event);
+    }
+
+    @Override
+    public void onJoin(CPlayerJoinEvent event) {
+        for(Behavior behavior : behaviors) behavior.onJoin(event);
+    }
+
+    @Override
+    public void onWeaponChange(CPlayerWeaponChangeEvent event) {
+        for(Behavior behavior : behaviors) behavior.onWeaponChange(event);
+    }
+
+    @Override
+    public void onLevelUp(CPlayerLevelUpEvent event) {
+        for(Behavior behavior : behaviors) behavior.onLevelUp(event);
+    }
+
+    @Override
+    public void onExpGain(CPlayerExpGainEvent event) {
+        for(Behavior behavior : behaviors) behavior.onExpGain(event);
+    }
+
+    @Override
+    public void onUse(SkillUseEvent event) {
+        for(Behavior behavior : behaviors) behavior.onUse(event);
+    }
+
+    @Override
+    public void onClick(WeaponClickEvent event) {
+        for(Behavior behavior : behaviors) behavior.onClick(event);
+    }
+
+    @Override
+    public void onHit(WeaponHitEvent event) {
+        for(Behavior behavior : behaviors) behavior.onHit(event);
+    }
+
+    @Override
+    public void onSelect(WeaponEvent event) {
+        for(Behavior behavior : behaviors) behavior.onSelect(event);
+    }
 }

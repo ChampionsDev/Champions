@@ -16,54 +16,61 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.behavior;
 
+import com.github.championsdev.champions.library.event.cplayer.*;
+import com.github.championsdev.champions.library.event.skill.SkillUseEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
 
-import java.util.ArrayList;
-
 /**
  * @author B2OJustin
  */
-public class WeaponBehaviorGroup implements WeaponBehavior, BehaviorGroup<WeaponBehaviorGroup, WeaponBehavior> {
-    protected final ArrayList<WeaponBehavior> behaviorList = new ArrayList<>();
-
+public abstract class AbstractBehavior implements Behavior {
     @Override
-    public WeaponBehaviorGroup attach(WeaponBehavior behavior) {
-        behaviorList.add(behavior);
-        return this;
+    public void onQuit(CPlayerQuitEvent event) {
     }
 
     @Override
-    public WeaponBehaviorGroup attach(WeaponBehavior behavior, int priority) {
-        if(priority > behaviorList.size()) priority = behaviorList.size();
-        behaviorList.add(priority, behavior);
-        return this;
+    public void onDeath(CPlayerDeathEvent event) {
     }
 
     @Override
-    public WeaponBehaviorGroup detach(WeaponBehavior behavior) {
-        behaviorList.remove(behavior);
-        return this;
+    public void onPlayerKill(CPlayerKillEvent event) {
     }
 
     @Override
-    public ArrayList<WeaponBehavior> getBehaviors() {
-        return behaviorList;
+    public void onMobKill(CPlayerMobKillEvent event) {
+    }
+
+    @Override
+    public void onJoin(CPlayerJoinEvent event) {
+    }
+
+    @Override
+    public void onWeaponChange(CPlayerWeaponChangeEvent event) {
+    }
+
+    @Override
+    public void onLevelUp(CPlayerLevelUpEvent event) {
+    }
+
+    @Override
+    public void onExpGain(CPlayerExpGainEvent event) {
+    }
+
+    @Override
+    public void onUse(SkillUseEvent event) {
     }
 
     @Override
     public void onClick(WeaponClickEvent event) {
-        for(WeaponBehavior behavior : behaviorList) behavior.onClick(event);
     }
 
     @Override
     public void onHit(WeaponHitEvent event) {
-        for(WeaponBehavior behavior : behaviorList) behavior.onHit(event);
     }
 
     @Override
     public void onSelect(WeaponEvent event) {
-        for(WeaponBehavior behavior : behaviorList) behavior.onSelect(event);
     }
 }

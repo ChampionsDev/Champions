@@ -21,7 +21,7 @@ import com.github.championsdev.champions.library.event.skill.SkillUseEvent;
 /**
  * @author B2OJustin
  */
-public class BasicSkillBehavior implements SkillBehavior {
+public class BasicSkillBehavior extends AbstractBehavior {
     @Override
     public void onUse(SkillUseEvent event) {
     }

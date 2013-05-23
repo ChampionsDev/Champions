@@ -21,7 +21,7 @@ import com.github.championsdev.champions.library.event.cplayer.*;
 /**
  * @author B2OJustin
  */
-public class BasicCPlayerBehavior implements CPlayerBehavior {
+public class BasicCPlayerBehavior extends AbstractBehavior {
     @Override
     public void onQuit(CPlayerQuitEvent event) {
     }
