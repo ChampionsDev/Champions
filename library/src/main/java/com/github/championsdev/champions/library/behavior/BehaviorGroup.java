@@ -27,7 +27,7 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class BehaviorGroup implements Behavior {
+public class BehaviorGroup extends Behavior {
     public ArrayList<Behavior> behaviors = new ArrayList<>();
 
     public BehaviorGroup attach(Behavior behavior) {

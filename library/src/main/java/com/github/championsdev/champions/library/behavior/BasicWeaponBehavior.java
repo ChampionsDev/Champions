@@ -23,7 +23,7 @@ import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
 /**
  * @author B2OJustin
  */
-public class BasicWeaponBehavior extends AbstractBehavior {
+public class BasicWeaponBehavior extends Behavior {
     @Override
     public void onClick(WeaponClickEvent event) {
     }
