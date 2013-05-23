@@ -14,18 +14,33 @@ This file is part of Champions.
     You should have received a copy of the GNU General Public License
     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.behavior;
+package com.github.championsdev.champions.library.event.cplayer;
 
-import com.github.championsdev.champions.library.event.cplayer.*;
+import com.github.championsdev.champions.library.cclass.CClass;
+import com.github.championsdev.champions.library.cplayer.CPlayer;
 
 /**
  * @author B2OJustin
  */
-public interface CPlayerBehavior extends Behavior {
-    public void onQuit(CPlayerQuitEvent event);
-    public void onDeath(CPlayerDeathEvent event);
-    public void onPlayerKill(CPlayerKillEvent event);
-    public void onMobKill(CPlayerMobKillEvent event);
-    public void onJoin(CPlayerJoinEvent event);
-    public void onWeaponChange(CPlayerWeaponChangeEvent event);
+public class CPlayerLevelUpEvent extends CPlayerEvent {
+    public enum ClassType {
+        PRIMARY, SECONDARY
+    }
+    private ClassType type;
+    private CClass cClass;
+
+    public CPlayerLevelUpEvent(CPlayer player, ClassType type, CClass cClass) {
+        super(player);
+        this.type = type;
+        this.cClass = cClass;
+    }
+
+    public ClassType getType() {
+        return type;
+    }
+
+    public CClass getCclass() {
+        return cClass;
+    }
+
 }

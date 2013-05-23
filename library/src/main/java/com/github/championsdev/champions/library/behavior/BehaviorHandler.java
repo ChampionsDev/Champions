@@ -18,77 +18,44 @@ package com.github.championsdev.champions.library.behavior;
 
 import com.github.championsdev.champions.library.BasicHandler;
 
-import java.util.HashMap;
-
 /**
  * @author B2OJustin
  */
-public class BehaviorHandler  {
+public class BehaviorHandler extends BasicHandler<Behavior>{
     private static BehaviorHandler instance = new BehaviorHandler();
-
-    private HashMap<String, WeaponBehavior> weaponBehaviorMap = new HashMap<>();
-    private HashMap<String, CPlayerBehavior> playerBehaviorMap = new HashMap<>();
-    private HashMap<String, SkillBehavior> skillBehaviorMap = new HashMap<>();
-
-    private WeaponBehavior defaultWeaponBehavior = new BasicWeaponBehavior();
-    private SkillBehavior defaultSkillBehavior = new BasicSkillBehavior();
-    private CPlayerBehavior defaultCPlayerBehavior = new BasicCPlayerBehavior();
+    private Behavior defaultCPlayerBehavior = new BasicCPlayerBehavior();
+    private Behavior defaultSkillBehavior = new BasicSkillBehavior();
+    private Behavior defaultWeaponBehavior = new BasicWeaponBehavior();
 
     public static BehaviorHandler getInstance() {
         return instance;
     }
 
     private BehaviorHandler() {
+
     }
 
-    public BehaviorHandler register(String id, WeaponBehavior behavior) {
-        weaponBehaviorMap.put(id, behavior);
-        return this;
-    }
-
-    public BehaviorHandler register(String id, CPlayerBehavior behavior) {
-        playerBehaviorMap.put(id, behavior);
-        return this;
-    }
-
-    public BehaviorHandler register(String id, SkillBehavior behavior) {
-        skillBehaviorMap.put(id, behavior);
-        return this;
-    }
-
-    public WeaponBehavior getWeaponBehavior(String id) {
-        return weaponBehaviorMap.get(id);
-    }
-
-    public CPlayerBehavior getCPlayerBehavior(String id) {
-        return playerBehaviorMap.get(id);
-    }
-
-    public SkillBehavior getSkillBehavior(String id) {
-        return skillBehaviorMap.get(id);
-    }
-
-    public WeaponBehavior getDefaultWeaponBehavior() {
-        return defaultWeaponBehavior;
-    }
-
-    public void setDefaultWeaponBehavior(WeaponBehavior defaultWeaponBehavior) {
-        this.defaultWeaponBehavior = defaultWeaponBehavior;
-    }
-
-    public SkillBehavior getDefaultSkillBehavior() {
-        return defaultSkillBehavior;
-    }
-
-    public void setDefaultSkillBehavior(SkillBehavior defaultSkillBehavior) {
-        this.defaultSkillBehavior = defaultSkillBehavior;
-    }
-
-    public CPlayerBehavior getDefaultCPlayerBehavior() {
+    public Behavior getDefaultCPlayerBehavior() {
         return defaultCPlayerBehavior;
     }
 
-    public void setDefaultCPlayerBehavior(CPlayerBehavior defaultCPlayerBehavior) {
+    public void setDefaultCPlayerBehavior(Behavior defaultCPlayerBehavior) {
         this.defaultCPlayerBehavior = defaultCPlayerBehavior;
+    }
+
+    public Behavior getDefaultSkillBehavior() {
+        return defaultSkillBehavior;
+    }
+
+    public void setDefaultSkillBehavior(Behavior defaultSkillBehavior) {
+        this.defaultSkillBehavior = defaultSkillBehavior;
+    }
+
+    public Behavior getDefaultWeaponBehavior() {
+        return defaultWeaponBehavior;
+    }
+
+    public void setDefaultWeaponBehavior(Behavior defaultWeaponBehavior) {
+        this.defaultWeaponBehavior = defaultWeaponBehavior;
     }
 }

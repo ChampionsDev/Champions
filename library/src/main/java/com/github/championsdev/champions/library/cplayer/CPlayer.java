@@ -24,9 +24,9 @@ import com.github.championsdev.champions.library.armor.Armor;
 import com.github.championsdev.champions.library.armor.ArmorInfo;
 import com.github.championsdev.champions.library.armor.ArmorRestricted;
 import com.github.championsdev.champions.library.armor.ArmorUser;
+import com.github.championsdev.champions.library.behavior.BehaviorGroup;
 import com.github.championsdev.champions.library.behavior.BehaviorHandler;
 import com.github.championsdev.champions.library.behavior.Behavioral;
-import com.github.championsdev.champions.library.behavior.CPlayerBehaviorGroup;
 import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.cclass.CClassInfo;
 import com.github.championsdev.champions.library.cclass.CClassRestricted;
@@ -54,7 +54,7 @@ import java.util.LinkedHashMap;
 /**
  * @author B2OJustin
  */
-public class CPlayer implements CEntity, Behavioral<CPlayer, CPlayerBehaviorGroup>,
+public class CPlayer implements CEntity, Behavioral<CPlayer>,
         Informative<CPlayer, CPlayerInfo>,
         WeaponUser<CPlayer>, ArmorUser<CPlayer>, SkillUser<CPlayer>,
         WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, CClassRestricted, RaceRestricted, Positionable {
@@ -83,7 +83,7 @@ public class CPlayer implements CEntity, Behavioral<CPlayer, CPlayerBehaviorGrou
     private Weapon currentWeapon = new Weapon();
     private Armor currentArmor = new Armor();
 
-    private CPlayerBehaviorGroup cPlayerBehaviorGroup = new CPlayerBehaviorGroup();
+    private BehaviorGroup cPlayerBehaviorGroup = new BehaviorGroup();
 
     private Party party;
 
@@ -423,12 +423,12 @@ public class CPlayer implements CEntity, Behavioral<CPlayer, CPlayerBehaviorGrou
     }
 
     @Override
-    public CPlayerBehaviorGroup getBehavior() {
+    public BehaviorGroup getBehavior() {
         return cPlayerBehaviorGroup;
     }
 
     @Override
-    public CPlayer setBehavior(CPlayerBehaviorGroup behavior) {
+    public CPlayer setBehavior(BehaviorGroup behavior) {
         cPlayerBehaviorGroup = behavior;
         return this;
     }
