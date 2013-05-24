@@ -17,6 +17,8 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.armor;
 
 
+import com.github.championsdev.champions.library.behavior.BehaviorGroup;
+import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.misc.Informative;
 
 import java.util.ArrayList;
@@ -26,10 +28,11 @@ import java.util.ArrayList;
  *
  * @author B2OJustin
  */
-public class Armor implements Informative<Armor, ArmorInfo> {
+public class Armor implements Informative<Armor, ArmorInfo>, Behavioral<Armor> {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
     private ArmorInfo armorInfo = new ArmorInfo();
+    private BehaviorGroup behaviorGroup = new BehaviorGroup();
 
     public Armor() {
     }
@@ -61,5 +64,16 @@ public class Armor implements Informative<Armor, ArmorInfo> {
 
     public ArrayList<String> getDescription() {
         return description;
+    }
+
+    @Override
+    public BehaviorGroup getBehavior() {
+        return behaviorGroup;
+    }
+
+    @Override
+    public Armor setBehavior(BehaviorGroup behavior) {
+        this.behaviorGroup = behavior;
+        return this;
     }
 }

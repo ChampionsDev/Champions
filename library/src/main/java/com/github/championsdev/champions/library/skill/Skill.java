@@ -18,7 +18,6 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.skill;
 
 import com.github.championsdev.champions.library.behavior.BehaviorGroup;
-import com.github.championsdev.champions.library.behavior.BehaviorHandler;
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.misc.Informative;
 
@@ -31,7 +30,7 @@ public class Skill implements Informative<Skill, SkillInfo>, Behavioral<Skill> {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
 
-    private BehaviorGroup skillBehaviorGroup = new BehaviorGroup();
+    private BehaviorGroup behaviorGroup = new BehaviorGroup();
 
     private SkillInfo skillInfo = new SkillInfo();
 
@@ -76,12 +75,12 @@ public class Skill implements Informative<Skill, SkillInfo>, Behavioral<Skill> {
 
     @Override
     public BehaviorGroup getBehavior() {
-        return skillBehaviorGroup;
+        return behaviorGroup;
     }
 
     @Override
     public Skill setBehavior(BehaviorGroup behavior) {
-        skillBehaviorGroup = behavior;
+        behaviorGroup = behavior;
         return this;
     }
 }

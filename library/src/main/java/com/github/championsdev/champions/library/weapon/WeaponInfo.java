@@ -24,17 +24,5 @@ import com.github.championsdev.champions.library.level.LevelRestricted;
 /**
  * @author B2OJustin
  */
-public class WeaponInfo extends BasicInfo<WeaponInfo> implements LevelRestricted, Behavioral<WeaponInfo> {
-    public BehaviorGroup behavior = new BehaviorGroup();
-
-    @Override
-    public BehaviorGroup getBehavior() {
-        return behavior;
-    }
-
-    @Override
-    public WeaponInfo setBehavior(BehaviorGroup behavior) {
-        this.behavior = behavior;
-        return this;
-    }
+public class WeaponInfo extends BasicInfo<WeaponInfo> implements LevelRestricted {
 }

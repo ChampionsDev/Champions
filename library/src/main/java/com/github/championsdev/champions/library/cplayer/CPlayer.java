@@ -25,7 +25,6 @@ import com.github.championsdev.champions.library.armor.ArmorInfo;
 import com.github.championsdev.champions.library.armor.ArmorRestricted;
 import com.github.championsdev.champions.library.armor.ArmorUser;
 import com.github.championsdev.champions.library.behavior.BehaviorGroup;
-import com.github.championsdev.champions.library.behavior.BehaviorHandler;
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.cclass.CClassInfo;
@@ -83,7 +82,7 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     private Weapon currentWeapon = new Weapon();
     private Armor currentArmor = new Armor();
 
-    private BehaviorGroup cPlayerBehaviorGroup = new BehaviorGroup();
+    private BehaviorGroup behaviorGroup = new BehaviorGroup();
 
     private Party party;
 
@@ -100,8 +99,8 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
 
     public CPlayer(Race race, CClass primaryClass, CClass secondaryClass) {
         this.race = race;
-        this.primaryClass = primaryClass;
-        this.secondaryClass = secondaryClass;
+        setPrimaryClass(primaryClass);
+        setSecondaryClass(secondaryClass);
         update();
         party = new Party(this);
         // TODO loading of current health, mana, stamina
@@ -114,6 +113,12 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
         return this.race;
     }
 
+    public CPlayer setRace(Race race) {
+        behaviorGroup.swap(this.race.getBehavior(), race.getBehavior());
+        this.race = race;
+        return this;
+    }
+
     public LinkedHashMap<CClass, Level> getPreviousPrimaryClasses() {
         return previousPrimaryClasses;
     }
@@ -122,13 +127,25 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
         return previousSecondaryClasses;
     }
 
-    public CPlayer addPreviousPrimaryClass(CClass cClass, Level level) {
-        previousPrimaryClasses.put(cClass, level);
+    public CPlayer addPreviousPrimaryClass(CClass primaryClass, Level level) {
+        previousPrimaryClasses.put(primaryClass, level);
         return this;
     }
 
-    public CPlayer addPreviousSecondaryClass(CClass cClass, Level level) {
-        previousSecondaryClasses.put(cClass, level);
+    public CPlayer addPreviousSecondaryClass(CClass secondaryClass, Level level) {
+        previousSecondaryClasses.put(secondaryClass, level);
+        return this;
+    }
+
+    public CPlayer setPrimaryClass(CClass primaryClass) {
+        behaviorGroup.swap(this.primaryClass.getBehavior(), primaryClass.getBehavior());
+        this.primaryClass = primaryClass;
+        return this;
+    }
+
+    public CPlayer setSecondaryClass(CClass secondaryClass) {
+        behaviorGroup.swap(this.secondaryClass.getBehavior(), secondaryClass.getBehavior());
+        this.secondaryClass = secondaryClass;
         return this;
     }
 
@@ -171,9 +188,22 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
 
     public CPlayer setWeapon(Weapon weapon) {
         if(weapon != null) {
+            behaviorGroup.swap(currentWeapon.getBehavior(), weapon.getBehavior());
             currentWeapon = weapon;
         }
         return this;
+    }
+
+    public CPlayer setArmor(Armor armor) {
+        if(armor != null) {
+            behaviorGroup.swap(currentArmor.getBehavior(), armor.getBehavior());
+            currentArmor = armor;
+        }
+        return this;
+    }
+
+    public Armor getArmor() {
+        return currentArmor;
     }
 
     public int getHealth() {
@@ -423,12 +453,12 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
 
     @Override
     public BehaviorGroup getBehavior() {
-        return cPlayerBehaviorGroup;
+        return behaviorGroup;
     }
 
     @Override
     public CPlayer setBehavior(BehaviorGroup behavior) {
-        cPlayerBehaviorGroup = behavior;
+        behaviorGroup = behavior;
         return this;
     }
 }

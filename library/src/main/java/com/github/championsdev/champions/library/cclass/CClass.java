@@ -4,6 +4,8 @@ import com.github.championsdev.champions.library.armor.Armor;
 import com.github.championsdev.champions.library.armor.ArmorInfo;
 import com.github.championsdev.champions.library.armor.ArmorRestricted;
 import com.github.championsdev.champions.library.armor.ArmorUser;
+import com.github.championsdev.champions.library.behavior.BehaviorGroup;
+import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.level.LevelRestricted;
 import com.github.championsdev.champions.library.level.exp.Exp;
 import com.github.championsdev.champions.library.level.exp.ExpGroup;
@@ -26,7 +28,8 @@ import java.util.Map;
  */
 public class CClass implements Informative<CClass, CClassInfo>, Identifiable<CClass>,
         WeaponRestricted, WeaponTypeRestricted, ArmorRestricted, SkillRestricted,
-        WeaponUser<CClass>, WeaponTypeUser<CClass>, SkillUser<CClass>, ArmorUser<CClass> {
+        WeaponUser<CClass>, WeaponTypeUser<CClass>, SkillUser<CClass>, ArmorUser<CClass>,
+        Behavioral<CClass> {
 
     private ArrayList<String> description = new ArrayList<>();
     private String name = "";
@@ -38,6 +41,8 @@ public class CClass implements Informative<CClass, CClassInfo>, Identifiable<CCl
     private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
     private HashMap<WeaponType, WeaponInfo> weaponTypeInfoMap = new HashMap<>();
     private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
+
+    private BehaviorGroup behaviorGroup = new BehaviorGroup();
 
     private LinkedHashMap<ExpGroup, Double> expGroups = new LinkedHashMap<>();
 
@@ -240,6 +245,17 @@ public class CClass implements Informative<CClass, CClassInfo>, Identifiable<CCl
         if(weaponType != null) {
             weaponTypeInfoMap.put(weaponType, info);
         }
+        return this;
+    }
+
+    @Override
+    public BehaviorGroup getBehavior() {
+        return behaviorGroup;
+    }
+
+    @Override
+    public CClass setBehavior(BehaviorGroup behavior) {
+        behaviorGroup = behavior;
         return this;
     }
 }

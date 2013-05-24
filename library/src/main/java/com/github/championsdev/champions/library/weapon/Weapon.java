@@ -18,7 +18,6 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.weapon;
 
 import com.github.championsdev.champions.library.behavior.BehaviorGroup;
-import com.github.championsdev.champions.library.behavior.BehaviorHandler;
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.misc.Informative;
 
@@ -34,7 +33,7 @@ public class Weapon implements Informative<Weapon, WeaponInfo>, Behavioral<Weapo
     private ArrayList<String> description = new ArrayList<>();
 
     private WeaponInfo weaponInfo = new WeaponInfo();
-    private BehaviorGroup weaponBehaviorGroup = new BehaviorGroup();
+    private BehaviorGroup behaviorGroup = new BehaviorGroup();
 
     public Weapon() {
     }
@@ -89,12 +88,12 @@ public class Weapon implements Informative<Weapon, WeaponInfo>, Behavioral<Weapo
 
     @Override
     public BehaviorGroup getBehavior() {
-        return weaponBehaviorGroup;
+        return behaviorGroup;
     }
 
     @Override
     public Weapon setBehavior(BehaviorGroup behavior) {
-        weaponBehaviorGroup = behavior;
+        behaviorGroup = behavior;
         return this;
     }
 }

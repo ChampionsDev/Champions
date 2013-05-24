@@ -46,6 +46,13 @@ public class BehaviorGroup extends Behavior {
         return this;
     }
 
+    public BehaviorGroup swap(Behavior oldBehavior, Behavior newBehavior) {
+        int index = behaviors.indexOf(oldBehavior);
+        if(index == -1) behaviors.add(newBehavior);
+        else behaviors.add(index, newBehavior);
+        return this;
+    }
+
     @Override
     public void onQuit(CPlayerQuitEvent event) {
         for(Behavior behavior : behaviors) behavior.onQuit(event);

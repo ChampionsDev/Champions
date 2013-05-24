@@ -22,6 +22,8 @@ import com.github.championsdev.champions.library.armor.Armor;
 import com.github.championsdev.champions.library.armor.ArmorInfo;
 import com.github.championsdev.champions.library.armor.ArmorRestricted;
 import com.github.championsdev.champions.library.armor.ArmorUser;
+import com.github.championsdev.champions.library.behavior.BehaviorGroup;
+import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.cclass.CClassInfo;
 import com.github.championsdev.champions.library.cclass.CClassRestricted;
@@ -42,7 +44,8 @@ import java.util.HashMap;
  */
 public class Race implements Informative<Race, RaceInfo>, Identifiable<Race>,
         ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, WeaponTypeUser<Race>,
-        CClassUser<Race>, SkillRestricted, WeaponRestricted, WeaponTypeRestricted, ArmorRestricted, CClassRestricted {
+        CClassUser<Race>, SkillRestricted, WeaponRestricted, WeaponTypeRestricted, ArmorRestricted, CClassRestricted,
+        Behavioral<Race>{
     private String name = "";
     private String id = "";
     private ArrayList<String> description = new ArrayList<>();
@@ -55,6 +58,8 @@ public class Race implements Informative<Race, RaceInfo>, Identifiable<Race>,
     private HashMap<CClass, CClassInfo> lClassInfoMap = new HashMap<>();
 
     private RaceInfo raceInfo = new RaceInfo();
+
+    private BehaviorGroup behaviorGroup = new BehaviorGroup();
 
     public Race() {
     }
@@ -235,6 +240,17 @@ public class Race implements Informative<Race, RaceInfo>, Identifiable<Race>,
         if(weaponType != null) {
             weaponTypeInfoMap.put(weaponType, info);
         }
+        return this;
+    }
+
+    @Override
+    public BehaviorGroup getBehavior() {
+        return behaviorGroup;
+    }
+
+    @Override
+    public Race setBehavior(BehaviorGroup behavior) {
+        this.behaviorGroup = behavior;
         return this;
     }
 }
