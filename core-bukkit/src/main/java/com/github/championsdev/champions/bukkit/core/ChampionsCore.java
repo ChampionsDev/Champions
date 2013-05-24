@@ -18,11 +18,14 @@ This file is part of Champions.
 package com.github.championsdev.champions.bukkit.core;
 
 import com.github.championsdev.champions.bukkit.core.commands.ClassCommandExecutor;
-import com.github.championsdev.champions.bukkit.core.listeners.ChampionsListener;
+import com.github.championsdev.champions.bukkit.core.listeners.BasicListener;
+import com.github.championsdev.champions.bukkit.core.listeners.EventBridgeListener;
 import com.github.championsdev.champions.bukkit.core.utils.DependencyHandler;
 import com.github.championsdev.champions.library.Configuration;
 import com.github.championsdev.champions.library.database.DataManager;
 import com.github.championsdev.champions.library.database.YAMLDataSource;
+import com.github.championsdev.champions.library.event.BaseListener;
+import com.github.championsdev.champions.library.event.EventManager;
 import com.github.championsdev.champions.library.util.FileUtil;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -50,7 +53,11 @@ public class ChampionsCore extends JavaPlugin {
 
         DependencyHandler.resolve();
 
-        getServer().getPluginManager().registerEvents(new ChampionsListener(), this);
+        getServer().getPluginManager().registerEvents(new EventBridgeListener(), this);
+
+        // Register champions listeners
+        EventManager.registerEvents(new BaseListener());
+        EventManager.registerEvents(new BasicListener());
 
         try {
             // Copy default configuration files

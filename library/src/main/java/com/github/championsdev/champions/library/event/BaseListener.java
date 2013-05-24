@@ -22,6 +22,9 @@ import com.github.championsdev.champions.library.event.cplayer.*;
 import com.github.championsdev.champions.library.event.skill.SkillUseEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
+import com.github.championsdev.champions.library.level.LevelHandler;
+import com.github.championsdev.champions.library.level.exp.Exp;
+import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
 import com.github.championsdev.champions.library.level.exp.sources.MobKillExpSource;
 import com.github.championsdev.champions.library.level.exp.sources.PlayerKillExpSource;
 
@@ -58,25 +61,49 @@ public class BaseListener implements EventListener {
     }
 
     @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onCPlayerWeaponChange(CPlayerWeaponChangeEvent event) {
+        event.getCPlayer().getBehavior().onWeaponChange(event);
+    }
+
+    @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onCPlayerDeath(CPlayerDeathEvent event) {
         event.getCPlayer().getBehavior().onDeath(event);
     }
 
     @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onCPlayerKill(CPlayerKillEvent event) {
-        event.getKiller().addExp(new PlayerKillExpSource(event.getKilled().getName()));
+        ExpSource source = new PlayerKillExpSource(event.getKilled().getName());
+        Exp expGain = event.getKiller().addExp(new PlayerKillExpSource(event.getKilled().getName()));
         event.getKiller().getBehavior().onPlayerKill(event);
         event.getKilled().getBehavior().onPlayerKill(event);
+        EventManager.callEvent(new CPlayerExpGainEvent(event.getKiller(), source, expGain));
     }
 
     @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onCPlayerMobKill(CPlayerMobKillEvent event) {
-        event.getCPlayer().addExp(new MobKillExpSource(event.getMobId()));
+        ExpSource expSource = new MobKillExpSource(event.getMobId());
+        Exp expGain = event.getCPlayer().addExp(expSource);
         event.getCPlayer().getBehavior().onMobKill(event);
+        EventManager.callEvent(new CPlayerExpGainEvent(event.getCPlayer(), expSource, expGain));
+    }
+
+    // Note: Currently, this event is fired even if the exp gain is 0
+    // TODO Differentiate between primary and secondary class exp gain
+    @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onCPlayerExpGain(CPlayerExpGainEvent event) {
+        if(LevelHandler.getInstance().shouldLevelUp(event.getCPlayer().getPrimaryClassInfo().getLevel())) {
+            event.getCPlayer().getPrimaryClassInfo().getLevel().levelUp();
+            EventManager.callEvent(new CPlayerLevelUpEvent(event.getCPlayer(), CPlayerLevelUpEvent.ClassType.PRIMARY, event.getCPlayer().getPrimaryClass()));
+        }
+        if(LevelHandler.getInstance().shouldLevelUp(event.getCPlayer().getSecondaryClassInfo().getLevel())) {
+            event.getCPlayer().getPrimaryClassInfo().getLevel().levelUp();
+            EventManager.callEvent(new CPlayerLevelUpEvent(event.getCPlayer(), CPlayerLevelUpEvent.ClassType.SECONDARY, event.getCPlayer().getSecondaryClass()));
+        }
+        event.getCPlayer().getBehavior().onExpGain(event);
     }
 
     @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onCPlayerWeaponChange(CPlayerWeaponChangeEvent event) {
-        event.getCPlayer().getBehavior().onWeaponChange(event);
+    public void onCPlayerLevelUp(CPlayerLevelUpEvent event) {
+        event.getCPlayer().getBehavior().onLevelUp(event);
     }
 }

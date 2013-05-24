@@ -56,6 +56,12 @@ public class Level extends Exp implements Comparable<Level> {
         return this;
     }
 
+    public Level levelUp() {
+        this.level += 1;
+        this.exp = 0;
+        return this;
+    }
+
     public Level removeLevel(int level) {
         this.exp = 0;
         this.level -= level;

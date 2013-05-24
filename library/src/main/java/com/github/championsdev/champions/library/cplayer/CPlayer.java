@@ -31,6 +31,7 @@ import com.github.championsdev.champions.library.cclass.CClassInfo;
 import com.github.championsdev.champions.library.cclass.CClassRestricted;
 import com.github.championsdev.champions.library.level.Level;
 import com.github.championsdev.champions.library.level.LevelRestricted;
+import com.github.championsdev.champions.library.level.exp.Exp;
 import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
 import com.github.championsdev.champions.library.misc.Informative;
 import com.github.championsdev.champions.library.misc.Positionable;
@@ -138,13 +139,21 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     }
 
     public CPlayer setPrimaryClass(CClass primaryClass) {
-        behaviorGroup.swap(this.primaryClass.getBehavior(), primaryClass.getBehavior());
+        if(this.primaryClass != null) {
+            behaviorGroup.swap(this.primaryClass.getBehavior(), primaryClass.getBehavior());
+        } else {
+            behaviorGroup.attach(primaryClass.getBehavior());
+        }
         this.primaryClass = primaryClass;
         return this;
     }
 
     public CPlayer setSecondaryClass(CClass secondaryClass) {
-        behaviorGroup.swap(this.secondaryClass.getBehavior(), secondaryClass.getBehavior());
+        if(this.secondaryClass != null) {
+            behaviorGroup.swap(this.secondaryClass.getBehavior(), secondaryClass.getBehavior());
+        } else {
+            behaviorGroup.attach(secondaryClass.getBehavior());
+        }
         this.secondaryClass = secondaryClass;
         return this;
     }
@@ -176,10 +185,14 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     }
 
     // Experience wrapper methods
-    public CPlayer addExp(ExpSource source) {
-        primaryClassInfo.getLevel().addExp(primaryClass.getExpGain(source));
-        secondaryClassInfo.getLevel().addExp(secondaryClass.getExpGain(source));
-        return this;
+    public Exp addExp(ExpSource source) {
+        Exp pExp = primaryClass.getExpGain(source);
+        Exp sExp = secondaryClass.getExpGain(source);
+        if(pExp.getExp() != 0 | sExp.getExp() != 0) {
+            primaryClassInfo.getLevel().addExp(pExp);
+            secondaryClassInfo.getLevel().addExp(sExp);
+        }
+        return pExp.addExp(sExp);
     }
 
     public Weapon getWeapon() {

@@ -42,11 +42,7 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class ChampionsListener implements Listener {
-
-    public ChampionsListener() {
-        EventManager.registerEvents(new BaseListener());
-    }
+public class EventBridgeListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {

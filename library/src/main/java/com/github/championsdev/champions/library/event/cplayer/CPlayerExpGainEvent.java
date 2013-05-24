@@ -27,13 +27,11 @@ import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
 public class CPlayerExpGainEvent extends CPlayerEvent {
     public Exp exp;
     public ExpSource source;
-    private CClass cClass;
 
-    public CPlayerExpGainEvent(CPlayer player, CClass cClass, ExpSource source, Exp exp) {
+    public CPlayerExpGainEvent(CPlayer player, ExpSource source, Exp exp) {
         super(player);
         this.exp = exp;
         this.source = source;
-        this.cClass = cClass;
     }
 
     public Exp getExp() {
@@ -42,9 +40,5 @@ public class CPlayerExpGainEvent extends CPlayerEvent {
 
     public ExpSource getSource() {
         return source;
-    }
-
-    public CClass getCclass() {
-        return cClass;
     }
 }

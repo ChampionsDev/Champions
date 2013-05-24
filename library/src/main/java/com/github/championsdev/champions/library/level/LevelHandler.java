@@ -16,6 +16,8 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.level;
 
+import com.github.championsdev.champions.library.level.exp.Exp;
+
 import java.util.logging.Logger;
 
 /**
@@ -25,7 +27,7 @@ public class LevelHandler {
     private static LevelHandler instance = new LevelHandler();
     private static Logger logger = Logger.getLogger(LevelHandler.class.getName());
 
-    public LevelHandler getInstance() {
+    public static LevelHandler getInstance() {
         return instance;
     }
 
@@ -34,5 +36,11 @@ public class LevelHandler {
 
     public static Logger getLogger() {
         return logger;
+    }
+
+    // TODO
+    public boolean shouldLevelUp(Level level) {
+        if(level.getExp() >= 20) return true;
+        else return false;
     }
 }
