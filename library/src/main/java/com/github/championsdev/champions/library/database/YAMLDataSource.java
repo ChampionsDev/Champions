@@ -382,6 +382,9 @@ public class YAMLDataSource implements DataSource {
                 case "default-secondary-class":
                     config.setDefaultSecondaryClass(yml.getString(configKey));
                     break;
+                case "experience-curve":
+                    config.setExpCurve(yml.getString(configKey));
+                    break;
             }
         }
 
