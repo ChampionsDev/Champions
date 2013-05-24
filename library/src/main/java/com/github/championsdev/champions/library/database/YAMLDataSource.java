@@ -631,7 +631,7 @@ public class YAMLDataSource implements DataSource {
                         if(cClass != null) {
                             restrictions.setAllowed(cClass, true);
                             if(restricted instanceof CClassUser) {
-                                loadBasicInfo(((CClassUser)restricted).getLClassInfo(cClass), String.format("Class.permitted-class.%s", classID), yml);
+                                loadBasicInfo(((CClassUser)restricted).getCClassInfo(cClass), String.format("Class.permitted-class.%s", classID), yml);
                             }
                         }
                     }

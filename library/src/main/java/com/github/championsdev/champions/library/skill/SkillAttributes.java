@@ -32,8 +32,6 @@ public class SkillAttributes implements LevelUser, LevelRestricted {
     private int healthCost = 0;
     private int staminaCost = 0;
     private int damage = 0;
-
-    private LevelRestrictions levelRestrictions = new LevelRestrictions();
     
     public SkillAttributes() {
     }

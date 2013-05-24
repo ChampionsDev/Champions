@@ -181,12 +181,12 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
     }
 
     @Override
-    public HashMap<CClass, CClassAttributes> getLClassInfoMap() {
+    public HashMap<CClass, CClassAttributes> getCClassInfoMap() {
         return lClassInfoMap;
     }
 
     @Override
-    public CClassAttributes getLClassInfo(CClass cClass) {
+    public CClassAttributes getCClassInfo(CClass cClass) {
         if(cClass != null) {
             CClassAttributes cClassMeta = lClassInfoMap.get(cClass);
             if(cClassMeta == null) {
@@ -199,7 +199,7 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
     }
 
     @Override
-    public Race setLClassInfo(CClass cClass, CClassAttributes info) {
+    public Race setCClassInfo(CClass cClass, CClassAttributes info) {
         if(cClass != null) {
             lClassInfoMap.put(cClass, info);
         }

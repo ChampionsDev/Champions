@@ -285,8 +285,8 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
         // Race bonuses
         infoList.add(race.getArmorInfo(currentArmor));
         infoList.add(race.getWeaponInfo(currentWeapon));
-        infoList.add(race.getLClassInfo(primaryClass));
-        infoList.add(race.getLClassInfo(secondaryClass));
+        infoList.add(race.getCClassInfo(primaryClass));
+        infoList.add(race.getCClassInfo(secondaryClass));
         infoList.add(race.getDefaultInfo());
 
         // Player bonuses

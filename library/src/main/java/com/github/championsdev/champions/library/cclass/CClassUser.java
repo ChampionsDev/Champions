@@ -24,7 +24,7 @@ import java.util.HashMap;
  * @author B2OJustin
  */
 public interface CClassUser<SelfType extends CClassUser> extends BasicUser {
-    public HashMap<CClass, CClassAttributes> getLClassInfoMap();
-    public CClassAttributes getLClassInfo(CClass cClass);
-    public SelfType setLClassInfo(CClass cClass, CClassAttributes info);
+    public HashMap<CClass, CClassAttributes> getCClassInfoMap();
+    public CClassAttributes getCClassInfo(CClass cClass);
+    public SelfType setCClassInfo(CClass cClass, CClassAttributes info);
 }
