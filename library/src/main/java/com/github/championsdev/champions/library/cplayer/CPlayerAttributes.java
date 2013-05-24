@@ -16,10 +16,10 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.cplayer;
 
-import com.github.championsdev.champions.library.BasicInfo;
+import com.github.championsdev.champions.library.BasicAttributes;
 
 /**
  * @author B2OJustin
  */
-public class CPlayerInfo extends BasicInfo<CPlayerInfo> {
+public class CPlayerAttributes extends BasicAttributes<CPlayerAttributes> {
 }

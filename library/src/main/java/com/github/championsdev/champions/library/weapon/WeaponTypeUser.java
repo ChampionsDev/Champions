@@ -24,8 +24,8 @@ import java.util.HashMap;
  * @author B2OJustin
  */
 public interface WeaponTypeUser<SelfType extends WeaponTypeUser> extends BasicUser {
-    public HashMap<WeaponType, WeaponInfo> getWeaponTypeInfoMap();
-    public WeaponInfo getWeaponTypeInfo(WeaponType weaponType);
-    public SelfType setWeaponTypeInfo(WeaponType weaponType, WeaponInfo info);
+    public HashMap<WeaponType, WeaponAttributes> getWeaponTypeAttributesMap();
+    public WeaponAttributes getWeaponTypeInfo(WeaponType weaponType);
+    public SelfType setWeaponTypeInfo(WeaponType weaponType, WeaponAttributes info);
 }
 // TODO these interfaces should really be renamed...

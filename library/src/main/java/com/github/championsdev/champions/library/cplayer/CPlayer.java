@@ -17,17 +17,17 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.cplayer;
 
 
-import com.github.championsdev.champions.library.BasicInfo;
+import com.github.championsdev.champions.library.BasicAttributes;
 import com.github.championsdev.champions.library.CEntity;
 import com.github.championsdev.champions.library.CLocation;
 import com.github.championsdev.champions.library.armor.Armor;
-import com.github.championsdev.champions.library.armor.ArmorInfo;
+import com.github.championsdev.champions.library.armor.ArmorAttributes;
 import com.github.championsdev.champions.library.armor.ArmorRestricted;
 import com.github.championsdev.champions.library.armor.ArmorUser;
 import com.github.championsdev.champions.library.behavior.BehaviorGroup;
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.cclass.CClass;
-import com.github.championsdev.champions.library.cclass.CClassInfo;
+import com.github.championsdev.champions.library.cclass.CClassAttributes;
 import com.github.championsdev.champions.library.cclass.CClassRestricted;
 import com.github.championsdev.champions.library.level.Level;
 import com.github.championsdev.champions.library.level.LevelRestricted;
@@ -39,11 +39,11 @@ import com.github.championsdev.champions.library.party.Party;
 import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.race.RaceRestricted;
 import com.github.championsdev.champions.library.skill.Skill;
-import com.github.championsdev.champions.library.skill.SkillInfo;
+import com.github.championsdev.champions.library.skill.SkillAttributes;
 import com.github.championsdev.champions.library.skill.SkillRestricted;
 import com.github.championsdev.champions.library.skill.SkillUser;
 import com.github.championsdev.champions.library.weapon.Weapon;
-import com.github.championsdev.champions.library.weapon.WeaponInfo;
+import com.github.championsdev.champions.library.weapon.WeaponAttributes;
 import com.github.championsdev.champions.library.weapon.WeaponRestricted;
 import com.github.championsdev.champions.library.weapon.WeaponUser;
 
@@ -55,28 +55,28 @@ import java.util.LinkedHashMap;
  * @author B2OJustin
  */
 public class CPlayer implements CEntity, Behavioral<CPlayer>,
-        Informative<CPlayer, CPlayerInfo>,
+        Informative<CPlayer, CPlayerAttributes>,
         WeaponUser<CPlayer>, ArmorUser<CPlayer>, SkillUser<CPlayer>,
         WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, CClassRestricted, RaceRestricted, Positionable {
 
     private Race race = new Race();
 
     private CClass primaryClass;
-    private CClassInfo primaryClassInfo = new CClassInfo();
+    private CClassAttributes primaryClassInfo = new CClassAttributes();
 
     private CClass secondaryClass;
-    private CClassInfo secondaryClassInfo = new CClassInfo();
+    private CClassAttributes secondaryClassInfo = new CClassAttributes();
 
     private String playerName = "";
     private ArrayList<String> description = new ArrayList<>();
-    private CPlayerInfo cPlayerInfo = new CPlayerInfo();
+    private CPlayerAttributes cPlayerMeta = new CPlayerAttributes();
 
     private LinkedHashMap<CClass, Level> previousPrimaryClasses = new LinkedHashMap<>();
     private LinkedHashMap<CClass, Level> previousSecondaryClasses = new LinkedHashMap<>();
 
-    private HashMap<Skill, SkillInfo> skillInfoMap = new HashMap<>();
-    private HashMap<Weapon, WeaponInfo> weaponInfoMap = new HashMap<>();
-    private HashMap<Armor, ArmorInfo> armorInfoMap = new HashMap<>();
+    private HashMap<Skill, SkillAttributes> skillInfoMap = new HashMap<>();
+    private HashMap<Weapon, WeaponAttributes> weaponInfoMap = new HashMap<>();
+    private HashMap<Armor, ArmorAttributes> armorInfoMap = new HashMap<>();
 
     private ArrayList<Skill> currentSkills = new ArrayList<>();
 
@@ -176,11 +176,11 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
         return secondaryClass;
     }
 
-    public CClassInfo getSecondaryClassInfo() {
+    public CClassAttributes getSecondaryClassInfo() {
         return secondaryClassInfo;
     }
 
-    public CClassInfo getPrimaryClassInfo() {
+    public CClassAttributes getPrimaryClassInfo() {
         return primaryClassInfo;
     }
 
@@ -273,7 +273,7 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     }
 
     public CPlayer update() {
-        ArrayList<BasicInfo> infoList = new ArrayList<>();
+        ArrayList<BasicAttributes> infoList = new ArrayList<>();
         // Class bonuses
         infoList.add(primaryClass.getArmorInfo(currentArmor));
         infoList.add(primaryClass.getWeaponInfo(currentWeapon));
@@ -290,18 +290,18 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
         infoList.add(race.getDefaultInfo());
 
         // Player bonuses
-        infoList.add(cPlayerInfo);
+        infoList.add(cPlayerMeta);
         infoList.add(getArmorInfo(currentArmor));
         infoList.add(getWeaponInfo(currentWeapon));
 
-        BasicInfo basicInfo = BasicInfo.combine(infoList);
+        BasicAttributes basicAttributes = BasicAttributes.combine(infoList);
 
-        maxMana = basicInfo.getBonusMana();
-        maxHealth = basicInfo.getBonusHealth();
-        maxStamina = basicInfo.getBonusStamina();
-        weaponDamage = basicInfo.getBonusWeaponDamage();
-        skillDamage = basicInfo.getBonusSkillDamage();
-        defense = basicInfo.getBonusDefense();
+        maxMana = basicAttributes.getBonusMana();
+        maxHealth = basicAttributes.getBonusHealth();
+        maxStamina = basicAttributes.getBonusStamina();
+        weaponDamage = basicAttributes.getBonusWeaponDamage();
+        skillDamage = basicAttributes.getBonusSkillDamage();
+        defense = basicAttributes.getBonusDefense();
 
         return this;
     }
@@ -334,12 +334,12 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     }
 
     @Override
-    public HashMap<Skill, SkillInfo> getSkillInfoMap() {
+    public HashMap<Skill, SkillAttributes> getSkillAttributesMap() {
         return skillInfoMap;
     }
 
     @Override
-    public CPlayer setSkillInfo(Skill skill, SkillInfo info) {
+    public CPlayer setSkillInfo(Skill skill, SkillAttributes info) {
         if(skill != null) {
             skillInfoMap.put(skill, info);
         }
@@ -347,42 +347,42 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     }
 
     @Override
-    public SkillInfo getSkillInfo(Skill skill) {
+    public SkillAttributes getSkillInfo(Skill skill) {
         if (!skillInfoMap.containsKey(skill)) {
-            skillInfoMap.put(skill, new SkillInfo());
+            skillInfoMap.put(skill, new SkillAttributes());
         }
         return skillInfoMap.get(skill);
     }
 
     @Override
-    public HashMap<Weapon, WeaponInfo> getWeaponInfoMap() {
+    public HashMap<Weapon, WeaponAttributes> getWeaponAttributesMap() {
         return weaponInfoMap;
     }
 
     @Override
-    public WeaponInfo getWeaponInfo(Weapon weapon) {
+    public WeaponAttributes getWeaponInfo(Weapon weapon) {
         if(weapon != null) {
-            WeaponInfo weaponInfo = weaponInfoMap.get(weapon);
-            if(weaponInfo == null) {
-                weaponInfo = new WeaponInfo();
-                weaponInfoMap.put(weapon, weaponInfo);
+            WeaponAttributes weaponMeta = weaponInfoMap.get(weapon);
+            if(weaponMeta == null) {
+                weaponMeta = new WeaponAttributes();
+                weaponInfoMap.put(weapon, weaponMeta);
             }
-            return weaponInfo;
+            return weaponMeta;
         }
         return null;
     }
 
-    public WeaponInfo getCurrentWeaponInfo() {
-        WeaponInfo info = weaponInfoMap.get(currentWeapon);
+    public WeaponAttributes getCurrentWeaponInfo() {
+        WeaponAttributes info = weaponInfoMap.get(currentWeapon);
         if(info == null) {
-            info = new WeaponInfo();
+            info = new WeaponAttributes();
             weaponInfoMap.put(currentWeapon, info);
         }
         return info;
     }
 
     @Override
-    public CPlayer setWeaponInfo(Weapon weapon, WeaponInfo info) {
+    public CPlayer setWeaponInfo(Weapon weapon, WeaponAttributes info) {
         if(weapon != null) {
             weaponInfoMap.put(weapon, info);
         }
@@ -390,25 +390,25 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     }
 
     @Override
-    public HashMap<Armor, ArmorInfo> getArmorInfoMap() {
+    public HashMap<Armor, ArmorAttributes> getArmorAttributesMap() {
         return armorInfoMap;
     }
 
     @Override
-    public ArmorInfo getArmorInfo(Armor armor) {
+    public ArmorAttributes getArmorInfo(Armor armor) {
         if(armor != null) {
-            ArmorInfo armorInfo = armorInfoMap.get(armor);
-            if(armorInfo == null) {
-                armorInfo = new ArmorInfo();
-                armorInfoMap.put(armor, armorInfo);
+            ArmorAttributes armorMeta = armorInfoMap.get(armor);
+            if(armorMeta == null) {
+                armorMeta = new ArmorAttributes();
+                armorInfoMap.put(armor, armorMeta);
             }
-            return armorInfo;
+            return armorMeta;
         }
         return null;
     }
 
     @Override
-    public CPlayer setArmorInfo(Armor armor, ArmorInfo info) {
+    public CPlayer setArmorInfo(Armor armor, ArmorAttributes info) {
         if(armor != null) {
             armorInfoMap.put(armor, info);
         }
@@ -438,19 +438,19 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     }
 
     @Override
-    public CPlayerInfo getDefaultInfo() {
-        if (this.cPlayerInfo == null) {
-            cPlayerInfo = new CPlayerInfo();
+    public CPlayerAttributes getDefaultInfo() {
+        if (this.cPlayerMeta == null) {
+            cPlayerMeta = new CPlayerAttributes();
         }
-        return cPlayerInfo;
+        return cPlayerMeta;
     }
 
     @Override
-    public CPlayer setDefaultInfo(CPlayerInfo info) {
+    public CPlayer setDefaultInfo(CPlayerAttributes info) {
         if(info == null) {
-            cPlayerInfo = new CPlayerInfo();
+            cPlayerMeta = new CPlayerAttributes();
         }
-        else cPlayerInfo = info;
+        else cPlayerMeta = info;
         return this;
     }
 

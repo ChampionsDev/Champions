@@ -24,7 +24,7 @@ import java.util.List;
  */
 
 @SuppressWarnings("unchecked")
-public class BasicInfo<SelfType extends BasicInfo> {
+public class BasicAttributes<SelfType extends BasicAttributes> {
     private int bonusWeaponDamage = 0;
     private int bonusMinWeaponDamage = 0;
     private int bonusMaxWeaponDamage = 0;
@@ -36,9 +36,9 @@ public class BasicInfo<SelfType extends BasicInfo> {
     private int bonusMana = 0;
     private int bonusStamina = 0;
 
-    public static BasicInfo combine(List<BasicInfo> infos) {
-        BasicInfo info = new BasicInfo();
-        for (BasicInfo inf : infos) {
+    public static BasicAttributes combine(List<BasicAttributes> infos) {
+        BasicAttributes info = new BasicAttributes();
+        for (BasicAttributes inf : infos) {
             info.addBonusDefense(inf.getBonusDefense());
             info.addBonusSkillDamage(inf.getBonusSkillDamage());
             info.addBonusMana(inf.getBonusMana());
@@ -49,11 +49,11 @@ public class BasicInfo<SelfType extends BasicInfo> {
         return info;
     }
     
-    public static BasicInfo combine(BasicInfo... info) {
+    public static BasicAttributes combine(BasicAttributes... info) {
         return combine(Arrays.asList(info));
     }
     
-    public BasicInfo() {
+    public BasicAttributes() {
     }
 
     public int getBonusDefense() {

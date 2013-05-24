@@ -25,7 +25,7 @@ import java.util.HashMap;
  * @author B2OJustin
  */
 public interface WeaponUser<SelfType extends WeaponUser> extends BasicUser {
-    public HashMap<Weapon, WeaponInfo> getWeaponInfoMap();
-    public WeaponInfo getWeaponInfo(Weapon weapon);
-    public SelfType setWeaponInfo(Weapon weapon, WeaponInfo info);
+    public HashMap<Weapon, WeaponAttributes> getWeaponAttributesMap();
+    public WeaponAttributes getWeaponInfo(Weapon weapon);
+    public SelfType setWeaponInfo(Weapon weapon, WeaponAttributes info);
 }

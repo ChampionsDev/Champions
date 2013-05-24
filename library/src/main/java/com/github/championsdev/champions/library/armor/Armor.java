@@ -28,10 +28,10 @@ import java.util.ArrayList;
  *
  * @author B2OJustin
  */
-public class Armor implements Informative<Armor, ArmorInfo>, Behavioral<Armor> {
+public class Armor implements Informative<Armor, ArmorAttributes>, Behavioral<Armor> {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
-    private ArmorInfo armorInfo = new ArmorInfo();
+    private ArmorAttributes armorMeta = new ArmorAttributes();
     private BehaviorGroup behaviorGroup = new BehaviorGroup();
 
     public Armor() {
@@ -48,13 +48,13 @@ public class Armor implements Informative<Armor, ArmorInfo>, Behavioral<Armor> {
     }
 
     @Override
-    public ArmorInfo getDefaultInfo() {
-        return armorInfo;
+    public ArmorAttributes getDefaultInfo() {
+        return armorMeta;
     }
 
     @Override
-    public Armor setDefaultInfo(ArmorInfo info) {
-        armorInfo = info;
+    public Armor setDefaultInfo(ArmorAttributes info) {
+        armorMeta = info;
         return this;
     }
 

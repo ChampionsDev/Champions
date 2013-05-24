@@ -26,8 +26,8 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class WeaponType implements Informative<WeaponType, WeaponInfo>, Identifiable<WeaponType>, Behavioral<WeaponType> {
-    private WeaponInfo weaponInfo = new WeaponInfo();
+public class WeaponType implements Informative<WeaponType, WeaponAttributes>, Identifiable<WeaponType>, Behavioral<WeaponType> {
+    private WeaponAttributes weaponMeta = new WeaponAttributes();
     private ArrayList<String> description = new ArrayList<>();
     private BehaviorGroup weaponBehaviorGroup = new BehaviorGroup();
     private String name = "";
@@ -67,13 +67,13 @@ public class WeaponType implements Informative<WeaponType, WeaponInfo>, Identifi
     }
 
     @Override
-    public WeaponInfo getDefaultInfo() {
-        return weaponInfo;
+    public WeaponAttributes getDefaultInfo() {
+        return weaponMeta;
     }
 
     @Override
-    public WeaponType setDefaultInfo(WeaponInfo info) {
-        this.weaponInfo = info;
+    public WeaponType setDefaultInfo(WeaponAttributes info) {
+        this.weaponMeta = info;
         return this;
     }
 

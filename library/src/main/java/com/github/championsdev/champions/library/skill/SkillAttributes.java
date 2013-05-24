@@ -25,7 +25,7 @@ import com.github.championsdev.champions.library.level.LevelUser;
 /**
  * @author YoshiGenius
  */
-public class SkillInfo implements LevelUser, LevelRestricted {
+public class SkillAttributes implements LevelUser, LevelRestricted {
     private Level level = new Level(1);
     private int manaCost = 0;
     private int cooldownSeconds = 0;
@@ -35,7 +35,7 @@ public class SkillInfo implements LevelUser, LevelRestricted {
 
     private LevelRestrictions levelRestrictions = new LevelRestrictions();
     
-    public SkillInfo() {
+    public SkillAttributes() {
     }
 
     @Override
@@ -59,27 +59,27 @@ public class SkillInfo implements LevelUser, LevelRestricted {
         return this.staminaCost;
     }
     
-    public SkillInfo setLevel(Level level) {
+    public SkillAttributes setLevel(Level level) {
         this.level = level;
         return this;
     }
     
-    public SkillInfo setManaCost(int manaCost) {
+    public SkillAttributes setManaCost(int manaCost) {
         this.manaCost = manaCost;
         return this;
     }
     
-    public SkillInfo setCooldownSeconds(int cooldownSeconds) {
+    public SkillAttributes setCooldownSeconds(int cooldownSeconds) {
         this.cooldownSeconds = cooldownSeconds;
         return this;
     }
     
-    public SkillInfo setHealthCost(int healthCost) {
+    public SkillAttributes setHealthCost(int healthCost) {
         this.healthCost = healthCost;
         return this;
     }
     
-    public SkillInfo setStaminaCost(int staminaCost) {
+    public SkillAttributes setStaminaCost(int staminaCost) {
         this.staminaCost = staminaCost;
         return this;
     }
@@ -88,7 +88,7 @@ public class SkillInfo implements LevelUser, LevelRestricted {
         return damage;
     }
 
-    public SkillInfo setDamage(int damage) {
+    public SkillAttributes setDamage(int damage) {
         this.damage = damage;
         return this;
     }

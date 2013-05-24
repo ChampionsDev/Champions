@@ -16,7 +16,7 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.database;
 
-import com.github.championsdev.champions.library.BasicInfo;
+import com.github.championsdev.champions.library.BasicAttributes;
 import com.github.championsdev.champions.library.Configuration;
 import com.github.championsdev.champions.library.StatsInfo;
 import com.github.championsdev.champions.library.armor.*;
@@ -405,7 +405,7 @@ public class YAMLDataSource implements DataSource {
         return this;
     }
 
-    protected <T extends BasicInfo> T loadBasicInfo(T basicInfo, String path, YAMLHelper yml) throws ClassCastException {
+    protected <T extends BasicAttributes> T loadBasicInfo(T basicInfo, String path, YAMLHelper yml) throws ClassCastException {
         for(String infoKey : yml.getKeys(path)) {
             switch(infoKey.toLowerCase()) {
                 case "bonus-defense":
@@ -486,8 +486,8 @@ public class YAMLDataSource implements DataSource {
             }
         }
         // Basic bonuses
-        if(stats instanceof BasicInfo) {
-            loadBasicInfo((BasicInfo)stats, "Stats", yml);
+        if(stats instanceof BasicAttributes) {
+            loadBasicInfo((BasicAttributes)stats, "Stats", yml);
         }
         return stats;
     }

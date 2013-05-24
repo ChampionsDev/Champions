@@ -26,13 +26,13 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class Weapon implements Informative<Weapon, WeaponInfo>, Behavioral<Weapon> {
+public class Weapon implements Informative<Weapon, WeaponAttributes>, Behavioral<Weapon> {
     private String name = "";
     private WeaponType type = new WeaponType();
 
     private ArrayList<String> description = new ArrayList<>();
 
-    private WeaponInfo weaponInfo = new WeaponInfo();
+    private WeaponAttributes weaponMeta = new WeaponAttributes();
     private BehaviorGroup behaviorGroup = new BehaviorGroup();
 
     public Weapon() {
@@ -54,13 +54,13 @@ public class Weapon implements Informative<Weapon, WeaponInfo>, Behavioral<Weapo
     }
 
     @Override
-    public WeaponInfo getDefaultInfo() {
-        return weaponInfo;
+    public WeaponAttributes getDefaultInfo() {
+        return weaponMeta;
     }
 
     @Override
-    public Weapon setDefaultInfo(WeaponInfo weaponInfo) {
-        this.weaponInfo = weaponInfo;
+    public Weapon setDefaultInfo(WeaponAttributes weaponMeta) {
+        this.weaponMeta = weaponMeta;
         return this;
     }
 

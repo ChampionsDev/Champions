@@ -24,7 +24,7 @@ import java.util.HashMap;
  * @author B2OJustin
  */
 public interface RaceUser<SelfType extends RaceUser> extends BasicUser {
-    public HashMap<Race, RaceInfo> getRaceInfoMap();
-    public RaceInfo getRaceInfo(Race race);
-    public SelfType setRaceInfo(Race race, RaceInfo info);
+    public HashMap<Race, RaceAttributes> getRaceInfoMap();
+    public RaceAttributes getRaceInfo(Race race);
+    public SelfType setRaceInfo(Race race, RaceAttributes info);
 }

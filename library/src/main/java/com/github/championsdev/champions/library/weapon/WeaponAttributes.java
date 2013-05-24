@@ -14,14 +14,13 @@ This file is part of Champions.
     You should have received a copy of the GNU General Public License
     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.armor;
+package com.github.championsdev.champions.library.weapon;
 
-import com.github.championsdev.champions.library.BasicInfo;
+import com.github.championsdev.champions.library.BasicAttributes;
+import com.github.championsdev.champions.library.level.LevelRestricted;
 
 /**
- * Stores information or bonuses related to Armor
- *
  * @author B2OJustin
  */
-public class ArmorInfo extends BasicInfo<ArmorInfo> {
+public class WeaponAttributes extends BasicAttributes<WeaponAttributes> implements LevelRestricted {
 }

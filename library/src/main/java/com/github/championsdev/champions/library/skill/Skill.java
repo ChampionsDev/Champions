@@ -26,13 +26,13 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class Skill implements Informative<Skill, SkillInfo>, Behavioral<Skill> {
+public class Skill implements Informative<Skill, SkillAttributes>, Behavioral<Skill> {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
 
     private BehaviorGroup behaviorGroup = new BehaviorGroup();
 
-    private SkillInfo skillInfo = new SkillInfo();
+    private SkillAttributes skillAttributes = new SkillAttributes();
 
     public Skill() {
     }
@@ -63,13 +63,13 @@ public class Skill implements Informative<Skill, SkillInfo>, Behavioral<Skill> {
     }
 
     @Override
-    public SkillInfo getDefaultInfo() {
-        return skillInfo;
+    public SkillAttributes getDefaultInfo() {
+        return skillAttributes;
     }
 
     @Override
-    public Skill setDefaultInfo(SkillInfo info) {
-        this.skillInfo = info;
+    public Skill setDefaultInfo(SkillAttributes info) {
+        this.skillAttributes = info;
         return this;
     }
 
