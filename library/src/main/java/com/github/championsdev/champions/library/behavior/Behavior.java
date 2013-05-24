@@ -26,39 +26,22 @@ import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
  * @author B2OJustin
  */
 public abstract class Behavior {
-    public void onQuit(CPlayerQuitEvent event) {
-    }
 
-    public void onDeath(CPlayerDeathEvent event) {
-    }
+    // Player
+    public void onQuit(CPlayerQuitEvent event) {}
+    public void onDeath(CPlayerDeathEvent event) {}
+    public void onPlayerKill(CPlayerKillEvent event) {}
+    public void onMobKill(CPlayerMobKillEvent event) {}
+    public void onJoin(CPlayerJoinEvent event) {}
+    public void onWeaponChange(CPlayerWeaponChangeEvent event) {}
+    public void onLevelUp(CPlayerLevelUpEvent event) {}
+    public void onExpGain(CPlayerExpGainEvent event) {}
 
-    public void onPlayerKill(CPlayerKillEvent event) {
-    }
+    // Skill
+    public void onUse(SkillUseEvent event) {}
 
-    public void onMobKill(CPlayerMobKillEvent event) {
-    }
-
-    public void onJoin(CPlayerJoinEvent event) {
-    }
-
-    public void onWeaponChange(CPlayerWeaponChangeEvent event) {
-    }
-
-    public void onLevelUp(CPlayerLevelUpEvent event) {
-    }
-
-    public void onExpGain(CPlayerExpGainEvent event) {
-    }
-
-    public void onUse(SkillUseEvent event) {
-    }
-
-    public void onClick(WeaponClickEvent event) {
-    }
-
-    public void onHit(WeaponHitEvent event) {
-    }
-
-    public void onSelect(WeaponEvent event) {
-    }
+    // Weapon
+    public void onClick(WeaponClickEvent event) {}
+    public void onHit(WeaponHitEvent event) {}
+    public void onSelect(WeaponEvent event) {}
 }
