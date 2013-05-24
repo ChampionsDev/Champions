@@ -4,6 +4,7 @@
 target/
 dependency-reduced-pom.xml
 version.txt
+Doxyfile
 
 #################
 ## Netbeans    ##
