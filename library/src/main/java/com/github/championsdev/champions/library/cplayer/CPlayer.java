@@ -108,7 +108,6 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
         currentHealth = maxHealth;
         currentMana = maxMana;
         currentStamina = maxStamina;
-        cPlayerBehaviorGroup.attach(BehaviorHandler.getInstance().getDefaultCPlayerBehavior());
     }
 
     public Race getRace() {

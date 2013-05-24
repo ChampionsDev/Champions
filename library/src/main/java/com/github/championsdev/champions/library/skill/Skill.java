@@ -36,7 +36,6 @@ public class Skill implements Informative<Skill, SkillInfo>, Behavioral<Skill> {
     private SkillInfo skillInfo = new SkillInfo();
 
     public Skill() {
-        skillBehaviorGroup.attach(BehaviorHandler.getInstance().getDefaultSkillBehavior());
     }
 
     public Skill(String name, ArrayList<String> description) {

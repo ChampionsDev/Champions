@@ -23,9 +23,6 @@ import com.github.championsdev.champions.library.BasicHandler;
  */
 public class BehaviorHandler extends BasicHandler<Behavior>{
     private static BehaviorHandler instance = new BehaviorHandler();
-    private Behavior defaultCPlayerBehavior = new BasicCPlayerBehavior();
-    private Behavior defaultSkillBehavior = new BasicSkillBehavior();
-    private Behavior defaultWeaponBehavior = new BasicWeaponBehavior();
 
     public static BehaviorHandler getInstance() {
         return instance;
@@ -33,29 +30,5 @@ public class BehaviorHandler extends BasicHandler<Behavior>{
 
     private BehaviorHandler() {
 
-    }
-
-    public Behavior getDefaultCPlayerBehavior() {
-        return defaultCPlayerBehavior;
-    }
-
-    public void setDefaultCPlayerBehavior(Behavior defaultCPlayerBehavior) {
-        this.defaultCPlayerBehavior = defaultCPlayerBehavior;
-    }
-
-    public Behavior getDefaultSkillBehavior() {
-        return defaultSkillBehavior;
-    }
-
-    public void setDefaultSkillBehavior(Behavior defaultSkillBehavior) {
-        this.defaultSkillBehavior = defaultSkillBehavior;
-    }
-
-    public Behavior getDefaultWeaponBehavior() {
-        return defaultWeaponBehavior;
-    }
-
-    public void setDefaultWeaponBehavior(Behavior defaultWeaponBehavior) {
-        this.defaultWeaponBehavior = defaultWeaponBehavior;
     }
 }

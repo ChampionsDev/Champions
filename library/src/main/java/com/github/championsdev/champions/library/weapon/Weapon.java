@@ -37,7 +37,6 @@ public class Weapon implements Informative<Weapon, WeaponInfo>, Behavioral<Weapo
     private BehaviorGroup weaponBehaviorGroup = new BehaviorGroup();
 
     public Weapon() {
-        weaponBehaviorGroup.attach(BehaviorHandler.getInstance().getDefaultWeaponBehavior());
     }
 
     public Weapon(String name, ArrayList<String> description) {
