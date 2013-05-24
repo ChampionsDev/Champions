@@ -21,13 +21,13 @@ package com.github.championsdev.champions.library;
  */
 public class Configuration {
     private String databaseType = "YAML";
-
     //YAML
     private String yamlConfigPath = "";
 
     private String defaultRace = "Default";
     private String defaultPrimaryClass = "Default";
     private String defaultSecondaryClass = "Default";
+    private String expCurve = "L * 200";
 
     public static Configuration instance = new Configuration();
 
@@ -77,5 +77,13 @@ public class Configuration {
 
     public void setYamlConfigPath(String yamlConfigPath) {
         this.yamlConfigPath = yamlConfigPath;
+    }
+
+    public String getExpCurve() {
+        return expCurve;
+    }
+
+    public void setExpCurve(String expCurve) {
+        this.expCurve = expCurve;
     }
 }
