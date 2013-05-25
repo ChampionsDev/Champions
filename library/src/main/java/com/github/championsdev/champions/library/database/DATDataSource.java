@@ -19,6 +19,7 @@ package com.github.championsdev.champions.library.database;
 import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.level.exp.ExpGroup;
+import com.github.championsdev.champions.library.party.Party;
 import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.weapon.Weapon;
@@ -73,6 +74,11 @@ public class DATDataSource implements DataSource {
     @Override
     public WeaponType loadWeaponType(String name) {
         return null; //TODO loadWeaponType method stub
+    }
+
+    @Override
+    public Party loadParty(String name) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

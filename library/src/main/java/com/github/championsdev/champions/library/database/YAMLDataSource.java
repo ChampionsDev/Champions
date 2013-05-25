@@ -28,6 +28,7 @@ import com.github.championsdev.champions.library.level.LevelRestricted;
 import com.github.championsdev.champions.library.level.exp.ExpGroup;
 import com.github.championsdev.champions.library.level.exp.ExpGroupHandler;
 import com.github.championsdev.champions.library.level.exp.sources.*;
+import com.github.championsdev.champions.library.party.Party;
 import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.race.RaceHandler;
 import com.github.championsdev.champions.library.restriction.RestrictionHandler;
@@ -307,6 +308,11 @@ public class YAMLDataSource implements DataSource {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public Party loadParty(String name) {
+        return null;  // TODO
     }
 
     @Override
