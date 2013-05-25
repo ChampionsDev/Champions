@@ -7,6 +7,6 @@ package com.github.championsdev.champions.library.misc;
  */
 public interface Teleportable {
 
-    public void teleport(Positionable one, Positionable two);
+    public void teleport(CLocateable one, CLocateable two);
 
 }

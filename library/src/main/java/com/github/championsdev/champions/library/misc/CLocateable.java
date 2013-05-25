@@ -7,7 +7,7 @@ import com.github.championsdev.champions.library.CLocation;
  * @date 15/05/13
  * @time 8:23 PM
  */
-public interface Positionable {
+public interface CLocateable {
 
     public CLocation getPosition();
 

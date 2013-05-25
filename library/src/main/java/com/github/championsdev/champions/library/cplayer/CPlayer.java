@@ -33,8 +33,8 @@ import com.github.championsdev.champions.library.level.Level;
 import com.github.championsdev.champions.library.level.LevelRestricted;
 import com.github.championsdev.champions.library.level.exp.Exp;
 import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
+import com.github.championsdev.champions.library.misc.CLocateable;
 import com.github.championsdev.champions.library.misc.Informative;
-import com.github.championsdev.champions.library.misc.Positionable;
 import com.github.championsdev.champions.library.party.Party;
 import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.race.RaceRestricted;
@@ -57,7 +57,7 @@ import java.util.LinkedHashMap;
 public class CPlayer implements CEntity, Behavioral<CPlayer>,
         Informative<CPlayer, CPlayerAttributes>,
         WeaponUser<CPlayer>, ArmorUser<CPlayer>, SkillUser<CPlayer>,
-        WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, CClassRestricted, RaceRestricted, Positionable {
+        WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, CClassRestricted, RaceRestricted, CLocateable {
 
     private Race race = new Race();
 
