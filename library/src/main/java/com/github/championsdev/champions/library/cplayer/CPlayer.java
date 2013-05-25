@@ -69,14 +69,16 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
 
     private String playerName = "";
     private ArrayList<String> description = new ArrayList<>();
-    private CPlayerAttributes cPlayerMeta = new CPlayerAttributes();
+
+    private CPlayerAttributes fullAttributes = new CPlayerAttributes();
+    private CPlayerAttributes playerBonusAttributes = new CPlayerAttributes();
 
     private LinkedHashMap<CClass, Level> previousPrimaryClasses = new LinkedHashMap<>();
     private LinkedHashMap<CClass, Level> previousSecondaryClasses = new LinkedHashMap<>();
 
-    private HashMap<Skill, SkillAttributes> skillInfoMap = new HashMap<>();
-    private HashMap<Weapon, WeaponAttributes> weaponInfoMap = new HashMap<>();
-    private HashMap<Armor, ArmorAttributes> armorInfoMap = new HashMap<>();
+    private HashMap<Skill, SkillAttributes> skillAttributesMap = new HashMap<>();
+    private HashMap<Weapon, WeaponAttributes> weaponAttributesMap = new HashMap<>();
+    private HashMap<Armor, ArmorAttributes> armorAttributesMap = new HashMap<>();
 
     private ArrayList<Skill> currentSkills = new ArrayList<>();
 
@@ -102,8 +104,9 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
         this.race = race;
         setPrimaryClass(primaryClass);
         setSecondaryClass(secondaryClass);
-        update();
+        updateAttributes();
         party = new Party(this);
+
         // TODO loading of current health, mana, stamina
         currentHealth = maxHealth;
         currentMana = maxMana;
@@ -141,6 +144,8 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     public CPlayer setPrimaryClass(CClass primaryClass) {
         if(this.primaryClass != null) {
             behaviorGroup.swap(this.primaryClass.getBehavior(), primaryClass.getBehavior());
+            fullAttributes.subtract(this.primaryClass.getAttributes());
+            fullAttributes.add(primaryClass.getAttributes());
         } else {
             behaviorGroup.attach(primaryClass.getBehavior());
         }
@@ -151,6 +156,8 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     public CPlayer setSecondaryClass(CClass secondaryClass) {
         if(this.secondaryClass != null) {
             behaviorGroup.swap(this.secondaryClass.getBehavior(), secondaryClass.getBehavior());
+            fullAttributes.subtract(this.secondaryClass.getAttributes());
+            fullAttributes.add(secondaryClass.getAttributes());
         } else {
             behaviorGroup.attach(secondaryClass.getBehavior());
         }
@@ -176,14 +183,6 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
         return secondaryClass;
     }
 
-    public CClassAttributes getSecondaryClassInfo() {
-        return secondaryClassInfo;
-    }
-
-    public CClassAttributes getPrimaryClassInfo() {
-        return primaryClassInfo;
-    }
-
     // Experience wrapper methods
     public Exp addExp(ExpSource source) {
         Exp pExp = primaryClass.getExpGain(source);
@@ -202,6 +201,20 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     public CPlayer setWeapon(Weapon weapon) {
         if(weapon != null) {
             behaviorGroup.swap(currentWeapon.getBehavior(), weapon.getBehavior());
+
+            fullAttributes.subtract(
+                    currentWeapon.getAttributes(),
+                    race.getWeaponAttributes(currentWeapon),
+                    primaryClass.getWeaponAttributes(currentWeapon),
+                    secondaryClass.getWeaponAttributes(currentWeapon),
+                    getWeaponAttributes(currentWeapon));
+
+            fullAttributes.add(
+                    weapon.getAttributes(),
+                    race.getWeaponAttributes(weapon),
+                    primaryClass.getWeaponAttributes(weapon),
+                    secondaryClass.getWeaponAttributes(weapon),
+                    getWeaponAttributes(weapon));
             currentWeapon = weapon;
         }
         return this;
@@ -210,6 +223,20 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     public CPlayer setArmor(Armor armor) {
         if(armor != null) {
             behaviorGroup.swap(currentArmor.getBehavior(), armor.getBehavior());
+
+            fullAttributes.subtract(
+                    currentArmor.getAttributes(),
+                    race.getArmorAttributes(currentArmor),
+                    primaryClass.getArmorAttributes(currentArmor),
+                    secondaryClass.getArmorAttributes(currentArmor),
+                    getArmorAttributes(currentArmor));
+
+            fullAttributes.add(
+                    currentArmor.getAttributes(),
+                    race.getArmorAttributes(armor),
+                    primaryClass.getArmorAttributes(armor),
+                    secondaryClass.getArmorAttributes(armor),
+                    getArmorAttributes(armor));
             currentArmor = armor;
         }
         return this;
@@ -272,37 +299,35 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
         return defense;
     }
 
-    public CPlayer update() {
-        ArrayList<BasicAttributes> infoList = new ArrayList<>();
-        // Class bonuses
-        infoList.add(primaryClass.getArmorInfo(currentArmor));
-        infoList.add(primaryClass.getWeaponInfo(currentWeapon));
-        infoList.add(secondaryClass.getArmorInfo(currentArmor));
-        infoList.add(secondaryClass.getWeaponInfo(currentWeapon));
-        infoList.add(primaryClass.getDefaultInfo());
-        infoList.add(secondaryClass.getDefaultInfo());
+    public CPlayer updateAttributes() {
+        BasicAttributes[] attrArray = new BasicAttributes[] {
+            // Class bonuses
+            primaryClass.getArmorAttributes(currentArmor),
+            primaryClass.getWeaponAttributes(currentWeapon),
+            secondaryClass.getArmorAttributes(currentArmor),
+            secondaryClass.getWeaponAttributes(currentWeapon),
+            primaryClass.getAttributes(),
+            secondaryClass.getAttributes(),
 
-        // Race bonuses
-        infoList.add(race.getArmorInfo(currentArmor));
-        infoList.add(race.getWeaponInfo(currentWeapon));
-        infoList.add(race.getCClassInfo(primaryClass));
-        infoList.add(race.getCClassInfo(secondaryClass));
-        infoList.add(race.getDefaultInfo());
+            // Race bonuses
+            race.getArmorAttributes(currentArmor),
+            race.getWeaponAttributes(currentWeapon),
+            race.getCClassAttributes(primaryClass),
+            race.getCClassAttributes(secondaryClass),
+            race.getAttributes(),
 
-        // Player bonuses
-        infoList.add(cPlayerMeta);
-        infoList.add(getArmorInfo(currentArmor));
-        infoList.add(getWeaponInfo(currentWeapon));
+            // Player bonuses
+                playerBonusAttributes,
+            getArmorAttributes(currentArmor),
+            getWeaponAttributes(currentWeapon),
 
-        BasicAttributes basicAttributes = BasicAttributes.combine(infoList);
+            // Weapon bonuses
+            currentWeapon.getAttributes(),
+            currentArmor.getAttributes()
+        };
 
-        maxMana = basicAttributes.getBonusMana();
-        maxHealth = basicAttributes.getBonusHealth();
-        maxStamina = basicAttributes.getBonusStamina();
-        weaponDamage = basicAttributes.getBonusWeaponDamage();
-        skillDamage = basicAttributes.getBonusSkillDamage();
-        defense = basicAttributes.getBonusDefense();
-
+        fullAttributes = new CPlayerAttributes();
+        fullAttributes.add(attrArray);
         return this;
     }
 
@@ -311,7 +336,7 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     }
 
     public int getSkillDamage(Skill skill) {
-        return (skillDamage + skillInfoMap.get(skill).getDamage());
+        return (skillDamage + skillAttributesMap.get(skill).getDamage());
     }
 
     @Override
@@ -335,37 +360,37 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
 
     @Override
     public HashMap<Skill, SkillAttributes> getSkillAttributesMap() {
-        return skillInfoMap;
+        return skillAttributesMap;
     }
 
     @Override
-    public CPlayer setSkillInfo(Skill skill, SkillAttributes info) {
+    public CPlayer setSkillAttributes(Skill skill, SkillAttributes info) {
         if(skill != null) {
-            skillInfoMap.put(skill, info);
+            skillAttributesMap.put(skill, info);
         }
         return this;
     }
 
     @Override
-    public SkillAttributes getSkillInfo(Skill skill) {
-        if (!skillInfoMap.containsKey(skill)) {
-            skillInfoMap.put(skill, new SkillAttributes());
+    public SkillAttributes getSkillAttributes(Skill skill) {
+        if (!skillAttributesMap.containsKey(skill)) {
+            skillAttributesMap.put(skill, new SkillAttributes());
         }
-        return skillInfoMap.get(skill);
+        return skillAttributesMap.get(skill);
     }
 
     @Override
     public HashMap<Weapon, WeaponAttributes> getWeaponAttributesMap() {
-        return weaponInfoMap;
+        return weaponAttributesMap;
     }
 
     @Override
-    public WeaponAttributes getWeaponInfo(Weapon weapon) {
+    public WeaponAttributes getWeaponAttributes(Weapon weapon) {
         if(weapon != null) {
-            WeaponAttributes weaponMeta = weaponInfoMap.get(weapon);
+            WeaponAttributes weaponMeta = weaponAttributesMap.get(weapon);
             if(weaponMeta == null) {
                 weaponMeta = new WeaponAttributes();
-                weaponInfoMap.put(weapon, weaponMeta);
+                weaponAttributesMap.put(weapon, weaponMeta);
             }
             return weaponMeta;
         }
@@ -373,34 +398,34 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     }
 
     public WeaponAttributes getCurrentWeaponInfo() {
-        WeaponAttributes info = weaponInfoMap.get(currentWeapon);
+        WeaponAttributes info = weaponAttributesMap.get(currentWeapon);
         if(info == null) {
             info = new WeaponAttributes();
-            weaponInfoMap.put(currentWeapon, info);
+            weaponAttributesMap.put(currentWeapon, info);
         }
         return info;
     }
 
     @Override
-    public CPlayer setWeaponInfo(Weapon weapon, WeaponAttributes info) {
+    public CPlayer setWeaponAttributes(Weapon weapon, WeaponAttributes attributes) {
         if(weapon != null) {
-            weaponInfoMap.put(weapon, info);
+            weaponAttributesMap.put(weapon, attributes);
         }
         return this;
     }
 
     @Override
     public HashMap<Armor, ArmorAttributes> getArmorAttributesMap() {
-        return armorInfoMap;
+        return armorAttributesMap;
     }
 
     @Override
-    public ArmorAttributes getArmorInfo(Armor armor) {
+    public ArmorAttributes getArmorAttributes(Armor armor) {
         if(armor != null) {
-            ArmorAttributes armorMeta = armorInfoMap.get(armor);
+            ArmorAttributes armorMeta = armorAttributesMap.get(armor);
             if(armorMeta == null) {
                 armorMeta = new ArmorAttributes();
-                armorInfoMap.put(armor, armorMeta);
+                armorAttributesMap.put(armor, armorMeta);
             }
             return armorMeta;
         }
@@ -410,7 +435,7 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     @Override
     public CPlayer setArmorInfo(Armor armor, ArmorAttributes info) {
         if(armor != null) {
-            armorInfoMap.put(armor, info);
+            armorAttributesMap.put(armor, info);
         }
         return this;
     }
@@ -438,19 +463,27 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     }
 
     @Override
-    public CPlayerAttributes getDefaultInfo() {
-        if (this.cPlayerMeta == null) {
-            cPlayerMeta = new CPlayerAttributes();
-        }
-        return cPlayerMeta;
+    public CPlayerAttributes getAttributes() {
+        return fullAttributes;
+    }
+
+    public CPlayerAttributes getBonusAttributes() {
+        return playerBonusAttributes.clone();
+    }
+
+    public CPlayer setBonusAttributes(CPlayerAttributes playerBonusAttributes) {
+        fullAttributes.subtract(this.playerBonusAttributes);
+        fullAttributes.add(playerBonusAttributes);
+        this.playerBonusAttributes = playerBonusAttributes;
+        return this;
     }
 
     @Override
-    public CPlayer setDefaultInfo(CPlayerAttributes info) {
-        if(info == null) {
-            cPlayerMeta = new CPlayerAttributes();
+    public CPlayer setAttributes(CPlayerAttributes attributes) {
+        if(attributes == null) {
+            fullAttributes = new CPlayerAttributes();
         }
-        else cPlayerMeta = info;
+        else fullAttributes = attributes;
         return this;
     }
 
@@ -473,5 +506,13 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     public CPlayer setBehavior(BehaviorGroup behavior) {
         behaviorGroup = behavior;
         return this;
+    }
+
+    public CClassAttributes getPrimaryClassAttributes() {
+        return primaryClassInfo;
+    }
+
+    public CClassAttributes getSecondaryClassAttributes() {
+        return secondaryClassInfo;
     }
 }

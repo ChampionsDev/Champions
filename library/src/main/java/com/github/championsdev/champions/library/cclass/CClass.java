@@ -103,13 +103,13 @@ public class CClass implements Informative<CClass, CClassAttributes>, Identifiab
     }
 
     @Override
-    public CClassAttributes getDefaultInfo() {
+    public CClassAttributes getAttributes() {
         return cClassMeta;
     }
 
     @Override
-    public CClass setDefaultInfo(CClassAttributes info) {
-        cClassMeta = info;
+    public CClass setAttributes(CClassAttributes attributes) {
+        cClassMeta = attributes;
         return this;
     }
 
@@ -119,7 +119,7 @@ public class CClass implements Informative<CClass, CClassAttributes>, Identifiab
     }
 
     @Override
-    public ArmorAttributes getArmorInfo(Armor armor) {
+    public ArmorAttributes getArmorAttributes(Armor armor) {
         if(armor != null) {
             ArmorAttributes armorMeta = armorAttributesMap.get(armor);
             if(armorMeta == null) {
@@ -164,7 +164,7 @@ public class CClass implements Informative<CClass, CClassAttributes>, Identifiab
     }
 
     @Override
-    public SkillAttributes getSkillInfo(Skill skill) {
+    public SkillAttributes getSkillAttributes(Skill skill) {
         if(skill != null) {
             SkillAttributes skillAttributes = skillAttributesMap.get(skill);
             if(skillAttributes == null) {
@@ -177,7 +177,7 @@ public class CClass implements Informative<CClass, CClassAttributes>, Identifiab
     }
 
     @Override
-    public CClass setSkillInfo(Skill skill, SkillAttributes info) {
+    public CClass setSkillAttributes(Skill skill, SkillAttributes info) {
         if(skill != null) {
             skillAttributesMap.put(skill, info);
         }
@@ -190,7 +190,7 @@ public class CClass implements Informative<CClass, CClassAttributes>, Identifiab
     }
 
     @Override
-    public WeaponAttributes getWeaponInfo(Weapon weapon) {
+    public WeaponAttributes getWeaponAttributes(Weapon weapon) {
         if(weapon != null) {
             WeaponAttributes weaponMeta = weaponAttributesMap.get(weapon);
             if(weaponMeta == null) {
@@ -203,9 +203,9 @@ public class CClass implements Informative<CClass, CClassAttributes>, Identifiab
     }
 
     @Override
-    public CClass setWeaponInfo(Weapon weapon, WeaponAttributes info) {
+    public CClass setWeaponAttributes(Weapon weapon, WeaponAttributes attributes) {
         if(weapon != null) {
-            weaponAttributesMap.put(weapon, info);
+            weaponAttributesMap.put(weapon, attributes);
         }
         return this;
     }

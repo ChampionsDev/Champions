@@ -92,10 +92,10 @@ public class YAMLDataSource implements DataSource {
             );
             lPlayer.setName(name);
             lPlayer.setDescription(yamlHelper.getStringList("description"));
-            lPlayer.getPrimaryClassInfo().getLevel().setLevel(yamlHelper.getInt("primary-class-level"));
-            lPlayer.getPrimaryClassInfo().getLevel().setExp(yamlHelper.getDouble("primary-class-exp"));
-            lPlayer.getSecondaryClassInfo().getLevel().setLevel(yamlHelper.getInt("secondary-class-level"));
-            lPlayer.getSecondaryClassInfo().getLevel().setExp(yamlHelper.getDouble("secondary-class-exp"));
+            lPlayer.getPrimaryClassAttributes().getLevel().setLevel(yamlHelper.getInt("primary-class-level"));
+            lPlayer.getPrimaryClassAttributes().getLevel().setExp(yamlHelper.getDouble("primary-class-exp"));
+            lPlayer.getSecondaryClassAttributes().getLevel().setLevel(yamlHelper.getInt("secondary-class-level"));
+            lPlayer.getSecondaryClassAttributes().getLevel().setExp(yamlHelper.getDouble("secondary-class-exp"));
 
             for(Map.Entry<String, Integer> entry : yamlHelper.getIntMap("previous-primary-class").entrySet()) {
                 lPlayer.addPreviousPrimaryClass(CClassHandler.getInstance().load(entry.getKey()), new Level(entry.getValue()));
@@ -121,11 +121,11 @@ public class YAMLDataSource implements DataSource {
         playerMap.put("description", lPlayer.getDescription());
         playerMap.put("race", lPlayer.getRace().getId());
         playerMap.put("primary-class", lPlayer.getPrimaryClass().getId());
-        playerMap.put("primary-class-level", lPlayer.getPrimaryClassInfo().getLevel().getLevel());
-        playerMap.put("primary-class-exp", lPlayer.getPrimaryClassInfo().getLevel().getExp());
+        playerMap.put("primary-class-level", lPlayer.getPrimaryClassAttributes().getLevel().getLevel());
+        playerMap.put("primary-class-exp", lPlayer.getPrimaryClassAttributes().getLevel().getExp());
         playerMap.put("secondary-class", lPlayer.getSecondaryClass().getId());
-        playerMap.put("secondary-class-level", lPlayer.getSecondaryClassInfo().getLevel().getLevel());
-        playerMap.put("secondary-class-exp", lPlayer.getSecondaryClassInfo().getLevel().getExp());
+        playerMap.put("secondary-class-level", lPlayer.getSecondaryClassAttributes().getLevel().getLevel());
+        playerMap.put("secondary-class-exp", lPlayer.getSecondaryClassAttributes().getLevel().getExp());
 
         // Previous primary classes
         LinkedHashMap<String, Integer> previousPrimaryClasses = new LinkedHashMap<>();
@@ -189,7 +189,7 @@ public class YAMLDataSource implements DataSource {
                         RestrictionHandler.getInstance().setClassRestrictions(race, loadClassRestrictions(race, yml));
                         break;
                     case "Stats":
-                        loadStats(race.getDefaultInfo(), yml);
+                        loadStats(race.getAttributes(), yml);
                 }
             }
 
@@ -235,7 +235,7 @@ public class YAMLDataSource implements DataSource {
                         RestrictionHandler.getInstance().setArmorRestrictions(cClass, loadArmorRestrictions(cClass, yml));
                         break;
                     case "Stats":
-                        loadStats(cClass.getDefaultInfo(), yml);
+                        loadStats(cClass.getAttributes(), yml);
                         break;
                     case "Levels":
                         loadLevels(cClass, yml);
@@ -267,7 +267,7 @@ public class YAMLDataSource implements DataSource {
         try {
             Weapon weapon = new Weapon();
             YAMLHelper yml = new YAMLHelper(filePath);
-            loadBasicInfo(weapon.getDefaultInfo(), "", yml);
+            loadBasicInfo(weapon.getAttributes(), "", yml);
             for(String key : yml.getKeys("")) {
                 switch(key.toLowerCase()) {
                     case "name":
@@ -291,7 +291,7 @@ public class YAMLDataSource implements DataSource {
         try {
             WeaponType weaponType = new WeaponType();
             YAMLHelper yml = new YAMLHelper(filePath);
-            loadBasicInfo(weaponType.getDefaultInfo(), "", yml);
+            loadBasicInfo(weaponType.getAttributes(), "", yml);
             for(String key : yml.getKeys("")) {
                 switch(key.toLowerCase()) {
                     case "name":
@@ -410,11 +410,11 @@ public class YAMLDataSource implements DataSource {
             switch(infoKey.toLowerCase()) {
                 case "bonus-defense":
                     int bonusDefense = yml.getInt(path + ".bonus-defense");
-                    basicInfo.addBonusDefense(bonusDefense);
+                    basicInfo.addDefense(bonusDefense);
                     break;
                 case "bonus-weapon-damage":
                     int bonusDamage = yml.getInt(path + ".bonus-weapon-damage");
-                    basicInfo.addBonusWeaponDamage(bonusDamage);
+                    basicInfo.addWeaponDamage(bonusDamage);
                     break;
                 case "bonus-minimum-weapon-damage":
                     int bonusMin = yml.getInt(path + ".bonus-minimum-weapon-damage");
@@ -426,7 +426,7 @@ public class YAMLDataSource implements DataSource {
                     break;
                 case "bonus-skill-damage":
                     int skillBonusDamage = yml.getInt(path + ".bonus-skill-damage");
-                    basicInfo.addBonusSkillDamage(skillBonusDamage);
+                    basicInfo.addSkillDamage(skillBonusDamage);
                     break;
                 case "bonus-minimum-skill-damage":
                     int skillBonusMinDamage = yml.getInt(path + ".bonus-minimum-skill-damage");
@@ -438,15 +438,15 @@ public class YAMLDataSource implements DataSource {
                     break;
                 case "bonus-stamina":
                     int bonusStamina = yml.getInt(path + ".bonus-stamina");
-                    basicInfo.addBonusStamina(bonusStamina);
+                    basicInfo.addStamina(bonusStamina);
                     break;
                 case "bonus-health":
                     int bonusHealth = yml.getInt(path + ".bonus-health");
-                    basicInfo.addBonusHealth(bonusHealth);
+                    basicInfo.addHealth(bonusHealth);
                     break;
                 case "bonus-mana":
                     int bonusMana = yml.getInt(path + ".bonus-mana");
-                    basicInfo.addBonusMana(bonusMana);
+                    basicInfo.addMana(bonusMana);
                     break;
 
                 // Level restricted
@@ -512,13 +512,13 @@ public class YAMLDataSource implements DataSource {
                 case "max-level":
                     // Sets mastery level to max level if necessary
                     int maxLevel = yml.getInt("Levels.max-level");
-                    cClass.getDefaultInfo().setMaxLevel(new Level(maxLevel));
-                    if(cClass.getDefaultInfo().getMasteryLevel().equals(new Level(0))) {
-                        cClass.getDefaultInfo().setMasteryLevel(new Level(maxLevel));
+                    cClass.getAttributes().setMaxLevel(new Level(maxLevel));
+                    if(cClass.getAttributes().getMasteryLevel().equals(new Level(0))) {
+                        cClass.getAttributes().setMasteryLevel(new Level(maxLevel));
                     }
                     break;
                 case "mastery-level":
-                    cClass.getDefaultInfo().setMasteryLevel(new Level(yml.getInt("Levels.mastery-level")));
+                    cClass.getAttributes().setMasteryLevel(new Level(yml.getInt("Levels.mastery-level")));
                     break;
                 case "experience-curve":
                     //TODO experience curve implementation
@@ -545,7 +545,7 @@ public class YAMLDataSource implements DataSource {
                         Weapon weapon = WeaponHandler.getInstance().load(wepID);
                         weaponRestrictions.setAllowed(weapon, true);
                         if(restricted instanceof WeaponUser) {
-                            loadBasicInfo(((WeaponUser)restricted).getWeaponInfo(weapon), String.format("Weapons.permitted-weapon.%s", wepID), yml);
+                            loadBasicInfo(((WeaponUser)restricted).getWeaponAttributes(weapon), String.format("Weapons.permitted-weapon.%s", wepID), yml);
                         }
                     }
                     break;
@@ -600,7 +600,7 @@ public class YAMLDataSource implements DataSource {
                         if(armor != null) {
                             restrictions.setAllowed(armor, true);
                             if(restricted instanceof ArmorUser) {
-                                loadBasicInfo(((ArmorUser)restricted).getArmorInfo(armor), String.format("Armor.permitted-armor.%s", armorID), yml);
+                                loadBasicInfo(((ArmorUser)restricted).getArmorAttributes(armor), String.format("Armor.permitted-armor.%s", armorID), yml);
                             }
                         }
                     }
@@ -631,7 +631,7 @@ public class YAMLDataSource implements DataSource {
                         if(cClass != null) {
                             restrictions.setAllowed(cClass, true);
                             if(restricted instanceof CClassUser) {
-                                loadBasicInfo(((CClassUser)restricted).getCClassInfo(cClass), String.format("Class.permitted-class.%s", classID), yml);
+                                loadBasicInfo(((CClassUser)restricted).getCClassAttributes(cClass), String.format("Class.permitted-class.%s", classID), yml);
                             }
                         }
                     }

@@ -25,26 +25,26 @@ import java.util.List;
 
 @SuppressWarnings("unchecked")
 public class BasicAttributes<SelfType extends BasicAttributes> {
-    private int bonusWeaponDamage = 0;
-    private int bonusMinWeaponDamage = 0;
-    private int bonusMaxWeaponDamage = 0;
-    private int bonusSkillDamage = 0;
-    private int bonusMinSkillDamage = 0;
-    private int bonusMaxSkillDamage = 0;
-    private int bonusDefense = 0;
-    private int bonusHealth = 0;
-    private int bonusMana = 0;
-    private int bonusStamina = 0;
+    private int weaponDamage = 0;
+    private int minWeaponDamage = 0;
+    private int maxWeaponDamage = 0;
+    private int skillDamage = 0;
+    private int minSkillDamage = 0;
+    private int maxSkillDamage = 0;
+    private int defense = 0;
+    private int health = 0;
+    private int mana = 0;
+    private int stamina = 0;
 
     public static BasicAttributes combine(List<BasicAttributes> infos) {
         BasicAttributes info = new BasicAttributes();
         for (BasicAttributes inf : infos) {
-            info.addBonusDefense(inf.getBonusDefense());
-            info.addBonusSkillDamage(inf.getBonusSkillDamage());
-            info.addBonusMana(inf.getBonusMana());
-            info.addBonusHealth(inf.getBonusHealth());
-            info.addBonusWeaponDamage(inf.getBonusWeaponDamage());
-            info.addBonusStamina(inf.getBonusStamina());
+            info.addDefense(inf.getDefense());
+            info.addSkillDamage(inf.getSkillDamage());
+            info.addMana(inf.getMana());
+            info.addHealth(inf.getHealth());
+            info.addWeaponDamage(inf.getWeaponDamage());
+            info.addStamina(inf.getStamina());
         }
         return info;
     }
@@ -52,146 +52,188 @@ public class BasicAttributes<SelfType extends BasicAttributes> {
     public static BasicAttributes combine(BasicAttributes... info) {
         return combine(Arrays.asList(info));
     }
+
+    public void add(BasicAttributes... attributesArray) {
+        for(BasicAttributes attributes : attributesArray) {
+            weaponDamage += attributes.weaponDamage;
+            minWeaponDamage += attributes.minWeaponDamage;
+            maxWeaponDamage += attributes.maxWeaponDamage;
+            skillDamage += attributes.skillDamage;
+            minSkillDamage += attributes.minSkillDamage;
+            maxSkillDamage += attributes.maxSkillDamage;
+            defense += attributes.defense;
+            mana += attributes.mana;
+            stamina += attributes.stamina;
+        }
+    }
+
+    public void subtract(BasicAttributes... attributesArray) {
+        for(BasicAttributes attributes : attributesArray) {
+            weaponDamage -= attributes.weaponDamage;
+            minWeaponDamage -= attributes.minWeaponDamage;
+            maxWeaponDamage -= attributes.maxWeaponDamage;
+            skillDamage -= attributes.skillDamage;
+            minSkillDamage -= attributes.minSkillDamage;
+            maxSkillDamage -= attributes.maxSkillDamage;
+            defense -= attributes.defense;
+            mana -= attributes.mana;
+            stamina -= attributes.stamina;
+        }
+    }
     
     public BasicAttributes() {
     }
 
-    public int getBonusDefense() {
-        return bonusDefense;
+    public SelfType clone() {
+        BasicAttributes attributes = new BasicAttributes();
+        attributes.weaponDamage = this.weaponDamage;
+        attributes.minWeaponDamage = this.minWeaponDamage;
+        attributes.maxWeaponDamage = this.maxWeaponDamage;
+        attributes.skillDamage = this.skillDamage;
+        attributes.minSkillDamage = this.minSkillDamage;
+        attributes.maxSkillDamage = this.maxSkillDamage;
+        attributes.defense = this.defense;
+        attributes.mana = this.mana;
+        attributes.stamina = this.stamina;
+        return (SelfType) attributes;
     }
 
-    public SelfType addBonusDefense(int bonusDefense) {
-        this.bonusDefense += bonusDefense;
+    public int getDefense() {
+        return defense;
+    }
+
+    public SelfType addDefense(int bonusDefense) {
+        this.defense += bonusDefense;
         return (SelfType) this;
     }
 
-    public SelfType setBonusDefense(int bonusDefense) {
-        this.bonusDefense = bonusDefense;
+    public SelfType setDefense(int defense) {
+        this.defense = defense;
         return (SelfType) this;
     }
 
-    public int getBonusWeaponDamage() {
-        return bonusWeaponDamage;
+    public int getWeaponDamage() {
+        return weaponDamage;
     }
 
-    public SelfType addBonusWeaponDamage(int bonusDamage) {
-        this.bonusWeaponDamage += bonusDamage;
+    public SelfType addWeaponDamage(int bonusDamage) {
+        this.weaponDamage += bonusDamage;
         return (SelfType) this;
     }
 
-    public int getBonusSkillDamage() {
-        return bonusSkillDamage;
+    public int getSkillDamage() {
+        return skillDamage;
     }
 
-    public SelfType setBonusSkillDamage(int bonusDamage) {
-        bonusSkillDamage = bonusDamage;
+    public SelfType setSkillDamage(int bonusDamage) {
+        skillDamage = bonusDamage;
         return (SelfType) this;
     }
 
-    public SelfType addBonusSkillDamage(int bonusDamage) {
-        bonusSkillDamage += bonusDamage;
+    public SelfType addSkillDamage(int bonusDamage) {
+        skillDamage += bonusDamage;
         return (SelfType) this;
     }
 
-    public void setBonusWeaponDamage(int bonusWeaponDamage) {
-        this.bonusWeaponDamage = bonusWeaponDamage;
+    public void setWeaponDamage(int weaponDamage) {
+        this.weaponDamage = weaponDamage;
     }
 
-    public int getBonusHealth() {
-        return bonusHealth;
+    public int getHealth() {
+        return health;
     }
     
-    public SelfType addBonusHealth(int bonusHealth) {
-        this.bonusHealth += bonusHealth;
+    public SelfType addHealth(int bonusHealth) {
+        this.health += bonusHealth;
         return (SelfType) this;
     }
 
-    public SelfType setBonusHealth(int bonusHealth) {
-        this.bonusHealth = bonusHealth;
+    public SelfType setHealth(int health) {
+        this.health = health;
         return (SelfType) this;
     }
 
-    public int getBonusMana() {
-        return bonusMana;
+    public int getMana() {
+        return mana;
     }
     
-    public SelfType addBonusMana(int bonusMana) {
-        this.bonusMana += bonusMana;
+    public SelfType addMana(int bonusMana) {
+        this.mana += bonusMana;
         return (SelfType) this;
     }
 
-    public SelfType setBonusMana(int bonusMana) {
-        this.bonusMana = bonusMana;
+    public SelfType setMana(int mana) {
+        this.mana = mana;
         return (SelfType) this;
     }
 
-    public SelfType addBonusStamina(int bonusStamina) {
-        this.bonusStamina += bonusStamina;
+    public SelfType addStamina(int bonusStamina) {
+        this.stamina += bonusStamina;
         return (SelfType) this;
     }
 
-    public SelfType setBonusStamina(int bonusStamina) {
-        this.bonusStamina = bonusStamina;
+    public SelfType setStamina(int stamina) {
+        this.stamina = stamina;
         return (SelfType) this;
     }
 
-    public int getBonusStamina() {
-        return bonusStamina;
+    public int getStamina() {
+        return stamina;
     }
 
-    public int getBonusMinWeaponDamage() {
-        return bonusMinWeaponDamage;
+    public int getMinWeaponDamage() {
+        return minWeaponDamage;
     }
 
-    public SelfType setBonusMinWeaponDamage(int bonusMinWeaponDamage) {
-        this.bonusMinWeaponDamage = bonusMinWeaponDamage;
+    public SelfType setMinWeaponDamage(int minWeaponDamage) {
+        this.minWeaponDamage = minWeaponDamage;
         return (SelfType) this;
     }
 
     public SelfType addBonusMinWeaponDamage(int bonusMinWeaponDamage) {
-        this.bonusMinWeaponDamage += bonusMinWeaponDamage;
+        this.minWeaponDamage += bonusMinWeaponDamage;
         return (SelfType) this;
     }
 
-    public int getBonusMaxWeaponDamage() {
-        return bonusMaxWeaponDamage;
+    public int getMaxWeaponDamage() {
+        return maxWeaponDamage;
     }
 
-    public SelfType setBonusMaxWeaponDamage(int bonusMaxWeaponDamage) {
-        this.bonusMaxWeaponDamage = bonusMaxWeaponDamage;
+    public SelfType setMaxWeaponDamage(int maxWeaponDamage) {
+        this.maxWeaponDamage = maxWeaponDamage;
         return (SelfType) this;
     }
 
     public SelfType addBonusMaxWeaponDamage(int bonusMaxWeaponDamage) {
-        this.bonusMaxWeaponDamage += bonusMaxWeaponDamage;
+        this.maxWeaponDamage += bonusMaxWeaponDamage;
         return (SelfType) this;
     }
 
-    public int getBonusMinSkillDamage() {
-        return bonusMinSkillDamage;
+    public int getMinSkillDamage() {
+        return minSkillDamage;
     }
 
-    public SelfType setBonusMinSkillDamage(int bonusMinSkillDamage) {
-        this.bonusMinSkillDamage = bonusMinSkillDamage;
+    public SelfType setMinSkillDamage(int minSkillDamage) {
+        this.minSkillDamage = minSkillDamage;
         return (SelfType) this;
     }
 
     public SelfType addBonusMinSkillDamage(int bonusMinSkillDamage) {
-        this.bonusMinSkillDamage += bonusMinSkillDamage;
+        this.minSkillDamage += bonusMinSkillDamage;
         return (SelfType) this;
     }
 
-    public int getBonusMaxSkillDamage() {
-        return bonusMaxSkillDamage;
+    public int getMaxSkillDamage() {
+        return maxSkillDamage;
     }
 
-    public SelfType setBonusMaxSkillDamage(int bonusMaxSkillDamage) {
-        this.bonusMaxSkillDamage = bonusMaxSkillDamage;
+    public SelfType setMaxSkillDamage(int maxSkillDamage) {
+        this.maxSkillDamage = maxSkillDamage;
         return (SelfType) this;
     }
 
     public SelfType addBonusMaxSkillDamage(int bonusMaxSkillDamage) {
-        this.bonusMaxSkillDamage += bonusMaxSkillDamage;
+        this.maxSkillDamage += bonusMaxSkillDamage;
         return (SelfType) this;
     }
 }

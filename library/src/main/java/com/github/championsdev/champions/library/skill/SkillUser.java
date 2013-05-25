@@ -29,6 +29,6 @@ public interface SkillUser<SelfType extends SkillUser> extends BasicUser {
     public SelfType addSkill(Skill skill);
     public SelfType removeSkill(Skill skill);
     public HashMap<Skill, SkillAttributes> getSkillAttributesMap();
-    public SkillAttributes getSkillInfo(Skill skill);
-    public SelfType setSkillInfo(Skill skill, SkillAttributes info);
+    public SkillAttributes getSkillAttributes(Skill skill);
+    public SelfType setSkillAttributes(Skill skill, SkillAttributes info);
 }

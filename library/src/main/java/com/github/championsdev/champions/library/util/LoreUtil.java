@@ -33,13 +33,13 @@ public class LoreUtil {
                     // adds min & max damage
                     try {
                         int added = Integer.parseInt(dmg.replace("+", ""));
-                        weapon.getDefaultInfo().addBonusMinWeaponDamage(added).addBonusMaxWeaponDamage(added);
+                        weapon.getAttributes().addBonusMinWeaponDamage(added).addBonusMaxWeaponDamage(added);
                     } catch (NumberFormatException ex) {}
                 } else if (dmg.startsWith("-")) {
                     // subtracts min & max damage
                     try {
                         int added = Integer.parseInt(dmg.replace("-", ""));
-                        weapon.getDefaultInfo().addBonusMinWeaponDamage(added).addBonusMaxWeaponDamage(added);
+                        weapon.getAttributes().addBonusMinWeaponDamage(added).addBonusMaxWeaponDamage(added);
                     } catch (NumberFormatException ex) {}
                 } else {
                     // X-Y damage
@@ -56,12 +56,12 @@ public class LoreUtil {
                 if (dmg.contains("+")) {
                     try {
                         int added = Integer.parseInt(dmg.replace("+", ""));
-                        weapon.getDefaultInfo().addBonusMinSkillDamage(added).addBonusMaxSkillDamage(added);
+                        weapon.getAttributes().addBonusMinSkillDamage(added).addBonusMaxSkillDamage(added);
                     } catch (NumberFormatException ex) {}
                 } else {
                     try {
                         int added = Integer.parseInt(dmg.replace("-", ""));
-                        weapon.getDefaultInfo().addBonusMinSkillDamage(added).addBonusMaxSkillDamage(added);
+                        weapon.getAttributes().addBonusMinSkillDamage(added).addBonusMaxSkillDamage(added);
                     } catch (NumberFormatException ex) {}
                 }
             }

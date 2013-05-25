@@ -26,6 +26,6 @@ public interface Informative<SelfType, InfoType> {
     public String getName();
     public SelfType setName(String name);
     public SelfType setDescription(ArrayList<String> description);
-    public InfoType getDefaultInfo();
-    public SelfType setDefaultInfo(InfoType info);
+    public InfoType getAttributes();
+    public SelfType setAttributes(InfoType attributes);
 }

@@ -63,13 +63,13 @@ public class Skill implements Informative<Skill, SkillAttributes>, Behavioral<Sk
     }
 
     @Override
-    public SkillAttributes getDefaultInfo() {
+    public SkillAttributes getAttributes() {
         return skillAttributes;
     }
 
     @Override
-    public Skill setDefaultInfo(SkillAttributes info) {
-        this.skillAttributes = info;
+    public Skill setAttributes(SkillAttributes attributes) {
+        this.skillAttributes = attributes;
         return this;
     }
 

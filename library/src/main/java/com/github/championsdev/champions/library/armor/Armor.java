@@ -48,13 +48,13 @@ public class Armor implements Informative<Armor, ArmorAttributes>, Behavioral<Ar
     }
 
     @Override
-    public ArmorAttributes getDefaultInfo() {
+    public ArmorAttributes getAttributes() {
         return armorMeta;
     }
 
     @Override
-    public Armor setDefaultInfo(ArmorAttributes info) {
-        armorMeta = info;
+    public Armor setAttributes(ArmorAttributes attributes) {
+        armorMeta = attributes;
         return this;
     }
 

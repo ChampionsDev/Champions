@@ -75,13 +75,13 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
     }
 
     @Override
-    public RaceAttributes getDefaultInfo() {
+    public RaceAttributes getAttributes() {
         return raceMeta;
     }
 
     @Override
-    public Race setDefaultInfo(RaceAttributes info) {
-        this.raceMeta = info;
+    public Race setAttributes(RaceAttributes attributes) {
+        this.raceMeta = attributes;
         return this;
     }
 
@@ -116,12 +116,12 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
     }
 
     @Override
-    public SkillAttributes getSkillInfo(Skill skill) {
+    public SkillAttributes getSkillAttributes(Skill skill) {
         return skillInfoMap.get(skill);
     }
 
     @Override
-    public Race setSkillInfo(Skill skill, SkillAttributes info) {
+    public Race setSkillAttributes(Skill skill, SkillAttributes info) {
         if(skill != null) {
             skillInfoMap.put(skill, info);
         }
@@ -134,7 +134,7 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
     }
 
     @Override
-    public ArmorAttributes getArmorInfo(Armor armor) {
+    public ArmorAttributes getArmorAttributes(Armor armor) {
         if(armor != null) {
             ArmorAttributes armorMeta = armorInfoMap.get(armor);
             if(armorMeta == null) {
@@ -160,7 +160,7 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
     }
 
     @Override
-    public WeaponAttributes getWeaponInfo(Weapon weapon) {
+    public WeaponAttributes getWeaponAttributes(Weapon weapon) {
         if(weapon != null) {
             WeaponAttributes weaponMeta = weaponInfoMap.get(weapon);
             if(weaponMeta == null) {
@@ -173,20 +173,20 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
     }
 
     @Override
-    public Race setWeaponInfo(Weapon weapon, WeaponAttributes info) {
+    public Race setWeaponAttributes(Weapon weapon, WeaponAttributes attributes) {
         if(weapon != null) {
-            weaponInfoMap.put(weapon, info);
+            weaponInfoMap.put(weapon, attributes);
         }
         return this;
     }
 
     @Override
-    public HashMap<CClass, CClassAttributes> getCClassInfoMap() {
+    public HashMap<CClass, CClassAttributes> getCClassAttributesMap() {
         return lClassInfoMap;
     }
 
     @Override
-    public CClassAttributes getCClassInfo(CClass cClass) {
+    public CClassAttributes getCClassAttributes(CClass cClass) {
         if(cClass != null) {
             CClassAttributes cClassMeta = lClassInfoMap.get(cClass);
             if(cClassMeta == null) {
@@ -199,7 +199,7 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
     }
 
     @Override
-    public Race setCClassInfo(CClass cClass, CClassAttributes info) {
+    public Race setCClassAttributes(CClass cClass, CClassAttributes info) {
         if(cClass != null) {
             lClassInfoMap.put(cClass, info);
         }

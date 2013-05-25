@@ -54,13 +54,13 @@ public class Weapon implements Informative<Weapon, WeaponAttributes>, Behavioral
     }
 
     @Override
-    public WeaponAttributes getDefaultInfo() {
+    public WeaponAttributes getAttributes() {
         return weaponMeta;
     }
 
     @Override
-    public Weapon setDefaultInfo(WeaponAttributes weaponMeta) {
-        this.weaponMeta = weaponMeta;
+    public Weapon setAttributes(WeaponAttributes weaponAttributes) {
+        this.weaponMeta = weaponAttributes;
         return this;
     }
 
