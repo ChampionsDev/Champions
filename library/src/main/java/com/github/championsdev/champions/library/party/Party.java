@@ -51,9 +51,7 @@ public class Party {
     }
 
     public Party setLeader(CPlayer player) {
-        if(!members.contains(player)) {
-            members.add(player);
-        }
+        addMember(player);
         partyLeader = player;
         return this;
     }
