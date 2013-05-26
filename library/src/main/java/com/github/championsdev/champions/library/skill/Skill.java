@@ -20,13 +20,14 @@ package com.github.championsdev.champions.library.skill;
 import com.github.championsdev.champions.library.behavior.BehaviorGroup;
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.misc.Informative;
+import com.github.championsdev.champions.library.restriction.Restrictable;
 
 import java.util.ArrayList;
 
 /**
  * @author B2OJustin
  */
-public class Skill implements Informative<Skill, SkillAttributes>, Behavioral<Skill> {
+public class Skill implements Informative<Skill, SkillAttributes>, Behavioral<Skill>,Restrictable {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
 

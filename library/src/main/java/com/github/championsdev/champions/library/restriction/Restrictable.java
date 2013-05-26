@@ -14,12 +14,10 @@ This file is part of Champions.
     You should have received a copy of the GNU General Public License
     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.weapon;
-
-import com.github.championsdev.champions.library.restriction.BasicRestrictions;
+package com.github.championsdev.champions.library.restriction;
 
 /**
  * @author B2OJustin
  */
-public class WeaponRestrictions extends BasicRestrictions<Weapon> {
+public interface Restrictable {
 }

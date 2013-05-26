@@ -16,20 +16,20 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.restriction;
 
+import com.github.championsdev.champions.library.armor.Armor;
 import com.github.championsdev.champions.library.armor.ArmorRestricted;
-import com.github.championsdev.champions.library.armor.ArmorRestrictions;
+import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.cclass.CClassRestricted;
-import com.github.championsdev.champions.library.cclass.CClassRestrictions;
 import com.github.championsdev.champions.library.level.LevelRestricted;
 import com.github.championsdev.champions.library.level.LevelRestrictions;
+import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.race.RaceRestricted;
-import com.github.championsdev.champions.library.race.RaceRestrictions;
+import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.skill.SkillRestricted;
-import com.github.championsdev.champions.library.skill.SkillRestrictions;
+import com.github.championsdev.champions.library.weapon.Weapon;
+import com.github.championsdev.champions.library.weapon.WeaponCategory;
+import com.github.championsdev.champions.library.weapon.WeaponCategoryRestricted;
 import com.github.championsdev.champions.library.weapon.WeaponRestricted;
-import com.github.championsdev.champions.library.weapon.WeaponRestrictions;
-import com.github.championsdev.champions.library.weapon.WeaponTypeRestricted;
-import com.github.championsdev.champions.library.weapon.WeaponTypeRestrictions;
 
 import java.util.HashMap;
 
@@ -39,13 +39,13 @@ import java.util.HashMap;
 public class RestrictionHandler {
     private static RestrictionHandler instance = new RestrictionHandler();
 
-    private HashMap<SkillRestricted, SkillRestrictions> skillMap = new HashMap<>();
+    private HashMap<SkillRestricted, BasicRestrictions<Skill>> skillMap = new HashMap<>();
     private HashMap<LevelRestricted, LevelRestrictions> levelMap = new HashMap<>();
-    private HashMap<RaceRestricted, RaceRestrictions> raceMap = new HashMap<>();
-    private HashMap<CClassRestricted, CClassRestrictions> classMap = new HashMap<>();
-    private HashMap<WeaponRestricted, WeaponRestrictions> weaponMap = new HashMap<>();
-    private HashMap<WeaponTypeRestricted, WeaponTypeRestrictions> weaponTypeMap = new HashMap<>();
-    private HashMap<ArmorRestricted, ArmorRestrictions> armorMap = new HashMap<>();
+    private HashMap<RaceRestricted, BasicRestrictions<Race>> raceMap = new HashMap<>();
+    private HashMap<CClassRestricted, BasicRestrictions<CClass>> classMap = new HashMap<>();
+    private HashMap<WeaponRestricted, BasicRestrictions<Weapon>> weaponMap = new HashMap<>();
+    private HashMap<WeaponCategoryRestricted, BasicRestrictions<WeaponCategory>> weaponTypeMap = new HashMap<>();
+    private HashMap<ArmorRestricted, BasicRestrictions<Armor>> armorMap = new HashMap<>();
 
     public static RestrictionHandler getInstance() {
         return instance;
@@ -53,16 +53,16 @@ public class RestrictionHandler {
 
     private RestrictionHandler(){}
 
-    public SkillRestrictions getSkillRestrictions(SkillRestricted restricted) {
-        SkillRestrictions restrictions = skillMap.get(restricted);
+    public BasicRestrictions<Skill> getSkillRestrictions(SkillRestricted restricted) {
+        BasicRestrictions<Skill> restrictions = skillMap.get(restricted);
         if(restrictions == null) {
-            restrictions = new SkillRestrictions();
+            restrictions = new BasicRestrictions<>();
             skillMap.put(restricted, restrictions);
         }
         return restrictions;
     }
 
-    public RestrictionHandler setSkillRestrictions(SkillRestricted restricted, SkillRestrictions restrictions) {
+    public RestrictionHandler setSkillRestrictions(SkillRestricted restricted, BasicRestrictions<Skill> restrictions) {
         skillMap.put(restricted, restrictions);
         return this;
     }
@@ -81,72 +81,72 @@ public class RestrictionHandler {
         return this;
     }
 
-    public RaceRestrictions getRaceRestrictions(RaceRestricted restricted) {
-        RaceRestrictions restrictions = raceMap.get(restricted);
+    public BasicRestrictions<Race> getRaceRestrictions(RaceRestricted restricted) {
+        BasicRestrictions<Race> restrictions = raceMap.get(restricted);
         if(restrictions == null) {
-            restrictions = new RaceRestrictions();
+            restrictions = new BasicRestrictions<>();
             raceMap.put(restricted, restrictions);
         }
         return restrictions;
     }
 
-    public RestrictionHandler setRaceRestrictions(RaceRestricted restricted, RaceRestrictions restrictions) {
+    public RestrictionHandler setRaceRestrictions(RaceRestricted restricted, BasicRestrictions<Race> restrictions) {
         raceMap.put(restricted, restrictions);
         return this;
     }
 
-    public CClassRestrictions getClassRestrictions(CClassRestricted restricted) {
-        CClassRestrictions restrictions = classMap.get(restricted);
+    public BasicRestrictions<CClass> getClassRestrictions(CClassRestricted restricted) {
+        BasicRestrictions<CClass> restrictions = classMap.get(restricted);
         if(restrictions == null) {
-            restrictions = new CClassRestrictions();
+            restrictions = new BasicRestrictions<>();
             classMap.put(restricted, restrictions);
         }
         return restrictions;
     }
 
-    public RestrictionHandler setClassRestrictions(CClassRestricted restricted, CClassRestrictions restrictions) {
+    public RestrictionHandler setClassRestrictions(CClassRestricted restricted, BasicRestrictions<CClass> restrictions) {
         classMap.put(restricted, restrictions);
         return this;
     }
 
-    public WeaponRestrictions getWeaponRestrictions(WeaponRestricted restricted) {
-        WeaponRestrictions restrictions = weaponMap.get(restricted);
+    public BasicRestrictions<Weapon> getWeaponRestrictions(WeaponRestricted restricted) {
+        BasicRestrictions<Weapon> restrictions = weaponMap.get(restricted);
         if(restrictions == null) {
-            restrictions = new WeaponRestrictions();
+            restrictions = new BasicRestrictions<>();
             weaponMap.put(restricted, restrictions);
         }
         return restrictions;
     }
 
-    public RestrictionHandler setWeaponRestrictions(WeaponRestricted restricted, WeaponRestrictions restrictions) {
+    public RestrictionHandler setWeaponRestrictions(WeaponRestricted restricted, BasicRestrictions<Weapon> restrictions) {
         weaponMap.put(restricted, restrictions);
         return this;
     }
 
-    public WeaponTypeRestrictions getWeaponTypeRestrictions(WeaponTypeRestricted restricted) {
-        WeaponTypeRestrictions restrictions = weaponTypeMap.get(restricted);
+    public BasicRestrictions<WeaponCategory> getWeaponTypeRestrictions(WeaponCategoryRestricted restricted) {
+        BasicRestrictions<WeaponCategory> restrictions = weaponTypeMap.get(restricted);
         if(restrictions == null) {
-            restrictions = new WeaponTypeRestrictions();
+            restrictions = new BasicRestrictions<>();
             weaponTypeMap.put(restricted, restrictions);
         }
         return restrictions;
     }
 
-    public RestrictionHandler setWeaponTypeRestrictions(WeaponTypeRestricted restricted, WeaponTypeRestrictions restrictions) {
+    public RestrictionHandler setWeaponTypeRestrictions(WeaponCategoryRestricted restricted, BasicRestrictions<WeaponCategory> restrictions) {
         weaponTypeMap.put(restricted, restrictions);
         return this;
     }
 
-    public ArmorRestrictions getArmorRestrictions(ArmorRestricted restricted) {
-        ArmorRestrictions restrictions = armorMap.get(restricted);
+    public BasicRestrictions<Armor> getArmorRestrictions(ArmorRestricted restricted) {
+        BasicRestrictions<Armor> restrictions = armorMap.get(restricted);
         if(restrictions == null) {
-            restrictions = new ArmorRestrictions();
+            restrictions = new BasicRestrictions<>();
             armorMap.put(restricted, restrictions);
         }
         return restrictions;
     }
 
-    public RestrictionHandler setArmorRestrictions(ArmorRestricted restricted, ArmorRestrictions restrictions) {
+    public RestrictionHandler setArmorRestrictions(ArmorRestricted restricted, BasicRestrictions<Armor> restrictions) {
         armorMap.put(restricted, restrictions);
         return this;
     }

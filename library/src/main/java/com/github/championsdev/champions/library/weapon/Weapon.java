@@ -20,15 +20,16 @@ package com.github.championsdev.champions.library.weapon;
 import com.github.championsdev.champions.library.behavior.BehaviorGroup;
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.misc.Informative;
+import com.github.championsdev.champions.library.restriction.Restrictable;
 
 import java.util.ArrayList;
 
 /**
  * @author B2OJustin
  */
-public class Weapon implements Informative<Weapon, WeaponAttributes>, Behavioral<Weapon> {
+public class Weapon implements Informative<Weapon, WeaponAttributes>, Behavioral<Weapon>,Restrictable {
     private String name = "";
-    private WeaponType type = new WeaponType();
+    private WeaponCategory type = new WeaponCategory();
 
     private ArrayList<String> description = new ArrayList<>();
 
@@ -44,11 +45,11 @@ public class Weapon implements Informative<Weapon, WeaponAttributes>, Behavioral
         this.description = description;
     }
 
-    public WeaponType getType() {
+    public WeaponCategory getType() {
         return type;
     }
 
-    public Weapon setType(WeaponType type) {
+    public Weapon setType(WeaponCategory type) {
         this.type = type;
         return this;
     }

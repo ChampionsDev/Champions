@@ -20,6 +20,7 @@ package com.github.championsdev.champions.library.armor;
 import com.github.championsdev.champions.library.behavior.BehaviorGroup;
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.misc.Informative;
+import com.github.championsdev.champions.library.restriction.Restrictable;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ import java.util.ArrayList;
  *
  * @author B2OJustin
  */
-public class Armor implements Informative<Armor, ArmorAttributes>, Behavioral<Armor> {
+public class Armor implements Informative<Armor, ArmorAttributes>, Behavioral<Armor>,Restrictable {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
     private ArmorAttributes armorMeta = new ArmorAttributes();

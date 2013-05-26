@@ -23,7 +23,7 @@ import com.github.championsdev.champions.library.party.Party;
 import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.weapon.Weapon;
-import com.github.championsdev.champions.library.weapon.WeaponType;
+import com.github.championsdev.champions.library.weapon.WeaponCategory;
 
 import java.util.logging.Logger;
 
@@ -97,7 +97,7 @@ public class SQLDataSource implements DataSource {
     }
 
     @Override
-    public WeaponType loadWeaponType(String name) {
+    public WeaponCategory loadWeaponType(String name) {
         return null; //TODO loadWeaponType method stub
     }
 

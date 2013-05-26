@@ -30,6 +30,7 @@ import com.github.championsdev.champions.library.cclass.CClassRestricted;
 import com.github.championsdev.champions.library.cclass.CClassUser;
 import com.github.championsdev.champions.library.misc.Identifiable;
 import com.github.championsdev.champions.library.misc.Informative;
+import com.github.championsdev.champions.library.restriction.Restrictable;
 import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.skill.SkillAttributes;
 import com.github.championsdev.champions.library.skill.SkillRestricted;
@@ -43,16 +44,17 @@ import java.util.HashMap;
  * @author B2OJustin
  */
 public class Race implements Informative<Race, RaceAttributes>, Identifiable<Race>,
-        ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, WeaponTypeUser<Race>,
-        CClassUser<Race>, SkillRestricted, WeaponRestricted, WeaponTypeRestricted, ArmorRestricted, CClassRestricted,
-        Behavioral<Race>{
+        ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>, WeaponCategoryUser<Race>,
+        CClassUser<Race>, SkillRestricted, WeaponRestricted, WeaponCategoryRestricted, ArmorRestricted, CClassRestricted,
+        Behavioral<Race>,Restrictable {
     private String name = "";
     private String id = "";
     private ArrayList<String> description = new ArrayList<>();
     private ArrayList<Skill> currentSkills = new ArrayList<>();
 
     private HashMap<Weapon, WeaponAttributes> weaponInfoMap = new HashMap<>();
-    private HashMap<WeaponType, WeaponAttributes> weaponTypeInfoMap = new HashMap<>();
+    private HashMap<WeaponCategory, WeaponAttributes> weaponTypeInfoMap = new HashMap<>();
+
     private HashMap<Armor, ArmorAttributes> armorInfoMap = new HashMap<>();
     private HashMap<Skill, SkillAttributes> skillInfoMap = new HashMap<>();
     private HashMap<CClass, CClassAttributes> lClassInfoMap = new HashMap<>();
@@ -218,17 +220,17 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
     }
 
     @Override
-    public HashMap<WeaponType, WeaponAttributes> getWeaponTypeAttributesMap() {
+    public HashMap<WeaponCategory, WeaponAttributes> getWeaponTypeAttributesMap() {
         return weaponTypeInfoMap;
     }
 
     @Override
-    public WeaponAttributes getWeaponTypeInfo(WeaponType weaponType) {
-        if(weaponType != null) {
-            WeaponAttributes weaponMeta = weaponTypeInfoMap.get(weaponType);
+    public WeaponAttributes getWeaponTypeInfo(WeaponCategory weaponCategory) {
+        if(weaponCategory != null) {
+            WeaponAttributes weaponMeta = weaponTypeInfoMap.get(weaponCategory);
             if(weaponMeta == null) {
                 weaponMeta = new WeaponAttributes();
-                weaponTypeInfoMap.put(weaponType, weaponMeta);
+                weaponTypeInfoMap.put(weaponCategory, weaponMeta);
             }
             return weaponMeta;
         }
@@ -236,9 +238,9 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
     }
 
     @Override
-    public Race setWeaponTypeInfo(WeaponType weaponType, WeaponAttributes info) {
-        if(weaponType != null) {
-            weaponTypeInfoMap.put(weaponType, info);
+    public Race setWeaponTypeInfo(WeaponCategory weaponCategory, WeaponAttributes info) {
+        if(weaponCategory != null) {
+            weaponTypeInfoMap.put(weaponCategory, info);
         }
         return this;
     }

@@ -287,20 +287,20 @@ public class YAMLDataSource implements DataSource {
     }
 
     @Override
-    public WeaponType loadWeaponType(String id) {
+    public WeaponCategory loadWeaponType(String id) {
         String filePath = configPath + WEAPON_TYPE_PATH + id.replace(" ", "_") + ".yml";
         try {
-            WeaponType weaponType = new WeaponType();
+            WeaponCategory weaponCategory = new WeaponCategory();
             YAMLHelper yml = new YAMLHelper(filePath);
-            loadBasicInfo(weaponType.getAttributes(), "", yml);
+            loadBasicInfo(weaponCategory.getAttributes(), "", yml);
             for(String key : yml.getKeys("")) {
                 switch(key.toLowerCase()) {
                     case "name":
-                        weaponType.setName(yml.getString("name"));
+                        weaponCategory.setName(yml.getString("name"));
                         break;
                 }
             }
-            return weaponType;
+            return weaponCategory;
         } catch (FileNotFoundException e) {
             logger.warning("Could not find file for weapon type '" + id + "' at " + filePath);
         } catch (ClassCastException e) {
@@ -566,28 +566,28 @@ public class YAMLDataSource implements DataSource {
         return weaponRestrictions;
     }
 
-    protected synchronized WeaponTypeRestrictions loadWeaponTypeRestrictions(WeaponTypeRestricted restricted, YAMLHelper yml) {
-        WeaponTypeRestrictions weaponTypeRestrictions = new WeaponTypeRestrictions();
+    protected synchronized WeaponCategoryRestrictions loadWeaponTypeRestrictions(WeaponCategoryRestricted restricted, YAMLHelper yml) {
+        WeaponCategoryRestrictions weaponCategoryRestrictions = new WeaponCategoryRestrictions();
         for(String typeKey : yml.getKeys("Weapons")) {
             switch(typeKey.toLowerCase()) {
                 case "permitted-weapon-type":
                     for(String typeID : yml.getKeys("Weapons.permitted-weapon-type")) {
-                        WeaponType weaponType = WeaponTypeHandler.getInstance().load(typeID);
-                        weaponTypeRestrictions.setAllowed(weaponType, true);
-                        if(restricted instanceof WeaponTypeUser) {
-                            loadBasicInfo(((WeaponTypeUser)restricted).getWeaponTypeInfo(weaponType), String.format("Weapons.permitted-weapon.%s", typeID), yml);
+                        WeaponCategory weaponCategory = WeaponCategoryHandler.getInstance().load(typeID);
+                        weaponCategoryRestrictions.setAllowed(weaponCategory, true);
+                        if(restricted instanceof WeaponCategoryUser) {
+                            loadBasicInfo(((WeaponCategoryUser)restricted).getWeaponTypeInfo(weaponCategory), String.format("Weapons.permitted-weapon.%s", typeID), yml);
                         }
                     }
                     break;
                 case "restricted-weapon-type":
                     for(String typeID : yml.getStringList("Weapons.restricted-weapon-type")) {
-                        WeaponType weaponType = WeaponTypeHandler.getInstance().load(typeID);
-                        weaponTypeRestrictions.setAllowed(weaponType, false);
+                        WeaponCategory weaponCategory = WeaponCategoryHandler.getInstance().load(typeID);
+                        weaponCategoryRestrictions.setAllowed(weaponCategory, false);
                     }
                     break;
             }
         }
-        return weaponTypeRestrictions;
+        return weaponCategoryRestrictions;
     }
 
     protected ArmorRestrictions loadArmorRestrictions(ArmorRestricted restricted, YAMLHelper yml) {

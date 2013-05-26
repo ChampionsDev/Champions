@@ -21,7 +21,7 @@ import java.util.HashMap;
 /**
  * @author B2OJustin
  */
-public class BasicRestrictions<T> implements BasicRestrictor<T> {
+public class BasicRestrictions<T extends Restrictable> implements BasicRestrictor<T> {
     protected HashMap<T, Boolean> rMap;
     protected boolean defaultAllow;
 
