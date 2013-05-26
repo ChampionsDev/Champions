@@ -16,6 +16,7 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.database;
 
+import com.github.championsdev.champions.library.BasicCategory;
 import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.level.exp.ExpGroup;
@@ -23,7 +24,7 @@ import com.github.championsdev.champions.library.party.Party;
 import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.weapon.Weapon;
-import com.github.championsdev.champions.library.weapon.WeaponCategory;
+import com.github.championsdev.champions.library.weapon.WeaponAttributes;
 
 import java.util.logging.Logger;
 
@@ -72,8 +73,8 @@ public class H2DataSource implements DataSource {
     }
 
     @Override
-    public WeaponCategory loadWeaponType(String name) {
-        return null; //TODO loadWeaponType method stub
+    public BasicCategory<WeaponAttributes> loadWeaponCategory(String name) {
+        return null; //TODO loadWeaponCategory method stub
     }
 
     @Override

@@ -17,6 +17,7 @@ This file is part of Champions.
 
 package com.github.championsdev.champions.library.weapon;
 
+import com.github.championsdev.champions.library.BasicCategory;
 import com.github.championsdev.champions.library.behavior.BehaviorGroup;
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.misc.Informative;
@@ -29,7 +30,7 @@ import java.util.ArrayList;
  */
 public class Weapon implements Informative<Weapon, WeaponAttributes>, Behavioral<Weapon>,Restrictable {
     private String name = "";
-    private WeaponCategory type = new WeaponCategory();
+    private BasicCategory<WeaponAttributes> category = new BasicCategory<>();
 
     private ArrayList<String> description = new ArrayList<>();
 
@@ -45,12 +46,12 @@ public class Weapon implements Informative<Weapon, WeaponAttributes>, Behavioral
         this.description = description;
     }
 
-    public WeaponCategory getType() {
-        return type;
+    public BasicCategory<WeaponAttributes> getCategory() {
+        return category;
     }
 
-    public Weapon setType(WeaponCategory type) {
-        this.type = type;
+    public Weapon setCategory(BasicCategory<WeaponAttributes> category) {
+        this.category = category;
         return this;
     }
 

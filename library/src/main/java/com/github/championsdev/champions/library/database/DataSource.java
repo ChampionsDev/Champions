@@ -16,6 +16,7 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.database;
 
+import com.github.championsdev.champions.library.BasicCategory;
 import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.level.exp.ExpGroup;
@@ -23,7 +24,7 @@ import com.github.championsdev.champions.library.party.Party;
 import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.weapon.Weapon;
-import com.github.championsdev.champions.library.weapon.WeaponCategory;
+import com.github.championsdev.champions.library.weapon.WeaponAttributes;
 
 import java.util.logging.Logger;
 
@@ -40,7 +41,7 @@ public interface DataSource {
     public CClass loadLClass(String name);
     public Skill loadSkill(String name);
     public Weapon loadWeapon(String name);
-    public WeaponCategory loadWeaponType(String name);
+    public BasicCategory<WeaponAttributes> loadWeaponCategory(String name);
     public Party loadParty(String name);
 
     public ExpGroup loadExpGroup(String name);

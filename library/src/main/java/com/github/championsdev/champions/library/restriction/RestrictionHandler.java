@@ -16,6 +16,7 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.restriction;
 
+import com.github.championsdev.champions.library.BasicCategory;
 import com.github.championsdev.champions.library.armor.Armor;
 import com.github.championsdev.champions.library.armor.ArmorRestricted;
 import com.github.championsdev.champions.library.cclass.CClass;
@@ -27,7 +28,7 @@ import com.github.championsdev.champions.library.race.RaceRestricted;
 import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.skill.SkillRestricted;
 import com.github.championsdev.champions.library.weapon.Weapon;
-import com.github.championsdev.champions.library.weapon.WeaponCategory;
+import com.github.championsdev.champions.library.weapon.WeaponAttributes;
 import com.github.championsdev.champions.library.weapon.WeaponCategoryRestricted;
 import com.github.championsdev.champions.library.weapon.WeaponRestricted;
 
@@ -44,7 +45,7 @@ public class RestrictionHandler {
     private HashMap<RaceRestricted, BasicRestrictions<Race>> raceMap = new HashMap<>();
     private HashMap<CClassRestricted, BasicRestrictions<CClass>> classMap = new HashMap<>();
     private HashMap<WeaponRestricted, BasicRestrictions<Weapon>> weaponMap = new HashMap<>();
-    private HashMap<WeaponCategoryRestricted, BasicRestrictions<WeaponCategory>> weaponTypeMap = new HashMap<>();
+    private HashMap<WeaponCategoryRestricted, BasicRestrictions<BasicCategory<WeaponAttributes>>> weaponTypeMap = new HashMap<>();
     private HashMap<ArmorRestricted, BasicRestrictions<Armor>> armorMap = new HashMap<>();
 
     public static RestrictionHandler getInstance() {
@@ -123,8 +124,8 @@ public class RestrictionHandler {
         return this;
     }
 
-    public BasicRestrictions<WeaponCategory> getWeaponTypeRestrictions(WeaponCategoryRestricted restricted) {
-        BasicRestrictions<WeaponCategory> restrictions = weaponTypeMap.get(restricted);
+    public BasicRestrictions<BasicCategory<WeaponAttributes>> getWeaponTypeRestrictions(WeaponCategoryRestricted restricted) {
+        BasicRestrictions<BasicCategory<WeaponAttributes>> restrictions = weaponTypeMap.get(restricted);
         if(restrictions == null) {
             restrictions = new BasicRestrictions<>();
             weaponTypeMap.put(restricted, restrictions);
@@ -132,7 +133,7 @@ public class RestrictionHandler {
         return restrictions;
     }
 
-    public RestrictionHandler setWeaponTypeRestrictions(WeaponCategoryRestricted restricted, BasicRestrictions<WeaponCategory> restrictions) {
+    public RestrictionHandler setWeaponTypeRestrictions(WeaponCategoryRestricted restricted, BasicRestrictions<BasicCategory<WeaponAttributes>> restrictions) {
         weaponTypeMap.put(restricted, restrictions);
         return this;
     }

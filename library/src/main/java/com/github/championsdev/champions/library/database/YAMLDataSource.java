@@ -17,6 +17,7 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.database;
 
 import com.github.championsdev.champions.library.BasicAttributes;
+import com.github.championsdev.champions.library.BasicCategory;
 import com.github.championsdev.champions.library.Configuration;
 import com.github.championsdev.champions.library.StatsInfo;
 import com.github.championsdev.champions.library.armor.*;
@@ -31,6 +32,7 @@ import com.github.championsdev.champions.library.level.exp.sources.*;
 import com.github.championsdev.champions.library.party.Party;
 import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.race.RaceHandler;
+import com.github.championsdev.champions.library.restriction.BasicRestrictions;
 import com.github.championsdev.champions.library.restriction.RestrictionHandler;
 import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.skill.SkillHandler;
@@ -181,7 +183,7 @@ public class YAMLDataSource implements DataSource {
                         break;
                     case "Weapons":
                         RestrictionHandler.getInstance().setWeaponRestrictions(race, loadWeaponRestrictions(race, yml));
-                        RestrictionHandler.getInstance().setWeaponTypeRestrictions(race, loadWeaponTypeRestrictions(race, yml));
+                        RestrictionHandler.getInstance().setWeaponTypeRestrictions(race, loadWeaponCategoryRestrictions(race, yml));
                         break;
                     case "Armor":
                         RestrictionHandler.getInstance().setArmorRestrictions(race, loadArmorRestrictions(race, yml));
@@ -230,7 +232,7 @@ public class YAMLDataSource implements DataSource {
                         break;
                     case "Weapons":
                         RestrictionHandler.getInstance().setWeaponRestrictions(cClass, loadWeaponRestrictions(cClass, yml));
-                        RestrictionHandler.getInstance().setWeaponTypeRestrictions(cClass, loadWeaponTypeRestrictions(cClass, yml));
+                        RestrictionHandler.getInstance().setWeaponTypeRestrictions(cClass, loadWeaponCategoryRestrictions(cClass, yml));
                         break;
                     case "Armor":
                         RestrictionHandler.getInstance().setArmorRestrictions(cClass, loadArmorRestrictions(cClass, yml));
@@ -287,10 +289,10 @@ public class YAMLDataSource implements DataSource {
     }
 
     @Override
-    public WeaponCategory loadWeaponType(String id) {
+    public BasicCategory<WeaponAttributes> loadWeaponCategory(String id) {
         String filePath = configPath + WEAPON_TYPE_PATH + id.replace(" ", "_") + ".yml";
         try {
-            WeaponCategory weaponCategory = new WeaponCategory();
+            BasicCategory<WeaponAttributes> weaponCategory = new BasicCategory<>();
             YAMLHelper yml = new YAMLHelper(filePath);
             loadBasicInfo(weaponCategory.getAttributes(), "", yml);
             for(String key : yml.getKeys("")) {
@@ -536,8 +538,8 @@ public class YAMLDataSource implements DataSource {
         return cClass;
     }
 
-    protected synchronized WeaponRestrictions loadWeaponRestrictions(WeaponRestricted restricted, YAMLHelper yml) {
-        WeaponRestrictions weaponRestrictions = new WeaponRestrictions();
+    protected synchronized BasicRestrictions<Weapon> loadWeaponRestrictions(WeaponRestricted restricted, YAMLHelper yml) {
+        BasicRestrictions<Weapon> weaponRestrictions = new BasicRestrictions<>();
         for(String wepKey : yml.getKeys("Weapons")) {
             switch(wepKey.toLowerCase()) {
                 case "default":
@@ -566,22 +568,22 @@ public class YAMLDataSource implements DataSource {
         return weaponRestrictions;
     }
 
-    protected synchronized WeaponCategoryRestrictions loadWeaponTypeRestrictions(WeaponCategoryRestricted restricted, YAMLHelper yml) {
-        WeaponCategoryRestrictions weaponCategoryRestrictions = new WeaponCategoryRestrictions();
+    protected synchronized BasicRestrictions<BasicCategory<WeaponAttributes>> loadWeaponCategoryRestrictions(WeaponCategoryRestricted restricted, YAMLHelper yml) {
+        BasicRestrictions<BasicCategory<WeaponAttributes>> weaponCategoryRestrictions = new BasicRestrictions<>();
         for(String typeKey : yml.getKeys("Weapons")) {
             switch(typeKey.toLowerCase()) {
                 case "permitted-weapon-type":
                     for(String typeID : yml.getKeys("Weapons.permitted-weapon-type")) {
-                        WeaponCategory weaponCategory = WeaponCategoryHandler.getInstance().load(typeID);
+                        BasicCategory<WeaponAttributes> weaponCategory = WeaponCategoryHandler.getInstance().load(typeID);
                         weaponCategoryRestrictions.setAllowed(weaponCategory, true);
-                        if(restricted instanceof WeaponCategoryUser) {
-                            loadBasicInfo(((WeaponCategoryUser)restricted).getWeaponTypeInfo(weaponCategory), String.format("Weapons.permitted-weapon.%s", typeID), yml);
+                        if(restricted instanceof WeaponUser) {
+                            loadBasicInfo(((WeaponUser)restricted).getWeaponCategoryAttributes(weaponCategory), String.format("Weapons.permitted-weapon.%s", typeID), yml);
                         }
                     }
                     break;
                 case "restricted-weapon-type":
                     for(String typeID : yml.getStringList("Weapons.restricted-weapon-type")) {
-                        WeaponCategory weaponCategory = WeaponCategoryHandler.getInstance().load(typeID);
+                        BasicCategory<WeaponAttributes> weaponCategory = WeaponCategoryHandler.getInstance().load(typeID);
                         weaponCategoryRestrictions.setAllowed(weaponCategory, false);
                     }
                     break;
@@ -590,8 +592,8 @@ public class YAMLDataSource implements DataSource {
         return weaponCategoryRestrictions;
     }
 
-    protected ArmorRestrictions loadArmorRestrictions(ArmorRestricted restricted, YAMLHelper yml) {
-        ArmorRestrictions restrictions = new ArmorRestrictions();
+    protected BasicRestrictions<Armor> loadArmorRestrictions(ArmorRestricted restricted, YAMLHelper yml) {
+        BasicRestrictions<Armor> restrictions = new BasicRestrictions<>();
         for(String armorKey : yml.getKeys("Armor")) {
             switch(armorKey.toLowerCase()) {
                 case "default":
@@ -621,8 +623,8 @@ public class YAMLDataSource implements DataSource {
         return restrictions;
     }
 
-    protected CClassRestrictions loadClassRestrictions(CClassRestricted restricted, YAMLHelper yml) {
-        CClassRestrictions restrictions = new CClassRestrictions();
+    protected BasicRestrictions<CClass> loadClassRestrictions(CClassRestricted restricted, YAMLHelper yml) {
+        BasicRestrictions<CClass> restrictions = new BasicRestrictions<CClass>();
         for(String classKey : yml.getKeys("Class")) {
             switch(classKey.toLowerCase()) {
                 case "default":

@@ -31,12 +31,12 @@ public class BasicListener implements EventListener {
     public void onCPlayerExpGain(CPlayerExpGainEvent event) {
         Player player = Bukkit.getServer().getPlayer(event.getCPlayer().getName());
         player.sendMessage(String.format("Gained %f experience.", event.getExp().getExp()));
-        player.sendMessage(String.format("You have %f experience.", event.getCPlayer().getPrimaryClassInfo().getLevel().getExp()));
+        player.sendMessage(String.format("You have %f experience.", event.getCPlayer().getPrimaryClassAttributes().getLevel().getExp()));
     }
 
     @CEventHandler
     public void onCPlayerLevelUp(CPlayerLevelUpEvent event) {
         Player player = Bukkit.getServer().getPlayer(event.getCPlayer().getName());
-        player.sendMessage(String.format("You have advanced to level %d", event.getCPlayer().getPrimaryClassInfo().getLevel().getLevel()));
+        player.sendMessage(String.format("You have advanced to level %d", event.getCPlayer().getPrimaryClassAttributes().getLevel().getLevel()));
     }
 }

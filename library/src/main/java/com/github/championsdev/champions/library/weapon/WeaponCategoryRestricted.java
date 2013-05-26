@@ -14,22 +14,10 @@ This file is part of Champions.
     You should have received a copy of the GNU General Public License
     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 package com.github.championsdev.champions.library.weapon;
-
-import com.github.championsdev.champions.library.BasicCategory;
-import com.github.championsdev.champions.library.BasicUser;
-
-import java.util.HashMap;
 
 /**
  * @author B2OJustin
  */
-public interface WeaponUser<SelfType extends WeaponUser> extends BasicUser {
-    public HashMap<Weapon, WeaponAttributes> getWeaponAttributesMap();
-    public WeaponAttributes getWeaponAttributes(Weapon weapon);
-    public SelfType setWeaponAttributes(Weapon weapon, WeaponAttributes attributes);
-    public HashMap<BasicCategory<WeaponAttributes>, WeaponAttributes> getWeaponCategoryAttributesMap();
-    public WeaponAttributes getWeaponCategoryAttributes(BasicCategory<WeaponAttributes> category);
-    public SelfType setWeaponCategoryAttributes(BasicCategory<WeaponAttributes> category, WeaponAttributes info);
+public interface WeaponCategoryRestricted {
 }

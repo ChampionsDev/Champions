@@ -39,7 +39,7 @@ Weapons:
   restricted-weapon:
     # This overrides the setting to allow DIAMOND_SWORD
     - DIAMOND_SWORD
-    # Use asterisks to deny all weapons of a certain type.
+    # Use asterisks to deny all weapons of a certain category.
     # This would deny all iron weapons and all swords
     # If you use asterisks, be sure to use quotes around the entry.
     - 'IRON_*'
