@@ -42,7 +42,7 @@ public class ModuleLoader {
                     InputStream is = jarFile.getInputStream(entry);
                     ModuleDescriptionFile desc = new ModuleDescriptionFile(is);
                     Module result = null;
-                    if (hasRightPlatform(desc.getPlatforms())) {
+                    if (isCompatible(desc.getPlatforms())) {
                         try {
                             URL[] urls = new URL[1];
                             urls[0] = file.toURI().toURL();
@@ -71,7 +71,7 @@ public class ModuleLoader {
         return modules;
     }
 
-    private static boolean hasRightPlatform(String[] platforms) {
+    private static boolean isCompatible(String[] platforms) {
         for (String platform : platforms) {
             if (PlatformUtil.getCurrentPlatform().getName().toLowerCase().equalsIgnoreCase(platform)) {
                 return true;
