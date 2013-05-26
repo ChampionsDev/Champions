@@ -17,6 +17,7 @@ This file is part of Champions.
 package com.github.championsdev.champions.library;
 
 import com.github.championsdev.champions.library.behavior.BehaviorGroup;
+import com.github.championsdev.champions.library.misc.Attributes;
 import com.github.championsdev.champions.library.misc.Identifiable;
 import com.github.championsdev.champions.library.misc.Informative;
 import com.github.championsdev.champions.library.restriction.Restrictable;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
  * @author B2OJustin
  */
 @SuppressWarnings("unchecked")
-public class BasicCategory<AttributeType extends BasicAttributes> implements
+public class BasicCategory<AttributeType extends Attributes> implements
         Informative<BasicCategory, AttributeType>, Identifiable<BasicCategory>, Restrictable {
     private AttributeType attributes;
 
