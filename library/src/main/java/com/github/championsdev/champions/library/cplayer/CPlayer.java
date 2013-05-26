@@ -18,6 +18,7 @@ package com.github.championsdev.champions.library.cplayer;
 
 
 import com.github.championsdev.champions.library.BasicAttributes;
+import com.github.championsdev.champions.library.BasicCategory;
 import com.github.championsdev.champions.library.CEntity;
 import com.github.championsdev.champions.library.CLocation;
 import com.github.championsdev.champions.library.armor.Armor;
@@ -42,10 +43,7 @@ import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.skill.SkillAttributes;
 import com.github.championsdev.champions.library.skill.SkillRestricted;
 import com.github.championsdev.champions.library.skill.SkillUser;
-import com.github.championsdev.champions.library.weapon.Weapon;
-import com.github.championsdev.champions.library.weapon.WeaponAttributes;
-import com.github.championsdev.champions.library.weapon.WeaponRestricted;
-import com.github.championsdev.champions.library.weapon.WeaponUser;
+import com.github.championsdev.champions.library.weapon.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,7 +75,10 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     private LinkedHashMap<CClass, Level> previousSecondaryClasses = new LinkedHashMap<>();
 
     private HashMap<Skill, SkillAttributes> skillAttributesMap = new HashMap<>();
+
     private HashMap<Weapon, WeaponAttributes> weaponAttributesMap = new HashMap<>();
+    private HashMap<BasicCategory<WeaponAttributes>, WeaponAttributes> weaponCategoryAttributesMap = new HashMap<>();
+
     private HashMap<Armor, ArmorAttributes> armorAttributesMap = new HashMap<>();
 
     private ArrayList<Skill> currentSkills = new ArrayList<>();
@@ -412,6 +413,21 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
             weaponAttributesMap.put(weapon, attributes);
         }
         return this;
+    }
+
+    @Override
+    public HashMap<BasicCategory<WeaponAttributes>, WeaponAttributes> getWeaponCategoryAttributesMap() {
+        return weaponCategoryAttributesMap;
+    }
+
+    @Override
+    public WeaponAttributes getWeaponCategoryAttributes(BasicCategory<WeaponAttributes> weaponCategory) {
+        return null; //TODO getWeaponCategoryAttributes method stub
+    }
+
+    @Override
+    public CPlayer setWeaponCategoryAttributes(BasicCategory<WeaponAttributes> weaponCategory, WeaponAttributes info) {
+        return null; //TODO setWeaponCategoryAttributes method stub
     }
 
     @Override

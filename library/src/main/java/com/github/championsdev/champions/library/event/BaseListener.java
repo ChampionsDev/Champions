@@ -91,12 +91,12 @@ public class BaseListener implements EventListener {
     // TODO Differentiate between primary and secondary class exp gain
     @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onCPlayerExpGain(CPlayerExpGainEvent event) {
-        if(LevelUtil.shouldLevelUp(event.getCPlayer().getPrimaryClassInfo().getLevel())) {
-            event.getCPlayer().getPrimaryClassInfo().getLevel().levelUp();
+        if(LevelUtil.shouldLevelUp(event.getCPlayer().getPrimaryClassAttributes().getLevel())) {
+            event.getCPlayer().getPrimaryClassAttributes().getLevel().levelUp();
             EventManager.callEvent(new CPlayerLevelUpEvent(event.getCPlayer(), CPlayerLevelUpEvent.ClassType.PRIMARY, event.getCPlayer().getPrimaryClass()));
         }
-        if(LevelUtil.shouldLevelUp(event.getCPlayer().getSecondaryClassInfo().getLevel())) {
-            event.getCPlayer().getSecondaryClassInfo().getLevel().levelUp();
+        if(LevelUtil.shouldLevelUp(event.getCPlayer().getSecondaryClassAttributes().getLevel())) {
+            event.getCPlayer().getSecondaryClassAttributes().getLevel().levelUp();
             EventManager.callEvent(new CPlayerLevelUpEvent(event.getCPlayer(), CPlayerLevelUpEvent.ClassType.SECONDARY, event.getCPlayer().getSecondaryClass()));
         }
         event.getCPlayer().getBehavior().onExpGain(event);
