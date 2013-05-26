@@ -38,7 +38,7 @@ public class ModuleLoader {
             if (FileUtil.isJarFile(file)) {
                 try {
                     JarFile jarFile = new JarFile(file);
-                    JarEntry entry = jarFile.getJarEntry("module.info");
+                    JarEntry entry = jarFile.getJarEntry("module.yml");
                     InputStream is = jarFile.getInputStream(entry);
                     ModuleDescriptionFile desc = new ModuleDescriptionFile(is);
                     Module result = null;
