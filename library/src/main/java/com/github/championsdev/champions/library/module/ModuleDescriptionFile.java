@@ -18,6 +18,7 @@ import java.util.Map;
  */
 public final class ModuleDescriptionFile {
     private static final Yaml yaml = new Yaml(new SafeConstructor());
+    private String[] platforms = new String[]{};
     private String name = null;
     private String main = null;
     private String version = null;
@@ -33,10 +34,11 @@ public final class ModuleDescriptionFile {
         loadMap(asMap(yaml.load(reader)));
     }
 
-    public ModuleDescriptionFile(final String pluginName, final String pluginVersion, final String mainClass) {
+    public ModuleDescriptionFile(final String pluginName, final String pluginVersion, final String mainClass, final String[] supportedPlatforms) {
         name = pluginName;
         version = pluginVersion;
         main = mainClass;
+        platforms = supportedPlatforms;
     }
 
     public String getName() {
@@ -104,6 +106,16 @@ public final class ModuleDescriptionFile {
         } catch (ClassCastException ex) {
             return;
         }
+        try {
+            Object obj = map.get("platforms");
+            if (obj != null && obj instanceof String[]) {
+                platforms = (String[]) obj;
+            } else {
+                return;
+            }
+        } catch (NullPointerException ex) {
+            return;
+        }
 
         if (map.get("website") != null) {
             website = map.get("website").toString();
@@ -165,5 +177,9 @@ public final class ModuleDescriptionFile {
             return (Map<?,?>) object;
         }
         return null;
+    }
+
+    public String[] getPlatforms() {
+        return this.platforms;
     }
 }

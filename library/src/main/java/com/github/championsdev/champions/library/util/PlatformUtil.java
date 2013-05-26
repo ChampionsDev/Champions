@@ -7,20 +7,30 @@ package com.github.championsdev.champions.library.util;
  */
 public class PlatformUtil {
 
-    public static enum Platform {
-        BUKKIT, CANARY, OTHER;
+    public static enum PlatformType {
+        BUKKIT("bukkit"), CANARY("canary"), OTHER("other");
+        private final String platformName;
+
+        private PlatformType(String platformName) {
+            this.platformName = platformName;
+        }
+
+        public String getName() {
+            return this.platformName;
+        }
+
     }
 
-    public static PlatformUtil.Platform getCurrentPlatform() {
+    public static PlatformUtil.PlatformType getCurrentPlatform() {
         try {
             Class.forName("org.bukkit.Bukkit");
-            return Platform.BUKKIT;
+            return PlatformType.BUKKIT;
         } catch (ClassNotFoundException ex) {}
         try {
             Class.forName("net.canarymod.Canary");
-            return Platform.CANARY;
+            return PlatformType.CANARY;
         } catch (ClassNotFoundException ex) {}
-        return Platform.OTHER;
+        return PlatformType.OTHER;
     }
 
 }

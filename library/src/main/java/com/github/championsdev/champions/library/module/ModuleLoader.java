@@ -2,6 +2,7 @@ package com.github.championsdev.champions.library.module;
 
 import com.github.championsdev.champions.library.database.DataManager;
 import com.github.championsdev.champions.library.util.FileUtil;
+import com.github.championsdev.champions.library.util.PlatformUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,20 +42,22 @@ public class ModuleLoader {
                     InputStream is = jarFile.getInputStream(entry);
                     ModuleDescriptionFile desc = new ModuleDescriptionFile(is);
                     Module result = null;
-                    try {
-                        URL[] urls = new URL[1];
-                        urls[0] = file.toURI().toURL();
+                    if (hasRightPlatform(desc.getPlatforms())) {
+                        try {
+                            URL[] urls = new URL[1];
+                            urls[0] = file.toURI().toURL();
 
-                        Class<?> jarClass = Class.forName(desc.getMain());
-                        Class<? extends Module> plugin = jarClass.asSubclass(Module.class);
+                            Class<?> jarClass = Class.forName(desc.getMain());
+                            Class<? extends Module> plugin = jarClass.asSubclass(Module.class);
 
-                        Constructor<? extends Module> constructor = plugin.getConstructor();
+                            Constructor<? extends Module> constructor = plugin.getConstructor();
 
-                        result = constructor.newInstance();
+                            result = constructor.newInstance();
 
-                        result.initialize(desc, file);
+                            result.initialize(desc, file);
                     } catch (InvocationTargetException ex) {
                     } catch (Throwable ex) {
+                    }
                     }
                     if (result != null) {
                         modules[modules.length] = result;
@@ -66,6 +69,15 @@ public class ModuleLoader {
             module.onEnable();
         }
         return modules;
+    }
+
+    private static boolean hasRightPlatform(String[] platforms) {
+        for (String platform : platforms) {
+            if (PlatformUtil.getCurrentPlatform().getName().toLowerCase().equalsIgnoreCase(platform)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

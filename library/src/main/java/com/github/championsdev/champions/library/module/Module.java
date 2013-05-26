@@ -24,6 +24,10 @@ public class Module {
         return this.description;
     }
 
+    public String[] getSupportedPlatforms() {
+        return this.description.getPlatforms();
+    }
+
     public void onEnable() {
 
     }
