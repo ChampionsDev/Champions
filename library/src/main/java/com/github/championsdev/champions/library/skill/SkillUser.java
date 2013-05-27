@@ -16,7 +16,9 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.skill;
 
+import com.github.championsdev.champions.library.BasicCategory;
 import com.github.championsdev.champions.library.BasicUser;
+import com.github.championsdev.champions.library.weapon.WeaponAttributes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,4 +33,8 @@ public interface SkillUser<SelfType extends SkillUser> extends BasicUser {
     public HashMap<Skill, SkillAttributes> getSkillAttributesMap();
     public SkillAttributes getSkillAttributes(Skill skill);
     public SelfType setSkillAttributes(Skill skill, SkillAttributes info);
+
+    public HashMap<BasicCategory<SkillAttributes>, SkillAttributes> getSkillCategoryAttributesMap();
+    public SkillAttributes getSkillCategoryAttributes(BasicCategory<SkillAttributes> category);
+    public SelfType setSkillCategoryAttributes(BasicCategory<SkillAttributes> category, SkillAttributes info);
 }

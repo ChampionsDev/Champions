@@ -19,10 +19,7 @@ package com.github.championsdev.champions.library.race;
 
 
 import com.github.championsdev.champions.library.BasicCategory;
-import com.github.championsdev.champions.library.armor.Armor;
-import com.github.championsdev.champions.library.armor.ArmorAttributes;
-import com.github.championsdev.champions.library.armor.ArmorRestricted;
-import com.github.championsdev.champions.library.armor.ArmorUser;
+import com.github.championsdev.champions.library.armor.*;
 import com.github.championsdev.champions.library.behavior.BehaviorGroup;
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.cclass.CClass;
@@ -46,8 +43,10 @@ import java.util.HashMap;
  */
 public class Race implements Informative<Race, RaceAttributes>, Identifiable<Race>,
         ArmorUser<Race>, SkillUser<Race>, WeaponUser<Race>,
-        CClassUser<Race>, SkillRestricted, WeaponRestricted, WeaponCategoryRestricted, ArmorRestricted, CClassRestricted,
-        Behavioral<Race>,Restrictable {
+        CClassUser<Race>, SkillRestricted,
+        WeaponRestricted, WeaponCategoryRestricted,
+        ArmorRestricted, ArmorCategoryRestricted,
+        CClassRestricted, Behavioral<Race>, Restrictable {
     private String name = "";
     private String id = "";
     private ArrayList<String> description = new ArrayList<>();
@@ -150,7 +149,7 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
     }
 
     @Override
-    public Race setArmorInfo(Armor armor, ArmorAttributes info) {
+    public Race setArmorAttributes(Armor armor, ArmorAttributes info) {
         if(armor != null) {
             armorAttributesMap.put(armor, info);
         }
