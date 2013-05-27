@@ -373,6 +373,21 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     }
 
     @Override
+    public HashMap<BasicCategory<SkillAttributes>, SkillAttributes> getSkillCategoryAttributesMap() {
+        return null; //TODO getSkillCategoryAttributesMap method stub
+    }
+
+    @Override
+    public SkillAttributes getSkillCategoryAttributes(BasicCategory<SkillAttributes> category) {
+        return null; //TODO getSkillCategoryAttributes method stub
+    }
+
+    @Override
+    public CPlayer setSkillCategoryAttributes(BasicCategory<SkillAttributes> category, SkillAttributes info) {
+        return null; //TODO setSkillCategoryAttributes method stub
+    }
+
+    @Override
     public SkillAttributes getSkillAttributes(Skill skill) {
         if (!skillAttributesMap.containsKey(skill)) {
             skillAttributesMap.put(skill, new SkillAttributes());
@@ -454,6 +469,21 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
             armorAttributesMap.put(armor, info);
         }
         return this;
+    }
+
+    @Override
+    public HashMap<BasicCategory<ArmorAttributes>, ArmorAttributes> getArmorCategoryAttributesMap() {
+        return null; //TODO getArmorCategoryAttributesMap method stub
+    }
+
+    @Override
+    public ArmorAttributes getArmorCategoryAttributes(BasicCategory<ArmorAttributes> category) {
+        return null; //TODO getArmorCategoryAttributes method stub
+    }
+
+    @Override
+    public CPlayer setArmorCategoryAttributes(BasicCategory<ArmorAttributes> category, ArmorAttributes info) {
+        return null; //TODO setArmorCategoryAttributes method stub
     }
 
     @Override

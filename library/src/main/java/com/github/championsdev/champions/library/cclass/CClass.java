@@ -142,6 +142,21 @@ public class CClass implements Informative<CClass, CClassAttributes>, Identifiab
     }
 
     @Override
+    public HashMap<BasicCategory<ArmorAttributes>, ArmorAttributes> getArmorCategoryAttributesMap() {
+        return null; //TODO getArmorCategoryAttributesMap method stub
+    }
+
+    @Override
+    public ArmorAttributes getArmorCategoryAttributes(BasicCategory<ArmorAttributes> category) {
+        return null; //TODO getArmorCategoryAttributes method stub
+    }
+
+    @Override
+    public CClass setArmorCategoryAttributes(BasicCategory<ArmorAttributes> category, ArmorAttributes info) {
+        return null; //TODO setArmorCategoryAttributes method stub
+    }
+
+    @Override
     public ArrayList<Skill> getSkills() {
         return currentSkills;
     }
@@ -184,6 +199,21 @@ public class CClass implements Informative<CClass, CClassAttributes>, Identifiab
             skillAttributesMap.put(skill, info);
         }
         return this;
+    }
+
+    @Override
+    public HashMap<BasicCategory<SkillAttributes>, SkillAttributes> getSkillCategoryAttributesMap() {
+        return null; //TODO getSkillCategoryAttributesMap method stub
+    }
+
+    @Override
+    public SkillAttributes getSkillCategoryAttributes(BasicCategory<SkillAttributes> category) {
+        return null; //TODO getSkillCategoryAttributes method stub
+    }
+
+    @Override
+    public CClass setSkillCategoryAttributes(BasicCategory<SkillAttributes> category, SkillAttributes info) {
+        return null; //TODO setSkillCategoryAttributes method stub
     }
 
     @Override

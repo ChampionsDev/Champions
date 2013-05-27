@@ -131,6 +131,21 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
     }
 
     @Override
+    public HashMap<BasicCategory<SkillAttributes>, SkillAttributes> getSkillCategoryAttributesMap() {
+        return null; //TODO getSkillCategoryAttributesMap method stub
+    }
+
+    @Override
+    public SkillAttributes getSkillCategoryAttributes(BasicCategory<SkillAttributes> category) {
+        return null; //TODO getSkillCategoryAttributes method stub
+    }
+
+    @Override
+    public Race setSkillCategoryAttributes(BasicCategory<SkillAttributes> category, SkillAttributes info) {
+        return null; //TODO setSkillCategoryAttributes method stub
+    }
+
+    @Override
     public HashMap<Armor, ArmorAttributes> getArmorAttributesMap() {
         return armorAttributesMap;
     }
@@ -154,6 +169,21 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
             armorAttributesMap.put(armor, info);
         }
         return this;
+    }
+
+    @Override
+    public HashMap<BasicCategory<ArmorAttributes>, ArmorAttributes> getArmorCategoryAttributesMap() {
+        return null; //TODO getArmorCategoryAttributesMap method stub
+    }
+
+    @Override
+    public ArmorAttributes getArmorCategoryAttributes(BasicCategory<ArmorAttributes> category) {
+        return null; //TODO getArmorCategoryAttributes method stub
+    }
+
+    @Override
+    public Race setArmorCategoryAttributes(BasicCategory<ArmorAttributes> category, ArmorAttributes info) {
+        return null; //TODO setArmorCategoryAttributes method stub
     }
 
     @Override
