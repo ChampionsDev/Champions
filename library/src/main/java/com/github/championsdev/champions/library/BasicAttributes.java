@@ -16,6 +16,8 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library;
 
+import com.github.championsdev.champions.library.misc.Attributes;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,7 +26,7 @@ import java.util.List;
  */
 
 @SuppressWarnings("unchecked")
-public class BasicAttributes<SelfType extends BasicAttributes> {
+public class BasicAttributes<SelfType extends BasicAttributes> implements Attributes {
     private int weaponDamage = 0;
     private int minWeaponDamage = 0;
     private int maxWeaponDamage = 0;

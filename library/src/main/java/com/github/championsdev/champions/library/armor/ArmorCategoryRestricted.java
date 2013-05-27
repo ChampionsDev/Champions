@@ -16,20 +16,8 @@ This file is part of Champions.
 */
 package com.github.championsdev.champions.library.armor;
 
-import com.github.championsdev.champions.library.BasicCategory;
-import com.github.championsdev.champions.library.BasicUser;
-
-import java.util.HashMap;
-
 /**
  * @author B2OJustin
  */
-public interface ArmorUser<SelfType extends ArmorUser> extends BasicUser {
-    public HashMap<Armor, ArmorAttributes> getArmorAttributesMap();
-    public ArmorAttributes getArmorAttributes(Armor armor);
-    public SelfType setArmorAttributes(Armor armor, ArmorAttributes info);
-
-    public HashMap<BasicCategory<ArmorAttributes>, ArmorAttributes> getArmorCategoryAttributesMap();
-    public ArmorAttributes getArmorCategoryAttributes(BasicCategory<ArmorAttributes> category);
-    public SelfType setArmorCategoryAttributes(BasicCategory<ArmorAttributes> category, ArmorAttributes info);
+public interface ArmorCategoryRestricted {
 }

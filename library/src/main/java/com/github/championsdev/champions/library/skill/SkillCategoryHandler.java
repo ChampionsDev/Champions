@@ -14,22 +14,22 @@ This file is part of Champions.
     You should have received a copy of the GNU General Public License
     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.armor;
+package com.github.championsdev.champions.library.skill;
 
 import com.github.championsdev.champions.library.BasicCategory;
-import com.github.championsdev.champions.library.BasicUser;
-
-import java.util.HashMap;
+import com.github.championsdev.champions.library.BasicHandler;
 
 /**
  * @author B2OJustin
  */
-public interface ArmorUser<SelfType extends ArmorUser> extends BasicUser {
-    public HashMap<Armor, ArmorAttributes> getArmorAttributesMap();
-    public ArmorAttributes getArmorAttributes(Armor armor);
-    public SelfType setArmorAttributes(Armor armor, ArmorAttributes info);
+public class SkillCategoryHandler extends BasicHandler<BasicCategory<SkillAttributes>> {
+    private static SkillCategoryHandler instance = new SkillCategoryHandler();
 
-    public HashMap<BasicCategory<ArmorAttributes>, ArmorAttributes> getArmorCategoryAttributesMap();
-    public ArmorAttributes getArmorCategoryAttributes(BasicCategory<ArmorAttributes> category);
-    public SelfType setArmorCategoryAttributes(BasicCategory<ArmorAttributes> category, ArmorAttributes info);
+    public static SkillCategoryHandler getInstance() {
+        return instance;
+    }
+
+    public BasicCategory<SkillAttributes> load(String id) {
+        return null; // TODO
+    }
 }

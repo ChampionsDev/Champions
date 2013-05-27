@@ -21,11 +21,12 @@ import com.github.championsdev.champions.library.level.Level;
 import com.github.championsdev.champions.library.level.LevelRestricted;
 import com.github.championsdev.champions.library.level.LevelRestrictions;
 import com.github.championsdev.champions.library.level.LevelUser;
+import com.github.championsdev.champions.library.misc.Attributes;
 
 /**
  * @author YoshiGenius
  */
-public class SkillAttributes implements LevelUser, LevelRestricted {
+public class SkillAttributes implements Attributes, LevelUser, LevelRestricted {
     private Level level = new Level(1);
     private int manaCost = 0;
     private int cooldownSeconds = 0;

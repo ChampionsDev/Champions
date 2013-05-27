@@ -17,19 +17,19 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.armor;
 
 import com.github.championsdev.champions.library.BasicCategory;
-import com.github.championsdev.champions.library.BasicUser;
-
-import java.util.HashMap;
+import com.github.championsdev.champions.library.BasicHandler;
 
 /**
  * @author B2OJustin
  */
-public interface ArmorUser<SelfType extends ArmorUser> extends BasicUser {
-    public HashMap<Armor, ArmorAttributes> getArmorAttributesMap();
-    public ArmorAttributes getArmorAttributes(Armor armor);
-    public SelfType setArmorAttributes(Armor armor, ArmorAttributes info);
+public class ArmorCategoryHandler extends BasicHandler<BasicCategory<ArmorAttributes>> {
+    private static ArmorCategoryHandler instance = new ArmorCategoryHandler();
 
-    public HashMap<BasicCategory<ArmorAttributes>, ArmorAttributes> getArmorCategoryAttributesMap();
-    public ArmorAttributes getArmorCategoryAttributes(BasicCategory<ArmorAttributes> category);
-    public SelfType setArmorCategoryAttributes(BasicCategory<ArmorAttributes> category, ArmorAttributes info);
+    public static ArmorCategoryHandler getInstance() {
+        return instance;
+    }
+
+    public BasicCategory<ArmorAttributes> load(String id) {
+        return null; // TODO
+    }
 }

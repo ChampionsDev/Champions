@@ -449,7 +449,7 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     }
 
     @Override
-    public CPlayer setArmorInfo(Armor armor, ArmorAttributes info) {
+    public CPlayer setArmorAttributes(Armor armor, ArmorAttributes info) {
         if(armor != null) {
             armorAttributesMap.put(armor, info);
         }

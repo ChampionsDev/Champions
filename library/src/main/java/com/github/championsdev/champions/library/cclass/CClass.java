@@ -134,7 +134,7 @@ public class CClass implements Informative<CClass, CClassAttributes>, Identifiab
     }
 
     @Override
-    public CClass setArmorInfo(Armor armor, ArmorAttributes info) {
+    public CClass setArmorAttributes(Armor armor, ArmorAttributes info) {
         if(armor != null) {
             armorAttributesMap.put(armor, info);
         }
