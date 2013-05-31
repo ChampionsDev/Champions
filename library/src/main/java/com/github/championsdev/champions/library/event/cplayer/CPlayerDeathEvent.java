@@ -17,12 +17,25 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.event.cplayer;
 
 import com.github.championsdev.champions.library.cplayer.CPlayer;
+import com.github.championsdev.champions.library.event.Cancellable;
 
 /**
  * @author B2OJustin
  */
-public class CPlayerDeathEvent extends CPlayerEvent {
+public class CPlayerDeathEvent extends CPlayerEvent implements Cancellable {
     public CPlayerDeathEvent(CPlayer player) {
         super(player);
+    }
+
+    private boolean isCancelled = false;
+
+    @Override
+    public void setCancelled(boolean isCancelled) {
+        this.isCancelled = isCancelled;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return isCancelled;
     }
 }

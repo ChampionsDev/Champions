@@ -17,12 +17,15 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.event.cplayer;
 
 import com.github.championsdev.champions.library.cplayer.CPlayer;
+import com.github.championsdev.champions.library.event.Cancellable;
 import com.github.championsdev.champions.library.weapon.Weapon;
+
+import java.nio.channels.CancelledKeyException;
 
 /**
  * @author B2OJustin
  */
-public class CPlayerWeaponChangeEvent extends CPlayerEvent {
+public class CPlayerWeaponChangeEvent extends CPlayerEvent implements Cancellable {
     public Weapon weapon;
     public CPlayerWeaponChangeEvent(CPlayer player, Weapon weapon) {
         super(player);
@@ -31,5 +34,17 @@ public class CPlayerWeaponChangeEvent extends CPlayerEvent {
 
     public Weapon getNewWeapon() {
         return weapon;
+    }
+
+    private boolean isCancelled = false;
+
+    @Override
+    public void setCancelled(boolean isCancelled) {
+        this.isCancelled = isCancelled;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return isCancelled;
     }
 }

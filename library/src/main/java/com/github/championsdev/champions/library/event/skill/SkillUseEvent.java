@@ -17,12 +17,13 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.event.skill;
 
 import com.github.championsdev.champions.library.CEntity;
+import com.github.championsdev.champions.library.event.Cancellable;
 import com.github.championsdev.champions.library.skill.Skill;
 
 /**
  * @author B2OJustin
  */
-public class SkillUseEvent extends SkillEvent {
+public class SkillUseEvent extends SkillEvent implements Cancellable {
     protected CEntity source;
     protected CEntity target;
 
@@ -38,5 +39,17 @@ public class SkillUseEvent extends SkillEvent {
 
     public CEntity getTarget() {
         return target;
+    }
+
+    private boolean isCancelled = false;
+
+    @Override
+    public void setCancelled(boolean isCancelled) {
+        this.isCancelled = isCancelled;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return isCancelled;
     }
 }

@@ -14,28 +14,25 @@ This file is part of Champions.
     You should have received a copy of the GNU General Public License
     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.github.championsdev.champions.library.event.cplayer;
+package utils.util;
 
-import com.github.championsdev.champions.library.cplayer.CPlayer;
-import com.github.championsdev.champions.library.event.Cancellable;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 
 /**
  * @author B2OJustin
  */
-public class CPlayerQuitEvent extends CPlayerEvent implements Cancellable {
-    public CPlayerQuitEvent(CPlayer player) {
-        super(player);
-    }
-
-    private boolean isCancelled = false;
-
-    @Override
-    public void setCancelled(boolean isCancelled) {
-        this.isCancelled = isCancelled;
-    }
-
-    @Override
-    public boolean isCancelled() {
-        return isCancelled;
+public class FileClassLoader {
+    public static Class load(Class clazz, String filePath, String className) {
+        File file = new File(filePath);
+        try {
+            URL url = file.toURI().toURL(); // file:/c:/myclasses/
+            ClassLoader cl = new URLClassLoader(new URL[]{url});
+            return cl.loadClass(clazz.getPackage() + "." + className);
+        } catch (MalformedURLException | ClassNotFoundException ignored) {
+        }
+        return null;
     }
 }

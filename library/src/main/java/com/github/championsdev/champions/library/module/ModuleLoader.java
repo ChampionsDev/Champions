@@ -1,6 +1,5 @@
 package com.github.championsdev.champions.library.module;
 
-import com.github.championsdev.champions.library.database.DataManager;
 import com.github.championsdev.champions.library.util.FileUtil;
 import com.github.championsdev.champions.library.util.PlatformUtil;
 

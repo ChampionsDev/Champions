@@ -22,7 +22,17 @@ import com.github.championsdev.champions.library.cplayer.CPlayer;
  * @author B2OJustin
  */
 public class CPlayerJoinEvent extends CPlayerEvent {
+    private boolean kick = false;
+
     public CPlayerJoinEvent(CPlayer player) {
         super(player);
+    }
+
+    public void kick(boolean kick) {
+        this.kick = kick;
+    }
+
+    public boolean willKick() {
+        return this.kick;
     }
 }

@@ -18,13 +18,14 @@ package com.github.championsdev.champions.library.event.cplayer;
 
 import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
+import com.github.championsdev.champions.library.event.Cancellable;
 import com.github.championsdev.champions.library.level.exp.Exp;
 import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
 
 /**
  * @author B2OJustin
  */
-public class CPlayerExpGainEvent extends CPlayerEvent {
+public class CPlayerExpGainEvent extends CPlayerEvent implements Cancellable {
     public Exp exp;
     public ExpSource source;
 
@@ -40,5 +41,17 @@ public class CPlayerExpGainEvent extends CPlayerEvent {
 
     public ExpSource getSource() {
         return source;
+    }
+
+    private boolean isCancelled = false;
+
+    @Override
+    public void setCancelled(boolean isCancelled) {
+        this.isCancelled = isCancelled;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return isCancelled;
     }
 }
