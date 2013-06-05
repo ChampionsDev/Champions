@@ -110,38 +110,51 @@ public class EventManager {
                     if(clazz == Object.class) break;
                 }
 
+                // Todo code duplication.
                 for(Method method : lowestPriority) {
-                    if(event.isCancelled() && handlers.get(method).ignoreCancelled()) continue;
+                    if(event instanceof Cancellable && ((Cancellable)event).isCancelled() && handlers.get(method).ignoreCancelled()) {
+                        continue;
+                    }
                     if (method.getParameterTypes()[0].isAssignableFrom(event.getClass())) {
                         method.invoke(listeners.get(method), event);
                     }
                 }
                 for(Method method : lowPriority) {
-                    if(event.isCancelled() && handlers.get(method).ignoreCancelled()) continue;
+                    if(event instanceof Cancellable && ((Cancellable)event).isCancelled() && handlers.get(method).ignoreCancelled()) {
+                        continue;
+                    }
                     if (method.getParameterTypes()[0].isAssignableFrom(event.getClass())) {
                         method.invoke(listeners.get(method), event);
                     }
                 }
                 for(Method method : normalPriority) {
-                    if(event.isCancelled() && handlers.get(method).ignoreCancelled()) continue;
+                    if(event instanceof Cancellable && ((Cancellable)event).isCancelled() && handlers.get(method).ignoreCancelled()) {
+                        continue;
+                    }
                     if (method.getParameterTypes()[0].isAssignableFrom(event.getClass())) {
                         method.invoke(listeners.get(method), event);
                     }
                 }
                 for(Method method : highPriority) {
-                    if(event.isCancelled() && handlers.get(method).ignoreCancelled()) continue;
+                    if(event instanceof Cancellable && ((Cancellable)event).isCancelled() && handlers.get(method).ignoreCancelled()) {
+                        continue;
+                    }
                     if (method.getParameterTypes()[0].isAssignableFrom(event.getClass())) {
                         method.invoke(listeners.get(method), event);
                     }
                 }
                 for(Method method : highestPriority) {
-                    if(event.isCancelled() && handlers.get(method).ignoreCancelled()) continue;
+                    if(event instanceof Cancellable && ((Cancellable)event).isCancelled() && handlers.get(method).ignoreCancelled()) {
+                        continue;
+                    }
                     if (method.getParameterTypes()[0].isAssignableFrom(event.getClass())) {
                         method.invoke(listeners.get(method), event);
                     }
                 }
                 for(Method method : monitorPriority) {
-                    if(event.isCancelled() && handlers.get(method).ignoreCancelled()) continue;
+                    if(event instanceof Cancellable && ((Cancellable)event).isCancelled() && handlers.get(method).ignoreCancelled()) {
+                        continue;
+                    }
                     if(method.getParameterTypes()[0].isAssignableFrom(event.getClass())) {
                         method.invoke(listeners.get(method), event);
                     }
