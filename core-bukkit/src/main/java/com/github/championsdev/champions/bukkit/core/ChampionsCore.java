@@ -26,7 +26,7 @@ import com.github.championsdev.champions.library.database.DataManager;
 import com.github.championsdev.champions.library.database.YAMLDataSource;
 import com.github.championsdev.champions.library.event.BaseListener;
 import com.github.championsdev.champions.library.event.EventManager;
-import com.github.championsdev.champions.library.util.FileUtil;
+import com.github.championsdev.champions.library.util.ResourceUtil;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -62,7 +62,7 @@ public class ChampionsCore extends JavaPlugin {
         try {
             // Copy default configuration files
             logger.info("Copying default configuration files...");
-            int filesCopied = FileUtil.copyDirectoryFromJar(ChampionsCore.class, JAR_RESOURCE_DIRECTORY, CONFIG_PATH, false);
+            int filesCopied = ResourceUtil.copyDirectoryFromJar(ChampionsCore.class, JAR_RESOURCE_DIRECTORY, CONFIG_PATH, false);
             logger.info(String.format("Copied %d files", filesCopied));
 
             // Load configuration

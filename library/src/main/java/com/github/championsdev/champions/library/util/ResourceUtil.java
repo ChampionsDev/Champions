@@ -30,7 +30,7 @@ import java.util.zip.ZipFile;
 /**
  * @author B2OJustin
  */
-public class FileUtil {
+public class ResourceUtil {
 
     /**
      * Retrieves a list of files in the path contained within the jar file.

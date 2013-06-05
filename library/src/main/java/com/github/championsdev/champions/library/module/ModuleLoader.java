@@ -1,6 +1,6 @@
 package com.github.championsdev.champions.library.module;
 
-import com.github.championsdev.champions.library.util.FileUtil;
+import com.github.championsdev.champions.library.util.ResourceUtil;
 import com.github.championsdev.champions.library.util.PlatformUtil;
 
 import java.io.File;
@@ -34,7 +34,7 @@ public class ModuleLoader {
         }
         Module[] modules = new Module[]{};
         for (File file : directory.listFiles()) {
-            if (FileUtil.isJarFile(file)) {
+            if (ResourceUtil.isJarFile(file)) {
                 try {
                     JarFile jarFile = new JarFile(file);
                     JarEntry entry = jarFile.getJarEntry("module.yml");
