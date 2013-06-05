@@ -1,4 +1,4 @@
-/*
+/*******************************************************************************
  * This file is part of Champions.
  *
  *     Champions is free software: you can redistribute it and/or modify
@@ -13,7 +13,7 @@
  *
  *     You should have received a copy of the GNU General Public License
  *     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
- */
+ ******************************************************************************/
 
 package com.github.championsdev.champions.library.util;
 
