@@ -33,15 +33,14 @@ public abstract class Behavior {
     public void onPlayerKill(CPlayerKillEvent event) {}
     public void onMobKill(CPlayerMobKillEvent event) {}
     public void onJoin(CPlayerJoinEvent event) {}
-    public void onWeaponChange(CPlayerWeaponChangeEvent event) {}
     public void onLevelUp(CPlayerLevelUpEvent event) {}
     public void onExpGain(CPlayerExpGainEvent event) {}
 
     // Skill
-    public void onUse(SkillUseEvent event) {}
+    public void onSkillUse(SkillUseEvent event) {}
 
     // Weapon
     public void onClick(WeaponClickEvent event) {}
     public void onHit(WeaponHitEvent event) {}
-    public void onSelect(WeaponEvent event) {}
+    public void onWeaponChange(CPlayerWeaponChangeEvent event) {}
 }

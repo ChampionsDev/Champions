@@ -35,7 +35,7 @@ public class BaseListener implements EventListener {
 
     @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onSkillUseEvent(SkillUseEvent event) {
-        event.getSkill().getBehavior().onUse(event);
+        event.getSkill().getBehavior().onSkillUse(event);
     }
 
     @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

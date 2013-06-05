@@ -19,7 +19,6 @@ package com.github.championsdev.champions.library.behavior;
 import com.github.championsdev.champions.library.event.cplayer.*;
 import com.github.championsdev.champions.library.event.skill.SkillUseEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
-import com.github.championsdev.champions.library.event.weapon.WeaponEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
 
 import java.util.ArrayList;
@@ -94,8 +93,8 @@ public class BehaviorGroup extends Behavior {
     }
 
     @Override
-    public void onUse(SkillUseEvent event) {
-        for(Behavior behavior : behaviors) behavior.onUse(event);
+    public void onSkillUse(SkillUseEvent event) {
+        for(Behavior behavior : behaviors) behavior.onSkillUse(event);
     }
 
     @Override
@@ -108,8 +107,4 @@ public class BehaviorGroup extends Behavior {
         for(Behavior behavior : behaviors) behavior.onHit(event);
     }
 
-    @Override
-    public void onSelect(WeaponEvent event) {
-        for(Behavior behavior : behaviors) behavior.onSelect(event);
-    }
 }
