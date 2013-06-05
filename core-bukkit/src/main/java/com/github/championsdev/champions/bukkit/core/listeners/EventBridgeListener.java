@@ -18,7 +18,6 @@ package com.github.championsdev.champions.bukkit.core.listeners;
 
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.cplayer.CPlayerHandler;
-import com.github.championsdev.champions.library.event.BaseListener;
 import com.github.championsdev.champions.library.event.EventManager;
 import com.github.championsdev.champions.library.event.cplayer.*;
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;

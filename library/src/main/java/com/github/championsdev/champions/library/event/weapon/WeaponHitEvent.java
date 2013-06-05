@@ -17,12 +17,13 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.event.weapon;
 
 import com.github.championsdev.champions.library.cplayer.CPlayer;
+import com.github.championsdev.champions.library.event.Cancellable;
 import com.github.championsdev.champions.library.weapon.Weapon;
 
 /**
  * @author B2OJustin
  */
-public class WeaponHitEvent extends WeaponEvent {
+public class WeaponHitEvent extends WeaponEvent implements Cancellable {
     public Object target;
 
     public WeaponHitEvent(Weapon weapon, CPlayer source, Object target) {
@@ -36,5 +37,17 @@ public class WeaponHitEvent extends WeaponEvent {
 
     public Object getTarget() {
         return target;
+    }
+
+    private boolean isCancelled = false;
+
+    @Override
+    public void setCancelled(boolean isCancelled) {
+        this.isCancelled = isCancelled;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return isCancelled;
     }
 }

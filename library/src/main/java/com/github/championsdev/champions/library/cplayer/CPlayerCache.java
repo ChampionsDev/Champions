@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * @author B2OJustin
  */
-public class CPlayerCache {
+public class  CPlayerCache {
     private static int cacheSize = 20;
     private static LinkedHashMap<String, CPlayer> cacheMap = new LinkedHashMap<String, CPlayer>(cacheSize, 0.75f) {
         @Override

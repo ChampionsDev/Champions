@@ -17,11 +17,12 @@ This file is part of Champions.
 package com.github.championsdev.champions.library.event.cplayer;
 
 import com.github.championsdev.champions.library.cplayer.CPlayer;
+import com.github.championsdev.champions.library.event.Cancellable;
 
 /**
  * @author B2OJustin
  */
-public class CPlayerMobKillEvent extends CPlayerEvent {
+public class CPlayerMobKillEvent extends CPlayerEvent implements Cancellable {
     public String mobId;
     public CPlayerMobKillEvent(CPlayer player, String mobID) {
         super(player);
@@ -30,5 +31,17 @@ public class CPlayerMobKillEvent extends CPlayerEvent {
 
     public String getMobId() {
         return mobId;
+    }
+
+    private boolean isCancelled = false;
+
+    @Override
+    public void setCancelled(boolean isCancelled) {
+        this.isCancelled = isCancelled;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return isCancelled;
     }
 }
