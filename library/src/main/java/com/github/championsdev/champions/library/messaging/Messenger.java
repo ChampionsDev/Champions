@@ -15,31 +15,13 @@
  *     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.github.championsdev.champions.library.util;
+package com.github.championsdev.champions.library.messaging;
 
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 
-import java.util.ArrayList;
-
 /**
- * @author YoshiGenius
+ * @author B2OJustin
  */
-public abstract class Messenger {
-
-    private static ArrayList<Messenger> messengers = new ArrayList<>();
-
-    public static boolean registerSender(Messenger messenger) {
-        return messengers.add(messenger);
-    }
-
-    public static boolean sendMessage(CPlayer cPlayer, String message) {
-        if (messengers.isEmpty()) return false;
-        for (Messenger m : messengers) {
-            if (m.send(cPlayer, message)) return true;
-        }
-        return false;
-    }
-
-    public abstract boolean send(CPlayer cPlayer, String message);
-
+public interface Messenger {
+    public boolean send(CPlayer cPlayer, String message);
 }
