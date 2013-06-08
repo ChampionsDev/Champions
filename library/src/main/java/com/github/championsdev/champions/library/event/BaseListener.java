@@ -76,7 +76,9 @@ public class BaseListener implements EventListener {
         Exp expGain = event.getKiller().addExp(new PlayerKillExpSource(event.getKilled().getName()));
         event.getKiller().getBehavior().onPlayerKill(event);
         event.getKilled().getBehavior().onPlayerKill(event);
-        EventManager.callEvent(new CPlayerExpGainEvent(event.getKiller(), source, expGain));
+        if(expGain.getExp() != 0) {
+            EventManager.callEvent(new CPlayerExpGainEvent(event.getKiller(), source, expGain));
+        }
     }
 
     @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -84,7 +86,9 @@ public class BaseListener implements EventListener {
         ExpSource expSource = new MobKillExpSource(event.getMobId());
         Exp expGain = event.getCPlayer().addExp(expSource);
         event.getCPlayer().getBehavior().onMobKill(event);
-        EventManager.callEvent(new CPlayerExpGainEvent(event.getCPlayer(), expSource, expGain));
+        if(expGain.getExp() != 0) {
+            EventManager.callEvent(new CPlayerExpGainEvent(event.getCPlayer(), expSource, expGain));
+        }
     }
 
     // Note: Currently, this event is fired even if the exp gain is 0
