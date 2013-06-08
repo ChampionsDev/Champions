@@ -20,6 +20,9 @@ import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.cclass.CClassType;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.event.Cancellable;
+import com.github.championsdev.champions.library.skill.Skill;
+
+import java.util.ArrayList;
 
 /**
  * @author B2OJustin
@@ -27,6 +30,8 @@ import com.github.championsdev.champions.library.event.Cancellable;
 public class CPlayerLevelUpEvent extends CPlayerEvent implements Cancellable {
     private CClassType classType;
     private CClass cClass;
+    private boolean isCancelled = false;
+    private ArrayList<Skill> newSkills = new ArrayList<>();
 
     public CPlayerLevelUpEvent(CPlayer player, CClass cClass, CClassType classType) {
         super(player);
@@ -42,7 +47,9 @@ public class CPlayerLevelUpEvent extends CPlayerEvent implements Cancellable {
         return cClass;
     }
 
-    private boolean isCancelled = false;
+    public ArrayList<Skill> getNewSkills() {
+        return newSkills;
+    }
 
     @Override
     public void setCancelled(boolean isCancelled) {

@@ -17,11 +17,16 @@
 package com.github.championsdev.champions.library.util;
 
 import com.github.championsdev.champions.library.Configuration;
+import com.github.championsdev.champions.library.cclass.CClassType;
+import com.github.championsdev.champions.library.cplayer.CPlayer;
+import com.github.championsdev.champions.library.event.cplayer.CPlayerLevelUpEvent;
 import com.github.championsdev.champions.library.level.Level;
+import com.github.championsdev.champions.library.skill.Skill;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
@@ -66,5 +71,18 @@ public class LevelUtil {
             ex.printStackTrace();
         }
         return false;
+    }
+
+    /**
+     * Prepares and fires a CPlayerLevelUpEvent.
+     * This does not take into account whether or not the player
+     * is actually qualified to gain a new level.
+     *
+     * @param player
+     * @param classType
+     * @return
+     */
+    public static void levelUp(CPlayer player, CClassType classType) {
+        // TODO
     }
 }

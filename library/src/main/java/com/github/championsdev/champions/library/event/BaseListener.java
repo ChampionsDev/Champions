@@ -16,6 +16,7 @@
  ******************************************************************************/
 package com.github.championsdev.champions.library.event;
 
+import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.cclass.CClassType;
 import com.github.championsdev.champions.library.cplayer.CPlayerHandler;
 import com.github.championsdev.champions.library.database.DataManager;
@@ -23,6 +24,9 @@ import com.github.championsdev.champions.library.event.cplayer.*;
 import com.github.championsdev.champions.library.event.skill.SkillUseEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
+import com.github.championsdev.champions.library.restriction.BasicRestrictions;
+import com.github.championsdev.champions.library.restriction.RestrictionHandler;
+import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.util.LevelUtil;
 import com.github.championsdev.champions.library.level.exp.Exp;
 import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
@@ -96,11 +100,11 @@ public class BaseListener implements EventListener {
     public void onCPlayerExpGain(CPlayerExpGainEvent event) {
         if(LevelUtil.shouldLevelUp(event.getCPlayer().getPrimaryClassAttributes().getLevel())) {
             event.getCPlayer().getPrimaryClassAttributes().getLevel().levelUp();
-            EventManager.callEvent(new CPlayerLevelUpEvent(event.getCPlayer(), event.getCPlayer().getPrimaryClass(), CClassType.PRIMARY));
+            LevelUtil.levelUp(event.getCPlayer(), CClassType.PRIMARY);
         }
         if(LevelUtil.shouldLevelUp(event.getCPlayer().getSecondaryClassAttributes().getLevel())) {
             event.getCPlayer().getSecondaryClassAttributes().getLevel().levelUp();
-            EventManager.callEvent(new CPlayerLevelUpEvent(event.getCPlayer(), event.getCPlayer().getSecondaryClass(), CClassType.SECONDARY));
+            LevelUtil.levelUp(event.getCPlayer(), CClassType.SECONDARY);
         }
         event.getCPlayer().getBehavior().onExpGain(event);
     }

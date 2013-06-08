@@ -16,6 +16,8 @@
  ******************************************************************************/
 package com.github.championsdev.champions.library.restriction;
 
+import java.util.ArrayList;
+
 /**
  * @author B2OJustin
  */
@@ -23,4 +25,5 @@ interface BasicRestrictor<T> {
     public void setAllowed(T restrictable, boolean allowed);
     public void setDefault(boolean defaultAllow);
     public boolean isAllowed(T restrictable);
+    public ArrayList<T> getAllPermitted();
 }

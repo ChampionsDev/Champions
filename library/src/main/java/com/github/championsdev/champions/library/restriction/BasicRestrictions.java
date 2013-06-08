@@ -16,18 +16,19 @@
  ******************************************************************************/
 package com.github.championsdev.champions.library.restriction;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author B2OJustin
  */
 public class BasicRestrictions<T extends Restrictable> implements BasicRestrictor<T> {
     protected HashMap<T, Boolean> rMap;
-    protected boolean defaultAllow;
+    protected boolean defaultAllow = false;
 
     public BasicRestrictions() {
         rMap = new HashMap<>();
-        defaultAllow = false;
     }
 
     @Override
@@ -45,7 +46,17 @@ public class BasicRestrictions<T extends Restrictable> implements BasicRestricto
     }
 
     @Override
+    public ArrayList<T> getAllPermitted() {
+        ArrayList<T> permittedList = new ArrayList<>();
+        for(Map.Entry<T, Boolean> entry : rMap.entrySet()) {
+            if(entry.getValue()) permittedList.add(entry.getKey());
+        }
+        return permittedList;
+    }
+
+    @Override
     public void setDefault(boolean defaultAllow) {
         this.defaultAllow = defaultAllow;
     }
+
 }
