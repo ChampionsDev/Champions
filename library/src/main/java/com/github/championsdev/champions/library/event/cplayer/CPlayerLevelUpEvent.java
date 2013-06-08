@@ -17,6 +17,7 @@
 package com.github.championsdev.champions.library.event.cplayer;
 
 import com.github.championsdev.champions.library.cclass.CClass;
+import com.github.championsdev.champions.library.cclass.CClassType;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.event.Cancellable;
 
@@ -24,20 +25,17 @@ import com.github.championsdev.champions.library.event.Cancellable;
  * @author B2OJustin
  */
 public class CPlayerLevelUpEvent extends CPlayerEvent implements Cancellable {
-    public enum ClassType {
-        PRIMARY, SECONDARY
-    }
-    private ClassType type;
+    private CClassType classType;
     private CClass cClass;
 
-    public CPlayerLevelUpEvent(CPlayer player, ClassType type, CClass cClass) {
+    public CPlayerLevelUpEvent(CPlayer player, CClass cClass, CClassType classType) {
         super(player);
-        this.type = type;
+        this.classType = classType;
         this.cClass = cClass;
     }
 
-    public ClassType getType() {
-        return type;
+    public CClassType getClassType() {
+        return classType;
     }
 
     public CClass getCclass() {

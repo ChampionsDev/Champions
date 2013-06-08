@@ -16,6 +16,7 @@
  ******************************************************************************/
 package com.github.championsdev.champions.library.event;
 
+import com.github.championsdev.champions.library.cclass.CClassType;
 import com.github.championsdev.champions.library.cplayer.CPlayerHandler;
 import com.github.championsdev.champions.library.database.DataManager;
 import com.github.championsdev.champions.library.event.cplayer.*;
@@ -91,17 +92,15 @@ public class BaseListener implements EventListener {
         }
     }
 
-    // Note: Currently, this event is fired even if the exp gain is 0
-    // TODO Differentiate between primary and secondary class exp gain
     @CEventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onCPlayerExpGain(CPlayerExpGainEvent event) {
         if(LevelUtil.shouldLevelUp(event.getCPlayer().getPrimaryClassAttributes().getLevel())) {
             event.getCPlayer().getPrimaryClassAttributes().getLevel().levelUp();
-            EventManager.callEvent(new CPlayerLevelUpEvent(event.getCPlayer(), CPlayerLevelUpEvent.ClassType.PRIMARY, event.getCPlayer().getPrimaryClass()));
+            EventManager.callEvent(new CPlayerLevelUpEvent(event.getCPlayer(), event.getCPlayer().getPrimaryClass(), CClassType.PRIMARY));
         }
         if(LevelUtil.shouldLevelUp(event.getCPlayer().getSecondaryClassAttributes().getLevel())) {
             event.getCPlayer().getSecondaryClassAttributes().getLevel().levelUp();
-            EventManager.callEvent(new CPlayerLevelUpEvent(event.getCPlayer(), CPlayerLevelUpEvent.ClassType.SECONDARY, event.getCPlayer().getSecondaryClass()));
+            EventManager.callEvent(new CPlayerLevelUpEvent(event.getCPlayer(), event.getCPlayer().getSecondaryClass(), CClassType.SECONDARY));
         }
         event.getCPlayer().getBehavior().onExpGain(event);
     }

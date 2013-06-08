@@ -23,7 +23,8 @@ import com.github.championsdev.champions.library.event.Cancellable;
  * @author B2OJustin
  */
 public class CPlayerMobKillEvent extends CPlayerEvent implements Cancellable {
-    public String mobId;
+    private String mobId;
+
     public CPlayerMobKillEvent(CPlayer player, String mobID) {
         super(player);
         this.mobId = mobID;

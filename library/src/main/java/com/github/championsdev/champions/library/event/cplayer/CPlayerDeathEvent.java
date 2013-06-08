@@ -23,11 +23,11 @@ import com.github.championsdev.champions.library.event.Cancellable;
  * @author B2OJustin
  */
 public class CPlayerDeathEvent extends CPlayerEvent implements Cancellable {
+    private boolean isCancelled = false;
+
     public CPlayerDeathEvent(CPlayer player) {
         super(player);
     }
-
-    private boolean isCancelled = false;
 
     @Override
     public void setCancelled(boolean isCancelled) {

@@ -26,7 +26,9 @@ import java.nio.channels.CancelledKeyException;
  * @author B2OJustin
  */
 public class CPlayerWeaponChangeEvent extends CPlayerEvent implements Cancellable {
-    public Weapon weapon;
+    private Weapon weapon;
+    private boolean isCancelled = false;
+
     public CPlayerWeaponChangeEvent(CPlayer player, Weapon weapon) {
         super(player);
         this.weapon = weapon;
@@ -35,8 +37,6 @@ public class CPlayerWeaponChangeEvent extends CPlayerEvent implements Cancellabl
     public Weapon getNewWeapon() {
         return weapon;
     }
-
-    private boolean isCancelled = false;
 
     @Override
     public void setCancelled(boolean isCancelled) {

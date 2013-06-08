@@ -14,39 +14,12 @@
  *     You should have received a copy of the GNU General Public License
  *     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package com.github.championsdev.champions.library.event.cplayer;
 
-import com.github.championsdev.champions.library.cplayer.CPlayer;
-import com.github.championsdev.champions.library.event.Cancellable;
+package com.github.championsdev.champions.library.cclass;
 
 /**
  * @author B2OJustin
  */
-public class CPlayerKillEvent extends CPlayerDeathEvent implements Cancellable {
-    private CPlayer killer;
-    private CPlayer killed;
-
-    public CPlayerKillEvent(CPlayer killer, CPlayer killed) {
-        super(killer);
-    }
-
-    public CPlayer getKilled() {
-        return killed;
-    }
-
-    public CPlayer getKiller() {
-        return killer;
-    }
-
-    private boolean isCancelled = false;
-
-    @Override
-    public void setCancelled(boolean isCancelled) {
-        this.isCancelled = isCancelled;
-    }
-
-    @Override
-    public boolean isCancelled() {
-        return isCancelled;
-    }
+public enum CClassType {
+    PRIMARY, SECONDARY
 }

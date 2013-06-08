@@ -26,8 +26,9 @@ import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
  * @author B2OJustin
  */
 public class CPlayerExpGainEvent extends CPlayerEvent implements Cancellable {
-    public Exp exp;
-    public ExpSource source;
+    private Exp exp;
+    private ExpSource source;
+    private boolean isCancelled = false;
 
     public CPlayerExpGainEvent(CPlayer player, ExpSource source, Exp exp) {
         super(player);
@@ -42,8 +43,6 @@ public class CPlayerExpGainEvent extends CPlayerEvent implements Cancellable {
     public ExpSource getSource() {
         return source;
     }
-
-    private boolean isCancelled = false;
 
     @Override
     public void setCancelled(boolean isCancelled) {
