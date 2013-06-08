@@ -26,6 +26,7 @@ import com.github.championsdev.champions.library.database.DataManager;
 import com.github.championsdev.champions.library.database.YAMLDataSource;
 import com.github.championsdev.champions.library.event.BaseListener;
 import com.github.championsdev.champions.library.event.EventManager;
+import com.github.championsdev.champions.library.messaging.MessageHandler;
 import com.github.championsdev.champions.library.util.ResourceUtil;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -77,6 +78,9 @@ public class ChampionsCore extends JavaPlugin {
 
         // Register commands
         getCommand("class").setExecutor(new ClassCommandExecutor());
+
+        // Register messenger
+        MessageHandler.register(new BukkitMessenger(this));
 
         logger.info("Champions successfully enabled!");
 	}
