@@ -34,6 +34,7 @@ import com.github.championsdev.champions.library.level.Level;
 import com.github.championsdev.champions.library.level.LevelRestricted;
 import com.github.championsdev.champions.library.level.exp.Exp;
 import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
+import com.github.championsdev.champions.library.messaging.MessageHandler;
 import com.github.championsdev.champions.library.misc.CLocatable;
 import com.github.championsdev.champions.library.misc.Informative;
 import com.github.championsdev.champions.library.party.Party;
@@ -557,5 +558,9 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
 
     public CClassAttributes getSecondaryClassAttributes() {
         return secondaryClassInfo;
+    }
+
+    public boolean sendMessage(String message) {
+        return MessageHandler.sendMessage(this, message);
     }
 }
