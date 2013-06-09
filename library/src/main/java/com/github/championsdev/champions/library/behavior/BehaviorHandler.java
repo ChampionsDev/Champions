@@ -20,6 +20,7 @@ package com.github.championsdev.champions.library.behavior;
 import com.github.championsdev.champions.library.BasicHandler;
 
 /**
+ * Handles registering and retrieving {@link Behavior} instances.
  * @author B2OJustin
  */
 public class BehaviorHandler extends BasicHandler<Behavior>{

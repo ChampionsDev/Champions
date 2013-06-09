@@ -25,27 +25,56 @@ import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
 import java.util.ArrayList;
 
 /**
+ * Represents a group of behaviors.
+ * Behavior methods called on this object will
+ * be called on each behavior attached to the group
  * @author B2OJustin
  */
 public class BehaviorGroup extends Behavior {
     public ArrayList<Behavior> behaviors = new ArrayList<>();
 
+    /**
+     * Attaches a new behavior to this object.
+     * @param behavior Behavior to attach
+     * @return
+     */
     public BehaviorGroup attach(Behavior behavior) {
         behaviors.add(behavior);
         return this;
     }
 
+    /**
+     * Attaches the {@code behavior} to this object at the given priority
+     * If the priority is higher than the number of behaviors attached to this object
+     * then the priority is set at the highest possible value.
+     * @param behavior Behavior to attach
+     * @param priority Priority for the newly attached behavior.
+     * @return
+     */
     public BehaviorGroup attach(Behavior behavior, int priority) {
         if(priority > behaviors.size()) behaviors.add(behavior);
         else behaviors.add(priority, behavior);
         return this;
     }
 
+    /**
+     * Detaches the {@code behavior} from this object.
+     * @param behavior Behavior to detach
+     * @return
+     */
     public BehaviorGroup detach(Behavior behavior) {
         behaviors.remove(behavior);
         return this;
     }
 
+    /**
+     * Convenience method for swapping one behavior with another.
+     * {@code oldBehavior} is detached and {@code newBehavior} will be attached.
+     * This method maintains behavior priorities.
+     * @param oldBehavior
+     * @param newBehavior
+     * @return
+     */
     public BehaviorGroup swap(Behavior oldBehavior, Behavior newBehavior) {
         int index = behaviors.indexOf(oldBehavior);
         if(index == -1) behaviors.add(newBehavior);

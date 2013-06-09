@@ -18,9 +18,21 @@
 package com.github.championsdev.champions.library.behavior;
 
 /**
+ * Interface declaring that an object is capable
+ * of maintaining a behavior.
+ *
  * @author B2OJustin
  */
 public interface Behavioral<SelfType extends Behavioral> {
+    /**
+     * @return The behavior group attached to this object.
+     */
     public BehaviorGroup getBehavior();
+
+    /**
+     *
+     * @param behavior The new {@link BehaviorGroup} for this object.
+     * @return This object, for easy chaining of method calls.
+     */
     public SelfType setBehavior(BehaviorGroup behavior);
 }
