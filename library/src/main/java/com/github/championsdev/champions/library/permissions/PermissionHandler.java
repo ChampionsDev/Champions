@@ -19,9 +19,24 @@ package com.github.championsdev.champions.library.permissions;
 
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 
+import java.util.ArrayList;
+
 /**
- * @author B2OJustin
+ * @author YoshiGenius
  */
-public interface PermissionChecker {
-    public boolean hasPermission(CPlayer cPlayer, String permission);
+public abstract class PermissionHandler {
+
+    private static ArrayList<PermissionChecker> permissionCheckers = new ArrayList<>();
+
+    public static boolean registerChecker(PermissionChecker checker) {
+        return permissionCheckers.add(checker);
+    }
+
+    public static boolean hasPermission(CPlayer cPlayer, String permission) {
+        if (permissionCheckers.isEmpty()) return false;
+        for (PermissionChecker pc : permissionCheckers) {
+            if (pc.hasPermission(cPlayer, permission)) return true;
+        }
+        return false;
+    }
 }

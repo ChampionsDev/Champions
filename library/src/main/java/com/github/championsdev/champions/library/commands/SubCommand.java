@@ -18,7 +18,7 @@
 package com.github.championsdev.champions.library.commands;
 
 import com.github.championsdev.champions.library.cplayer.CPlayer;
-import com.github.championsdev.champions.library.permissions.PermissionChecker;
+import com.github.championsdev.champions.library.permissions.PermissionHandler;
 
 /**
  * @author YoshiGenius
@@ -46,7 +46,7 @@ public abstract class SubCommand {
 
     public boolean hasPermission(CPlayer sender) {
         String permission = "champions.cmd." + getFirstArg();
-        return PermissionChecker.checkPermission(sender, permission);
+        return PermissionHandler.checkPermission(sender, permission);
     }
 
 }
