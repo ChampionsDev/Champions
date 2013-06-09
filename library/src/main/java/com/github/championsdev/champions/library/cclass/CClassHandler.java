@@ -23,6 +23,7 @@ import com.github.championsdev.champions.library.database.DataManager;
 import java.util.logging.Logger;
 
 /**
+ * Handles registering, retrieving and loading of CClass instances.
  * @author B2OJustin
  */
 public class CClassHandler extends BasicHandler<CClass> {
@@ -33,6 +34,12 @@ public class CClassHandler extends BasicHandler<CClass> {
         return instance;
     }
 
+    /**
+     * Attempts to load the given CClass from the database if it has
+     * not yet been registered.
+     * @param id The identifier for the CClass
+     * @return
+     */
     public CClass load(String id) {
         CClass cClass = super.get(id);
         if(cClass == null) {

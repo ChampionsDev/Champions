@@ -18,6 +18,7 @@
 package com.github.championsdev.champions.library.cclass;
 
 /**
+ * Interface representing a {@link CClass} restricted object.
  * @author B2OJustin
  */
 public interface CClassRestricted {

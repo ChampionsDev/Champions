@@ -76,6 +76,11 @@ public class CClass implements Informative<CClass, CClassAttributes>, Identifiab
         this.description = description;
     }
 
+    /**
+     * Get the total experience gain for a given ExpSource
+     * @param source
+     * @return
+     */
     public Exp getExpGain(ExpSource source) {
         Exp exp = new Exp();
         for(Map.Entry<ExpGroup, Double> entry : expGroups.entrySet()) {
@@ -84,16 +89,34 @@ public class CClass implements Informative<CClass, CClassAttributes>, Identifiab
         return exp;
     }
 
+    /**
+     * Adds the {@code expGroup} to this class. All experience gains will
+     * be multipled by the given {@code modifier}
+     * @param expGroup
+     * @param modifier
+     * @return
+     */
     public CClass addExpGroup(ExpGroup expGroup, double modifier) {
         expGroups.put(expGroup, modifier);
         return this;
     }
 
+    /**
+     * Adds the {@code expGroup} to this class, using a modifier of 1
+     * @param expGroup
+     * @return
+     * @see #addExpGroup
+     */
     public CClass addExpGroup(ExpGroup expGroup) {
-        addExpGroup(expGroup, 1f);
+        addExpGroup(expGroup, 1d);
         return this;
     }
 
+    /**
+     * Removes the {@code expGroup} from this class.
+     * @param expGroup
+     * @return
+     */
     public CClass removeExpGroup(ExpGroup expGroup) {
         expGroups.remove(expGroup);
         return this;

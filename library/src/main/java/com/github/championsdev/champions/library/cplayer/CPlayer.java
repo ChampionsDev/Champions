@@ -51,6 +51,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 /**
+ * Represents a player.
  * @author B2OJustin
  */
 public class CPlayer implements CEntity, Behavioral<CPlayer>,

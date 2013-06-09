@@ -24,8 +24,6 @@ import java.util.HashMap;
 
 /**
  * @author YoshiGenius
- *         Date: 31/05/13
- *         Time: 7:38 PM
  */
 public class CommandHandler {
 
