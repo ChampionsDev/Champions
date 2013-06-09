@@ -46,7 +46,7 @@ public abstract class SubCommand {
 
     public boolean hasPermission(CPlayer sender) {
         String permission = "champions.cmd." + getFirstArg();
-        return PermissionHandler.checkPermission(sender, permission);
+        return PermissionHandler.hasPermission(sender, permission);
     }
 
 }

@@ -27,6 +27,7 @@ import com.github.championsdev.champions.library.database.YAMLDataSource;
 import com.github.championsdev.champions.library.event.BaseListener;
 import com.github.championsdev.champions.library.event.EventManager;
 import com.github.championsdev.champions.library.messaging.MessageHandler;
+import com.github.championsdev.champions.library.permissions.PermissionHandler;
 import com.github.championsdev.champions.library.util.ResourceUtil;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -81,6 +82,9 @@ public class ChampionsCore extends JavaPlugin {
 
         // Register messenger
         MessageHandler.register(new BukkitMessenger(this));
+
+        // Register permission checker
+        PermissionHandler.register(new BukkitPermissionChecker(this));
 
         logger.info("Champions successfully enabled!");
 	}
