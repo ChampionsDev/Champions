@@ -18,7 +18,7 @@
 package com.github.championsdev.champions.library.commands;
 
 import com.github.championsdev.champions.library.cplayer.CPlayer;
-import com.github.championsdev.champions.library.util.PermissionChecker;
+import com.github.championsdev.champions.library.permissions.PermissionChecker;
 
 /**
  * @author YoshiGenius

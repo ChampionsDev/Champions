@@ -15,7 +15,7 @@
  *     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.github.championsdev.champions.library.util;
+package com.github.championsdev.champions.library.permissions;
 
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 
