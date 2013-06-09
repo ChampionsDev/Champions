@@ -28,7 +28,7 @@ public abstract class PermissionHandler {
 
     private static ArrayList<PermissionChecker> permissionCheckers = new ArrayList<>();
 
-    public static boolean registerChecker(PermissionChecker checker) {
+    public static boolean register(PermissionChecker checker) {
         return permissionCheckers.add(checker);
     }
 

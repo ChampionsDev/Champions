@@ -38,6 +38,7 @@ import com.github.championsdev.champions.library.messaging.MessageHandler;
 import com.github.championsdev.champions.library.misc.CLocatable;
 import com.github.championsdev.champions.library.misc.Informative;
 import com.github.championsdev.champions.library.party.Party;
+import com.github.championsdev.champions.library.permissions.PermissionHandler;
 import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.race.RaceRestricted;
 import com.github.championsdev.champions.library.skill.Skill;
@@ -563,5 +564,9 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
 
     public boolean sendMessage(String message) {
         return MessageHandler.sendMessage(this, message);
+    }
+
+    public boolean hasPermission(String permission) {
+        return PermissionHandler.hasPermission(this, permission);
     }
 }
