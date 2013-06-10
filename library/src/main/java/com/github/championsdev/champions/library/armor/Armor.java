@@ -24,7 +24,7 @@ import com.github.championsdev.champions.library.misc.Informative;
 import com.github.championsdev.champions.library.restriction.Restrictable;
 
 import java.util.ArrayList;
-
+BROKEN BUILD! OH NOES
 /**
  * Represents a player Armor object.
  *
