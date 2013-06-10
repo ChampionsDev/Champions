@@ -27,9 +27,6 @@ import java.util.HashMap;
  */
 public class CommandHandler {
 
-    public static enum CommandResult {
-        BAD_ARG, SUCCESS, NO_PERMISSION, FAILURE;
-    }
 
     private static CommandHandler instance = new CommandHandler();
     private CommandHandler(){};
