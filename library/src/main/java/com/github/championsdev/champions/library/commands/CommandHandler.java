@@ -26,18 +26,23 @@ import java.util.HashMap;
  * @author YoshiGenius
  */
 public class CommandHandler {
-
+    private static HashMap<String, SubCommand> subCommands = new HashMap<>();
 
     private static CommandHandler instance = new CommandHandler();
     private CommandHandler(){};
 
     private static String commandName = "champ";
 
-    public static String getCommandName() {return commandName;}
+    public static String getCommandName() {
+        return commandName;
+    }
 
-    private static HashMap<String, SubCommand> subCommands = new HashMap<>();
+    public static CommandHandler setCommandName(String commandName) {
+        CommandHandler.commandName = commandName;
+        return instance;
+    }
 
-    protected static boolean registerSubCommand(SubCommand cmd) {
+    public static boolean registerSubCommand(SubCommand cmd) {
         if (subCommands.containsKey(cmd.getFirstArg())) {
             return false;
         }
@@ -50,7 +55,12 @@ public class CommandHandler {
         return false;
     }
 
-    public static CommandHandler.CommandResult exec(CPlayer cPlayer, String commandName, String[] arg) {
+    public static SubCommand getSubCommand(String subcmd) {
+        return subCommands.get(subcmd);
+    }
+
+    // TODO allow for console commands and base commands.
+    public static CommandResult exec(CPlayer cPlayer, String commandName, String[] arg) {
         String firstArg = arg[0].toLowerCase();
         if (firstArg.equalsIgnoreCase("help")) {
             help(cPlayer);
