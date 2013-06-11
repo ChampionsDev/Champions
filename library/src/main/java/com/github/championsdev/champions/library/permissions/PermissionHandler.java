@@ -33,6 +33,7 @@ public abstract class PermissionHandler {
     }
 
     public static boolean hasPermission(CPlayer cPlayer, String permission) {
+        if (cPlayer == null || permission == null) return false;
         if (permissionCheckers.isEmpty()) return false;
         for (PermissionChecker pc : permissionCheckers) {
             if (pc.hasPermission(cPlayer, permission)) return true;
