@@ -44,7 +44,6 @@ public class CPlayerHandler extends BasicHandler<CPlayer> {
             if(lPlayer != null) {
                 register(id, lPlayer);
                 logger.info("Loaded player '" + id + "' from cache");
-                return lPlayer;
             }
         }
 
@@ -54,7 +53,6 @@ public class CPlayerHandler extends BasicHandler<CPlayer> {
             if(lPlayer != null) {
                 register(id, lPlayer);
                 logger.info("Loaded player data for '" + id + "' from database");
-                return lPlayer;
             }
         }
 
