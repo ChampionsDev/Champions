@@ -37,11 +37,11 @@ public abstract class MessageHandler {
     }
 
     public static boolean sendMessage(CPlayer cPlayer, String message) {
-        if (cPlayer == null || message == null) return false;
         if (messengers.isEmpty()) return false;
+        boolean handled = false;
         for (Messenger m : messengers) {
-            if(m.send(cPlayer, message)) return true;
+            if(m.send(cPlayer, message)) handled = true;
         }
-        return false;
+        return handled;
     }
 }
