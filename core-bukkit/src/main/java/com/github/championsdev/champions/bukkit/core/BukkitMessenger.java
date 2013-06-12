@@ -17,9 +17,10 @@
 
 package com.github.championsdev.champions.bukkit.core;
 
+import org.bukkit.plugin.java.JavaPlugin;
+
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.messaging.Messenger;
-import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * @author B2OJustin
@@ -33,7 +34,8 @@ public class BukkitMessenger implements Messenger {
 
     @Override
     public boolean send(CPlayer cPlayer, String message) {
-        plugin.getServer().getPlayer(cPlayer.getName()).sendMessage(message);
+        plugin.getServer().getPlayerExact(cPlayer.getName()).sendMessage(message);
         return true;
     }
+
 }
