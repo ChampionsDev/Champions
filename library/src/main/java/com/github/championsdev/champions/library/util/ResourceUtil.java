@@ -40,7 +40,7 @@ public class ResourceUtil {
      * @return List of the files within the jar path.
      * @throws IOException
      */
-    public static ArrayList<String> getJarFiles(Class jarClass, String path) throws IOException {
+    public static ArrayList<String> getJarFiles(Class<?> jarClass, String path) throws IOException {
         String jarPath = jarClass.getResource("/" + path).getPath();
         jarPath = jarPath.substring(5, jarPath.indexOf("!"));
 
@@ -48,6 +48,7 @@ public class ResourceUtil {
 
         JarFile jar = new JarFile(jarPath);
         Enumeration<JarEntry> entries = jar.entries();
+        jar.close();
         while(entries.hasMoreElements()) {
             String fileName = entries.nextElement().getName();
             if(fileName.startsWith(path) && !fileName.endsWith("/")) {
@@ -57,14 +58,15 @@ public class ResourceUtil {
         return fileNameList;
     }
 
-    public static int copyDirectoryFromJar(Class jarClass, String srcDir, String toDir, boolean overwrite) throws IOException {
+    public static int copyDirectoryFromJar(Class<?> jarClass, String srcDir, String toDir, boolean overwrite) throws IOException {
         int filesCopied = 0;
         try {
             for(String fileName : getJarFiles(jarClass, srcDir)) {
                 URI fileUri = jarClass.getResource("/" + fileName).toURI();
                 File file = new File(fileName.replace(srcDir, toDir));
-                if(file.exists() && !overwrite) continue;
-                org.apache.commons.io.FileUtils.copyURLToFile(fileUri.toURL(), file);
+                if(file.exists() && !overwrite)
+                    continue;
+                FileUtils.copyURLToFile(fileUri.toURL(), file);
                 System.out.println(String.format("Copied %s to %s", fileName, fileName.replace(srcDir, toDir)));
                 filesCopied++;
             }
@@ -79,7 +81,9 @@ public class ResourceUtil {
             if (fromFile.getName().endsWith(".jar")) {
                 try {
                     JarFile jarFile = new JarFile(fromFile);
-                    return jarFile.getInputStream(jarFile.getJarEntry(insideFile));
+                    InputStream returnMe = jarFile.getInputStream(jarFile.getJarEntry(insideFile));
+                    jarFile.close();
+                    return returnMe;
                 } catch (IOException e) {
                     return null;
                 }
@@ -93,7 +97,9 @@ public class ResourceUtil {
             if (fromFile.getName().endsWith(".zip")) {
                 try {
                     ZipFile zipFile = new ZipFile(fromFile);
-                    return zipFile.getInputStream(zipFile.getEntry(insideFile));
+                    InputStream returnMe = zipFile.getInputStream(zipFile.getEntry(insideFile));
+                    zipFile.close();
+                    return returnMe;
                 } catch (IOException e) {
                     return null;
                 }
