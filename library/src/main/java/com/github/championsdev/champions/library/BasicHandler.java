@@ -17,7 +17,10 @@
 
 package com.github.championsdev.champions.library;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * @author YoshiGenius
@@ -31,6 +34,10 @@ public class BasicHandler<T> {
     
     public T get(String id) {
         return objectMap.get(id);
+    }
+
+    public Collection<T> getAll() {
+        return objectMap.values();
     }
 
     public void remove(String id) {
