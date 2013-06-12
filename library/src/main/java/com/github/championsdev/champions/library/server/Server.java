@@ -21,7 +21,6 @@ import com.github.championsdev.champions.library.CWorld;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.util.PlatformUtil;
 
-import java.net.InetAddress;
 import java.util.List;
 
 /**
@@ -51,11 +50,11 @@ public interface Server {
 
     public List<CWorld> getWorlds();
 
-    public void broadcast(String message);
+    public void broadcastMessage(String message);
 
     public void broadcast(String message, String permission);
 
-    public InetAddress getIp();
+    public String getIp();
 
     public int getPort();
 

@@ -33,6 +33,7 @@ import com.github.championsdev.champions.library.event.BaseListener;
 import com.github.championsdev.champions.library.event.EventManager;
 import com.github.championsdev.champions.library.messaging.MessageHandler;
 import com.github.championsdev.champions.library.permissions.PermissionHandler;
+import com.github.championsdev.champions.library.server.ServerHandler;
 import com.github.championsdev.champions.library.util.ResourceUtil;
 
 /**
@@ -55,6 +56,8 @@ public class ChampionsCore extends JavaPlugin {
         ChampionsCore.instance = this;
 
         DependencyHandler.resolve();
+
+        ServerHandler.setServer(new BukkitChampionsServer());
 
         getServer().getPluginManager().registerEvents(new EventBridgeListener(), this);
 
