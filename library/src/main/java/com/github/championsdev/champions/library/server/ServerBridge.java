@@ -18,11 +18,13 @@
 package com.github.championsdev.champions.library.server;
 
 import com.github.championsdev.champions.library.CWorld;
+import com.github.championsdev.champions.library.Configuration;
 import com.github.championsdev.champions.library.armor.ArmorCategoryHandler;
 import com.github.championsdev.champions.library.armor.ArmorHandler;
 import com.github.championsdev.champions.library.cclass.CClassHandler;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.cplayer.CPlayerHandler;
+import com.github.championsdev.champions.library.database.DataManager;
 import com.github.championsdev.champions.library.event.EventManager;
 import com.github.championsdev.champions.library.messaging.MessageHandler;
 import com.github.championsdev.champions.library.race.RaceHandler;
@@ -53,9 +55,25 @@ public abstract class ServerBridge {
 
     public abstract int getPort();
 
+    public abstract void loadConfiguration();
+
     public abstract void registerMessengers();
 
-    public abstract void registerEvents(EventManager manager);
+    public abstract void registerEvents();
+
+    public abstract void registerPermissions();
+
+    protected void init() {
+        initDataManagement();
+        loadConfiguration();
+        registerEvents();
+        registerMessengers();
+        registerPermissions();
+    }
+
+    protected void initDataManagement() {
+        DataManager.init(Configuration.getInstance());
+    }
 
     public EventManager getEventManager() {
         return EventManager.getInstance();

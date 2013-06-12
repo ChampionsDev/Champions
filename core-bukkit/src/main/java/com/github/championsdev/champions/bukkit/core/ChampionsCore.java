@@ -17,24 +17,13 @@
 
 package com.github.championsdev.champions.bukkit.core;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.github.championsdev.champions.bukkit.core.commands.ClassCommandExecutor;
-import com.github.championsdev.champions.bukkit.core.listeners.BasicListener;
-import com.github.championsdev.champions.bukkit.core.listeners.EventBridgeListener;
 import com.github.championsdev.champions.bukkit.core.utils.DependencyHandler;
-import com.github.championsdev.champions.library.Configuration;
-import com.github.championsdev.champions.library.database.DataManager;
-import com.github.championsdev.champions.library.database.YAMLDataSource;
-import com.github.championsdev.champions.library.event.BaseListener;
-import com.github.championsdev.champions.library.event.EventManager;
-import com.github.championsdev.champions.library.messaging.MessageHandler;
-import com.github.championsdev.champions.library.permissions.PermissionHandler;
 import com.github.championsdev.champions.library.server.ServerHandler;
-import com.github.championsdev.champions.library.util.ResourceUtil;
 
 /**
  * @author B2OJustin
@@ -42,10 +31,6 @@ import com.github.championsdev.champions.library.util.ResourceUtil;
 public class ChampionsCore extends JavaPlugin {
     private static Logger logger = Logger.getLogger(ChampionsCore.class.getName());
     private static ChampionsCore instance;
-
-    private static String JAR_RESOURCE_DIRECTORY = "resources/";
-    private static String CONFIG_PATH = "Champions/";
-    private static String MAIN_CONFIG_FILE = "config.yml";
 
     public static ChampionsCore getInstance() {
         return instance;
@@ -57,38 +42,10 @@ public class ChampionsCore extends JavaPlugin {
 
         DependencyHandler.resolve();
 
-        ServerHandler.setServer(new BukkitChampionsServer());
-
-        getServer().getPluginManager().registerEvents(new EventBridgeListener(), this);
-
-        // Register champions listeners
-        EventManager.registerEvents(new BaseListener());
-        EventManager.registerEvents(new BasicListener());
-
-        try {
-            // Copy default configuration files
-            logger.info("Copying default configuration files...");
-            int filesCopied = ResourceUtil.copyDirectoryFromJar(ChampionsCore.class, JAR_RESOURCE_DIRECTORY, CONFIG_PATH, false);
-            logger.info(String.format("Copied %d files", filesCopied));
-
-            // Load configuration
-            YAMLDataSource yamlDataSource = new YAMLDataSource(CONFIG_PATH);
-            yamlDataSource.loadConfiguration(Configuration.getInstance(), MAIN_CONFIG_FILE);
-        } catch (IOException e) {
-            logger.severe("Could not write default configuration files to disk.");
-        }
-
-        //Initialize data management
-        DataManager.init(Configuration.getInstance());
+        ServerHandler.setServerBridge(new BukkitChampionsServer(this));
 
         // Register commands
         getCommand("class").setExecutor(new ClassCommandExecutor());
-
-        // Register messenger
-        MessageHandler.register(new BukkitMessenger(this));
-
-        // Register permission checker
-        PermissionHandler.register(new BukkitPermissionChecker(this));
 
         logger.info("Champions successfully enabled!");
 	}

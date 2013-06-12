@@ -31,14 +31,10 @@ public class ServerHandler {
         return serverBridge;
     }
 
-    public static boolean setServer(ServerBridge serverBridge) {
+    public static boolean setServerBridge(ServerBridge serverBridge) {
         if (ServerHandler.serverBridge == null && serverBridge != null) {
             ServerHandler.serverBridge = serverBridge;
-
-            // Init
-            serverBridge.registerEvents(EventManager.getInstance());
-            serverBridge.registerMessengers();
-
+            serverBridge.init();
             return true;
         }
         return false;
