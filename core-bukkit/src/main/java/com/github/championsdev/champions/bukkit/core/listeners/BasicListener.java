@@ -27,16 +27,18 @@ import org.bukkit.entity.Player;
  * @author B2OJustin
  */
 public class BasicListener implements EventListener {
+
     @CEventHandler
     public void onCPlayerExpGain(CPlayerExpGainEvent event) {
-        Player player = Bukkit.getServer().getPlayer(event.getCPlayer().getName());
+        Player player = Bukkit.getPlayerExact(event.getCPlayer().getName());
         player.sendMessage(String.format("Gained %f experience.", event.getExp().getExp()));
         player.sendMessage(String.format("You have %f experience.", event.getCPlayer().getPrimaryClassAttributes().getLevel().getExp()));
     }
 
     @CEventHandler
     public void onCPlayerLevelUp(CPlayerLevelUpEvent event) {
-        Player player = Bukkit.getServer().getPlayer(event.getCPlayer().getName());
+        Player player = Bukkit.getPlayerExact(event.getCPlayer().getName());
         player.sendMessage(String.format("You have advanced to level %d", event.getCPlayer().getPrimaryClassAttributes().getLevel().getLevel()));
     }
+
 }

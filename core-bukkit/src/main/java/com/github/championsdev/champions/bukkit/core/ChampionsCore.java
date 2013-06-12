@@ -17,6 +17,11 @@
 
 package com.github.championsdev.champions.bukkit.core;
 
+import java.io.IOException;
+import java.util.logging.Logger;
+
+import org.bukkit.plugin.java.JavaPlugin;
+
 import com.github.championsdev.champions.bukkit.core.commands.ClassCommandExecutor;
 import com.github.championsdev.champions.bukkit.core.listeners.BasicListener;
 import com.github.championsdev.champions.bukkit.core.listeners.EventBridgeListener;
@@ -29,10 +34,6 @@ import com.github.championsdev.champions.library.event.EventManager;
 import com.github.championsdev.champions.library.messaging.MessageHandler;
 import com.github.championsdev.champions.library.permissions.PermissionHandler;
 import com.github.championsdev.champions.library.util.ResourceUtil;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.IOException;
-import java.util.logging.Logger;
 
 /**
  * @author B2OJustin
@@ -48,7 +49,7 @@ public class ChampionsCore extends JavaPlugin {
     public static ChampionsCore getInstance() {
         return instance;
     }
-	
+
 	@Override
 	public void onEnable() {
         ChampionsCore.instance = this;
@@ -88,4 +89,5 @@ public class ChampionsCore extends JavaPlugin {
 
         logger.info("Champions successfully enabled!");
 	}
+
 }

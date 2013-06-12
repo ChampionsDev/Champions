@@ -24,7 +24,9 @@ import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
 import com.github.championsdev.champions.library.util.LoreUtil;
 import com.github.championsdev.champions.library.weapon.Weapon;
 import com.github.championsdev.champions.library.weapon.WeaponHandler;
+
 import org.bukkit.ChatColor;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -61,13 +63,12 @@ public class EventBridgeListener implements Listener {
         Weapon playerWeapon = player.getWeapon();
         if(playerWeapon != null) {
             WeaponClickEvent lEvent;
-            if(event.getAction() == Action.LEFT_CLICK_AIR | event.getAction() == Action.LEFT_CLICK_BLOCK) {
+            if(event.getAction() == Action.LEFT_CLICK_AIR | event.getAction() == Action.LEFT_CLICK_BLOCK)
                 lEvent = new WeaponClickEvent(playerWeapon, player, WeaponClickEvent.ClickType.LEFT_CLICK);
-            }
-            else if(event.getAction() == Action.RIGHT_CLICK_AIR | event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            else if(event.getAction() == Action.RIGHT_CLICK_AIR | event.getAction() == Action.RIGHT_CLICK_BLOCK)
                 lEvent = new WeaponClickEvent(playerWeapon, player, WeaponClickEvent.ClickType.RIGHT_CLICK);
-            }
-            else return;
+            else 
+                return;
             EventManager.callEvent(lEvent);
         }
     }
@@ -76,13 +77,11 @@ public class EventBridgeListener implements Listener {
     public void onEntityDeath(EntityDeathEvent event) {
         CPlayer player = CPlayerHandler.getInstance().get(event.getEntity().getKiller().getName());
         if(player != null) {
-            if(event.getEntity() instanceof Player) {
+            if(event.getEntity().getType() == EntityType.PLAYER) {
                 CPlayer deadPlayer = CPlayerHandler.getInstance().load(((Player) event.getEntity()).getName());
                 EventManager.callEvent(new CPlayerKillEvent(player, deadPlayer));
-            }
-            else {
+            } else
                 EventManager.callEvent(new CPlayerMobKillEvent(player, event.getEntity().getType().name()));
-            }
         }
     }
 
