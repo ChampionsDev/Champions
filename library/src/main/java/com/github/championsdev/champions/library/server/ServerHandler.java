@@ -17,20 +17,28 @@
 
 package com.github.championsdev.champions.library.server;
 
+import com.github.championsdev.champions.library.event.EventManager;
+import com.github.championsdev.champions.library.messaging.MessageHandler;
+
 /**
  * @author YoshiGenius
  */
 public class ServerHandler {
 
-    private static Server server;
+    private static ServerBridge serverBridge;
 
-    public static Server getServer() {
-        return server;
+    public static ServerBridge getServerBridge() {
+        return serverBridge;
     }
 
-    public static boolean setServer(Server server) {
-        if (ServerHandler.server == null && server != null) {
-            ServerHandler.server = server;
+    public static boolean setServer(ServerBridge serverBridge) {
+        if (ServerHandler.serverBridge == null && serverBridge != null) {
+            ServerHandler.serverBridge = serverBridge;
+
+            // Init
+            serverBridge.registerEvents(EventManager.getInstance());
+            serverBridge.registerMessengers();
+
             return true;
         }
         return false;

@@ -6,7 +6,7 @@ import com.github.championsdev.champions.library.CLocation;
 import com.github.championsdev.champions.library.CWorld;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.cplayer.CPlayerHandler;
-import com.github.championsdev.champions.library.server.Server;
+import com.github.championsdev.champions.library.server.ServerBridge;
 import com.github.championsdev.champions.library.util.PlatformUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -21,7 +21,7 @@ import java.util.List;
  *         Date: 12/06/13
  *         Time: 4:53 PM
  */
-public class BukkitChampionsServer implements Server {
+public class BukkitChampionsServer implements ServerBridge {
 
     @Override
     public String getServerVersion() {

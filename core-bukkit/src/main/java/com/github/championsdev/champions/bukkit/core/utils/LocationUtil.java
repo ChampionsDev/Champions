@@ -13,7 +13,7 @@ import org.bukkit.Location;
 public class LocationUtil {
 
     public static CLocation toChampionsLoc(Location location) {
-        CLocation loc = new CLocation(ServerHandler.getServer().getCWorld(location.getWorld().getName()), location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
+        CLocation loc = new CLocation(ServerHandler.getServerBridge().getCWorld(location.getWorld().getName()), location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
         return loc;
     }
 
