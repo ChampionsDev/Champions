@@ -19,11 +19,9 @@ package com.github.championsdev.champions.bukkit.core.utils;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 
-import com.google.common.io.Files;
-import com.google.common.io.InputSupplier;
+import com.github.championsdev.champions.library.util.FileUtils;
 
 /**
  * @author YoshiGenius
@@ -34,30 +32,15 @@ public class DependencyHandler {
         
     }
     
-    public static boolean downloadFile(final URL from, File to, boolean overwrite) {
+    public static boolean downloadFile(URL from, File to, boolean overwrite) {
         if (to.exists() && !overwrite)
             return false;
         
         if (to.exists() && overwrite)
             to.delete();
         
-        if (!to.exists()) {
-            try {
-                to.createNewFile();
-            } catch (IOException e) {
-                return false;
-            }
-        }
-        
-    	try {
-            Files.copy(new InputSupplier<InputStream>() {
-
-                @Override
-                public InputStream getInput() throws IOException {
-                    return from.openStream();
-                }
-                
-            }, to);
+        try {
+            FileUtils.copyURLToFile(from, to);
         } catch (IOException e) {
             return false;
         }
