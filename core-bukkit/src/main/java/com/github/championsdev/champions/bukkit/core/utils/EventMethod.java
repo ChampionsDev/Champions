@@ -17,10 +17,10 @@
 
 package com.github.championsdev.champions.bukkit.core.utils;
 
+import java.lang.reflect.Method;
+
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
-
-import java.lang.reflect.Method;
 
 /**
  * @author Ranzdo
@@ -30,9 +30,9 @@ public class EventMethod {
 	private EventPriority priority;
 	private boolean ignoreCancelled;
 	private Method method;
-	
+
 	public EventMethod(Class<? extends Event> eventClass,
-			EventPriority priority, boolean ignoreCancelled, Method method) {
+		EventPriority priority, boolean ignoreCancelled, Method method) {
 		this.eventClass = eventClass;
 		this.priority = priority;
 		this.ignoreCancelled = ignoreCancelled;
@@ -50,8 +50,9 @@ public class EventMethod {
 	public boolean isIgnoreCancelled() {
 		return ignoreCancelled;
 	}
-	
+
 	public Method getMethod() {
 		return method;
 	}
+
 }

@@ -16,38 +16,41 @@
  ******************************************************************************/
 package com.github.championsdev.champions.bukkit.core.commands;
 
-import com.github.championsdev.champions.library.cclass.CClass;
-import com.github.championsdev.champions.library.cclass.CClassHandler;
+import java.util.ArrayList;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import java.util.ArrayList;
+import com.github.championsdev.champions.library.cclass.CClass;
+import com.github.championsdev.champions.library.cclass.CClassHandler;
 
 /**
  * @author B2OJustin
  */
 public class ClassCommandExecutor implements CommandExecutor {
-    @SuppressWarnings("ConstantConditions")
+
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] params) {
-        if(!command.getName().equalsIgnoreCase("class")) return false;
-        if(params.length == 0) return false;
+        if(!command.getName().equalsIgnoreCase("class") || params.length == 0)
+            return false;
 
         switch(params[0].toLowerCase()) {
-            case "info":
-                if(params.length < 2) return false;
-                CClass cClass = CClassHandler.getInstance().load(params[1]);
-                if(cClass != null) {
-                    ArrayList<String> description = cClass.getDescription();
-                    commandSender.sendMessage(description.toArray(new String[description.size()]));
-                }
-                else {
-                    commandSender.sendMessage("Sorry, we don't have any class named '" + params[1] + "'");
-                }
-                break;
+        case "info": {
+            if(params.length < 2)
+                return false;
+
+            CClass cClass = CClassHandler.getInstance().load(params[1]);
+            if(cClass != null) {
+                ArrayList<String> description = cClass.getDescription();
+                commandSender.sendMessage(description.toArray(new String[description.size()]));
+            } else
+                commandSender.sendMessage("Sorry, we don't have any class named '" + params[1] + "'");
+            break;
+        }
         }
 
         return true;
     }
+
 }

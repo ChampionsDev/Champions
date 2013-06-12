@@ -17,12 +17,13 @@
 
 package com.github.championsdev.champions.bukkit.core.utils;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.io.InputStream;
 import java.net.URL;
+
+import com.google.common.io.Files;
+import com.google.common.io.InputSupplier;
 
 /**
  * @author YoshiGenius
@@ -33,13 +34,13 @@ public class DependencyHandler {
         
     }
     
-    public static boolean downloadFile(URL from, File to, boolean overwrite) {
-        if (to.exists() && !overwrite) {
+    public static boolean downloadFile(final URL from, File to, boolean overwrite) {
+        if (to.exists() && !overwrite)
             return false;
-        }
-        if (to.exists() && overwrite) {
+        
+        if (to.exists() && overwrite)
             to.delete();
-        }
+        
         if (!to.exists()) {
             try {
                 to.createNewFile();
@@ -47,19 +48,20 @@ public class DependencyHandler {
                 return false;
             }
         }
-    	try(BufferedInputStream in = new BufferedInputStream(from.openStream());
-            FileOutputStream fout = new FileOutputStream(to)) {
+        
+    	try {
+            Files.copy(new InputSupplier<InputStream>() {
 
-    		byte data[] = new byte[1024];
-    		int count;
-    		while ((count = in.read(data, 0, 1024)) != -1) {
-    			fout.write(data, 0, count);
-    		}
-    	} catch (MalformedURLException e) {
-            return false;
+                @Override
+                public InputStream getInput() throws IOException {
+                    return from.openStream();
+                }
+                
+            }, to);
         } catch (IOException e) {
             return false;
         }
+        
         return true;
     }
 
