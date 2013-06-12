@@ -3,13 +3,16 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.championsdev.champions</groupId>
     <artifactId>champions-lib</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
 
     <parent>
         <groupId>com.github.championsdev</groupId>
         <artifactId>champions</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <repositories>
         <repository>
