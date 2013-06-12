@@ -17,10 +17,8 @@
 
 package com.github.championsdev.champions.library;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Set;
 
 /**
  * @author YoshiGenius
