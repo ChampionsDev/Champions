@@ -17,7 +17,7 @@
 package com.github.championsdev.champions.library.util;
 
 import java.io.File;
-import java.net.MalformedURLException;
+import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
@@ -25,14 +25,17 @@ import java.net.URLClassLoader;
  * @author B2OJustin
  */
 public class FileClassLoader {
-    public static Class load(Class clazz, String filePath, String className) {
+
+    public static Class<?> load(Class<?> clazz, String filePath, String className) {
         File file = new File(filePath);
         try {
             URL url = file.toURI().toURL(); // file:/c:/myclasses/
-            ClassLoader cl = new URLClassLoader(new URL[]{url});
-            return cl.loadClass(clazz.getPackage() + "." + className);
-        } catch (MalformedURLException | ClassNotFoundException ignored) {
-        }
+            URLClassLoader cl = new URLClassLoader(new URL[]{url});
+            Class<?> returnMe = cl.loadClass(clazz.getPackage() + "." + className);
+            cl.close();
+            return returnMe;
+        } catch (ClassNotFoundException | IOException ignored) {}
         return null;
     }
+
 }

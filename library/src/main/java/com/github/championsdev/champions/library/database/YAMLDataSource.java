@@ -16,19 +16,41 @@
  ******************************************************************************/
 package com.github.championsdev.champions.library.database;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.logging.Logger;
+
+import org.yaml.snakeyaml.Yaml;
+
 import com.github.championsdev.champions.library.BasicAttributes;
 import com.github.championsdev.champions.library.BasicCategory;
 import com.github.championsdev.champions.library.Configuration;
 import com.github.championsdev.champions.library.StatsInfo;
-import com.github.championsdev.champions.library.armor.*;
-import com.github.championsdev.champions.library.cclass.*;
+import com.github.championsdev.champions.library.armor.Armor;
+import com.github.championsdev.champions.library.armor.ArmorHandler;
+import com.github.championsdev.champions.library.armor.ArmorRestricted;
+import com.github.championsdev.champions.library.armor.ArmorUser;
+import com.github.championsdev.champions.library.cclass.CClass;
+import com.github.championsdev.champions.library.cclass.CClassHandler;
+import com.github.championsdev.champions.library.cclass.CClassRestricted;
+import com.github.championsdev.champions.library.cclass.CClassUser;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.database.helper.YAMLHelper;
 import com.github.championsdev.champions.library.level.Level;
 import com.github.championsdev.champions.library.level.LevelRestricted;
 import com.github.championsdev.champions.library.level.exp.ExpGroup;
 import com.github.championsdev.champions.library.level.exp.ExpGroupHandler;
-import com.github.championsdev.champions.library.level.exp.sources.*;
+import com.github.championsdev.champions.library.level.exp.sources.BlockBreakExpSource;
+import com.github.championsdev.champions.library.level.exp.sources.BlockPlaceExpSource;
+import com.github.championsdev.champions.library.level.exp.sources.CraftItemExpSource;
+import com.github.championsdev.champions.library.level.exp.sources.EnchantExpSource;
+import com.github.championsdev.champions.library.level.exp.sources.ExpSourceType;
+import com.github.championsdev.champions.library.level.exp.sources.MobKillExpSource;
+import com.github.championsdev.champions.library.level.exp.sources.PlayerKillExpSource;
+import com.github.championsdev.champions.library.level.exp.sources.SkillUseExpSource;
 import com.github.championsdev.champions.library.party.Party;
 import com.github.championsdev.champions.library.race.Race;
 import com.github.championsdev.champions.library.race.RaceHandler;
@@ -37,16 +59,14 @@ import com.github.championsdev.champions.library.restriction.RestrictionHandler;
 import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.skill.SkillHandler;
 import com.github.championsdev.champions.library.util.FileClassLoader;
-import com.github.championsdev.champions.library.weapon.*;
-import org.apache.commons.io.FileUtils;
-import org.yaml.snakeyaml.Yaml;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.logging.Logger;
+import com.github.championsdev.champions.library.util.FileUtils;
+import com.github.championsdev.champions.library.weapon.Weapon;
+import com.github.championsdev.champions.library.weapon.WeaponAttributes;
+import com.github.championsdev.champions.library.weapon.WeaponCategoryHandler;
+import com.github.championsdev.champions.library.weapon.WeaponCategoryRestricted;
+import com.github.championsdev.champions.library.weapon.WeaponHandler;
+import com.github.championsdev.champions.library.weapon.WeaponRestricted;
+import com.github.championsdev.champions.library.weapon.WeaponUser;
 
 /**
  * Thread safe class for accessing YAML database.

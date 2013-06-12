@@ -16,19 +16,17 @@
  ******************************************************************************/
 package com.github.championsdev.champions.library.util;
 
-import com.github.championsdev.champions.library.Configuration;
-import com.github.championsdev.champions.library.cclass.CClassType;
-import com.github.championsdev.champions.library.cplayer.CPlayer;
-import com.github.championsdev.champions.library.event.cplayer.CPlayerLevelUpEvent;
-import com.github.championsdev.champions.library.level.Level;
-import com.github.championsdev.champions.library.skill.Skill;
+import java.util.HashMap;
+import java.util.logging.Logger;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.logging.Logger;
+
+import com.github.championsdev.champions.library.Configuration;
+import com.github.championsdev.champions.library.cclass.CClassType;
+import com.github.championsdev.champions.library.cplayer.CPlayer;
+import com.github.championsdev.champions.library.level.Level;
 
 /**
  * @author B2OJustin
@@ -38,7 +36,6 @@ public class LevelUtil {
     private static HashMap<Integer, Double> reqExpMap = new HashMap<>();
     private static String expCurve = Configuration.getInstance().getExpCurve();
     private static ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
-
 
     private LevelUtil() {
     }

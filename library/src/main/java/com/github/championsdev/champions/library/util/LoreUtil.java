@@ -16,9 +16,9 @@
  ******************************************************************************/
 package com.github.championsdev.champions.library.util;
 
-import com.github.championsdev.champions.library.weapon.Weapon;
-
 import java.util.ArrayList;
+
+import com.github.championsdev.champions.library.weapon.Weapon;
 
 /**
  * @author B2OJustin
