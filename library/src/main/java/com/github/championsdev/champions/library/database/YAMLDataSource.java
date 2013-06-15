@@ -93,7 +93,7 @@ public class YAMLDataSource implements DataSource {
 
     public YAMLDataSource(String configPath) {
         this.configPath = configPath;
-        if(!configPath.endsWith("/")) configPath.concat("/");
+        if(!configPath.endsWith("/")) configPath = configPath.concat("/");
     }
 
     @Override
