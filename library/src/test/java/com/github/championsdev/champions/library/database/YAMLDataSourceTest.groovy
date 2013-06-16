@@ -25,6 +25,8 @@ import com.github.championsdev.champions.library.level.Level
 import com.github.championsdev.champions.library.race.Race
 import com.github.championsdev.champions.library.race.RaceHandler
 import com.github.championsdev.champions.library.restriction.RestrictionHandler
+import com.github.championsdev.champions.library.skill.Skill
+import com.github.championsdev.champions.library.skill.SkillHandler
 import com.github.championsdev.champions.library.weapon.Weapon
 import com.github.championsdev.champions.library.weapon.WeaponHandler
 
@@ -92,5 +94,16 @@ class YAMLDataSourceTest extends GroovyTestCase {
         CClass lClass = CClassHandler.getInstance().load("Default");
         assertEquals(5, lClass.getAttributes().getHealthPerLevel())
         assertEquals(5, lClass.getAttributes().getManaPerLevel());
+    }
+
+    void testLoadSkill() {
+        Skill skill = SkillHandler.getInstance().load("Test");
+        assertEquals("Test Skill", skill.getName());
+        assertEquals("This is a test. This is only a test.", skill.getDescription().get(0));
+        assertEquals(1, skill.getAttributes().getDamage());
+        assertEquals(2, skill.getAttributes().getCooldownSeconds());
+        assertEquals(3, skill.getAttributes().getManaCost());
+        assertEquals(4, skill.getAttributes().getHealthCost());
+        assertEquals(5, skill.getAttributes().getStaminaCost());
     }
 }

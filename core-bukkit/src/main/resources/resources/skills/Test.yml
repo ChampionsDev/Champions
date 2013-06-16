@@ -1,0 +1,8 @@
+name: "Test Skill"
+description: "This is a test. This is only a test."
+damage: 1
+cooldown: 2
+mana-cost: 3
+health-cost: 4
+stamina-cost: 5
+
