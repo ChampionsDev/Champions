@@ -301,6 +301,7 @@ public class YAMLDataSource implements DataSource {
                         break;
                     case "damage":
                         skill.getAttributes().setDamage(yml.getInt("damage"));
+                        break;
                     case "cooldown":
                         skill.getAttributes().setCooldownSeconds(yml.getInt("cooldown"));
                         break;
