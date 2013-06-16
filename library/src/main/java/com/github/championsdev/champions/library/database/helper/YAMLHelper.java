@@ -102,8 +102,17 @@ public class YAMLHelper {
     }
 
     public ArrayList<String> getStringList(String path) throws ClassCastException {
-        ArrayList<String> stringList = (ArrayList<String>) getObject(path);
-        return stringList != null ? stringList : new ArrayList<String>();
+        Object object = getObject(path);
+        ArrayList<String> stringList;
+        if(object instanceof ArrayList) {
+            stringList = (ArrayList<String>) object;
+        }
+        else if(object instanceof String) {
+            stringList = new ArrayList<String>();
+            stringList.add((String)object);
+        }
+        else stringList = new ArrayList<String>();
+        return stringList;
     }
 
     public ArrayList<LinkedHashMap<String, Object>> getMapList(String path) throws ClassCastException {
