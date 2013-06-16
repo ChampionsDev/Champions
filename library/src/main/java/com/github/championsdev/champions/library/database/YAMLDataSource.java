@@ -290,6 +290,9 @@ public class YAMLDataSource implements DataSource {
                     case "name":
                         skill.setName(yml.getString("name"));
                         break;
+                    case "description":
+                        skill.setDescription(yml.getStringList("description"));
+                        break;
                     case "mana-cost":
                         skill.getAttributes().setManaCost(yml.getInt("mana-cost"));
                         break;
