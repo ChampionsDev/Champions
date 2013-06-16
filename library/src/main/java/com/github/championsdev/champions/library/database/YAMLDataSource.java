@@ -173,7 +173,7 @@ public class YAMLDataSource implements DataSource {
             Yaml yaml = new Yaml();
             FileUtils.writeStringToFile(outputFile, yaml.dump(playerMap));
         } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         }
     }
 
@@ -196,10 +196,10 @@ public class YAMLDataSource implements DataSource {
             for(String mainKey : yml.getKeys("")) {
                 switch(mainKey) {
                     case "name":
-                        race.setName(yml.getString("name"));
+                        race.setName(yml.getString(mainKey));
                         break;
                     case "description":
-                        race.setDescription(yml.getStringList("description"));
+                        race.setDescription(yml.getStringList(mainKey));
                         break;
                     case "Weapons":
                         RestrictionHandler.getInstance().setWeaponRestrictions(race, loadWeaponRestrictions(race, yml));
@@ -213,6 +213,7 @@ public class YAMLDataSource implements DataSource {
                         break;
                     case "Stats":
                         loadStats(race.getAttributes(), yml);
+                        break;
                 }
             }
 
@@ -245,10 +246,10 @@ public class YAMLDataSource implements DataSource {
             for(String mainKey : yml.getKeys("")) {
                 switch(mainKey) {
                     case "name":
-                        cClass.setName(yml.getString("name"));
+                        cClass.setName(yml.getString(mainKey));
                         break;
                     case "description":
-                        cClass.setDescription(yml.getStringList("description"));
+                        cClass.setDescription(yml.getStringList(mainKey));
                         break;
                     case "Weapons":
                         RestrictionHandler.getInstance().setWeaponRestrictions(cClass, loadWeaponRestrictions(cClass, yml));
@@ -288,25 +289,25 @@ public class YAMLDataSource implements DataSource {
             for(String key : yml.getKeys("")) {
                 switch(key.toLowerCase()) {
                     case "name":
-                        skill.setName(yml.getString("name"));
+                        skill.setName(yml.getString(key));
                         break;
                     case "description":
-                        skill.setDescription(yml.getStringList("description"));
+                        skill.setDescription(yml.getStringList(key));
                         break;
                     case "mana-cost":
-                        skill.getAttributes().setManaCost(yml.getInt("mana-cost"));
+                        skill.getAttributes().setManaCost(yml.getInt(key));
                         break;
                     case "health-cost":
-                        skill.getAttributes().setHealthCost(yml.getInt("health-cost"));
+                        skill.getAttributes().setHealthCost(yml.getInt(key));
                         break;
                     case "stamina-cost":
-                        skill.getAttributes().setStaminaCost(yml.getInt("stamina-cost"));
+                        skill.getAttributes().setStaminaCost(yml.getInt(key));
                         break;
                     case "damage":
-                        skill.getAttributes().setDamage(yml.getInt("damage"));
+                        skill.getAttributes().setDamage(yml.getInt(key));
                         break;
                     case "cooldown":
-                        skill.getAttributes().setCooldownSeconds(yml.getInt("cooldown"));
+                        skill.getAttributes().setCooldownSeconds(yml.getInt(key));
                         break;
                 }
             }
@@ -353,7 +354,7 @@ public class YAMLDataSource implements DataSource {
             for(String key : yml.getKeys("")) {
                 switch(key.toLowerCase()) {
                     case "name":
-                        weaponCategory.setName(yml.getString("name"));
+                        weaponCategory.setName(yml.getString(key));
                         break;
                 }
             }
@@ -472,56 +473,56 @@ public class YAMLDataSource implements DataSource {
         for(String infoKey : yml.getKeys(path)) {
             switch(infoKey.toLowerCase()) {
                 case "bonus-defense":
-                    int bonusDefense = yml.getInt(path + ".bonus-defense");
+                    int bonusDefense = yml.getInt(String.format("%s.%s", path, infoKey));
                     basicInfo.addDefense(bonusDefense);
                     break;
                 case "bonus-weapon-damage":
-                    int bonusDamage = yml.getInt(path + ".bonus-weapon-damage");
+                    int bonusDamage = yml.getInt(String.format("%s.%s", path, infoKey));
                     basicInfo.addWeaponDamage(bonusDamage);
                     break;
                 case "bonus-minimum-weapon-damage":
-                    int bonusMin = yml.getInt(path + ".bonus-minimum-weapon-damage");
+                    int bonusMin = yml.getInt(String.format("%s.%s", path, infoKey));
                     basicInfo.addBonusMinWeaponDamage(bonusMin);
                     break;
                 case "bonus-maximum-weapon-damage":
-                    int bonusMax = yml.getInt(path + ".bonus-maximum-weapon-damage");
+                    int bonusMax = yml.getInt(String.format("%s.%s", path, infoKey));
                     basicInfo.addBonusMaxWeaponDamage(bonusMax);
                     break;
                 case "bonus-skill-damage":
-                    int skillBonusDamage = yml.getInt(path + ".bonus-skill-damage");
+                    int skillBonusDamage = yml.getInt(String.format("%s.%s", path, infoKey));
                     basicInfo.addSkillDamage(skillBonusDamage);
                     break;
                 case "bonus-minimum-skill-damage":
-                    int skillBonusMinDamage = yml.getInt(path + ".bonus-minimum-skill-damage");
+                    int skillBonusMinDamage = yml.getInt(String.format("%s.%s", path, infoKey));
                     basicInfo.addBonusMinSkillDamage(skillBonusMinDamage);
                     break;
                 case "bonus-maximum-skill-damage":
-                    int skillBonusMaxDamage = yml.getInt(path + ".bonus-maximum-skill-damage");
+                    int skillBonusMaxDamage = yml.getInt(String.format("%s.%s", path, infoKey));
                     basicInfo.addBonusMaxSkillDamage(skillBonusMaxDamage);
                     break;
                 case "bonus-stamina":
-                    int bonusStamina = yml.getInt(path + ".bonus-stamina");
+                    int bonusStamina = yml.getInt(String.format("%s.%s", path, infoKey));
                     basicInfo.addStamina(bonusStamina);
                     break;
                 case "bonus-health":
-                    int bonusHealth = yml.getInt(path + ".bonus-health");
+                    int bonusHealth = yml.getInt(String.format("%s.%s", path, infoKey));
                     basicInfo.addHealth(bonusHealth);
                     break;
                 case "bonus-mana":
-                    int bonusMana = yml.getInt(path + ".bonus-mana");
+                    int bonusMana = yml.getInt(String.format("%s.%s", path, infoKey));
                     basicInfo.addMana(bonusMana);
                     break;
 
                 // Level restricted
                 case "required-level":
                     if(basicInfo instanceof LevelRestricted) {
-                        int requiredLevel = yml.getInt(path + ".required-level");
+                        int requiredLevel = yml.getInt(String.format("%s.%s", path, infoKey));
                         RestrictionHandler.getInstance().getLevelRestrictions((LevelRestricted)basicInfo).setMinLevel(requiredLevel);
                     }
                     break;
                 case "maximum-level":
                     if(basicInfo instanceof  LevelRestricted) {
-                        int maximumLevel = yml.getInt(path + ".maximum-level");
+                        int maximumLevel = yml.getInt(String.format("%s.%s", path, infoKey));
                         RestrictionHandler.getInstance().getLevelRestrictions((LevelRestricted)basicInfo).setMaxLevel(maximumLevel);
                     }
                     break;
@@ -532,18 +533,19 @@ public class YAMLDataSource implements DataSource {
 
     protected synchronized StatsInfo loadStats(StatsInfo stats, YAMLHelper yml) {
         if(stats == null) return null;
-        for(String statKey : yml.getKeys("Stats")) {
+        String path = "Stats";
+        for(String statKey : yml.getKeys(path)) {
             switch(statKey.toLowerCase()) {
                 case "health-per-level":
-                    int healthPerLevel = yml.getInt("Stats.health-per-level");
+                    int healthPerLevel = yml.getInt(String.format("%s.%s", path, statKey));
                     stats.setHealthPerLevel(healthPerLevel);
                     break;
                 case "mana-per-level":
-                    int manaPerLevel = yml.getInt("Stats.mana-per-level");
+                    int manaPerLevel = yml.getInt(String.format("%s.%s", path, statKey));
                     stats.setManaPerLevel(manaPerLevel);
                     break;
                 case "stamina-per-level":
-                    int staminaPerLevel = yml.getInt("Stats.stamina-per-level");
+                    int staminaPerLevel = yml.getInt(String.format("%s.%s", path, statKey));
                     stats.setStaminaPerLevel(staminaPerLevel);
                     break;
             }
