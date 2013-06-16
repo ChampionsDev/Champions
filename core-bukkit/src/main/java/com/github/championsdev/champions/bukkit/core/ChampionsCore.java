@@ -44,9 +44,6 @@ public class ChampionsCore extends JavaPlugin {
 
         ServerHandler.setServerBridge(new BukkitChampionsServer(this));
 
-        // Register commands
-        getCommand("class").setExecutor(new ClassCommandExecutor());
-
         logger.info("Champions successfully enabled!");
 	}
 

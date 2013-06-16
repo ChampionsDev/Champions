@@ -63,12 +63,15 @@ public abstract class ServerBridge {
 
     public abstract void registerPermissions();
 
+    public abstract void registerCommands();
+
     protected void init() {
         initDataManagement();
         loadConfiguration();
         registerEvents();
         registerMessengers();
         registerPermissions();
+        registerCommands();
     }
 
     protected void initDataManagement() {

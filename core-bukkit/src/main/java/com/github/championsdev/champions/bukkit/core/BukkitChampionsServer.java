@@ -1,5 +1,6 @@
 package com.github.championsdev.champions.bukkit.core;
 
+import com.github.championsdev.champions.bukkit.core.commands.ClassCommandExecutor;
 import com.github.championsdev.champions.bukkit.core.listeners.BasicListener;
 import com.github.championsdev.champions.bukkit.core.listeners.EventBridgeListener;
 import com.github.championsdev.champions.bukkit.core.utils.LocationUtil;
@@ -104,5 +105,10 @@ public class BukkitChampionsServer extends ServerBridge {
     @Override
     public void registerPermissions() {
         PermissionHandler.register(new BukkitPermissionChecker(plugin));
+    }
+
+    @Override
+    public void registerCommands() {
+        plugin.getCommand("class").setExecutor(new ClassCommandExecutor());
     }
 }
