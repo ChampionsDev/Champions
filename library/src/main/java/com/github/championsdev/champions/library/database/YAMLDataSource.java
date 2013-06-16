@@ -280,8 +280,39 @@ public class YAMLDataSource implements DataSource {
     }
 
     @Override
-    public Skill loadSkill(String name) {
-        return null; //TODO loadSkill method stub
+    public Skill loadSkill(String id) {
+        String filePath = configPath + SKILL_PATH + id.replace(" ", "_") + ".yml";
+        try {
+            Skill skill = new Skill();
+            YAMLHelper yml = new YAMLHelper(filePath);
+            for(String key : yml.getKeys("")) {
+                switch(key.toLowerCase()) {
+                    case "name":
+                        skill.setName(yml.getString("name"));
+                        break;
+                    case "mana-cost":
+                        skill.getAttributes().setManaCost(yml.getInt("mana-cost"));
+                        break;
+                    case "health-cost":
+                        skill.getAttributes().setHealthCost(yml.getInt("health-cost"));
+                        break;
+                    case "stamina-cost":
+                        skill.getAttributes().setStaminaCost(yml.getInt("stamina-cost"));
+                        break;
+                    case "damage":
+                        skill.getAttributes().setDamage(yml.getInt("damage"));
+                    case "cooldown":
+                        skill.getAttributes().setCooldownSeconds(yml.getInt("cooldown"));
+                        break;
+                }
+            }
+            return skill;
+        } catch (FileNotFoundException e) {
+            logger.warning("Could not find file for skill '" + id + "' at " + filePath);
+        } catch (ClassCastException e) {
+            logger.warning("You seem to have an error in your yaml. Could not load skill '" + id + "'");
+        }
+        return null;
     }
 
     @Override
