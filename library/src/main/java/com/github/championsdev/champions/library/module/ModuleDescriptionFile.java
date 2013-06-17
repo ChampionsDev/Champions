@@ -80,11 +80,6 @@ public final class ModuleDescriptionFile {
         return website;
     }
 
-    /**
-     * Saves this PluginDescriptionFile to the given writer
-     *
-     * @param writer Writer to output this file to
-     */
     public void save(Writer writer) {
         yaml.dump(saveMap(), writer);
     }

@@ -21,8 +21,6 @@ import com.github.championsdev.champions.library.cplayer.CPlayer;
 
 /**
  * @author YoshiGenius
- * @date 14/05/13
- * @time 6:02 PM
  */
 public abstract class CWorld {
 

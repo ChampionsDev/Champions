@@ -28,6 +28,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.logging.Logger;
 
 /**
  * @author YoshiGenius
@@ -35,46 +36,71 @@ import java.util.jar.JarFile;
 public class ModuleLoader {
 
     private static Module[] modules = new Module[]{};
+    private static File cfgDir = new File("cfg");
+    private static File moduleDir = new File("champions/modules");
+    private static boolean loaded = false;
 
-    public static Module[] loadModules(File directory) {
-        return loadModules(directory, false);
+    public static Module[] loadModules(Logger log, File directory, File cfgDir) {
+        return loadModules(log, directory, cfgDir, false);
     }
 
-    public static Module[] loadModules(File directory, boolean overwrite) {
-        if (!overwrite) {
+    public static Module[] loadModules(Logger log, File directory, File configDir, boolean overwrite) {
+        if (log == null) {
+            Logger.getLogger(ModuleLoader.class.getName()).severe("null logger passed for module loading");
+            return modules;
+        }
+        if (directory == null || configDir == null) {
+            log.severe("[Champions] null module or config directory passed for module loading");
+            return modules;
+        }
+        directory.mkdir();
+        if (moduleDir == null) {
+            moduleDir = directory;
+        }
+        configDir.mkdir();
+        if (cfgDir == null) {
+            cfgDir = configDir;
+        }
+        if (loaded && !overwrite) {
             return modules;
         }
         if (!(directory != null && directory.exists() && directory.isDirectory())) {
             return modules;
         }
         Module[] modules = new Module[]{};
-        for (File file : directory.listFiles()) {
+        for (File file : moduleDir.listFiles()) {
             if (ResourceUtil.isJarFile(file)) {
                 try {
                     JarFile jarFile = new JarFile(file);
                     JarEntry entry = jarFile.getJarEntry("module.yml");
-                    InputStream is = jarFile.getInputStream(entry);
-                    ModuleDescriptionFile desc = new ModuleDescriptionFile(is);
-                    Module result = null;
-                    if (isCompatible(desc.getPlatforms())) {
-                        try {
-                            URL[] urls = new URL[1];
-                            urls[0] = file.toURI().toURL();
+                    if (entry == null) {
+                        log.severe("module.yml not found in plugin file: " + file.getName());
+                    } else {
+                        InputStream is = jarFile.getInputStream(entry);
+                        ModuleDescriptionFile desc = new ModuleDescriptionFile(is);
+                        Module result = null;
+                        if (isCompatible(desc.getPlatforms())) {
+                            try {
+                                URL[] urls = new URL[1];
+                                urls[0] = file.toURI().toURL();
 
-                            Class<?> jarClass = Class.forName(desc.getMain());
-                            Class<? extends Module> plugin = jarClass.asSubclass(Module.class);
+                                Class<?> jarClass = Class.forName(desc.getMain());
+                                Class<? extends Module> module = jarClass.asSubclass(Module.class);
 
-                            Constructor<? extends Module> constructor = plugin.getConstructor();
+                                Constructor<? extends Module> constructor = module.getConstructor();
 
-                            result = constructor.newInstance();
+                                result = constructor.newInstance();
 
-                            result.initialize(desc, file);
-                    } catch (InvocationTargetException ex) {
-                    } catch (Throwable ex) {
-                    }
-                    }
-                    if (result != null) {
-                        modules[modules.length] = result;
+                                Logger moduleLogger = Logger.getLogger(desc.getName());
+                                moduleLogger.setParent(log);
+                                result.initialize(desc, file, new File(cfgDir, desc.getName() + ".cfg"), ClassLoader.getSystemClassLoader(), moduleLogger);
+                            } catch (InvocationTargetException ex) {
+                            } catch (Throwable ex) {
+                            }
+                        }
+                        if (result != null) {
+                            modules[modules.length] = result;
+                        }
                     }
                 } catch (IOException e) {}
             }
@@ -82,7 +108,12 @@ public class ModuleLoader {
         for (Module module : modules) {
             module.onEnable();
         }
+        loaded = true;
         return modules;
+    }
+
+    public static File getCfgDir() {
+        return cfgDir;
     }
 
     private static boolean isCompatible(String[] platforms) {
