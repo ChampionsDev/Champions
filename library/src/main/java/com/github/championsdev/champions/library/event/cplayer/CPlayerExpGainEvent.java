@@ -16,7 +16,6 @@
  ******************************************************************************/
 package com.github.championsdev.champions.library.event.cplayer;
 
-import com.github.championsdev.champions.library.cclass.CClass;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.event.Cancellable;
 import com.github.championsdev.champions.library.level.exp.Exp;

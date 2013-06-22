@@ -18,7 +18,6 @@ package com.github.championsdev.champions.library.skill;
 
 import com.github.championsdev.champions.library.BasicCategory;
 import com.github.championsdev.champions.library.BasicUser;
-import com.github.championsdev.champions.library.weapon.WeaponAttributes;
 
 import java.util.ArrayList;
 import java.util.HashMap;

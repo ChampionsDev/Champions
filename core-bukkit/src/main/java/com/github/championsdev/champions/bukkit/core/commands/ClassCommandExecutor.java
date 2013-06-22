@@ -16,14 +16,13 @@
  ******************************************************************************/
 package com.github.championsdev.champions.bukkit.core.commands;
 
-import java.util.ArrayList;
-
+import com.github.championsdev.champions.library.cclass.CClass;
+import com.github.championsdev.champions.library.cclass.CClassHandler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import com.github.championsdev.champions.library.cclass.CClass;
-import com.github.championsdev.champions.library.cclass.CClassHandler;
+import java.util.ArrayList;
 
 /**
  * @author B2OJustin

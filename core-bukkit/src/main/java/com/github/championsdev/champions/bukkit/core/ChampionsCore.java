@@ -17,13 +17,11 @@
 
 package com.github.championsdev.champions.bukkit.core;
 
-import java.util.logging.Logger;
-
-import org.bukkit.plugin.java.JavaPlugin;
-
-import com.github.championsdev.champions.bukkit.core.commands.ClassCommandExecutor;
 import com.github.championsdev.champions.bukkit.core.utils.DependencyHandler;
 import com.github.championsdev.champions.library.server.ServerHandler;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.logging.Logger;
 
 /**
  * @author B2OJustin

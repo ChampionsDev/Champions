@@ -17,11 +17,11 @@
 
 package com.github.championsdev.champions.bukkit.core.utils;
 
+import com.github.championsdev.champions.library.util.FileUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-
-import com.github.championsdev.champions.library.util.FileUtils;
 
 /**
  * @author YoshiGenius

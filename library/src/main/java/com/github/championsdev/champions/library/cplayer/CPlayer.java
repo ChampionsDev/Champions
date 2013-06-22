@@ -45,7 +45,10 @@ import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.skill.SkillAttributes;
 import com.github.championsdev.champions.library.skill.SkillRestricted;
 import com.github.championsdev.champions.library.skill.SkillUser;
-import com.github.championsdev.champions.library.weapon.*;
+import com.github.championsdev.champions.library.weapon.Weapon;
+import com.github.championsdev.champions.library.weapon.WeaponAttributes;
+import com.github.championsdev.champions.library.weapon.WeaponRestricted;
+import com.github.championsdev.champions.library.weapon.WeaponUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;

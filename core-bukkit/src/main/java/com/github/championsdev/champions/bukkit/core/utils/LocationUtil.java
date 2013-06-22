@@ -18,7 +18,6 @@
 package com.github.championsdev.champions.bukkit.core.utils;
 
 import com.github.championsdev.champions.library.CLocation;
-import com.github.championsdev.champions.library.server.ServerHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 

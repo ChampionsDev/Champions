@@ -1,5 +1,7 @@
 package com.github.championsdev.champions.library.util;
 
+import edu.emory.mathcs.backport.java.util.Arrays;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -7,8 +9,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
-
-import edu.emory.mathcs.backport.java.util.Arrays;
 
 /**
  * @author Kezz101

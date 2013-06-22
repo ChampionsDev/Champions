@@ -20,8 +20,6 @@ import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.event.Cancellable;
 import com.github.championsdev.champions.library.weapon.Weapon;
 
-import java.nio.channels.CancelledKeyException;
-
 /**
  * @author B2OJustin
  */

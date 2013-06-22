@@ -16,17 +16,16 @@
  ******************************************************************************/
 package com.github.championsdev.champions.library.util;
 
-import java.util.HashMap;
-import java.util.logging.Logger;
-
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-
 import com.github.championsdev.champions.library.Configuration;
 import com.github.championsdev.champions.library.cclass.CClassType;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.level.Level;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+import java.util.HashMap;
+import java.util.logging.Logger;
 
 /**
  * @author B2OJustin

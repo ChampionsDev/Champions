@@ -3,13 +3,7 @@ package com.github.championsdev.champions.bukkit.core;
 import com.github.championsdev.champions.bukkit.core.commands.ClassCommandExecutor;
 import com.github.championsdev.champions.bukkit.core.listeners.BasicListener;
 import com.github.championsdev.champions.bukkit.core.listeners.EventBridgeListener;
-import com.github.championsdev.champions.bukkit.core.utils.LocationUtil;
-import com.github.championsdev.champions.library.CBlock;
-import com.github.championsdev.champions.library.CLocation;
-import com.github.championsdev.champions.library.CWorld;
 import com.github.championsdev.champions.library.Configuration;
-import com.github.championsdev.champions.library.cplayer.CPlayer;
-import com.github.championsdev.champions.library.cplayer.CPlayerHandler;
 import com.github.championsdev.champions.library.database.YAMLDataSource;
 import com.github.championsdev.champions.library.event.BaseListener;
 import com.github.championsdev.champions.library.event.EventManager;
@@ -19,14 +13,9 @@ import com.github.championsdev.champions.library.server.ServerBridge;
 import com.github.championsdev.champions.library.util.PlatformUtil;
 import com.github.championsdev.champions.library.util.ResourceUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 /**

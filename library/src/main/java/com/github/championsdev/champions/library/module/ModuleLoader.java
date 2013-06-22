@@ -17,8 +17,8 @@
 
 package com.github.championsdev.champions.library.module;
 
-import com.github.championsdev.champions.library.util.ResourceUtil;
 import com.github.championsdev.champions.library.util.PlatformUtil;
+import com.github.championsdev.champions.library.util.ResourceUtil;
 
 import java.io.File;
 import java.io.IOException;

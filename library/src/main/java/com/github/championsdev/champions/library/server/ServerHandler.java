@@ -17,9 +17,6 @@
 
 package com.github.championsdev.champions.library.server;
 
-import com.github.championsdev.champions.library.event.EventManager;
-import com.github.championsdev.champions.library.messaging.MessageHandler;
-
 /**
  * @author YoshiGenius
  */

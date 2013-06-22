@@ -17,16 +17,13 @@
 
 package com.github.championsdev.champions.library.server;
 
-import com.github.championsdev.champions.library.CWorld;
 import com.github.championsdev.champions.library.Configuration;
 import com.github.championsdev.champions.library.armor.ArmorCategoryHandler;
 import com.github.championsdev.champions.library.armor.ArmorHandler;
 import com.github.championsdev.champions.library.cclass.CClassHandler;
-import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.cplayer.CPlayerHandler;
 import com.github.championsdev.champions.library.database.DataManager;
 import com.github.championsdev.champions.library.event.EventManager;
-import com.github.championsdev.champions.library.messaging.MessageHandler;
 import com.github.championsdev.champions.library.race.RaceHandler;
 import com.github.championsdev.champions.library.restriction.RestrictionHandler;
 import com.github.championsdev.champions.library.skill.SkillCategoryHandler;
@@ -34,9 +31,6 @@ import com.github.championsdev.champions.library.skill.SkillHandler;
 import com.github.championsdev.champions.library.util.PlatformUtil;
 import com.github.championsdev.champions.library.weapon.WeaponCategoryHandler;
 import com.github.championsdev.champions.library.weapon.WeaponHandler;
-
-import java.util.Collection;
-import java.util.List;
 
 /**
  * @author YoshiGenius

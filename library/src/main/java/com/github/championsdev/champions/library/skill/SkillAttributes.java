@@ -19,7 +19,6 @@ package com.github.championsdev.champions.library.skill;
 
 import com.github.championsdev.champions.library.level.Level;
 import com.github.championsdev.champions.library.level.LevelRestricted;
-import com.github.championsdev.champions.library.level.LevelRestrictions;
 import com.github.championsdev.champions.library.level.LevelUser;
 import com.github.championsdev.champions.library.misc.Attributes;
 

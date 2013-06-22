@@ -17,10 +17,9 @@
 
 package com.github.championsdev.champions.bukkit.core;
 
-import org.bukkit.plugin.java.JavaPlugin;
-
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.messaging.Messenger;
+import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * @author B2OJustin

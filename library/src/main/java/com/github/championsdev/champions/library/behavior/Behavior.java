@@ -20,7 +20,6 @@ package com.github.championsdev.champions.library.behavior;
 import com.github.championsdev.champions.library.event.cplayer.*;
 import com.github.championsdev.champions.library.event.skill.SkillUseEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
-import com.github.championsdev.champions.library.event.weapon.WeaponEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
 
 /**
