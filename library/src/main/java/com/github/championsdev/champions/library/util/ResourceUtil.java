@@ -48,13 +48,13 @@ public class ResourceUtil {
 
         JarFile jar = new JarFile(jarPath);
         Enumeration<JarEntry> entries = jar.entries();
-        jar.close();
         while(entries.hasMoreElements()) {
             String fileName = entries.nextElement().getName();
             if(fileName.startsWith(path) && !fileName.endsWith("/")) {
                 fileNameList.add(fileName);
             }
         }
+        jar.close();
         return fileNameList;
     }
 
