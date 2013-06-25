@@ -21,11 +21,19 @@ import com.github.championsdev.champions.library.event.cplayer.*;
 import com.github.championsdev.champions.library.event.skill.SkillUseEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
 import com.github.championsdev.champions.library.event.weapon.WeaponHitEvent;
+import com.github.championsdev.champions.library.misc.Metadata;
+import com.github.championsdev.champions.library.misc.Metadatable;
 
 /**
  * @author B2OJustin
  */
-public abstract class Behavior {
+public abstract class Behavior implements Metadatable {
+    private Metadata metadata = new Metadata();
+
+    @Override
+    public Metadata getMetadata() {
+        return metadata;
+    }
 
     // Player
     public void onQuit(CPlayerQuitEvent event) {}

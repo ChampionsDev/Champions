@@ -29,6 +29,8 @@ import com.github.championsdev.champions.library.level.exp.ExpGroup;
 import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
 import com.github.championsdev.champions.library.misc.Identifiable;
 import com.github.championsdev.champions.library.misc.Informative;
+import com.github.championsdev.champions.library.misc.Metadata;
+import com.github.championsdev.champions.library.misc.Metadatable;
 import com.github.championsdev.champions.library.restriction.Restrictable;
 import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.skill.SkillAttributes;
@@ -47,7 +49,7 @@ import java.util.Map;
 public class CClass implements Informative<CClass, CClassAttributes>, Identifiable<CClass>,
         WeaponRestricted, WeaponCategoryRestricted, ArmorRestricted, SkillRestricted,
         WeaponUser<CClass>, SkillUser<CClass>, ArmorUser<CClass>,
-        Behavioral<CClass>,Restrictable {
+        Behavioral<CClass>,Restrictable, Metadatable {
 
     private ArrayList<String> description = new ArrayList<>();
     private String name = "";
@@ -65,6 +67,7 @@ public class CClass implements Informative<CClass, CClassAttributes>, Identifiab
     private LinkedHashMap<ExpGroup, Double> expGroups = new LinkedHashMap<>();
 
     private CClassAttributes cClassMeta = new CClassAttributes();
+    private Metadata metadata = new Metadata();
 
 
     public CClass() {
@@ -328,5 +331,10 @@ public class CClass implements Informative<CClass, CClassAttributes>, Identifiab
     public CClass setBehavior(BehaviorGroup behavior) {
         behaviorGroup = behavior;
         return this;
+    }
+
+    @Override
+    public Metadata getMetadata() {
+        return metadata;
     }
 }

@@ -37,6 +37,8 @@ import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
 import com.github.championsdev.champions.library.messaging.MessageHandler;
 import com.github.championsdev.champions.library.misc.CLocatable;
 import com.github.championsdev.champions.library.misc.Informative;
+import com.github.championsdev.champions.library.misc.Metadata;
+import com.github.championsdev.champions.library.misc.Metadatable;
 import com.github.championsdev.champions.library.party.Party;
 import com.github.championsdev.champions.library.permissions.PermissionHandler;
 import com.github.championsdev.champions.library.race.Race;
@@ -61,7 +63,8 @@ import java.util.LinkedHashMap;
 public class CPlayer implements CEntity, Behavioral<CPlayer>,
         Informative<CPlayer, CPlayerAttributes>,
         WeaponUser<CPlayer>, ArmorUser<CPlayer>, SkillUser<CPlayer>,
-        WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, CClassRestricted, RaceRestricted, CLocatable {
+        WeaponRestricted, ArmorRestricted, SkillRestricted, LevelRestricted, CClassRestricted, RaceRestricted, CLocatable,
+        Metadatable {
 
     private Race race = new Race();
 
@@ -93,6 +96,8 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
     private Armor currentArmor = new Armor();
 
     private BehaviorGroup behaviorGroup = new BehaviorGroup();
+
+    private Metadata metadata = new Metadata();
 
     private Party party;
 
@@ -571,5 +576,10 @@ public class CPlayer implements CEntity, Behavioral<CPlayer>,
 
     public boolean hasPermission(String permission) {
         return PermissionHandler.hasPermission(this, permission);
+    }
+
+    @Override
+    public Metadata getMetadata() {
+        return metadata;
     }
 }

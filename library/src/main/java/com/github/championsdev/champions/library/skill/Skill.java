@@ -20,6 +20,8 @@ package com.github.championsdev.champions.library.skill;
 import com.github.championsdev.champions.library.behavior.BehaviorGroup;
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.misc.Informative;
+import com.github.championsdev.champions.library.misc.Metadata;
+import com.github.championsdev.champions.library.misc.Metadatable;
 import com.github.championsdev.champions.library.restriction.Restrictable;
 
 import java.util.ArrayList;
@@ -27,13 +29,12 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class Skill implements Informative<Skill, SkillAttributes>, Behavioral<Skill>,Restrictable {
+public class Skill implements Informative<Skill, SkillAttributes>, Behavioral<Skill>,Restrictable, Metadatable {
     private String name = "";
     private ArrayList<String> description = new ArrayList<>();
-
     private BehaviorGroup behaviorGroup = new BehaviorGroup();
-
     private SkillAttributes skillAttributes = new SkillAttributes();
+    private Metadata metadata = new Metadata();
 
     public Skill() {
     }
@@ -83,5 +84,10 @@ public class Skill implements Informative<Skill, SkillAttributes>, Behavioral<Sk
     public Skill setBehavior(BehaviorGroup behavior) {
         behaviorGroup = behavior;
         return this;
+    }
+
+    @Override
+    public Metadata getMetadata() {
+        return metadata;
     }
 }

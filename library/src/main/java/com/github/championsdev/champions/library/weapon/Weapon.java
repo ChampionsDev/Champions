@@ -21,6 +21,8 @@ import com.github.championsdev.champions.library.BasicCategory;
 import com.github.championsdev.champions.library.behavior.BehaviorGroup;
 import com.github.championsdev.champions.library.behavior.Behavioral;
 import com.github.championsdev.champions.library.misc.Informative;
+import com.github.championsdev.champions.library.misc.Metadata;
+import com.github.championsdev.champions.library.misc.Metadatable;
 import com.github.championsdev.champions.library.restriction.Restrictable;
 
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ import java.util.ArrayList;
 /**
  * @author B2OJustin
  */
-public class Weapon implements Informative<Weapon, WeaponAttributes>, Behavioral<Weapon>,Restrictable {
+public class Weapon implements Informative<Weapon, WeaponAttributes>, Behavioral<Weapon>,Restrictable, Metadatable {
     private String name = "";
     private BasicCategory<WeaponAttributes> category = new BasicCategory<>();
 
@@ -36,6 +38,7 @@ public class Weapon implements Informative<Weapon, WeaponAttributes>, Behavioral
 
     private WeaponAttributes weaponMeta = new WeaponAttributes();
     private BehaviorGroup behaviorGroup = new BehaviorGroup();
+    private Metadata metadata = new Metadata();
 
     public Weapon() {
     }
@@ -97,5 +100,10 @@ public class Weapon implements Informative<Weapon, WeaponAttributes>, Behavioral
     public Weapon setBehavior(BehaviorGroup behavior) {
         behaviorGroup = behavior;
         return this;
+    }
+
+    @Override
+    public Metadata getMetadata() {
+        return metadata;
     }
 }

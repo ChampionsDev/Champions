@@ -18,15 +18,18 @@ package com.github.championsdev.champions.library.party;
 
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.level.exp.sources.ExpSource;
+import com.github.championsdev.champions.library.misc.Metadata;
+import com.github.championsdev.champions.library.misc.Metadatable;
 
 import java.util.ArrayList;
 
 /**
  * @author B2OJustin
  */
-public class Party {
+public class Party implements Metadatable {
     private ArrayList<CPlayer> members = new ArrayList<>();
     private CPlayer partyLeader;
+    private Metadata metadata = new Metadata();
 
     public Party(CPlayer partyLeader) {
         this.partyLeader = partyLeader;
@@ -70,5 +73,10 @@ public class Party {
             player.addExp(source);
         }
         return this;
+    }
+
+    @Override
+    public Metadata getMetadata() {
+        return metadata;
     }
 }

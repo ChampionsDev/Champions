@@ -28,6 +28,8 @@ import com.github.championsdev.champions.library.cclass.CClassRestricted;
 import com.github.championsdev.champions.library.cclass.CClassUser;
 import com.github.championsdev.champions.library.misc.Identifiable;
 import com.github.championsdev.champions.library.misc.Informative;
+import com.github.championsdev.champions.library.misc.Metadata;
+import com.github.championsdev.champions.library.misc.Metadatable;
 import com.github.championsdev.champions.library.restriction.Restrictable;
 import com.github.championsdev.champions.library.skill.Skill;
 import com.github.championsdev.champions.library.skill.SkillAttributes;
@@ -46,7 +48,7 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
         CClassUser<Race>, SkillRestricted,
         WeaponRestricted, WeaponCategoryRestricted,
         ArmorRestricted, ArmorCategoryRestricted,
-        CClassRestricted, Behavioral<Race>, Restrictable {
+        CClassRestricted, Behavioral<Race>, Restrictable, Metadatable {
     private String name = "";
     private String id = "";
     private ArrayList<String> description = new ArrayList<>();
@@ -62,6 +64,7 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
     private RaceAttributes raceMeta = new RaceAttributes();
 
     private BehaviorGroup behaviorGroup = new BehaviorGroup();
+    private Metadata metadata = new Metadata();
 
     public Race() {
     }
@@ -284,5 +287,10 @@ public class Race implements Informative<Race, RaceAttributes>, Identifiable<Rac
     public Race setBehavior(BehaviorGroup behavior) {
         this.behaviorGroup = behavior;
         return this;
+    }
+
+    @Override
+    public Metadata getMetadata() {
+        return metadata;
     }
 }
