@@ -54,6 +54,7 @@ public class Metadata {
         else return null;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T getObject(String mapKey, T objectType) {
         Object object = metaMap.get(mapKey);
         return (T) object;

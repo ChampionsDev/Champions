@@ -200,6 +200,9 @@ public class YAMLDataSource implements DataSource {
                     case "Stats":
                         loadStats(race.getAttributes(), yml);
                         break;
+                    default:
+                        race.getMetadata().put(mainKey, yml.getObject(mainKey));
+                        break;
                 }
             }
 
@@ -250,7 +253,9 @@ public class YAMLDataSource implements DataSource {
                     case "Levels":
                         loadLevels(cClass, yml);
                         break;
-
+                    default:
+                        cClass.getMetadata().put(mainKey, yml.getObject(mainKey));
+                        break;
                 }
             }
 
@@ -295,6 +300,9 @@ public class YAMLDataSource implements DataSource {
                     case "cooldown":
                         skill.getAttributes().setCooldownSeconds(yml.getInt(key));
                         break;
+                    default:
+                        skill.getMetadata().put(key, yml.getObject(key));
+                        break;
                 }
             }
             return skill;
@@ -317,6 +325,9 @@ public class YAMLDataSource implements DataSource {
                 switch(key.toLowerCase()) {
                     case "name":
                         weapon.setName(yml.getString("name"));
+                        break;
+                    default:
+                        weapon.getMetadata().put(key, yml.getObject(key));
                         break;
                 }
             }
