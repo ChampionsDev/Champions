@@ -77,7 +77,7 @@ public class ModuleLoader {
                         log.severe("module.yml not found in plugin file: " + file.getName());
                     } else {
                         InputStream is = jarFile.getInputStream(entry);
-                        ModuleDescriptionFile desc = new ModuleDescriptionFile(is);
+                        ModuleDescriptor desc = new ModuleDescriptor(is);
                         Module result = null;
                         if (isCompatible(desc.getPlatforms())) {
                             try {

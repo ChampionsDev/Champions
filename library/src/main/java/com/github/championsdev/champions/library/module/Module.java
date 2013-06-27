@@ -35,7 +35,7 @@ public class Module {
 
     protected File file;
     protected boolean initialized;
-    protected ModuleDescriptionFile description;
+    protected ModuleDescriptor description;
     protected File cfgFile;
     protected ModuleConfig cfg;
     private ClassLoader classLoader;
@@ -45,7 +45,7 @@ public class Module {
         return this.getDescription().getName();
     }
 
-    public ModuleDescriptionFile getDescription() {
+    public ModuleDescriptor getDescription() {
         return this.description;
     }
 
@@ -146,7 +146,7 @@ public class Module {
         return this.logger;
     }
 
-    protected final void initialize(ModuleDescriptionFile description, File file, File cfgFile, ClassLoader classLoader, Logger logger) {
+    protected final void initialize(ModuleDescriptor description, File file, File cfgFile, ClassLoader classLoader, Logger logger) {
         if (!initialized) {
             this.initialized = true;
             this.file = file;

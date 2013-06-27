@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * @author YoshiGenius
  */
-public final class ModuleDescriptionFile {
+public final class ModuleDescriptor {
     private static final Yaml yaml = new Yaml(new SafeConstructor());
     private String[] platforms = new String[]{};
     private String name = null;
@@ -41,15 +41,15 @@ public final class ModuleDescriptionFile {
     private List<String> authors = null;
     private String website = null;
 
-    public ModuleDescriptionFile(final InputStream stream) {
+    public ModuleDescriptor(final InputStream stream) {
         loadMap(asMap(yaml.load(stream)));
     }
 
-    public ModuleDescriptionFile(final Reader reader) {
+    public ModuleDescriptor(final Reader reader) {
         loadMap(asMap(yaml.load(reader)));
     }
 
-    public ModuleDescriptionFile(final String pluginName, final String pluginVersion, final String mainClass, final String[] supportedPlatforms) {
+    public ModuleDescriptor(final String pluginName, final String pluginVersion, final String mainClass, final String[] supportedPlatforms) {
         name = pluginName;
         version = pluginVersion;
         main = mainClass;
