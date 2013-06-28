@@ -18,9 +18,7 @@
 package com.github.championsdev.champions.library.misc;
 
 import com.github.championsdev.champions.library.exceptions.InvalidDescriptorException;
-import com.github.championsdev.champions.library.module.ModuleLoader;
 import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.SafeConstructor;
 
 import java.io.InputStream;
 import java.util.List;

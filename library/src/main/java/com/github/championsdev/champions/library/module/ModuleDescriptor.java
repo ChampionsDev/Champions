@@ -19,16 +19,8 @@ package com.github.championsdev.champions.library.module;
 
 import com.github.championsdev.champions.library.exceptions.InvalidDescriptorException;
 import com.github.championsdev.champions.library.misc.Descriptor;
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.SafeConstructor;
 
 import java.io.InputStream;
-import java.io.Reader;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author YoshiGenius

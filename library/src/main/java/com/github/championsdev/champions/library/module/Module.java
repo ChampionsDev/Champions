@@ -20,7 +20,7 @@ package com.github.championsdev.champions.library.module;
 import com.github.championsdev.champions.library.server.ServerBridge;
 import com.github.championsdev.champions.library.server.ServerHandler;
 
-import java.io.*;
+import java.io.File;
 
 /**
  * @author YoshiGenius
