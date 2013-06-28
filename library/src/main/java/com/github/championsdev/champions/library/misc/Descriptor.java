@@ -49,8 +49,6 @@ public class Descriptor {
         if(object == null || !(object instanceof Map)) {
             throw new InvalidDescriptorException("Unable to process descriptor input stream");
         }
-
-
     }
 
     public String getName() {
