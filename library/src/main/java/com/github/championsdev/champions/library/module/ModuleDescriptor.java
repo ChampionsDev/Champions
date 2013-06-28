@@ -17,6 +17,7 @@
 
 package com.github.championsdev.champions.library.module;
 
+import com.github.championsdev.champions.library.exceptions.InvalidDescriptorException;
 import com.github.championsdev.champions.library.misc.Descriptor;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.SafeConstructor;
@@ -35,5 +36,9 @@ import java.util.Map;
 public final class ModuleDescriptor extends Descriptor {
     public ModuleDescriptor(final String pluginName, final String pluginVersion, final String mainClass, final String[] supportedPlatforms) {
         super(pluginName, pluginVersion, mainClass, supportedPlatforms);
+    }
+
+    public ModuleDescriptor(InputStream inputStream) throws InvalidDescriptorException {
+        super(inputStream);
     }
 }

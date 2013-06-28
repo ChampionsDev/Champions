@@ -15,40 +15,13 @@
  *     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.github.championsdev.champions.library.module;
-
-import com.github.championsdev.champions.library.server.ServerBridge;
-import com.github.championsdev.champions.library.server.ServerHandler;
-
-import java.io.*;
+package com.github.championsdev.champions.library.exceptions;
 
 /**
- * @author YoshiGenius
+ * @author B2OJustin
  */
-public abstract class Module {
-    protected File file;
-    protected ModuleDescriptor descriptor;
-
-    public abstract void onEnable();
-    public abstract void onDisable();
-
-    public String getName() {
-        return this.getDescriptor().getName();
-    }
-
-    public ModuleDescriptor getDescriptor() {
-        return this.descriptor;
-    }
-
-    protected void init(ModuleDescriptor descriptor) {
-        this.descriptor = descriptor;
-    }
-
-    public String[] getSupportedPlatforms() {
-        return this.descriptor.getPlatforms();
-    }
-
-    public ServerBridge getServer() {
-        return ServerHandler.getServerBridge();
+public class InvalidDescriptorException extends Exception {
+    public InvalidDescriptorException(String message) {
+        super(message);
     }
 }

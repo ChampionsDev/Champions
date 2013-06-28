@@ -17,7 +17,14 @@
 
 package com.github.championsdev.champions.library.misc;
 
+import com.github.championsdev.champions.library.exceptions.InvalidDescriptorException;
+import com.github.championsdev.champions.library.module.ModuleLoader;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.SafeConstructor;
+
+import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author B2OJustin
@@ -36,6 +43,16 @@ public class Descriptor {
         version = pluginVersion;
         main = mainClass;
         platforms = supportedPlatforms;
+    }
+
+    public Descriptor(InputStream inputStream) throws InvalidDescriptorException {
+        Yaml yaml = new Yaml();
+        Object object = yaml.load(inputStream);
+        if(object == null || !(object instanceof Map)) {
+            throw new InvalidDescriptorException("Unable to process descriptor input stream");
+        }
+
+
     }
 
     public String getName() {
