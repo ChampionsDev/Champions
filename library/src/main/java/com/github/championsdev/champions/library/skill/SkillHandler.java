@@ -34,7 +34,7 @@ public class SkillHandler extends BasicHandler<Skill> {
         return instance;
     }
 
-    private SkillHandler(){
+    private SkillHandler() {
     }
 
     public Skill load(String id) {

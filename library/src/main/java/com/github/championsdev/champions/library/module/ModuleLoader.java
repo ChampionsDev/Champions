@@ -18,6 +18,7 @@
 package com.github.championsdev.champions.library.module;
 
 import com.github.championsdev.champions.library.exceptions.InvalidDescriptorException;
+import com.github.championsdev.champions.library.misc.Descriptor;
 import com.github.championsdev.champions.library.util.PlatformUtil;
 import com.github.championsdev.champions.library.util.ResourceUtil;
 
@@ -45,7 +46,7 @@ public class ModuleLoader {
     }
 
     public static Module[] loadModules() {
-        ModuleDescriptor descriptor;
+        Descriptor descriptor;
         for (File file : moduleDir.listFiles()) {
             if (!ResourceUtil.isJarFile(file)) continue;
             try (JarFile jarFile = new JarFile(file)) {
@@ -55,7 +56,7 @@ public class ModuleLoader {
                     continue;
                 }
                 InputStream inputStream = jarFile.getInputStream(entry);
-                descriptor = new ModuleDescriptor(inputStream);
+                descriptor = new Descriptor(inputStream);
             } catch(IOException | InvalidDescriptorException e) {
                 e.printStackTrace();
                 continue;

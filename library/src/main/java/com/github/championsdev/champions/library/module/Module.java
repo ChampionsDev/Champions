@@ -17,6 +17,7 @@
 
 package com.github.championsdev.champions.library.module;
 
+import com.github.championsdev.champions.library.misc.Descriptor;
 import com.github.championsdev.champions.library.server.ServerBridge;
 import com.github.championsdev.champions.library.server.ServerHandler;
 
@@ -27,7 +28,7 @@ import java.io.File;
  */
 public abstract class Module {
     protected File file;
-    protected ModuleDescriptor descriptor;
+    protected Descriptor descriptor;
 
     public abstract void onEnable();
     public abstract void onDisable();
@@ -36,11 +37,11 @@ public abstract class Module {
         return this.getDescriptor().getName();
     }
 
-    public ModuleDescriptor getDescriptor() {
+    public Descriptor getDescriptor() {
         return this.descriptor;
     }
 
-    protected void init(ModuleDescriptor descriptor) {
+    protected void init(Descriptor descriptor) {
         this.descriptor = descriptor;
     }
 

@@ -36,13 +36,14 @@ public class Descriptor {
     private String website = null;
     private String[] platforms = new String[]{};
 
-    public Descriptor(final String pluginName, final String pluginVersion, final String mainClass, final String[] supportedPlatforms) {
-        name = pluginName;
-        version = pluginVersion;
+    public Descriptor(final String name, final String version, final String mainClass, final String[] supportedPlatforms) {
+        this.name = name;
+        this.version = version;
         main = mainClass;
         platforms = supportedPlatforms;
     }
 
+    //TODO
     public Descriptor(InputStream inputStream) throws InvalidDescriptorException {
         Yaml yaml = new Yaml();
         Object object = yaml.load(inputStream);
