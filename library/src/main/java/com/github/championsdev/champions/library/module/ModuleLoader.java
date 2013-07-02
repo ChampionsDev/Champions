@@ -64,6 +64,7 @@ public class ModuleLoader {
 
             Module module;
             try {
+                //TODO
                 if (isCompatible(descriptor.getPlatforms())) {
                     Class<?> jarClass = Class.forName(descriptor.getMain());
                     Class<? extends Module> moduleClass = jarClass.asSubclass(Module.class);
