@@ -16,11 +16,14 @@
  ******************************************************************************/
 package com.github.championsdev.champions.library.util;
 
+import com.github.championsdev.champions.library.exceptions.InvalidDescriptorException;
+import com.github.championsdev.champions.library.misc.Descriptor;
+import org.yaml.snakeyaml.Yaml;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.net.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
@@ -116,4 +119,24 @@ public class ResourceUtil {
         return (file != null && !file.isDirectory() && file.getName().endsWith(".zip"));
     }
 
+    public static Descriptor loadDescriptor(File file, String resourceFile) {
+        if(!file.exists()) return null;
+        InputStream descriptorStream;
+        if(isJarFile(file)) {
+            descriptorStream = getResourceFromJar(file, resourceFile);
+        }
+        else if(isZipFile(file)) {
+            descriptorStream = getResourceFromZip(file, resourceFile);
+        }
+        else return null;
+
+        try {
+            Descriptor descriptor = new Descriptor(descriptorStream);
+            descriptorStream.close();
+            return descriptor;
+        } catch (InvalidDescriptorException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
