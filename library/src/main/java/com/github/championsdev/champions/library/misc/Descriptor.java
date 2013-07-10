@@ -81,9 +81,6 @@ public class Descriptor {
 
         try {
             main = map.get("main").toString();
-            if (main.startsWith("com.github.championsdev.champions.")) {
-                return;
-            }
         } catch (NullPointerException ex) {
             return;
         } catch (ClassCastException ex) {

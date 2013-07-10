@@ -17,10 +17,13 @@
 
 package com.github.championsdev.champions.library.event;
 
+import com.github.championsdev.champions.library.module.Module;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Manages calling and registering of events.
@@ -31,11 +34,13 @@ import java.util.HashMap;
 @SuppressWarnings("unchecked")
 public class EventManager {
     private static int MAX_UPSTREAM = 10;
+
     private static HashMap<Method, CEventHandler> handlers = new HashMap<>();
     private static HashMap<Class<? extends ChampionsEvent>, ArrayList<Method>> methods = new HashMap<>();
     private static HashMap<Method, EventListener> listeners = new HashMap<>();
 
     private static EventManager instance = new EventManager();
+    private static HashMap<EventListener, Module> moduleListeners = new HashMap<>();
 
     public static EventManager getInstance() {
         return instance;
@@ -44,12 +49,12 @@ public class EventManager {
     private EventManager() {
     }
 
-    public static synchronized void registerEvents(EventListener listener) {
+    public static synchronized void registerEvents(EventListener listener, Module module) {
+        moduleListeners.put(listener, module);
         for(Method method : listener.getClass().getMethods()) {
             if(method.isAnnotationPresent(CEventHandler.class)) {
                 Class[] paramType = method.getParameterTypes();
-                if(paramType.length == 1 &&
-                        ChampionsEvent.class.isAssignableFrom(paramType[0])) {
+                if(paramType.length == 1 && ChampionsEvent.class.isAssignableFrom(paramType[0])) {
                     handlers.put(method, method.getAnnotation(CEventHandler.class));
 
                     // Register upstream events to method
@@ -64,6 +69,23 @@ public class EventManager {
                         clazz = clazz.getSuperclass();
                         if(clazz == Object.class) break;
                     }
+                }
+            }
+        }
+    }
+
+    public static void unregisterEvents(EventListener listener) {
+        moduleListeners.remove(listener);
+        for (Method m : listeners.keySet()) {
+            if (listeners.get(m) == listener) {
+                listeners.remove(m);
+                handlers.remove(m);
+                for (Class<? extends ChampionsEvent> clazz : methods.keySet()) {
+                    ArrayList<Method> methods1 = methods.get(clazz);
+                    if (methods1.contains(m)) {
+                        methods1.remove(m);
+                    }
+                    methods.put(clazz, methods1);
                 }
             }
         }
@@ -110,7 +132,7 @@ public class EventManager {
                     if(clazz == Object.class) break;
                 }
 
-                // Todo code duplication.
+                // TODO code duplication.
                 for(Method method : lowestPriority) {
                     if(event instanceof Cancellable && ((Cancellable)event).isCancelled() && handlers.get(method).ignoreCancelled()) {
                         continue;
@@ -164,4 +186,13 @@ public class EventManager {
         }
     }
 
+    public static List<EventListener> getRegisteredEvents(Module module) {
+        List<EventListener> listeners = new ArrayList<>();
+        for (EventListener listener : moduleListeners.keySet()) {
+            if (moduleListeners.get(listener) == module) {
+                listeners.add(listener);
+            }
+        }
+        return listeners;
+    }
 }

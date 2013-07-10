@@ -52,4 +52,11 @@ public abstract class Module {
     public ServerBridge getServer() {
         return ServerHandler.getServerBridge();
     }
+
+    public boolean isEnabled() {
+        return ModuleLoader.isEnabled(this);
+    }
+
+
+
 }

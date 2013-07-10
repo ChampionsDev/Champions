@@ -17,6 +17,8 @@
 
 package com.github.championsdev.champions.library.module;
 
+import com.github.championsdev.champions.library.event.EventListener;
+import com.github.championsdev.champions.library.event.EventManager;
 import com.github.championsdev.champions.library.exceptions.InvalidDescriptorException;
 import com.github.championsdev.champions.library.misc.Descriptor;
 import com.github.championsdev.champions.library.util.PlatformUtil;
@@ -28,6 +30,7 @@ import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.logging.Logger;
@@ -40,6 +43,7 @@ public class ModuleLoader {
 
     private static final ArrayList<Module> modules = new ArrayList<>();
     private static File moduleDir = new File("modules");
+    private static HashMap<Module, Boolean> statuses = new HashMap<>();
 
     public static Logger getLogger() {
         return logger;
@@ -86,9 +90,41 @@ public class ModuleLoader {
             }
         }
         for (Module module : modules) {
-            module.onEnable();
+            enableModule(module);
         }
         return modules.toArray(new Module[modules.size()]);
+    }
+
+    public static void enableModule(Module module) {
+        if (module == null) return;
+        if (isEnabled(module)) return;
+        try {
+            module.onEnable();
+        } catch (Exception e) {
+            disableModule(module);
+            e.printStackTrace();
+            return;
+        }
+        statuses.put(module, true);
+    }
+
+    public static void disableModule(Module module) {
+        if (module == null) return;
+        if (!isEnabled(module)) return;
+        for (EventListener listener : EventManager.getRegisteredEvents(module)) {
+            EventManager.unregisterEvents(listener);
+        }
+        statuses.put(module, false);
+    }
+
+    public static boolean isEnabled(Module module) {
+        if (module == null) return false;
+        return statuses.get(module);
+    }
+
+    public static boolean isCompatible(Module module) {
+        if (module == null) return false;
+        return isCompatible(module.getSupportedPlatforms());
     }
 
     private static boolean isCompatible(String[] platforms) {
