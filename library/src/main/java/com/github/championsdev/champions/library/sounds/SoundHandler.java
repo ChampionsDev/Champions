@@ -17,6 +17,7 @@
 
 package com.github.championsdev.champions.library.sounds;
 
+import com.github.championsdev.champions.library.CLocation;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 
 import java.util.ArrayList;
@@ -34,9 +35,9 @@ public class SoundHandler {
         return players.add(player);
     }
 
-    public static boolean playSound(CPlayer p, Sound sound) {
+    public static boolean playSound(CPlayer p, CLocation loc, Sound sound) {
         for (SoundPlayer player : players) {
-            if (player.playSound(p, sound)) return true;
+            if (player.playSound(p, loc, sound)) return true;
         }
         return false;
     }

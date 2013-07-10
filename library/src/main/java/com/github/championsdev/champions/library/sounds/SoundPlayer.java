@@ -19,6 +19,7 @@
 
 package com.github.championsdev.champions.library.sounds;
 
+import com.github.championsdev.champions.library.CLocation;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 
 /**
@@ -26,6 +27,6 @@ import com.github.championsdev.champions.library.cplayer.CPlayer;
  */
 public abstract class SoundPlayer {
 
-    public abstract boolean playSound(CPlayer p, Sound sound);
+    public abstract boolean playSound(CPlayer p, CLocation loc, Sound sound);
 
 }

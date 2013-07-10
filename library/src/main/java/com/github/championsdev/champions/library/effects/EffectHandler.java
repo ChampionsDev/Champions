@@ -19,6 +19,7 @@
 
 package com.github.championsdev.champions.library.effects;
 
+import com.github.championsdev.champions.library.CLocation;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 
 import java.util.ArrayList;
@@ -36,9 +37,9 @@ public class EffectHandler {
         return players.add(player);
     }
 
-    public static boolean playEffect(CPlayer p, Effect e) {
+    public static boolean playEffect(CPlayer p, CLocation loc, Effect e) {
         for (EffectPlayer player : players) {
-            if (player.playEffect(p, e)) return true;
+            if (player.playEffect(p, loc, e)) return true;
         }
         return false;
     }

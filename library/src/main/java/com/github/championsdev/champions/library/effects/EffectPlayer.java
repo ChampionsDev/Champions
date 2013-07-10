@@ -19,6 +19,7 @@
 
 package com.github.championsdev.champions.library.effects;
 
+import com.github.championsdev.champions.library.CLocation;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 
 /**
@@ -26,6 +27,6 @@ import com.github.championsdev.champions.library.cplayer.CPlayer;
  */
 public abstract class EffectPlayer {
 
-    public abstract boolean playEffect(CPlayer p, Effect effect);
+    public abstract boolean playEffect(CPlayer p, CLocation loc, Effect effect);
 
 }
