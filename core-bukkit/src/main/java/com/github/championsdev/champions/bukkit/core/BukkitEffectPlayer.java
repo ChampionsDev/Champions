@@ -20,12 +20,15 @@
 package com.github.championsdev.champions.bukkit.core;
 
 import com.github.championsdev.champions.bukkit.core.utils.LocationUtil;
+import com.github.championsdev.champions.library.BlockFace;
 import com.github.championsdev.champions.library.CLocation;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 import com.github.championsdev.champions.library.effects.Effect;
 import com.github.championsdev.champions.library.effects.EffectPlayer;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.Potion;
 
 /**
  * @author YoshiGenius
@@ -54,7 +57,7 @@ public class BukkitEffectPlayer extends EffectPlayer {
                 p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
                 break;
             case RECORD_PLAY:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
+                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, Material.getMaterial(data));
                 break;
             case GHAST_SHRIEK:
                 p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
@@ -74,14 +77,11 @@ public class BukkitEffectPlayer extends EffectPlayer {
             case ZOMBIE_DESTROY_DOOR:
                 p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
                 break;
-            case SMOKE:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
             case STEP_SOUND:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
+                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, Material.getMaterial(data));
                 break;
             case POTION_BREAK:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
+                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, Potion.fromDamage(data));
                 break;
             case ENDER_SIGNAL:
                 p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
@@ -90,67 +90,15 @@ public class BukkitEffectPlayer extends EffectPlayer {
                 p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
                 break;
         }
-        return true;
+        return false;
     }
 
     @Override
-    public boolean playEffect(CPlayer cp, CLocation loc, Class<?> data, Effect effect) {
+    public boolean playSmokeEffect(CPlayer cp, CLocation loc, BlockFace face) {
         Player p = Bukkit.getPlayerExact(cp.getName());
         if (p == null) return false;
         if (LocationUtil.toBukkitLoc(loc) == null) return false;
-        switch (effect) {
-            case CLICK2:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK2, data);
-                break;
-            case CLICK1:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-            case BOW_FIRE:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-            case DOOR_TOGGLE:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-            case EXTINGUISH:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-            case RECORD_PLAY:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-            case GHAST_SHRIEK:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-            case GHAST_SHOOT:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-            case BLAZE_SHOOT:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-            case ZOMBIE_CHEW_WOODEN_DOOR:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-            case ZOMBIE_CHEW_IRON_DOOR:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-            case ZOMBIE_DESTROY_DOOR:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-            case SMOKE:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-            case STEP_SOUND:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-            case POTION_BREAK:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-            case ENDER_SIGNAL:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-            case MOBSPAWNER_FLAMES:
-                p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, data);
-                break;
-        }
+        p.playEffect(LocationUtil.toBukkitLoc(loc), org.bukkit.Effect.CLICK1, face);
         return true;
     }
 

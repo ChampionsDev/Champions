@@ -19,6 +19,7 @@
 
 package com.github.championsdev.champions.library.effects;
 
+import com.github.championsdev.champions.library.BlockFace;
 import com.github.championsdev.champions.library.CLocation;
 import com.github.championsdev.champions.library.cplayer.CPlayer;
 
@@ -44,9 +45,9 @@ public class EffectHandler {
         return false;
     }
 
-    public static boolean playEffect(CPlayer p, CLocation loc, Class<?> data, Effect e) {
+    public static boolean playSmokeEffect(CPlayer p, CLocation loc, BlockFace face) {
         for (EffectPlayer player : players) {
-            if (player.playEffect(p, loc, data, e)) return true;
+            if (player.playSmokeEffect(p, loc, face)) return true;
         }
         return false;
     }
