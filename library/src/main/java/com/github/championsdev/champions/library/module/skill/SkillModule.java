@@ -26,6 +26,6 @@ import com.github.championsdev.champions.library.module.Module;
  */
 public abstract class SkillModule extends Module {
 
-
+    public abstract void loadSkills();
 
 }

@@ -21,6 +21,7 @@ import com.github.championsdev.champions.library.event.EventListener;
 import com.github.championsdev.champions.library.event.EventManager;
 import com.github.championsdev.champions.library.exceptions.InvalidDescriptorException;
 import com.github.championsdev.champions.library.misc.Descriptor;
+import com.github.championsdev.champions.library.module.skill.SkillModule;
 import com.github.championsdev.champions.library.util.PlatformUtil;
 import com.github.championsdev.champions.library.util.ResourceUtil;
 
@@ -100,6 +101,9 @@ public class ModuleLoader {
         if (isEnabled(module)) return;
         try {
             module.onEnable();
+            if (module instanceof SkillModule) {
+                ((SkillModule)module).loadSkills();
+            }
         } catch (Exception e) {
             disableModule(module);
             e.printStackTrace();
