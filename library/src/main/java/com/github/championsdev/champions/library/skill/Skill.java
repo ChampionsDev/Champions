@@ -40,7 +40,6 @@ public class Skill implements Informative<Skill, SkillAttributes>, Behavioral<Sk
     }
 
     public Skill(String name, ArrayList<String> description) {
-        this();
         this.name = name;
         this.description = description;
     }
