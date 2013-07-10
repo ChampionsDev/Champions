@@ -1,5 +1,6 @@
-/*******************************************************************************
- * This file is part of Champions.
+/*
+ * ****************************************************************************
+ *     This file is part of Champions.
  *
  *     Champions is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -13,14 +14,27 @@
  *
  *     You should have received a copy of the GNU General Public License
  *     along with Champions.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ * ****************************************************************************
+ */
+
 package com.github.championsdev.champions.library.level.exp.sources;
 
+import com.github.championsdev.champions.library.CBlock;
+
 /**
- * @author B2OJustin
+ * @author YoshiGenius
  */
-public enum ExpSourceType {
-    BLOCK_BREAK, BLOCK_PLACE, PLAYER_KILL,
-    MOB_KILL, ENCHANT, CRAFT, SKILL,
-    FURNACE_COLLECT
+public class FurnaceCollectExpSource extends ExpSource {
+
+    private final CBlock block;
+
+    public FurnaceCollectExpSource(CBlock block) {
+        super(ExpSourceType.FURNACE_COLLECT);
+        this.block = block;
+    }
+
+    public CBlock getBlock() {
+        return this.block;
+    }
+
 }
