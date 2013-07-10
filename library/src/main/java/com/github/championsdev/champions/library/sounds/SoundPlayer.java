@@ -27,6 +27,6 @@ import com.github.championsdev.champions.library.cplayer.CPlayer;
  */
 public abstract class SoundPlayer {
 
-    public abstract boolean playSound(CPlayer p, CLocation loc, Sound sound);
+    public abstract boolean playSound(CPlayer p, CLocation loc, float volume, float pitch, Sound sound);
 
 }

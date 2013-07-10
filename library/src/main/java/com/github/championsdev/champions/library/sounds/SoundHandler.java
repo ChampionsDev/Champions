@@ -35,9 +35,9 @@ public class SoundHandler {
         return players.add(player);
     }
 
-    public static boolean playSound(CPlayer p, CLocation loc, Sound sound) {
+    public static boolean playSound(CPlayer p, CLocation loc, float volume, float pitch, Sound sound) {
         for (SoundPlayer player : players) {
-            if (player.playSound(p, loc, sound)) return true;
+            if (player.playSound(p, loc, volume, pitch, sound)) return true;
         }
         return false;
     }

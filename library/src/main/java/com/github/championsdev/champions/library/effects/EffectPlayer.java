@@ -27,6 +27,7 @@ import com.github.championsdev.champions.library.cplayer.CPlayer;
  */
 public abstract class EffectPlayer {
 
-    public abstract boolean playEffect(CPlayer p, CLocation loc, Effect effect);
+    public abstract boolean playEffect(CPlayer p, CLocation loc, byte data, Effect effect);
+    public abstract boolean playEffect(CPlayer p, CLocation loc, Class<?> data, Effect effect);
 
 }

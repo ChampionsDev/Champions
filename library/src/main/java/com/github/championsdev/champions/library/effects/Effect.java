@@ -19,6 +19,8 @@
 
 package com.github.championsdev.champions.library.effects;
 
+import com.github.championsdev.champions.library.BlockFace;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,9 +49,9 @@ public enum Effect {
      */
     EXTINGUISH(1004, Type.SOUND),
     /**
-     * A song from a record.
+     * A song from a record. Needs the record item ID as additional info
      */
-    RECORD_PLAY(1005, Type.SOUND),
+    RECORD_PLAY(1005, Type.SOUND, Integer.class),
     /**
      * Sound of ghast shrieking.
      */
@@ -75,17 +77,17 @@ public enum Effect {
      */
     ZOMBIE_DESTROY_DOOR(1012, Type.SOUND),
     /**
-     * A visual smoke effect.
+     * A visual smoke effect. Needs direction as additional info.
      */
-    SMOKE(2000, Type.VISUAL),
+    SMOKE(2000, Type.VISUAL, BlockFace.class),
     /**
-     * Sound of a block breaking.
+     * Sound of a block breaking. Needs block ID as additional info.
      */
-    STEP_SOUND(2001, Type.SOUND),
+    STEP_SOUND(2001, Type.SOUND, Integer.class),
     /**
-     * Visual effect of a splash potion breaking.
+     * Visual effect of a splash potion breaking. Needs potion data value as additional info.
      */
-    POTION_BREAK(2002, Type.VISUAL),
+    POTION_BREAK(2002, Type.VISUAL, Byte.class),
     /**
      * An ender eye signal; a visual effect.
      */
@@ -97,11 +99,17 @@ public enum Effect {
 
     private final int id;
     private final Type type;
+    private final Class<?> data;
     private static final Map<Integer, Effect> BY_ID = new HashMap<>();
 
     Effect(int id, Type type) {
+        this(id,type,null);
+    }
+
+    Effect(int id, Type type, Class<?> data) {
         this.id = id;
         this.type = type;
+        this.data = data;
     }
 
     /**
@@ -118,6 +126,13 @@ public enum Effect {
      */
     public Type getType() {
         return this.type;
+    }
+
+    /**
+     * @return The class which represents data for this effect, or null if none
+     */
+    public Class<?> getData() {
+        return this.data;
     }
 
     /**

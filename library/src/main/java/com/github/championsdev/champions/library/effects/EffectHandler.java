@@ -37,9 +37,16 @@ public class EffectHandler {
         return players.add(player);
     }
 
-    public static boolean playEffect(CPlayer p, CLocation loc, Effect e) {
+    public static boolean playEffect(CPlayer p, CLocation loc, byte data, Effect e) {
         for (EffectPlayer player : players) {
-            if (player.playEffect(p, loc, e)) return true;
+            if (player.playEffect(p, loc, data, e)) return true;
+        }
+        return false;
+    }
+
+    public static boolean playEffect(CPlayer p, CLocation loc, Class<?> data, Effect e) {
+        for (EffectPlayer player : players) {
+            if (player.playEffect(p, loc, data, e)) return true;
         }
         return false;
     }

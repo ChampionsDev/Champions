@@ -18,7 +18,9 @@
 package com.github.championsdev.champions.bukkit.core;
 
 import com.github.championsdev.champions.bukkit.core.utils.DependencyHandler;
+import com.github.championsdev.champions.library.effects.EffectHandler;
 import com.github.championsdev.champions.library.server.ServerHandler;
+import com.github.championsdev.champions.library.sounds.SoundHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Logger;
@@ -41,6 +43,8 @@ public class ChampionsCore extends JavaPlugin {
         DependencyHandler.resolve();
 
         ServerHandler.setServerBridge(new BukkitChampionsServer(this));
+        EffectHandler.addEffectPlayer(new BukkitEffectPlayer());
+        SoundHandler.addSoundPlayer(new BukkitSoundPlayer());
 
         logger.info("Champions successfully enabled!");
 	}
