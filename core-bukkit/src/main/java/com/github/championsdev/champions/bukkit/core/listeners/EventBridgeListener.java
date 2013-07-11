@@ -24,6 +24,7 @@ import com.github.championsdev.champions.library.event.weapon.WeaponClickEvent;
 import com.github.championsdev.champions.library.util.LoreUtil;
 import com.github.championsdev.champions.library.weapon.Weapon;
 import com.github.championsdev.champions.library.weapon.WeaponHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -31,13 +32,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemHeldEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author B2OJustin
@@ -105,6 +104,30 @@ public class EventBridgeListener implements Listener {
         Weapon weapon = WeaponHandler.getInstance().load(itemName);
         LoreUtil.addLoreData(weapon, loreList);
         EventManager.callEvent(new CPlayerWeaponChangeEvent(cPlayer, weapon));
+    }
+
+    @EventHandler
+    public void onChat(AsyncPlayerChatEvent evt) {
+        CPlayer cPlayer = CPlayerHandler.getInstance().load(evt.getPlayer().getName());
+        List<CPlayer> cRecipients = new ArrayList<>();
+        for (Player p : evt.getRecipients()) {
+            CPlayer cp = CPlayerHandler.getInstance().load(p.getName());
+            cRecipients.add(cp);
+        }
+        AsyncCPlayerChatEvent event = new AsyncCPlayerChatEvent(cPlayer, evt.getMessage(), evt.getFormat(), evt.isAsynchronous(), cRecipients);
+        EventManager.callEvent(event);
+        evt.setMessage(event.getMessage());
+        evt.setFormat(event.getFormat());
+        evt.getRecipients().clear();
+        for (CPlayer cp : event.getRecipients()) {
+            Player p = Bukkit.getPlayerExact(cp.getName());
+            if (p != null) {
+                evt.getRecipients().add(p);
+            }
+        }
+        if (event.isCancelled()) {
+            evt.setCancelled(true);
+        }
     }
 
 }
